@@ -23,7 +23,7 @@ layout: default
       <a href="{{ site.baseurl }}/">
         <img src="{{ site.baseurl }}/assets/images/logo.png" alt="Asoba">
       </a>
-      <span class="site-title">Ona Documentation</span>
+      <span class="site-title">AsobaCode CLI</span>
     </div>
     <div class="search-container-top">
       <input type="text" id="search-input" placeholder="Search the Docs">
@@ -46,93 +46,73 @@ layout: default
           </div>
           <ul class="sub-menu">
             <li><a href="{{ site.baseurl }}/index.html#getting-started">Getting Started</a></li>
-            <li><a href="{{ site.baseurl }}/index.html#platform-overview">Platform Overview</a></li>
-            <li><a href="{{ site.baseurl }}/index.html#onboarding-web-app">Onboarding: Web App</a></li>
-            <li><a href="{{ site.baseurl }}/index.html#onboarding-api-integration">API Integration</a></li>
-            <li><a href="{{ site.baseurl }}/index.html#data-preparation">Data Preparation</a></li>
-            <li><a href="{{ site.baseurl }}/index.html#api-configuration">API Configuration</a></li>
-            <li><a href="{{ site.baseurl }}/index.html#testing-validation">Testing & Validation</a></li>
+            <li><a href="{{ site.baseurl }}/index.html#what-is-asobacode">What is AsobaCode?</a></li>
+            <li><a href="{{ site.baseurl }}/index.html#quick-start">Quick Start</a></li>
+            <li><a href="{{ site.baseurl }}/index.html#core-capabilities">Core Capabilities</a></li>
+            <li><a href="{{ site.baseurl }}/index.html#architecture">Architecture Overview</a></li>
+            <li><a href="{{ site.baseurl }}/index.html#key-use-cases">Key Use Cases</a></li>
+            <li><a href="{{ site.baseurl }}/index.html#getting-started-steps">Getting Started Steps</a></li>
           </ul>
         </li>
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/endpoints.html">API Endpoints</a>
+            <a href="{{ site.baseurl }}/endpoints.html">Commands & API</a>
             <span class="toggle-icon">+</span>
           </div>
           <ul class="sub-menu">
             <li class="sub-category">
               <div class="sub-nav-header">
-                <span>Data Ingestion & Management</span>
+                <span>Core Commands</span>
                 <span class="sub-toggle-icon">+</span>
               </div>
               <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/endpoints.html#upload-historical">Historical Data Upload</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#upload-nowcast">Real-Time Nowcast</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#interpolate-data">Data Interpolation</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#system-status">System Status & Health</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#natural-language">Natural Language Interface</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#project-init">Project Initialization</a></li>
               </ul>
             </li>
             <li class="sub-category">
               <div class="sub-nav-header">
-                <span>AI-Powered Forecasting</span>
+                <span>Code Analysis</span>
                 <span class="sub-toggle-icon">+</span>
               </div>
               <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/endpoints.html#generate-forecast">Generation Forecasting</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#price-forecast">Market Price Forecasting</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#weather-data">Weather Integration</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#technical-debt">Technical Debt Analysis</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#security-scanning">Security Scanning</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#performance-analysis">Performance Analysis</a></li>
               </ul>
             </li>
             <li class="sub-category">
               <div class="sub-nav-header">
-                <span>AI Model Training</span>
+                <span>GitHub Integration</span>
                 <span class="sub-toggle-icon">+</span>
               </div>
               <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/endpoints.html#train-forecaster">Model Training</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#training-status">Training Status</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#repository-analysis">Repository Analysis</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#workflow-automation">Workflow Automation</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#issue-management">Issue Management</a></li>
               </ul>
             </li>
             <li class="sub-category">
               <div class="sub-nav-header">
-                <span>Energy Optimization</span>
+                <span>Infrastructure Commands</span>
                 <span class="sub-toggle-icon">+</span>
               </div>
               <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/endpoints.html#dispatch-optimization">Dispatch Optimization</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#realtime-dispatch">Real-Time Control</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#infrastructure-generation">Infrastructure-as-Code</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#container-orchestration">Container & Kubernetes</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#compliance-automation">Compliance & Security</a></li>
               </ul>
             </li>
             <li class="sub-category">
               <div class="sub-nav-header">
-                <span>Policy & Compliance</span>
+                <span>Configuration & Management</span>
                 <span class="sub-toggle-icon">+</span>
               </div>
               <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/endpoints.html#policy-compliance">Policy Intelligence</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#regulatory-updates">Regulatory Updates</a></li>
-              </ul>
-            </li>
-            <li class="sub-category">
-              <div class="sub-nav-header">
-                <span>Results & Analytics</span>
-                <span class="sub-toggle-icon">+</span>
-              </div>
-              <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/endpoints.html#results">Forecasting Results</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#project-economics">Project Economics</a></li>
-              </ul>
-            </li>
-            <li class="sub-category">
-              <div class="sub-nav-header">
-                <span>System Management</span>
-                <span class="sub-toggle-icon">+</span>
-              </div>
-              <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/endpoints.html#register">User Registration</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#usage-stats">Usage Statistics</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#manage-users">Client Management</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#health">Health Check</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#monitoring">System Monitoring</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#configuration-commands">Configuration Commands</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#usage-tracking">Usage & Cost Tracking</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#environment-setup">Environment Setup</a></li>
               </ul>
             </li>
             <li class="sub-category">
@@ -141,16 +121,16 @@ layout: default
                 <span class="sub-toggle-icon">+</span>
               </div>
               <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/endpoints.html#edge-config">Edge Deployment</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#batch-processing">Batch Processing</a></li>
-                <li><a href="{{ site.baseurl }}/endpoints.html#model-marketplace">Model Marketplace</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#batch-operations">Batch Operations</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#integration-patterns">API Integration</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#troubleshooting">Troubleshooting</a></li>
               </ul>
             </li>
           </ul>
         </li>
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/sdk.html">Ona SDK</a>
+            <a href="{{ site.baseurl }}/sdk.html">Installation & Usage</a>
             <span class="toggle-icon">+</span>
           </div>
           <ul class="sub-menu">
@@ -158,91 +138,111 @@ layout: default
             <li><a href="{{ site.baseurl }}/sdk.html#installation">Installation & Setup</a></li>
             <li class="sub-category">
               <div class="sub-nav-header">
-                <span>Integration Examples</span>
+                <span>Usage Examples</span>
                 <span class="sub-toggle-icon">+</span>
               </div>
               <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/sdk.html#usage-examples">JavaScript SDK</a></li>
-                <li><a href="{{ site.baseurl }}/sdk.html#python-sdk">Python SDK</a></li>
-                <li><a href="{{ site.baseurl }}/sdk.html#integration-examples">Framework Integration</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#usage-examples">Getting Started Tutorial</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#advanced-workflow">Advanced Workflows</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#real-world-examples">Real-World Use Cases</a></li>
               </ul>
             </li>
             <li class="sub-category">
               <div class="sub-nav-header">
-                <span>Deployment Options</span>
+                <span>MCP Servers</span>
                 <span class="sub-toggle-icon">+</span>
               </div>
               <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/sdk.html#edge-deployment">Edge Deployment</a></li>
-                <li><a href="{{ site.baseurl }}/sdk.html#cloud-integration">Cloud Integration</a></li>
-                <li><a href="{{ site.baseurl }}/sdk.html#hybrid-setup">Hybrid Setup</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#ai-models-server">AI Models Server</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#github-server">GitHub Integration</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#code-analysis-server">Code Analysis Server</a></li>
               </ul>
             </li>
             <li class="sub-category">
               <div class="sub-nav-header">
-                <span>Advanced Features</span>
+                <span>Configuration</span>
                 <span class="sub-toggle-icon">+</span>
               </div>
               <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/sdk.html#advanced-features">Intelligent Caching</a></li>
-                <li><a href="{{ site.baseurl }}/sdk.html#batch-operations">Batch Operations</a></li>
-                <li><a href="{{ site.baseurl }}/sdk.html#realtime-streaming">Real-Time Streaming</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#configuration-management">Configuration Management</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#environment-variables">Environment Variables</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#cost-optimization">Cost Optimization</a></li>
               </ul>
             </li>
-            <li><a href="{{ site.baseurl }}/sdk.html#api-reference">API Reference</a></li>
             <li><a href="{{ site.baseurl }}/sdk.html#troubleshooting">Troubleshooting</a></li>
             <li><a href="{{ site.baseurl }}/sdk.html#support">Support & Resources</a></li>
           </ul>
         </li>
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/analyst.html">Ona On-Demand</a>
+            <a href="{{ site.baseurl }}/analyst.html">Advanced Features</a>
             <span class="toggle-icon">+</span>
           </div>
           <ul class="sub-menu">
-            <li><a href="{{ site.baseurl }}/analyst.html#getting-started-with-ona-on-demand">Getting Started</a></li>
+            <li><a href="{{ site.baseurl }}/analyst.html#getting-started-with-advanced-features">Getting Started</a></li>
             <li class="sub-category">
               <div class="sub-nav-header">
-                <span>Core Applications</span>
+                <span>Workflow Automation</span>
                 <span class="sub-toggle-icon">+</span>
               </div>
               <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/analyst.html#ona-policy-analyst">Policy Analyst</a></li>
-                <li><a href="{{ site.baseurl }}/analyst.html#grid-operations">Grid Operations</a></li>
-                <li><a href="{{ site.baseurl }}/analyst.html#on-demand-model-training">Model Training</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#advanced-workflow-automation">Multi-Step Workflows</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#cross-repository">Cross-Repository Analysis</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#team-management">Team Management</a></li>
               </ul>
             </li>
             <li class="sub-category">
               <div class="sub-nav-header">
-                <span>Industry Solutions</span>
+                <span>AI Intelligence</span>
                 <span class="sub-toggle-icon">+</span>
               </div>
               <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/analyst.html#renewable-developers">Renewable Developers</a></li>
-                <li><a href="{{ site.baseurl }}/analyst.html#utility-operators">Utility Operators</a></li>
-                <li><a href="{{ site.baseurl }}/analyst.html#energy-traders">Energy Traders</a></li>
-                <li><a href="{{ site.baseurl }}/analyst.html#policy-consultants">Policy Consultants</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#ai-model-intelligence">Model Routing</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#cost-optimization">Cost Optimization</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#performance-analytics">Performance Analytics</a></li>
+              </ul>
+            </li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>Enterprise Integration</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/analyst.html#enterprise-integration">CI/CD Integration</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#compliance-automation">Compliance Automation</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#webhook-automation">Webhook Automation</a></li>
+              </ul>
+            </li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>Infrastructure Excellence</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/analyst.html#infrastructure-as-code">Multi-Cloud Templates</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#container-orchestration">Container Orchestration</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#monitoring-observability">Monitoring & Observability</a></li>
               </ul>
             </li>
           </ul>
         </li>
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/media.html">Media & Resources</a>
+            <a href="{{ site.baseurl }}/media.html">Resources</a>
             <span class="toggle-icon">+</span>
           </div>
           <ul class="sub-menu">
-            <li><a href="{{ site.baseurl }}/media.html#webinar-recordings">Webinar Recordings</a></li>
+            <li><a href="{{ site.baseurl }}/media.html#video-tutorials">Video Tutorials</a></li>
             <li><a href="{{ site.baseurl }}/media.html#case-studies">Case Studies</a></li>
-            <li><a href="{{ site.baseurl }}/media.html#technical-guides">Technical Guides</a></li>
-            <li><a href="{{ site.baseurl }}/media.html#best-practices">Best Practices</a></li>
-            <li><a href="{{ site.baseurl }}/media.html#support">Support</a></li>
+            <li><a href="{{ site.baseurl }}/media.html#developer-resources">Developer Resources</a></li>
+            <li><a href="{{ site.baseurl }}/media.html#community-support">Community & Support</a></li>
+            <li><a href="{{ site.baseurl }}/media.html#documentation-links">Documentation Links</a></li>
             <li><a href="{{ site.baseurl }}/media.html#stay-updated">Stay Updated</a></li>
           </ul>
         </li>
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/legal.html">Legal Documentation</a>
+            <a href="{{ site.baseurl }}/legal.html">Legal</a>
             <span class="toggle-icon">+</span>
           </div>
           <ul class="sub-menu">
