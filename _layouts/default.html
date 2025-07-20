@@ -1,0 +1,411 @@
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/assets/images/favicon.png">
+  <link rel="shortcut icon" href="{{ site.baseurl }}/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/images/favicon.png">
+  <meta name="theme-color" content="#4551bf">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
+  <script src="{{ site.baseurl }}/assets/js/search.js"></script>
+</head>
+<body>
+  <header class="header-bar">
+    <div class="branding">
+      <a href="{{ site.baseurl }}/">
+        <img src="{{ site.baseurl }}/assets/images/logo.png" alt="Asoba">
+      </a>
+      <span class="site-title">Ona Documentation</span>
+    </div>
+    <div class="search-container-top">
+      <input type="text" id="search-input" placeholder="Search the Docs">
+      <div id="search-results" class="search-results"></div>
+    </div>
+    <div class="top-links">
+      <a href="https://asoba.co/">Home</a>
+      <a href="https://asoba.co/insights">Insights</a>
+      <a href="https://asoba.co/contact-us">Contact Us</a>
+    </div>
+  </header>
+
+  <div class="sidebar">
+    <nav class="side-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <div class="nav-header">
+            <a href="{{ site.baseurl }}/index.html">Introduction</a>
+            <span class="toggle-icon">+</span>
+          </div>
+          <ul class="sub-menu">
+            <li><a href="{{ site.baseurl }}/index.html#getting-started">Getting Started</a></li>
+            <li><a href="{{ site.baseurl }}/index.html#platform-overview">Platform Overview</a></li>
+            <li><a href="{{ site.baseurl }}/index.html#onboarding-web-app">Onboarding: Web App</a></li>
+            <li><a href="{{ site.baseurl }}/index.html#onboarding-api-integration">API Integration</a></li>
+            <li><a href="{{ site.baseurl }}/index.html#data-preparation">Data Preparation</a></li>
+            <li><a href="{{ site.baseurl }}/index.html#api-configuration">API Configuration</a></li>
+            <li><a href="{{ site.baseurl }}/index.html#testing-validation">Testing & Validation</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <div class="nav-header">
+            <a href="{{ site.baseurl }}/endpoints.html">API Endpoints</a>
+            <span class="toggle-icon">+</span>
+          </div>
+          <ul class="sub-menu">
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>Data Ingestion & Management</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/endpoints.html#upload-historical">Historical Data Upload</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#upload-nowcast">Real-Time Nowcast</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#interpolate-data">Data Interpolation</a></li>
+              </ul>
+            </li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>AI-Powered Forecasting</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/endpoints.html#generate-forecast">Generation Forecasting</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#price-forecast">Market Price Forecasting</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#weather-data">Weather Integration</a></li>
+              </ul>
+            </li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>AI Model Training</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/endpoints.html#train-forecaster">Model Training</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#training-status">Training Status</a></li>
+              </ul>
+            </li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>Energy Optimization</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/endpoints.html#dispatch-optimization">Dispatch Optimization</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#realtime-dispatch">Real-Time Control</a></li>
+              </ul>
+            </li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>Policy & Compliance</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/endpoints.html#policy-compliance">Policy Intelligence</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#regulatory-updates">Regulatory Updates</a></li>
+              </ul>
+            </li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>Results & Analytics</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/endpoints.html#results">Forecasting Results</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#project-economics">Project Economics</a></li>
+              </ul>
+            </li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>System Management</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/endpoints.html#register">User Registration</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#usage-stats">Usage Statistics</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#manage-users">Client Management</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#health">Health Check</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#monitoring">System Monitoring</a></li>
+              </ul>
+            </li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>Advanced Features</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/endpoints.html#edge-config">Edge Deployment</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#batch-processing">Batch Processing</a></li>
+                <li><a href="{{ site.baseurl }}/endpoints.html#model-marketplace">Model Marketplace</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <div class="nav-header">
+            <a href="{{ site.baseurl }}/sdk.html">Ona SDK</a>
+            <span class="toggle-icon">+</span>
+          </div>
+          <ul class="sub-menu">
+            <li><a href="{{ site.baseurl }}/sdk.html#getting-started">Getting Started</a></li>
+            <li><a href="{{ site.baseurl }}/sdk.html#installation">Installation & Setup</a></li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>Integration Examples</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/sdk.html#usage-examples">JavaScript SDK</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#python-sdk">Python SDK</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#integration-examples">Framework Integration</a></li>
+              </ul>
+            </li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>Deployment Options</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/sdk.html#edge-deployment">Edge Deployment</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#cloud-integration">Cloud Integration</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#hybrid-setup">Hybrid Setup</a></li>
+              </ul>
+            </li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>Advanced Features</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/sdk.html#advanced-features">Intelligent Caching</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#batch-operations">Batch Operations</a></li>
+                <li><a href="{{ site.baseurl }}/sdk.html#realtime-streaming">Real-Time Streaming</a></li>
+              </ul>
+            </li>
+            <li><a href="{{ site.baseurl }}/sdk.html#api-reference">API Reference</a></li>
+            <li><a href="{{ site.baseurl }}/sdk.html#troubleshooting">Troubleshooting</a></li>
+            <li><a href="{{ site.baseurl }}/sdk.html#support">Support & Resources</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <div class="nav-header">
+            <a href="{{ site.baseurl }}/analyst.html">Ona On-Demand</a>
+            <span class="toggle-icon">+</span>
+          </div>
+          <ul class="sub-menu">
+            <li><a href="{{ site.baseurl }}/analyst.html#getting-started-with-ona-on-demand">Getting Started</a></li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>Core Applications</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/analyst.html#ona-policy-analyst">Policy Analyst</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#grid-operations">Grid Operations</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#on-demand-model-training">Model Training</a></li>
+              </ul>
+            </li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span>Industry Solutions</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/analyst.html#renewable-developers">Renewable Developers</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#utility-operators">Utility Operators</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#energy-traders">Energy Traders</a></li>
+                <li><a href="{{ site.baseurl }}/analyst.html#policy-consultants">Policy Consultants</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <div class="nav-header">
+            <a href="{{ site.baseurl }}/media.html">Media & Resources</a>
+            <span class="toggle-icon">+</span>
+          </div>
+          <ul class="sub-menu">
+            <li><a href="{{ site.baseurl }}/media.html#webinar-recordings">Webinar Recordings</a></li>
+            <li><a href="{{ site.baseurl }}/media.html#case-studies">Case Studies</a></li>
+            <li><a href="{{ site.baseurl }}/media.html#technical-guides">Technical Guides</a></li>
+            <li><a href="{{ site.baseurl }}/media.html#best-practices">Best Practices</a></li>
+            <li><a href="{{ site.baseurl }}/media.html#support">Support</a></li>
+            <li><a href="{{ site.baseurl }}/media.html#stay-updated">Stay Updated</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <div class="nav-header">
+            <a href="{{ site.baseurl }}/legal.html">Legal Documentation</a>
+            <span class="toggle-icon">+</span>
+          </div>
+          <ul class="sub-menu">
+            <li><a href="{{ site.baseurl }}/legal.html#terms-of-service">Terms of Service</a></li>
+            <li><a href="{{ site.baseurl }}/legal.html#end-user-license-agreement-eula">EULA</a></li>
+            <li><a href="{{ site.baseurl }}/legal.html#privacy-policy">Privacy Policy</a></li>
+            <li><a href="{{ site.baseurl }}/legal.html#api-usage-policy">API Usage Policy</a></li>
+            <li><a href="{{ site.baseurl }}/legal.html#data-processing-agreement">Data Processing</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="content">
+    {{ content }}
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Handle main navigation toggles
+      const toggleIcons = document.querySelectorAll('.toggle-icon');
+      
+      toggleIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const subMenu = this.parentElement.nextElementSibling;
+          
+          // Toggle submenu visibility
+          if(subMenu.style.display === 'none' || subMenu.style.display === '') {
+            subMenu.style.display = 'block';
+            this.textContent = '-';
+          } else {
+            subMenu.style.display = 'none';
+            this.textContent = '+';
+          }
+        });
+      });
+
+      // Handle sub-category toggles
+      const subToggleIcons = document.querySelectorAll('.sub-toggle-icon');
+      
+      subToggleIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const subSubMenu = this.parentElement.nextElementSibling;
+          
+          // Toggle sub-submenu visibility
+          if(subSubMenu.style.display === 'none' || subSubMenu.style.display === '') {
+            subSubMenu.style.display = 'block';
+            this.textContent = '-';
+          } else {
+            subSubMenu.style.display = 'none';
+            this.textContent = '+';
+          }
+        });
+      });
+
+      // Get current page path
+      const currentPath = window.location.pathname;
+      
+      // Expand the current section
+      document.querySelectorAll('.nav-header a').forEach(link => {
+        if(currentPath.includes(link.getAttribute('href').split('#')[0])) {
+          const subMenu = link.parentElement.nextElementSibling;
+          const toggleIcon = link.nextElementSibling;
+          subMenu.style.display = 'block';
+          toggleIcon.textContent = '-';
+          
+          // Also expand relevant sub-categories for API Endpoints and SDK
+          if (link.getAttribute('href').includes('endpoints.html')) {
+            // Expand all API endpoint categories by default
+            subMenu.querySelectorAll('.sub-sub-menu').forEach(subSubMenu => {
+              subSubMenu.style.display = 'block';
+            });
+            subMenu.querySelectorAll('.sub-toggle-icon').forEach(subIcon => {
+              subIcon.textContent = '-';
+            });
+          }
+          
+          if (link.getAttribute('href').includes('sdk.html')) {
+            // Expand SDK categories by default
+            subMenu.querySelectorAll('.sub-sub-menu').forEach(subSubMenu => {
+              subSubMenu.style.display = 'block';
+            });
+            subMenu.querySelectorAll('.sub-toggle-icon').forEach(subIcon => {
+              subIcon.textContent = '-';
+            });
+          }
+        }
+      });
+    });
+  </script>
+
+  <style>
+    /* Enhanced styles for the expanded navigation */
+    .sub-category {
+      margin-left: 10px;
+      border-left: 2px solid #e0e0e0;
+      padding-left: 10px;
+    }
+    
+    .sub-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      font-weight: 600;
+      font-size: 0.9em;
+      color: #4551bf;
+      cursor: pointer;
+    }
+    
+    .sub-nav-header:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .sub-toggle-icon {
+      font-size: 0.8em;
+      color: #666;
+      margin-left: auto;
+    }
+    
+    .sub-sub-menu {
+      display: none;
+      margin-left: 15px;
+      border-left: 1px solid #e0e0e0;
+      padding-left: 10px;
+    }
+    
+    .sub-sub-menu li {
+      margin: 5px 0;
+    }
+    
+    .sub-sub-menu a {
+      font-size: 0.85em;
+      color: #666;
+      text-decoration: none;
+      display: block;
+      padding: 4px 0;
+    }
+    
+    .sub-sub-menu a:hover {
+      color: #4551bf;
+      background-color: #f8f9fa;
+    }
+    
+    /* Make main navigation more prominent */
+    .nav-header a {
+      font-weight: 700;
+      font-size: 1.1em;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .sub-category {
+        margin-left: 5px;
+        padding-left: 5px;
+      }
+      
+      .sub-sub-menu {
+        margin-left: 10px;
+        padding-left: 5px;
+      }
+    }
+  </style>
+</body>
+</html>

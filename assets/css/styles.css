@@ -1,0 +1,658 @@
+/* Import DM Sans font */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+/* Color theme matching the Ona front-end */
+:root {
+  --dark-blue: #040e2e;
+  --primary-blue: #455bf1;
+  --accent-blue: #3748c8;
+  --text-dark: #333;
+  --text-light: #4D4D4D;
+  --background-light: #f5f5f5;
+  --white: #fff;
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', Helvetica, Arial, sans-serif;
+  color: var(--text-dark);
+  background-color: var(--background-light);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-blue);
+}
+
+ul {
+  list-style: none;
+}
+
+/* Typography styles for headings and body text */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700; /* Bold for headings */
+}
+
+p, span, a, button, input, select, textarea {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400; /* Normal weight for body text */
+}
+
+strong {
+  font-weight: 500; /* Medium weight for emphasized text */
+}
+
+/* Header/Navigation Bar */
+.header-bar {
+  background-color: var(--dark-blue);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 40px 90px 0 90px;
+}
+
+.branding {
+  position: relative;
+  left: -10px; /* Adjust logo position to match original */
+  display: flex;
+  align-items: center; /* Ensures vertical centering */
+  margin-top: -15px; /* Compensate for the added top padding */
+}
+
+.branding img {
+  width: 50px;
+  height: 50px; /* Make it a perfect square */
+  object-fit: contain; /* Ensure the image fits without stretching */
+  display: block; /* Remove any extra space below the image */
+}
+
+.site-title {
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 15px;
+  white-space: nowrap;
+  position: relative;
+  top: 1px; /* Fine-tune vertical alignment */
+}
+
+.search-container-top {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  max-width: 320px;
+  margin-top: -15px; /* Adjust for the new top padding */
+}
+
+.search-container-top input {
+  width: 100%;
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 14px;
+  height: 38px;
+}
+
+.top-links {
+  display: flex;
+  gap: 15px;
+  margin-left: auto;
+  margin-top: -15px; /* Align with the logo for the new top padding */
+}
+
+.top-links a {
+  color: var(--white);
+  text-decoration: none;
+  font: normal 12px / 16px 'DM Sans', Helvetica, Arial, sans-serif;
+  padding: 5px;
+}
+
+/* Nav menu styles */
+.top-links a:hover {
+  color: var(--primary-blue);
+}
+
+/* Sidebar Navigation */
+.sidebar {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 70px; /* Match the header height */
+  left: 0;
+  background-color: var(--white);
+  overflow-x: hidden;
+  padding: 30px 0 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.side-nav a {
+  color: var(--text-dark);
+  text-decoration: none;
+  display: block;
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+.side-nav a:hover {
+  color: var(--primary-blue);
+  text-decoration: underline;
+}
+
+.side-nav ul li {
+  margin-bottom: 8px;
+}
+
+/* Main Content */
+.content {
+  margin-left: 250px; /* Same as sidebar width */
+  margin-top: 40px; /* Reduced from 70px to 40px */
+  padding: 40px;
+  width: calc(100% - 250px); /* 100% minus sidebar width */
+  background-color: var(--white);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Page headers */
+.content h1 {
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+/* Search Container */
+.search-container {
+  margin-bottom: 20px;
+  padding: 0 15px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Search styles */
+#search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  border-radius: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+  display: none;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.search-results ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-results li {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.search-results li:last-child {
+  border-bottom: none;
+}
+
+.search-results a {
+  color: var(--primary-blue);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.search-results p {
+  padding: 10px 15px;
+  margin: 0;
+  color: #666;
+}
+
+/* Content Styling */
+.content h2 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  color: var(--text-dark);
+}
+
+.content h3 {
+  margin-top: 25px;
+  color: var(--text-dark);
+}
+
+code {
+  background-color: #121212;
+  color: #4CAF50; /* Green text */
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+pre {
+  background-color: #121212;
+  color: #4CAF50; /* Green text */
+  padding: 16px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 15px 0;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  display: block;
+  overflow-x: auto;
+  line-height: 1.45;
+}
+
+/* Media Queries for Mobile */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 70px; /* Match desktop sidebar */
+    margin-bottom: 0;
+    padding: 15px 0;
+  }
+  
+  .content {
+    margin-left: 0;
+    margin-top: 0;
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .header-bar {
+    padding: 0 20px;
+  }
+
+  .search-container-top {
+    display: none; /* Hide search on small screens */
+  }
+  
+  /* Adjust main container for mobile */
+  .main-container {
+    flex-direction: column;
+  }
+}
+
+.main-container {
+  display: flex;
+  min-height: calc(100vh - 70px);
+  margin-top: 40px; /* Reduced from 70px to 40px */
+  background-color: var(--white);
+  position: relative;
+}
+
+/* Remove masthead styles, top-bar, nav menu styles, assistive text */
+
+/* Collapsible navigation menu */
+.nav-list {
+  padding-left: 20px;
+  padding-right: 10px;
+}
+
+.nav-item {
+  margin-bottom: 10px;
+}
+
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px 15px 5px 5px;
+}
+
+.nav-header a {
+  flex-grow: 1;
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+.toggle-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+  color: #777;
+  font-weight: bold;
+  user-select: none;
+}
+
+.sub-menu {
+  display: none;
+  padding-left: 15px;
+  margin-top: 5px;
+}
+
+.sub-menu li {
+  margin-bottom: 5px;
+}
+
+.sub-menu a {
+  color: #555;
+  font-size: 14px;
+}
+
+/* Fix for bullet points not displaying properly */
+.content ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+.content ul li {
+  margin-bottom: 5px;
+  display: list-item;
+}
+
+.content ul ul {
+  list-style-type: circle;
+  margin-left: 20px;
+}
+
+.content ul ul li {
+  margin-bottom: 3px;
+}
+
+/* Table styling */
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+  border: 1px solid #e1e4e8;
+  table-layout: fixed;
+}
+
+.content table, 
+.content th, 
+.content td {
+  border: 1px solid #e1e4e8;
+}
+
+.content th {
+  background-color: #f6f8fa;
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 600;
+  color: #24292e;
+}
+
+.content td {
+  padding: 10px 15px;
+  vertical-align: top;
+}
+
+.content tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+.content tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Ensure table styles are applied to generated HTML */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+  border: 1px solid #e1e4e8;
+}
+
+table, th, td {
+  border: 1px solid #e1e4e8;
+}
+
+th {
+  background-color: #f6f8fa;
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 600;
+  color: #24292e;
+}
+
+td {
+  padding: 10px 15px;
+  vertical-align: top;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Responsive tables */
+@media screen and (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* YouTube embed responsive container */
+.youtube-embed {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 20px auto;
+  overflow: hidden;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.youtube-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 768px) {
+  .youtube-embed {
+    max-width: 100%;
+  }
+}
+
+/* YouTube subscribe button */
+.subscribe-button {
+  text-align: left;
+  margin: 15px 0 25px;
+}
+
+.subscribe-button a {
+  display: inline-block;
+  background-color: #FF0000; /* YouTube red */
+  color: white;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+}
+
+.subscribe-button a:hover {
+  background-color: #CC0000; /* Darker red on hover */
+  text-decoration: none;
+}
+
+/* Support CTA styling */
+.support-cta {
+  background-color: #f5f8ff;
+  border-radius: 8px;
+  padding: 30px;
+  margin: 30px 0;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.support-cta h3 {
+  margin-top: 0;
+  color: var(--primary-blue);
+  font-size: 22px;
+}
+
+.support-cta p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+}
+
+.support-button {
+  display: inline-block;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  font-weight: 600;
+  padding: 10px 25px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  font-size: 15px;
+}
+
+.support-button:hover {
+  background-color: var(--accent-blue);
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* Horizontal rule styling for better spacing */
+hr {
+  margin: 30px 0;
+  border: 0;
+  height: 1px;
+  background-color: #e1e4e8;
+  margin-bottom: 25px !important;
+}
+
+/* Content spacing after horizontal rules */
+hr + h1, hr + h2, hr + h3, hr + h4, hr + h5, hr + h6, hr + p, hr + div, hr + ul, hr + ol, hr + blockquote {
+  margin-top: 25px;
+}
+
+/* Content spacing before horizontal rules */
+h1 + hr, h2 + hr, h3 + hr, h4 + hr, h5 + hr, h6 + hr, p + hr, div + hr, ul + hr, ol + hr, blockquote + hr {
+  margin-top: 25px;
+}
+
+/* Additional specific spacing for content patterns we've encountered */
+hr + h3,
+hr + h2,
+hr + h4,
+hr + blockquote,
+hr + .youtube-embed,
+hr + div {
+  margin-top: 30px;
+  padding-top: 5px;
+}
+
+/* Fix for specific content arrangements */
+hr + blockquote,
+hr + p + blockquote {
+  margin-top: 25px;
+}
+
+/* Ensure space before horizontal rules */
+p, ul, ol, div, blockquote, table, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 25px;
+}
+
+/* Two-column end section */
+.page-end-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px 0 20px;
+  gap: 30px;
+}
+
+.end-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.end-column .support-cta {
+  height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.end-column #mc_embed_signup {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Make sure the Mailchimp form fits in its container */
+.end-column #mc_embed_shell {
+  width: 100%;
+}
+
+/* Responsive adjustment for mobile */
+@media screen and (max-width: 768px) {
+  .page-end-section {
+    flex-direction: column;
+  }
+  
+  .end-column {
+    width: 100%;
+  }
+}
+
+/* Fix Mailchimp form width */
+#mc_embed_signup {
+  width: 100% !important;
+  max-width: 100% !important;
+}
