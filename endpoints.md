@@ -1,5 +1,5 @@
 ---
-title: "CLI Commands & API Reference"
+title: "Commands & API"
 layout: default
 nav_order: 2
 ---

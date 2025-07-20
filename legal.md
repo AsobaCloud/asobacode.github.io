@@ -1,5 +1,5 @@
 ---
-title: "Legal Documentation"
+title: "Legal"
 layout: default
 nav_order: 6
 ---

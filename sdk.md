@@ -1,5 +1,5 @@
 ---
-title: "AsobaCode CLI - Installation & Usage Guide"
+title: "Installation & Usage"
 layout: default
 nav_order: 3
 ---
