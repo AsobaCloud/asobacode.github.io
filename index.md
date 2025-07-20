@@ -6,79 +6,163 @@ nav_order: 1
 
 ## Getting Started {#getting-started}
 
-Welcome to the Ona API Platform! Here's how you can get started with onboarding and integrating our powerful API into your systems.  You have the option of accessing Ona's capabilities via our On-Demand web app, or by embedding the API directly within your own technology stack.
+Welcome to **AsobaCode CLI** - the AI-powered terminal development platform that transforms how you manage infrastructure deployment, technical debt, and code quality! Built on the Model Context Protocol (MCP) with intelligent AI model routing, AsobaCode provides enterprise-grade automation for modern DevOps workflows.
 
 ---
 
-### Onboarding: On-Demand Web App {#onboarding-web-app}
+### What is AsobaCode CLI? {#what-is-asobacode}
 
-- **Register For Account**: [https://app.asoba.co](https://app.asoba.co)
+AsobaCode CLI is a **terminal-native development platform** that combines three powerful MCP servers with an intelligent terminal interface to automate complex software engineering tasks:
 
----
-
-### Onboarding: API Integration {#onboarding-api-integration}
-
-![Onboarding Process]({{ site.baseurl }}/assets/images/onboarding.svg){:width="70%"}
-
-- **Initial Consultation**: We'll meet with you to identify your specific use cases, whether it's load forecasting, data interpolation, or dispatch optimization.
-- **Technical Assessment**: Our team will evaluate your current data infrastructure, input formats, and data availability.
-- **Data Requirement Checklist**: We'll share a detailed checklist of data types, formats, and necessary columns.
-
-### API Pre-Onboarding {#API-Pre-Onboarding}
-
-- **Schema Alignment**: We'll confirm data schemas for your inverters, meters, or other devices to ensure compatibility with Asoba's preprocessing layer.
-- **Data Preparation**: We'll build the integration points and confirm workflow to embed our API within your existing system.
-
-### API Configuration and Integration {#api-configuration}
-
-- **Data Globbing**: We'll tune the training model to fit your data based on your workflow needs.
-- **Integration Options**: You can choose from flexible integration methods, including push/pull requests, JSON streams, or direct CSV uploads.
-- **API Credentials**: We'll provide you with API keys and client-specific authentication tokens.
-
-### Testing and Validation {#testing-validation}
-
-- **Pilot Testing**: We'll run the unit and test the system to validate data ingestion, preprocessing, and model accuracy.
-- **Error Handling**: We'll address and resolve any issues detected such as schema mismatches, missing data, or integration bugs.
-
-### Training and Support {#training-support}
-
-- **Training Sessions**: We'll conduct walkthroughs of API usage, including generating requests, understanding outputs, and troubleshooting common issues.
-- **Documentation Access**: You'll have access to comprehensive API guides, sample scripts, and FAQs.
-- **Dedicated Support**: A point of contact will be assigned for your technical and operational queries during the integration phase.
-
-### Deployment and Monitoring {#deployment-monitoring}
-
-- **Go-Live Readiness**: We'll validate your readiness to transition from pilot to full commercial model.
-- **Real-Time Monitoring**: We'll set up systems for performance tracking and alerts for anomalies or API failures.
-- **Usage Analytics**: We'll share insights on API usage to help you optimize your workflows.
+🤖 **AI Models Server** - Access to Claude 4 Opus/Sonnet, Llama 4, DeepSeek-R1, and fine-tuned models  
+🐙 **GitHub Integration Server** - Automated repository management, issue tracking, and PR workflows  
+🔍 **Code Analysis Server** - Advanced static analysis, technical debt detection, and security scanning  
+💬 **Terminal Interface** - Claude Code-like conversational interface with natural language routing
 
 ---
 
-> This product is currently in beta, so endpoint parameters and syntax are subject to change.  An API Key is also required to make successful requests via these API endpoints.  Try out the ecosystem via the On-Demand web app, or [connect with our sales team](mailto:sales@asoba.co) to get started with API access 
+### Quick Start {#quick-start}
 
-![Architecture diagram of API's](https://staging-internal.asoba.co/api-architecture.png){:width="75%"}
+Get up and running with AsobaCode CLI in minutes:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/AsobaCloud/asoba-code.git
+cd asoba-code
+
+# 2. Install with Python 3.10+
+pip install -e .
+
+# 3. Configure AWS credentials (for AI models)
+export AWS_DEFAULT_REGION=us-east-1
+aws configure  # or set environment variables
+
+# 4. Optional: Set GitHub token
+export GITHUB_TOKEN=your_github_token_here
+
+# 5. Add to PATH
+export PATH=$PATH:$HOME/.local/bin
+
+# 6. Start using AsobaCode CLI
+asoba-code --help
+asoba-code status  # Check system health
+```
 
 ---
 
-### Key Use Cases
+### Core Capabilities {#core-capabilities}
 
-- **Energy Traders**: Leverage accurate demand forecasts to optimize trades in electricity markets, maximize returns, and reduce cost of over/under supplying contracts.
-- **IPPs**: Enhance generation scheduling and support demand response efforts by using our forecasting models to predict production output and off-taker demand.
-- **Bulk Buyers/Resellers**: Predict market trends and align purchasing strategies with anticipated demand surges, avoiding high market prices and reducing costs.
-- **Solar Asset Insurers**: Utilize forecasting data to enhance preventive maintenance reporting for asset owners, improving reliability and reducing unexpected downtime.
-- **Carbon Accounting Firms**: Integrate forecasting data into carbon emissions calculations for regulatory compliance and reporting, ensuring accurate and timely submissions.
+#### 🧠 **Advanced AI Integration**
+- **Claude 4 Opus & Sonnet** - Latest Anthropic models for highest quality code generation
+- **Llama 4 Scout & Maverick** - Cutting-edge Meta models for reasoning tasks  
+- **DeepSeek-R1** - Specialized mathematical and logical reasoning
+- **Intelligent Model Routing** - Automatically selects optimal model based on task complexity
+- **Cost Optimization** - Routes simple tasks to cost-effective models
+
+#### 🚀 **Infrastructure-as-Code Automation**
+- **Multi-Cloud Support** - AWS, GCP, Azure infrastructure automation
+- **Template Generation** - Automated CloudFormation, Terraform, and Kubernetes manifests
+- **Compliance Ready** - SOC2, ISO27001, and security best practices built-in
+- **GitHub Integration** - Issue-to-infrastructure deployment workflows
+
+#### 🔍 **Comprehensive Code Analysis**
+- **Multi-Language Support** - Python, JavaScript, TypeScript, Rust, Go, Java, and more
+- **Technical Debt Detection** - Automated identification and tracking
+- **Security Scanning** - Vulnerability detection and remediation suggestions
+- **Performance Analysis** - Complexity metrics and optimization recommendations
+
+#### 🤖 **Intelligent Automation**
+- **Natural Language Interface** - Describe what you want, get working solutions
+- **Context-Aware** - Maintains project context across sessions
+- **Workflow Automation** - End-to-end task execution from planning to deployment
+- **Error Recovery** - Intelligent retry and fallback mechanisms
+
+---
+
+### Architecture Overview {#architecture}
+
+AsobaCode uses a **modular MCP-based architecture** with clear separation of concerns:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  Terminal Interface (CLI)                   │
+│              Claude Code-like Conversational UI             │
+├─────────────────────────────────────────────────────────────┤
+│               Natural Language Router (ReAct)               │
+│          Routes queries to appropriate MCP servers          │
+├─────────────────────────────────────────────────────────────┤
+│                    MCP Servers Layer                        │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
+│  │ AI Models   │  │   GitHub    │  │   Code Analysis     │  │
+│  │   Server    │  │   Server    │  │      Server         │  │
+│  └─────────────┘  └─────────────┘  └─────────────────────┘  │
+├─────────────────────────────────────────────────────────────┤
+│                    External Services                        │
+│     AWS Bedrock    │    GitHub API    │   Static Analysis   │
+│    Claude 4, etc.  │  Issues, PRs     │    Tools & Rules    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### Key Use Cases {#key-use-cases}
+
+- **DevOps Engineers**: Automate infrastructure deployment and monitoring with AI-generated templates
+- **Software Teams**: Enhance code quality with automated technical debt detection and test generation
+- **Platform Engineers**: Build scalable infrastructure-as-code solutions with compliance built-in
+- **Security Teams**: Automated vulnerability scanning and security-first development practices
+- **Engineering Managers**: Track technical debt trends and team productivity metrics across projects
+
+---
+
+### Getting Started Steps {#getting-started-steps}
+
+#### 1. **Installation & Setup**
+Follow our [Installation Guide](sdk.html) for detailed setup instructions including AWS configuration and GitHub integration.
+
+#### 2. **First Analysis**
+```bash
+# Analyze your codebase for technical debt
+asoba-code ask "Analyze my Python project for technical debt and create GitHub issues"
+
+# Generate infrastructure code
+asoba-code ask "Create a Terraform configuration for a highly available web application on AWS"
+```
+
+#### 3. **Advanced Workflows**
+```bash
+# Multi-step infrastructure deployment
+asoba-code ask "Deploy a microservices architecture with monitoring, logging, and auto-scaling on AWS"
+
+# Comprehensive code review
+asoba-code ask "Review the latest commit, suggest improvements, and create a follow-up issue"
+```
+
+#### 4. **Team Integration**
+Set up automated workflows, team dashboards, and continuous monitoring for your development team.
+
+---
+
+### Why Choose AsobaCode CLI?
+
+✅ **AI Vendor Independence** - No dependency on single AI providers  
+✅ **Cost Optimized** - Intelligent model routing reduces AI costs by 60%+  
+✅ **Terminal Native** - Built for developers who live in the terminal  
+✅ **Enterprise Ready** - Security, compliance, and scalability built-in  
+✅ **Open Architecture** - Extensible MCP-based design for custom integrations  
+✅ **Comprehensive** - Code analysis, infrastructure automation, and team collaboration in one tool
 
 ---
 
 Key features include:
-- Region-specific deployments for data sovereignty and latency optimization.
-- Standardized workflows for data interpolation, ingestion, and forecasting.
-- Custom integrations for tailored client workflows.
-- Developer best practices for consistent delivery.
-- RAG knowledge base for enhanced AI capabilities.
-- Client SDKs for seamless API integration.
+- **Multi-Cloud Infrastructure Automation** - AWS, GCP, Azure support with intelligent template generation
+- **Advanced Code Analysis** - Multi-language support with security and performance insights
+- **GitHub Integration** - Automated issue creation, PR analysis, and workflow automation
+- **Cost-Optimized AI** - Intelligent model routing with 60%+ cost savings over traditional approaches
+- **Terminal-Native Design** - Built specifically for command-line workflows and DevOps automation
+- **MCP Protocol Foundation** - Extensible architecture for custom tool integration
 
-For more details, refer to the [README](README.md).
+For detailed installation and usage instructions, see our [Installation Guide](sdk.html) and [CLI Reference](endpoints.html).
 
 ---
 

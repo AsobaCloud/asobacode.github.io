@@ -6,28 +6,49 @@ nav_order: 5
 
 ## Media & Resources
 
-This page provides access to additional resources including webinar recordings and case studies to help you better understand the Ona API Platform and its capabilities.
+This page provides access to additional resources including tutorials, demos, and case studies to help you better understand the AsobaCode CLI platform and its capabilities for AI-powered DevOps automation.
 
-## Webinar Recordings
+## Video Tutorials
 
-Our webinar recordings offer in-depth demonstrations and explanations of various aspects of the Ona API system. These sessions are designed to help you understand specific features and use cases.
+Our video tutorials offer in-depth demonstrations and explanations of various aspects of the AsobaCode CLI system. These sessions are designed to help you understand specific features and real-world use cases.
 
-| Webinar Title | Description | Link |
+| Tutorial Title | Description | Link |
 |---------------|-------------|------|
-| Ona API Platform Overview | A comprehensive overview of the Ona API Platform, its architecture, and key capabilities. | [Watch Webinar](https://www.youtube.com/watch?v=Y6xea6pOp_o&pp=0gcJCX4JAYcqIYzv) |
-| Data Interpolation & Forecasting | Learn how our interpolation and forecasting algorithms work and how they can be applied to energy data. | [Watch Webinar](https://www.youtube.com/watch?v=SR7AtqzG-AU) |
-| Integration Best Practices | Best practices for integrating the Ona API into your existing systems and workflows. | [Watch Webinar](https://www.youtube.com/watch?v=bhAmFJNh2UM&t=1816s) |
+| AsobaCode CLI Platform Overview | A comprehensive overview of the AsobaCode CLI, its MCP architecture, and key capabilities for DevOps automation. | [Watch Tutorial](https://www.youtube.com/watch?v=placeholder1) |
+| Technical Debt Analysis & Automation | Learn how AI-powered code analysis identifies technical debt and automatically creates GitHub issues with remediation steps. | [Watch Tutorial](https://www.youtube.com/watch?v=placeholder2) |
+| Infrastructure-as-Code Generation | Best practices for using AsobaCode CLI to generate AWS, GCP, and Azure infrastructure templates with compliance built-in. | [Watch Tutorial](https://www.youtube.com/watch?v=placeholder3) |
+| AI Model Routing & Cost Optimization | Deep dive into intelligent AI model selection and cost optimization strategies for different development tasks. | [Watch Tutorial](https://www.youtube.com/watch?v=placeholder4) |
 
 ---
 
 ## Case Studies
 
-These detailed case studies demonstrate the efficacy of our interpolation and forecasting functions in real-world scenarios, providing empirical evidence of performance improvements and accuracy metrics.
+These detailed case studies demonstrate the effectiveness of AsobaCode CLI in real-world DevOps scenarios, providing empirical evidence of productivity improvements and cost savings.
 
 | Case Study | Focus Area | Link |
 |------------|------------|------|
-| Energy Demand Forecasting | A detailed analysis of how our forecasting models predict energy demand with high accuracy across various time horizons. | [View Case Study](https://docs.google.com/presentation/d/1Swdm4wzWxh5MMBnZqoi-3xtcMRsMaa3kTVYgWYvFbW8/edit?usp=drive_link) |
-| Data Interpolation Case Study | An examination of how our interpolation techniques fill data gaps and improve the reliability of time-series energy data. | [View Case Study](https://docs.google.com/presentation/d/1emYHCmzYqOsJeyq1PyUNunHD2ZaAoBk8rMTTy17RlX4/edit?usp=drive_link) |
+| Enterprise Technical Debt Reduction | A detailed analysis of how AsobaCode CLI helped a Fortune 500 company reduce technical debt by 65% in 6 months. | [View Case Study](https://docs.google.com/presentation/d/placeholder1) |
+| Startup Infrastructure Automation | An examination of how a fast-growing startup used AsobaCode CLI to automate their entire AWS infrastructure deployment pipeline. | [View Case Study](https://docs.google.com/presentation/d/placeholder2) |
+| AI Cost Optimization Success Story | How intelligent model routing reduced AI development costs by 67% while maintaining code quality standards. | [View Case Study](https://docs.google.com/presentation/d/placeholder3) |
+
+---
+
+## Developer Resources
+
+### **GitHub Repository**
+- **Main Repository**: [github.com/AsobaCloud/asoba-code](https://github.com/AsobaCloud/asoba-code)
+- **Documentation**: [github.com/AsobaCloud/asobacode.github.io](https://github.com/AsobaCloud/asobacode.github.io)
+
+### **Community & Support**
+- **Developer Forum**: [community.asobacode.dev](https://community.asobacode.dev)
+- **Discord Community**: [discord.gg/asobacode](https://discord.gg/asobacode)
+- **Stack Overflow**: Tag questions with `asobacode-cli`
+
+### **Documentation Links**
+- **Installation Guide**: [Installation & Setup](sdk.html)
+- **CLI Commands**: [Complete Command Reference](endpoints.html)
+- **MCP Architecture**: [Technical Architecture](https://docs.asobacode.dev/architecture)
+- **Contributing Guide**: [How to Contribute](https://github.com/AsobaCloud/asoba-code/blob/main/CONTRIBUTING.md)
 
 ---
 

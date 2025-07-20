@@ -1,706 +1,737 @@
 ---
-title: "Ona SDK - Enhanced Integration Guide"
+title: "AsobaCode CLI - Installation & Usage Guide"
 layout: default
 nav_order: 3
 ---
 
-## Ona SDK - Enhanced Integration Guide {#getting-started}
+## AsobaCode CLI - Installation & Usage Guide {#getting-started}
 
-This comprehensive reference documents the complete Ona SDK for seamless integration with the Ona Energy Platform. Our SDK enables developers to harness the full power of AI-driven energy forecasting, policy compliance intelligence, and advanced data processing through both cloud-based APIs and edge deployment options.
+This comprehensive guide covers everything you need to install, configure, and start using AsobaCode CLI - the AI-powered terminal development platform that transforms your DevOps workflows. Built on the Model Context Protocol (MCP) with intelligent AI model routing, AsobaCode provides enterprise-grade automation for modern software engineering teams.
 
-The Ona SDK supports **JavaScript (Node.js & Browser)**, **Python**, and **Edge deployment** configurations, making it the most flexible energy data integration platform available.
+AsobaCode CLI supports **Python 3.10+**, **Multi-Cloud Infrastructure**, and **Advanced AI Integration**, making it the most comprehensive DevOps automation platform available.
 
 ---
 
 ## **Platform Features**
 
 ### **🚀 Core Capabilities**
-- **AI-Powered Forecasting** – Advanced machine learning models for energy prediction
-- **Policy Intelligence** – Real-time regulatory compliance and policy guidance  
-- **Data Processing** – Intelligent interpolation, cleaning, and quality enhancement
-- **Multi-Tier Access** – Scalable plans from free developer access to enterprise deployment
-- **Edge Computing** – Local processing for data sovereignty and ultra-low latency
+- **AI-Powered Development** – Advanced AI models for code analysis, generation, and infrastructure automation
+- **Technical Debt Intelligence** – Automated identification, tracking, and remediation of code quality issues
+- **Infrastructure Automation** – Intelligent template generation for AWS, GCP, Azure with compliance built-in
+- **Terminal-Native Design** – Built specifically for developers who live in the command line
+- **Cost-Optimized AI** – Intelligent model routing reduces AI costs by 60%+ over traditional approaches
 
-### **🏗️ Deployment Options**
-- **Cloud-First**: Global AWS infrastructure with intelligent regional routing
-- **Edge Computing**: Local processing nodes for maximum security and performance
-- **Hybrid Integration**: Seamless cloud-edge orchestration for optimal cost and performance
+### **🏗️ Architecture Overview**
+- **MCP-Based**: Modular Model Context Protocol architecture with extensible server design
+- **AI Model Router**: Intelligent routing between Claude 4, Llama 4, DeepSeek-R1, and cost-effective models
+- **GitHub Integration**: Seamless repository management with automated issue creation and PR analysis
+- **Multi-Cloud Support**: Native support for AWS, GCP, Azure infrastructure deployment
 
 ### **📊 Intelligence Features**
-- **Weather Integration**: Automatic correlation with meteorological data
-- **Equipment Optimization**: Manufacturer-specific model tuning
-- **Seasonal Patterns**: Advanced time-series analysis with cyclical recognition
-- **Anomaly Detection**: AI-driven outlier identification and correction
+- **Code Analysis**: Multi-language support with security, performance, and complexity insights
+- **GitHub Automation**: Automated technical debt issue creation and PR workflow management
+- **Natural Language Interface**: Describe what you want in plain English, get working solutions
+- **Context Awareness**: Maintains project context across sessions for intelligent recommendations
 
 ---
 
 ## **Installation & Setup** {#installation}
 
 ### **Prerequisites**
-- **Node.js 16+** (for JavaScript SDK)
-- **Python 3.8+** (for Python SDK)
-- **API Key** from [app.asoba.co](https://app.asoba.co)
-- **Docker** (optional, for edge deployment)
+- **Python 3.10+** (required for FastMCP and advanced AI features)
+- **AWS Account** with Bedrock access (for AI models)
+- **GitHub Account** (optional, for repository integration)
+- **Git** (for version control and repository management)
 
-### **JavaScript Installation**
-
-#### **Standard Installation**
-```bash
-npm install ona-energy-sdk
-```
-
-#### **Development Setup**
-```bash
-git clone https://github.com/AsobaCloud/ona-sdk-js.git
-cd ona-sdk-js
-npm install
-npm run build
-```
-
-### **Python Installation**
+### **Method 1: Development Installation (Recommended)**
 
 #### **Standard Installation**
 ```bash
-pip install ona-energy-sdk
-```
+# Clone the repository
+git clone https://github.com/AsobaCloud/asoba-code.git
+cd asoba-code
 
-#### **Development Setup**
-```bash
-git clone https://github.com/AsobaCloud/ona-sdk-python.git
-cd ona-sdk-python
-pip install -r requirements.txt
+# Install in development mode
 pip install -e .
+
+# Verify installation
+asoba-code --version
+```
+
+#### **Add to PATH (Important)**
+```bash
+# Add asoba-code to your PATH - choose one method:
+
+# Method A: Add to current session only
+export PATH=$PATH:$HOME/.local/bin
+
+# Method B: Add permanently to ~/.bashrc or ~/.zshrc
+echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
+source ~/.bashrc  # or restart terminal
+
+# Method C: Use full path directly
+~/.local/bin/asoba-code --help
+```
+
+### **Method 2: Docker Development Environment**
+
+```bash
+# Start development environment
+make dev
+
+# Run tests
+make test
+
+# Clean up
+make clean
 ```
 
 ### **Environment Configuration**
 
-Create a `.env` file with your configuration:
+Set up your credentials and configuration:
 
-```env
-# API Configuration
-ONA_API_KEY=ona_xxxxxxxxxxxxxxxxxxxxxxxx
-ONA_BASE_URL=https://api.asoba.co
-ONA_REGION=af-south-1
+```bash
+# AWS Configuration (Required for AI models)
+export AWS_ACCESS_KEY_ID=your_access_key
+export AWS_SECRET_ACCESS_KEY=your_secret_key
+export AWS_DEFAULT_REGION=us-east-1
 
-# Deployment Options
-ONA_DEPLOYMENT_TYPE=cloud  # cloud, edge, or hybrid
-ONA_EDGE_ENDPOINT=http://localhost:5000  # for edge deployment
+# Or use AWS CLI
+aws configure
 
-# Feature Flags
-ONA_ENABLE_WEATHER=true
-ONA_ENABLE_POLICY_INTELLIGENCE=true
-ONA_CACHE_RESULTS=true
+# GitHub Configuration (Optional)
+export GITHUB_TOKEN=ghp_your_github_personal_access_token
 
-# Advanced Options
-ONA_TIMEOUT=30
-ONA_MAX_RETRIES=3
-ONA_LOG_LEVEL=INFO
+# Optional: Custom configuration path
+export ASOBACODE_CONFIG_PATH=/custom/path/to/config.yaml
 ```
 
 ---
 
 ## **Quick Start Examples** {#usage-examples}
 
-### **JavaScript SDK**
+### **Getting Started Tutorial**
 
-#### **Complete Energy Forecasting Workflow**
-```javascript
-const { OnaClient } = require('ona-energy-sdk');
-
-class EnergyForecastingApp {
-    constructor() {
-        this.client = new OnaClient({
-            apiKey: process.env.ONA_API_KEY,
-            region: 'af-south-1',
-            tier: 'professional'  // free, professional, enterprise
-        });
-    }
-
-    async processEnergyData(filePath, customerConfig) {
-        try {
-            // Step 1: Upload historical data with AI preprocessing
-            console.log('📤 Uploading historical data...');
-            const uploadResult = await this.client.uploadHistoricalData({
-                filePath: filePath,
-                customerId: customerConfig.id,
-                location: customerConfig.location,
-                manufacturer: customerConfig.manufacturer,
-                equipmentType: customerConfig.type,
-                weatherIntegration: true
-            });
-
-            // Step 2: Initiate AI model training
-            console.log('🧠 Starting AI model training...');
-            const trainingJob = await this.client.trainForecastingModel({
-                customerId: customerConfig.id,
-                modelType: 'ensemble',  // lstm, transformer, ensemble
-                seasonalAdjustment: true,
-                weatherCorrelation: true,
-                equipmentDegradation: true
-            });
-
-            // Step 3: Monitor training progress
-            console.log('⏳ Monitoring training progress...');
-            const trainingStatus = await this.client.waitForTrainingCompletion(
-                trainingJob.trainingJobId,
-                { pollInterval: 30000, maxWaitTime: 1800000 }
-            );
-
-            // Step 4: Generate forecasts with confidence intervals
-            console.log('🔮 Generating forecasts...');
-            const forecast = await this.client.generateForecast({
-                customerId: customerConfig.id,
-                forecastWindow: 168,  // 7 days in hours
-                confidenceInterval: 0.95,
-                includeWeatherImpact: true,
-                optimizationTarget: 'accuracy'  // accuracy, speed, cost
-            });
-
-            // Step 5: Get actionable insights
-            const insights = await this.client.getActionableInsights({
-                forecast: forecast,
-                businessRules: customerConfig.businessRules,
-                includeMaintenanceWindows: true
-            });
-
-            return {
-                uploadResult,
-                trainingStatus,
-                forecast,
-                insights,
-                performance: {
-                    accuracy: trainingStatus.metrics.mape,
-                    confidence: forecast.averageConfidence,
-                    processingTime: Date.now() - startTime
-                }
-            };
-
-        } catch (error) {
-            console.error('❌ Energy forecasting workflow failed:', error);
-            
-            // Enhanced error handling with automatic recovery
-            if (error.code === 'TIER_LIMIT_EXCEEDED') {
-                console.log('💡 Consider upgrading to Professional tier for unlimited access');
-                console.log('🔗 Upgrade at: https://app.asoba.co/upgrade');
-            }
-            
-            throw error;
-        }
-    }
-
-    async queryPolicyCompliance(query, sector = 'renewable_energy') {
-        try {
-            console.log('📋 Querying policy intelligence...');
-            const policyResult = await this.client.queryPolicyCompliance({
-                query: query,
-                region: 'south_africa',
-                sector: sector,
-                includeFinancialIncentives: true,
-                includeComplianceChecklist: true
-            });
-
-            return {
-                answer: policyResult.answer,
-                sources: policyResult.sources,
-                compliance: policyResult.complianceChecklist,
-                incentives: policyResult.financialIncentives,
-                nextSteps: policyResult.recommendedActions
-            };
-        } catch (error) {
-            console.error('❌ Policy query failed:', error);
-            throw error;
-        }
-    }
-}
-
-// Example Usage
-(async () => {
-    const app = new EnergyForecastingApp();
-    
-    // Customer configuration
-    const solarFarmConfig = {
-        id: "solar_farm_western_cape_001",
-        location: "CapeTown",
-        manufacturer: "SolarMax",
-        type: "utility_scale_solar",
-        businessRules: {
-            maintenanceHours: [6, 7, 8],  // 6-8 AM
-            minimumGeneration: 0.1,
-            peakDemandHours: [17, 18, 19, 20]
-        }
-    };
-
-    // Run complete forecasting workflow
-    const results = await app.processEnergyData(
-        './data/solar_production_2024.csv',
-        solarFarmConfig
-    );
-    
-    console.log('✅ Forecasting Results:', results);
-
-    // Query policy compliance
-    const policyGuidance = await app.queryPolicyCompliance(
-        "What are the latest feed-in tariff rates for solar installations over 1MW?"
-    );
-    
-    console.log('📋 Policy Guidance:', policyGuidance);
-})();
-```
-
-### **Python SDK**
-
-#### **Advanced Energy Analytics Platform**
-```python
-import asyncio
-import pandas as pd
-from ona_energy_sdk import OnaClient
-from ona_energy_sdk.utils import DataProcessor, PolicyAnalyzer
-import logging
-
-class AdvancedEnergyPlatform:
-    def __init__(self, api_key: str, deployment_type: str = 'cloud'):
-        """
-        Initialize advanced energy analytics platform
-        
-        Args:
-            api_key: Ona API key
-            deployment_type: 'cloud', 'edge', or 'hybrid'
-        """
-        self.client = OnaClient(
-            api_key=api_key,
-            base_url=self._get_base_url(deployment_type),
-            timeout=60,
-            max_retries=3,
-            enable_caching=True
-        )
-        
-        self.data_processor = DataProcessor(client=self.client)
-        self.policy_analyzer = PolicyAnalyzer(client=self.client)
-        
-        # Setup logging
-        logging.basicConfig(level=logging.INFO)
-        self.logger = logging.getLogger(__name__)
-
-    def _get_base_url(self, deployment_type: str) -> str:
-        """Get appropriate base URL based on deployment type"""
-        if deployment_type == 'edge':
-            return 'http://localhost:5000'
-        elif deployment_type == 'hybrid':
-            return 'https://api.asoba.co'  # Will auto-route to edge when available
-        return 'https://api.asoba.co'
-
-    async def comprehensive_energy_analysis(self, 
-                                          data_file: str, 
-                                          customer_config: dict,
-                                          analysis_config: dict = None):
-        """
-        Perform comprehensive energy analysis including forecasting,
-        optimization, and policy compliance
-        """
-        analysis_config = analysis_config or {
-            'forecast_horizon': 168,  # 7 days
-            'confidence_level': 0.95,
-            'include_weather': True,
-            'include_policy_analysis': True,
-            'optimization_target': 'cost_efficiency'
-        }
-
-        try:
-            # Phase 1: Data preprocessing and quality enhancement
-            self.logger.info("🔧 Starting data preprocessing...")
-            
-            raw_data = pd.read_csv(data_file)
-            processed_data = await self.data_processor.enhance_data_quality(
-                data=raw_data,
-                interpolation_method='intelligent',
-                outlier_detection=True,
-                seasonal_decomposition=True
-            )
-
-            # Phase 2: Upload processed data
-            self.logger.info("📤 Uploading processed data...")
-            upload_result = await self.client.upload_historical_data(
-                file_data=processed_data.to_csv(),
-                customer_id=customer_config['id'],
-                location=customer_config['location'],
-                manufacturer=customer_config['manufacturer'],
-                equipment_type=customer_config.get('equipment_type', 'solar'),
-                metadata={
-                    'data_quality_score': processed_data.attrs.get('quality_score'),
-                    'processing_timestamp': pd.Timestamp.now().isoformat(),
-                    'original_rows': len(raw_data),
-                    'processed_rows': len(processed_data)
-                }
-            )
-
-            # Phase 3: AI model training with hyperparameter optimization
-            self.logger.info("🧠 Training AI forecasting models...")
-            training_config = {
-                'customer_id': customer_config['id'],
-                'model_type': 'ensemble',
-                'hyperparameter_tuning': True,
-                'cross_validation_folds': 5,
-                'early_stopping': True,
-                'feature_engineering': {
-                    'weather_features': analysis_config['include_weather'],
-                    'calendar_features': True,
-                    'lag_features': [1, 2, 3, 6, 12, 24, 48, 168],
-                    'rolling_statistics': [24, 168, 720]  # 1d, 1w, 1m windows
-                }
-            }
-
-            training_job = await self.client.train_forecasting_model(**training_config)
-            
-            # Monitor training with progress updates
-            training_status = await self._monitor_training_progress(
-                training_job['training_job_id']
-            )
-
-            # Phase 4: Generate multi-horizon forecasts
-            self.logger.info("🔮 Generating multi-horizon forecasts...")
-            forecasts = {}
-            
-            for horizon in [24, 72, 168]:  # 1d, 3d, 7d forecasts
-                forecast = await self.client.generate_forecast(
-                    customer_id=customer_config['id'],
-                    forecast_window=horizon,
-                    confidence_interval=analysis_config['confidence_level'],
-                    include_weather_impact=analysis_config['include_weather'],
-                    scenario_analysis=True
-                )
-                forecasts[f'{horizon}h'] = forecast
-
-            # Phase 5: Policy compliance and regulatory analysis
-            policy_analysis = None
-            if analysis_config.get('include_policy_analysis'):
-                self.logger.info("📋 Analyzing policy compliance...")
-                policy_analysis = await self.policy_analyzer.comprehensive_analysis(
-                    customer_config=customer_config,
-                    forecasts=forecasts,
-                    compliance_domains=['grid_connection', 'environmental', 'financial']
-                )
-
-            # Phase 6: Optimization recommendations
-            self.logger.info("⚡ Generating optimization recommendations...")
-            optimization = await self._generate_optimization_recommendations(
-                customer_config, forecasts, policy_analysis, analysis_config
-            )
-
-            # Phase 7: Risk assessment
-            risk_assessment = await self._assess_operational_risks(
-                forecasts, customer_config, training_status['metrics']
-            )
-
-            return {
-                'data_processing': {
-                    'quality_improvement': processed_data.attrs.get('quality_improvement', 0),
-                    'outliers_detected': processed_data.attrs.get('outliers_removed', 0),
-                    'missing_data_filled': processed_data.attrs.get('missing_filled', 0)
-                },
-                'model_performance': training_status['metrics'],
-                'forecasts': forecasts,
-                'policy_compliance': policy_analysis,
-                'optimization_recommendations': optimization,
-                'risk_assessment': risk_assessment,
-                'execution_summary': {
-                    'processing_time': training_status.get('processing_time'),
-                    'model_accuracy': training_status['metrics'].get('mape'),
-                    'confidence_score': forecasts['24h'].get('average_confidence'),
-                    'compliance_score': policy_analysis.get('overall_score') if policy_analysis else None
-                }
-            }
-
-        except Exception as e:
-            self.logger.error(f"❌ Comprehensive analysis failed: {str(e)}")
-            
-            # Intelligent error recovery
-            if 'tier_limit' in str(e).lower():
-                self.logger.info("💡 Tier limit reached. Consider upgrading for unlimited access.")
-                return await self._generate_limited_analysis(data_file, customer_config)
-            
-            raise
-
-    async def _monitor_training_progress(self, training_job_id: str):
-        """Monitor training progress with real-time updates"""
-        import time
-        
-        start_time = time.time()
-        while True:
-            status = await self.client.get_training_status(training_job_id)
-            
-            if status['status'] == 'completed':
-                self.logger.info(f"✅ Training completed in {time.time() - start_time:.1f}s")
-                return status
-            elif status['status'] == 'failed':
-                raise Exception(f"Training failed: {status.get('error_message')}")
-            
-            progress = status.get('progress', 0)
-            self.logger.info(f"⏳ Training progress: {progress}%")
-            await asyncio.sleep(30)  # Check every 30 seconds
-
-    async def _generate_optimization_recommendations(self, customer_config, forecasts, policy_analysis, analysis_config):
-        """Generate actionable optimization recommendations"""
-        # Implementation for optimization logic
-        pass
-
-    async def _assess_operational_risks(self, forecasts, customer_config, model_metrics):
-        """Assess operational and financial risks"""
-        # Implementation for risk assessment
-        pass
-
-# Example Usage
-async def main():
-    platform = AdvancedEnergyPlatform(
-        api_key="your-ona-api-key",
-        deployment_type="hybrid"  # Use edge when available, cloud as fallback
-    )
-    
-    customer_config = {
-        'id': 'wind_farm_eastern_cape_001',
-        'location': 'PortElizabeth',
-        'manufacturer': 'Vestas',
-        'equipment_type': 'wind_turbine',
-        'capacity_mw': 50,
-        'commissioning_date': '2023-01-15',
-        'business_model': 'ipp_wheeling'
-    }
-    
-    analysis_config = {
-        'forecast_horizon': 168,
-        'confidence_level': 0.95,
-        'include_weather': True,
-        'include_policy_analysis': True,
-        'optimization_target': 'revenue_maximization'
-    }
-    
-    results = await platform.comprehensive_energy_analysis(
-        data_file='./wind_farm_data_2024.csv',
-        customer_config=customer_config,
-        analysis_config=analysis_config
-    )
-    
-    print("📊 Analysis Results:", results)
-
-# Run the example
-if __name__ == "__main__":
-    asyncio.run(main())
-```
-
----
-
-## **Edge Deployment Guide** {#edge-deployment}
-
-### **Why Edge Computing?**
-- **Data Sovereignty**: Keep sensitive energy data within your infrastructure
-- **Ultra-Low Latency**: Sub-50ms response times for real-time applications
-- **Offline Capability**: Continue operations during internet outages
-- **Compliance**: Meet strict regulatory requirements for data location
-
-### **Edge Installation**
-
-#### **Docker Deployment (Recommended)**
+#### **Step 1: Verify Installation**
 ```bash
-# Pull the latest Ona Edge image
-docker pull asoba/ona-edge:latest
+# If you get "command not found", ensure PATH is set:
+export PATH=$PATH:$HOME/.local/bin
 
-# Create configuration directory
-mkdir -p ./ona-edge-config
+# Check system status
+asoba-code status
 
-# Create environment configuration
-cat > ./ona-edge-config/.env << EOF
-ONA_LICENSE_KEY=your-edge-license-key
-ONA_CLOUD_SYNC=true
-ONA_STORAGE_PATH=/data/ona-edge
-ONA_LOG_LEVEL=INFO
-ONA_MAX_CONCURRENT_JOBS=4
-EOF
+# List available MCP servers
+asoba-code servers
 
-# Run Ona Edge
-docker run -d \
-  --name ona-edge \
-  --restart unless-stopped \
-  -p 5000:5000 \
-  -p 8080:8080 \
-  -v ./ona-edge-config:/config \
-  -v ./ona-edge-data:/data \
-  --env-file ./ona-edge-config/.env \
-  asoba/ona-edge:latest
+# Show server health
+asoba-code servers --health
 ```
 
-#### **Native Linux Installation**
+Expected output:
+```
+📊 AsobaCode Status
+📁 Config: configs
+⏱️  Timeout: 60s
+🖥️  Servers: 3 discovered
+🐍 Python: 3.10+
+
+🖥️  MCP Servers
+Server                    Status    Capabilities
+ai-models-server         running   generate_code, analyze_code, refactor_code
+github-server            running   create_issue, manage_pr, repository_analysis  
+code-analysis-server     running   analyze_complexity, detect_smells, security_scan
+```
+
+#### **Step 2: Basic AI Code Generation**
 ```bash
-# Download and install Ona Edge
-curl -fsSL https://install.asoba.co/edge | bash
+# Generate simple Python code
+asoba-code ask "Create a function to calculate fibonacci numbers"
 
-# Configure edge node
-sudo ona-edge configure \
-  --license-key="your-edge-license-key" \
-  --cloud-sync=enabled \
-  --storage-path="/opt/ona-edge/data"
+# Generate complex infrastructure code
+asoba-code ask "Create a Terraform configuration for a highly available web application on AWS"
 
-# Start services
-sudo systemctl enable ona-edge
-sudo systemctl start ona-edge
-
-# Verify installation
-ona-edge status
+# Analyze existing code
+asoba-code ask "Analyze this Python file for performance issues: /path/to/your/file.py"
 ```
 
-### **Edge SDK Configuration**
+#### **Step 3: GitHub Integration**
+```bash
+# Analyze a repository structure
+asoba-code ask "Analyze the structure of my GitHub repository: owner/repo-name"
 
-```javascript
-// JavaScript configuration for edge deployment
-const { OnaClient } = require('ona-energy-sdk');
+# Create technical debt issues
+asoba-code ask "Scan my repository for technical debt and create GitHub issues"
 
-const edgeClient = new OnaClient({
-    baseUrl: 'http://localhost:5000',  // Edge endpoint
-    apiKey: process.env.ONA_API_KEY,
-    deployment: 'edge',
-    fallbackToCloud: true,  // Auto-fallback to cloud if edge unavailable
-    syncWithCloud: true     // Sync results with cloud for backup
-});
-
-// Test edge connectivity
-const healthCheck = await edgeClient.healthCheck();
-console.log('Edge Status:', healthCheck);
+# Generate tests for a PR
+asoba-code ask "Generate comprehensive tests for pull request #123 in owner/repo-name"
 ```
 
-```python
-# Python configuration for edge deployment
-from ona_energy_sdk import OnaClient
+### **Advanced Workflow Examples**
 
-edge_client = OnaClient(
-    base_url='http://localhost:5000',
-    api_key=os.environ['ONA_API_KEY'],
-    deployment_type='edge',
-    fallback_to_cloud=True,
-    sync_with_cloud=True,
-    edge_config={
-        'max_local_storage': '100GB',
-        'auto_cleanup_days': 30,
-        'prefer_local_processing': True
-    }
-)
+#### **Complete DevOps Automation Workflow**
+```bash
+# Step 1: Repository Analysis and Technical Debt Assessment
+asoba-code ask "Analyze my entire repository for technical debt and create a comprehensive report"
 
-# Test edge connectivity
-health_status = await edge_client.health_check()
-print(f"Edge Status: {health_status}")
+# Step 2: Infrastructure Generation
+asoba-code ask "Create a complete AWS infrastructure setup with:
+- VPC with public and private subnets
+- Auto-scaling group for web servers
+- RDS database with backup strategy
+- CloudFront CDN
+- Route53 DNS configuration
+- Security groups and IAM roles"
+
+# Step 3: Automated Issue Creation
+asoba-code ask "Scan my codebase for security vulnerabilities and performance issues, then create prioritized GitHub issues with detailed remediation steps"
+
+# Step 4: Test Generation and Coverage Analysis
+asoba-code ask "Generate comprehensive test suites for all my Python modules, including unit tests, integration tests, and security tests"
+
+# Step 5: CI/CD Pipeline Setup
+asoba-code ask "Create GitHub Actions workflows for:
+- Automated testing on PR creation
+- Code quality checks
+- Infrastructure deployment to staging
+- Production deployment with approval gates"
+```
+
+#### **Example Output for Repository Analysis**
+```
+🔍 Analyzing Repository: myorg/myproject
+📊 Project Language: Python (Django)
+🧠 AI Model Selected: Claude 4 Sonnet (complex analysis)
+
+📈 Technical Debt Analysis:
+• Overall Health Score: 7.2/10
+• Critical Issues: 3
+• High Priority Issues: 12
+• Medium Priority Issues: 27
+
+🔥 Critical Issues Found:
+1. SQL Injection vulnerability in user_auth.py (Line 45)
+2. Hardcoded AWS credentials in settings.py (Line 23)
+3. Missing input validation in payment_processor.py (Line 67)
+
+🎯 Recommendations:
+• Implement parameterized queries for database access
+• Move credentials to environment variables
+• Add comprehensive input validation
+• Increase test coverage from 45% to 80%
+
+💰 Analysis Cost: $0.85 (Claude 4 Sonnet)
+🚀 Created 15 GitHub issues with remediation steps
+```
+
+#### **Real-World Use Cases**
+
+```bash
+# Daily Development Workflow
+asoba-code ask "Review my staged changes and suggest improvements before I commit"
+
+# Weekly Technical Debt Review
+asoba-code ask "Analyze technical debt trends over the past week and create a summary report"
+
+# Release Preparation
+asoba-code ask "Prepare my application for production release:
+- Run security scans
+- Check test coverage
+- Generate deployment infrastructure
+- Create rollback procedures"
+
+# Team Productivity Analysis
+asoba-code ask "Analyze our team's code quality trends and suggest process improvements"
+```
+```
+
+## **MCP Server Overview** {#mcp-servers}
+
+AsobaCode CLI is built on a modular **Model Context Protocol (MCP) architecture** with three specialized servers that work together to provide comprehensive DevOps automation:
+
+### **🤖 AI Models Server** {#ai-models-server}
+
+**Purpose**: Intelligent AI model routing and code generation capabilities
+
+**Core Features**:
+- **Multi-Model Support**: Claude 4 Opus/Sonnet, Llama 4, DeepSeek-R1, and specialized models
+- **Intelligent Routing**: Automatically selects optimal model based on task complexity
+- **Cost Optimization**: Routes simple tasks to cost-effective models (60%+ savings)
+- **Context Management**: Maintains conversation history and project context
+
+**Available Models**:
+```bash
+# Check available AI models
+asoba-code ask "What AI models are available?"
+
+# Model capabilities:
+# - Claude 4 Opus: Complex reasoning, architecture design, comprehensive analysis
+# - Claude 4 Sonnet: Balanced performance for most development tasks
+# - Llama 4 Scout: Fast code generation and simple analysis
+# - DeepSeek-R1: Mathematical reasoning and algorithm optimization
+```
+
+**Example Usage**:
+```bash
+# Generate complex infrastructure code (uses Claude 4 Opus)
+asoba-code ask "Create a complete microservices architecture with Kubernetes, monitoring, and CI/CD pipeline"
+
+# Simple code generation (uses cost-effective model)
+asoba-code ask "Write a Python function to validate email addresses"
+
+# Code analysis (intelligent model selection)
+asoba-code ask "Analyze this codebase for performance bottlenecks and security issues"
 ```
 
 ---
 
-## **Advanced SDK Features** {#advanced-features}
+### **🐙 GitHub Integration Server** {#github-server}
 
-### **Intelligent Caching**
-```javascript
-const client = new OnaClient({
-    apiKey: process.env.ONA_API_KEY,
-    caching: {
-        enabled: true,
-        ttl: 3600,  // 1 hour cache
-        maxSize: '100MB',
-        strategy: 'intelligent'  // Cache based on data volatility
-    }
-});
+**Purpose**: Automated repository management and workflow automation
+
+**Core Capabilities**:
+- **Repository Analysis**: Deep code structure and quality assessment
+- **Issue Management**: Automated technical debt issue creation with detailed remediation steps
+- **PR Workflows**: Pull request analysis, review automation, and test generation
+- **Team Collaboration**: Automated documentation and knowledge sharing
+
+**Configuration**:
+```bash
+# Set GitHub token for full functionality
+export GITHUB_TOKEN=ghp_your_github_personal_access_token
+
+# Verify GitHub integration
+asoba-code ask "Test GitHub connectivity and show my repositories"
 ```
 
-### **Batch Operations**
-```python
-# Process multiple customers in parallel
-batch_processor = client.create_batch_processor(
-    max_concurrent=5,
-    retry_strategy='exponential_backoff'
-)
+**Advanced Features**:
+```bash
+# Repository-wide technical debt analysis
+asoba-code ask "Analyze my entire repository for technical debt and create prioritized GitHub issues with detailed remediation steps"
 
-results = await batch_processor.process_multiple_customers([
-    {'id': 'customer_001', 'file': 'data1.csv'},
-    {'id': 'customer_002', 'file': 'data2.csv'},
-    {'id': 'customer_003', 'file': 'data3.csv'}
-])
-```
+# PR review automation
+asoba-code ask "Review pull request #123 in myorg/myproject and suggest improvements"
 
-### **Real-Time Streaming**
-```javascript
-// WebSocket connection for real-time data
-const stream = client.createRealtimeStream({
-    customerId: 'wind_farm_001',
-    dataTypes: ['generation', 'weather', 'grid_frequency'],
-    updateInterval: 1000  // 1 second updates
-});
+# Automated documentation
+asoba-code ask "Generate comprehensive API documentation for my Python project and create a PR"
 
-stream.on('data', (data) => {
-    console.log('Real-time update:', data);
-});
-
-stream.on('forecast_update', (forecast) => {
-    console.log('Updated forecast:', forecast);
-});
+# Team productivity analysis
+asoba-code ask "Analyze code quality trends across our team's recent commits and create a summary report"
 ```
 
 ---
 
-## **API Reference** {#api-reference}
+### **🔍 Code Analysis Server** {#code-analysis-server}
 
-### **Core Methods**
+**Purpose**: Advanced static analysis and code quality intelligence
 
-#### **Data Management**
-```typescript
-// TypeScript definitions for comprehensive type safety
-interface OnaClient {
-    // Historical data upload with preprocessing
-    uploadHistoricalData(config: HistoricalDataConfig): Promise<UploadResult>;
-    
-    // Real-time data ingestion
-    uploadNowcastData(config: NowcastConfig): Promise<NowcastResult>;
-    
-    // Intelligent data interpolation
-    interpolateData(config: InterpolationConfig): Promise<InterpolationResult>;
-    
-    // Data quality assessment
-    assessDataQuality(data: EnergyData): Promise<QualityAssessment>;
-}
+**Analysis Capabilities**:
+- **Multi-Language Support**: Python, JavaScript, TypeScript, Rust, Go, Java, C++, and more
+- **Security Scanning**: Vulnerability detection with CVE mapping and remediation guidance
+- **Performance Analysis**: Complexity metrics, bottleneck identification, optimization suggestions
+- **Technical Debt Tracking**: Automated debt classification and prioritization
 
-interface HistoricalDataConfig {
-    filePath: string;
-    customerId: string;
-    location: string;
-    manufacturer: string;
-    equipmentType?: 'solar' | 'wind' | 'battery' | 'grid' | 'load';
-    weatherIntegration?: boolean;
-    seasonalAdjustment?: boolean;
-    metadata?: Record<string, any>;
-}
+**Code Quality Metrics**:
+```bash
+# Comprehensive code analysis
+asoba-code ask "Analyze my Python project for code quality, security issues, and performance bottlenecks"
+
+# Security-focused scan
+asoba-code ask "Perform a comprehensive security audit of my codebase and create GitHub issues for vulnerabilities"
+
+# Performance optimization
+asoba-code ask "Identify performance bottlenecks in my application and suggest optimizations"
+
+# Technical debt assessment
+asoba-code ask "Calculate technical debt score for my project and create a remediation roadmap"
 ```
 
-#### **AI & Machine Learning**
-```typescript
-interface ForecastingMethods {
-    // Train forecasting models
-    trainForecastingModel(config: TrainingConfig): Promise<TrainingJob>;
-    
-    // Generate forecasts with confidence intervals
-    generateForecast(config: ForecastConfig): Promise<ForecastResult>;
-    
-    // Model performance evaluation
-    evaluateModel(modelId: string): Promise<ModelMetrics>;
-    
-    // Hyperparameter optimization
-    optimizeHyperparameters(config: OptimizationConfig): Promise<OptimizationResult>;
-}
+**Example Analysis Output**:
+```
+🔍 Code Analysis Results: myproject
+📊 Language Distribution: Python (78%), JavaScript (15%), YAML (7%)
+🧠 AI Model Selected: Claude 4 Sonnet (comprehensive analysis)
+
+📈 Quality Metrics:
+• Overall Health Score: 7.8/10
+• Security Score: 8.5/10
+• Performance Score: 6.2/10
+• Maintainability Score: 7.9/10
+
+🔥 Critical Issues:
+1. SQL Injection vulnerability in user_service.py (Line 156)
+2. Hardcoded API keys in config.py (Line 23)
+3. Memory leak potential in data_processor.py (Line 89)
+
+⚡ Performance Issues:
+1. N+1 query pattern in dashboard.py (Line 45)
+2. Unoptimized database indexes (suggestions included)
+3. Large file processing without streaming (Line 234)
+
+🎯 Recommendations:
+• Implement parameterized queries
+• Use environment variables for secrets
+• Add connection pooling for database access
+• Implement caching layer for frequent queries
+
+💰 Analysis Cost: $0.45 (Claude 4 Sonnet)
+🚀 Created 12 GitHub issues with detailed remediation steps
 ```
 
-#### **Policy & Compliance Intelligence**
-```typescript
-interface PolicyMethods {
-    // Query policy compliance
-    queryPolicyCompliance(query: string, options?: PolicyQueryOptions): Promise<PolicyResult>;
+---
+
+## **Terminal Interface & Natural Language Commands** {#terminal-interface}
+
+AsobaCode CLI provides a **Claude Code-like conversational interface** that understands natural language and routes requests to appropriate MCP servers.
+
+### **Command Structure**
+
+**Basic Pattern**:
+```bash
+asoba-code ask "NATURAL_LANGUAGE_REQUEST"
+```
+
+**System Commands**:
+```bash
+# System status and health
+asoba-code status                    # Overall system health
+asoba-code servers                   # List MCP servers
+asoba-code servers --health          # Server health check
+asoba-code --version                 # Version information
+asoba-code --help                    # Help and usage
+```
+
+### **Natural Language Examples**
+
+#### **Infrastructure Automation**
+```bash
+# AWS Infrastructure
+asoba-code ask "Create a Terraform configuration for a highly available web application on AWS with:
+- VPC with public and private subnets
+- Auto-scaling group for web servers  
+- RDS database with backup strategy
+- CloudFront CDN and Route53 DNS
+- Security groups and IAM roles"
+
+# Kubernetes Deployment
+asoba-code ask "Generate Kubernetes manifests for a microservices application with:
+- Frontend React app
+- Backend API service
+- Redis cache
+- PostgreSQL database
+- Ingress controller and monitoring"
+
+# Multi-cloud setup
+asoba-code ask "Create infrastructure templates for deploying the same application on AWS, GCP, and Azure"
+```
+
+#### **Code Analysis & Quality**
+```bash
+# Repository analysis
+asoba-code ask "Analyze my Python project for technical debt, security vulnerabilities, and performance issues"
+
+# Specific file analysis
+asoba-code ask "Review this Python file for code quality issues: /path/to/service.py"
+
+# Security audit
+asoba-code ask "Perform a comprehensive security scan of my web application and create GitHub issues for any vulnerabilities found"
+
+# Performance optimization
+asoba-code ask "Identify performance bottlenecks in my Django application and suggest specific optimizations"
+```
+
+#### **GitHub Workflow Automation**
+```bash
+# Issue creation
+asoba-code ask "Scan my repository for technical debt and create prioritized GitHub issues with detailed remediation steps"
+
+# PR analysis
+asoba-code ask "Analyze pull request #456 in myorg/myproject and provide a detailed code review with suggestions"
+
+# Documentation generation
+asoba-code ask "Generate comprehensive documentation for my API endpoints and create a pull request"
+
+# Team productivity
+asoba-code ask "Analyze our team's commit patterns and code quality trends over the past month"
+```
+
+#### **Development Workflow Integration**
+```bash
+# Pre-commit analysis
+asoba-code ask "Review my staged changes and suggest improvements before I commit"
+
+# Release preparation
+asoba-code ask "Prepare my application for production release:
+- Run security scans
+- Check test coverage  
+- Generate deployment scripts
+- Create rollback procedures"
+
+# Test generation
+asoba-code ask "Generate comprehensive test suites for my Python modules, including unit tests, integration tests, and security tests"
+```
+
+### **Context-Aware Conversations**
+
+AsobaCode CLI maintains context across commands within a session:
+
+```bash
+# Initial analysis
+asoba-code ask "Analyze my Python project for technical debt"
+
+# Follow-up without repeating context
+asoba-code ask "Create GitHub issues for the high-priority items you found"
+
+# Further refinement
+asoba-code ask "Focus on the security vulnerabilities and provide detailed remediation steps"
+
+# Implementation guidance
+asoba-code ask "Generate the code fixes for the SQL injection issues"
+```
+
+### **Advanced Command Features**
+
+#### **Multi-Step Workflows**
+```bash
+# Complex multi-step automation
+asoba-code ask "Complete DevOps setup for my new microservices project:
+1. Analyze the codebase for quality issues
+2. Create GitHub issues for technical debt
+3. Generate Kubernetes deployment manifests
+4. Set up CI/CD pipeline with GitHub Actions
+5. Create monitoring and alerting configuration"
+```
+
+#### **Project-Specific Context**
+```bash
+# Set project context
+asoba-code ask "I'm working on a Django e-commerce application with PostgreSQL. Analyze the project structure and identify areas for improvement"
+
+# Context is maintained for subsequent commands
+asoba-code ask "Generate database migration scripts for the performance optimizations you suggested"
+```
+
+---
+
+## **Configuration & Settings** {#configuration}
+
+### **Environment Configuration**
+
+**Required Environment Variables**:
+```bash
+# AWS Configuration (Required for AI models)
+export AWS_ACCESS_KEY_ID=your_access_key
+export AWS_SECRET_ACCESS_KEY=your_secret_key  
+export AWS_DEFAULT_REGION=us-east-1
+
+# GitHub Integration (Optional)
+export GITHUB_TOKEN=ghp_your_github_personal_access_token
+
+# Custom Configuration Path (Optional)
+export ASOBACODE_CONFIG_PATH=/custom/path/to/config.yaml
+```
+
+**AWS Configuration Methods**:
+```bash
+# Method 1: Environment variables (above)
+
+# Method 2: AWS CLI configuration
+aws configure
+
+# Method 3: AWS credential profiles
+export AWS_PROFILE=asobacode
+
+# Method 4: IAM roles (for EC2/ECS deployment)
+# No additional configuration needed
+```
+
+### **Configuration File Structure**
+
+**Default Location**: `~/.config/asobacode/config.yaml`
+
+**Configuration Example**:
+```yaml
+# AsobaCode CLI Configuration
+version: "1.0"
+
+# AI Model Settings
+ai_models:
+  default_provider: "aws_bedrock"
+  cost_optimization: true
+  model_preferences:
+    complex_tasks: "claude-4-opus"
+    standard_tasks: "claude-4-sonnet"
+    simple_tasks: "claude-4-haiku"
+    reasoning_tasks: "deepseek-r1"
+  
+  routing_thresholds:
+    complexity_threshold: 0.7
+    cost_threshold: 0.5
+    quality_threshold: 0.8
+
+# GitHub Integration
+github:
+  enabled: true
+  auto_create_issues: true
+  issue_labels:
+    - "technical-debt"
+    - "security"
+    - "performance"
+    - "code-quality"
+  
+  pr_analysis:
+    auto_review: true
+    comment_suggestions: true
+    security_checks: true
+
+# Code Analysis Settings  
+code_analysis:
+  languages:
+    - python
+    - javascript
+    - typescript
+    - rust
+    - go
+    - java
+  
+  security_scanning:
+    enabled: true
+    severity_threshold: "medium"
+    cve_database: true
+  
+  performance_analysis:
+    complexity_metrics: true
+    bottleneck_detection: true
+    optimization_suggestions: true
+
+# System Settings
+system:
+  timeout: 300  # seconds
+  max_concurrent_operations: 3
+  log_level: "INFO"
+  cache_enabled: true
+  cache_ttl: 3600  # seconds
+
+# Output Preferences
+output:
+  format: "detailed"  # detailed, summary, json
+  colors: true
+  progress_indicators: true
+  cost_tracking: true
+```
+
+### **Advanced Configuration Options**
+
+#### **Model-Specific Settings**
+```yaml
+ai_models:
+  claude_4_opus:
+    max_tokens: 8192
+    temperature: 0.1
+    top_p: 0.9
+    use_for:
+      - "complex_architecture"
+      - "comprehensive_analysis"
+      - "multi_step_planning"
+  
+  claude_4_sonnet:
+    max_tokens: 4096
+    temperature: 0.2
+    top_p: 0.8
+    use_for:
+      - "code_generation"
+      - "code_review"
+      - "documentation"
+  
+  deepseek_r1:
+    max_tokens: 2048
+    temperature: 0.0
+    top_p: 0.95
+    use_for:
+      - "mathematical_analysis"
+      - "algorithm_optimization"
+      - "logical_reasoning"
+```
+
+#### **GitHub Workflow Configuration**
+```yaml
+github:
+  workflows:
+    technical_debt:
+      enabled: true
+      schedule: "weekly"
+      assignees: ["team-lead", "senior-dev"]
+      milestone: "tech-debt-sprint"
     
-    // Get regulatory updates
-    getRegulatory Updates(region: string, sector: string): Promise<RegulatoryUpdate[]>;
+    security_scan:
+      enabled: true
+      schedule: "daily"
+      severity_threshold: "high"
+      auto_assign: true
     
-    // Compliance assessment
-    assessCompliance(customerConfig: CustomerConfig): Promise<ComplianceAssessment>;
-}
+    performance_review:
+      enabled: true
+      trigger: "pull_request"
+      benchmarks: true
+      coverage_threshold: 80
+```
+
+#### **Team-Specific Settings**
+```yaml
+team:
+  organization: "myorg"
+  default_reviewers:
+    - "senior-dev-1"
+    - "tech-lead"
+  
+  coding_standards:
+    python:
+      formatter: "black"
+      linter: "ruff"
+      type_checker: "mypy"
+    
+    javascript:
+      formatter: "prettier"
+      linter: "eslint"
+      bundler: "webpack"
+  
+  security_policies:
+    secret_scanning: true
+    dependency_scanning: true
+    license_compliance: true
+```
+
+### **Configuration Management**
+
+**View Current Configuration**:
+```bash
+asoba-code config show
+asoba-code config show --section ai_models
+asoba-code config show --format json
+```
+
+**Update Configuration**:
+```bash
+# Set specific values
+asoba-code config set ai_models.cost_optimization true
+asoba-code config set github.auto_create_issues false
+
+# Edit configuration file
+asoba-code config edit
+
+# Reset to defaults
+asoba-code config reset
+asoba-code config reset --section github
+```
+
+**Configuration Validation**:
+```bash
+# Validate configuration
+asoba-code config validate
+
+# Test connectivity with current config
+asoba-code config test
+asoba-code config test --service github
+asoba-code config test --service ai_models
 ```
 
 ---
@@ -709,234 +740,222 @@ interface PolicyMethods {
 
 ### **Common Issues & Solutions**
 
-#### **API Key & Authentication**
-```javascript
-// Verify API key validity
-const keyStatus = await client.validateApiKey();
-if (!keyStatus.valid) {
-    console.error('Invalid API key. Please check your configuration.');
-    // Automatic key refresh for enterprise clients
-    if (keyStatus.canRefresh) {
-        await client.refreshApiKey();
-    }
-}
+#### **Installation & Setup Issues**
+
+**Issue: Command not found**
+```bash
+# Solution: Add to PATH
+export PATH=$PATH:$HOME/.local/bin
+
+# Or use full path
+~/.local/bin/asoba-code --help
+
+# Permanent fix: Add to shell profile
+echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
+source ~/.bashrc
 ```
 
-#### **Rate Limit Management**
-```python
-from ona_energy_sdk.utils import RateLimitHandler
+**Issue: AWS credentials not working**
+```bash
+# Check AWS configuration
+aws sts get-caller-identity
 
-# Intelligent rate limit handling
-rate_handler = RateLimitHandler(
-    strategy='adaptive',  # Automatically adjust request rate
-    max_retries=5,
-    backoff_factor=2.0
-)
+# Test credentials with asoba-code
+asoba-code ask "Test AI model connectivity"
 
-client = OnaClient(
-    api_key=api_key,
-    rate_limit_handler=rate_handler
-)
+# Common solutions:
+export AWS_DEFAULT_REGION=us-east-1  # Ensure region is set
+aws configure  # Reconfigure credentials
 ```
 
-#### **Error Handling & Recovery**
-```javascript
-class RobustEnergyClient {
-    constructor(config) {
-        this.client = new OnaClient(config);
-        this.setupErrorHandling();
-    }
+**Issue: GitHub integration failing**
+```bash
+# Verify GitHub token
+curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
 
-    setupErrorHandling() {
-        this.client.on('error', (error) => {
-            switch (error.code) {
-                case 'TIER_LIMIT_EXCEEDED':
-                    console.log('💡 Upgrade tier for unlimited access: https://app.asoba.co/upgrade');
-                    break;
-                case 'RATE_LIMIT_EXCEEDED':
-                    console.log('⏳ Rate limit reached. Implementing exponential backoff...');
-                    break;
-                case 'NETWORK_ERROR':
-                    console.log('🌐 Network issue detected. Attempting edge fallback...');
-                    this.attemptEdgeFallback();
-                    break;
-                default:
-                    console.error('❌ Unexpected error:', error);
-            }
-        });
-    }
-
-    async attemptEdgeFallback() {
-        if (this.client.config.deployment !== 'edge') {
-            console.log('🔄 Switching to edge deployment...');
-            await this.client.switchToEdge();
-        }
-    }
-}
+# Check token permissions - needs:
+# - repo (full repository access)
+# - write:issues
+# - read:org (for organization repositories)
 ```
 
-### **Performance Optimization**
+#### **Performance Issues**
 
-#### **Data Upload Optimization**
-```python
-# Optimized batch upload for large datasets
-async def optimized_batch_upload(client, large_dataset, chunk_size=1000):
-    """
-    Upload large datasets in optimized chunks with compression
-    """
-    chunks = [large_dataset[i:i+chunk_size] for i in range(0, len(large_dataset), chunk_size)]
-    
-    upload_tasks = []
-    for i, chunk in enumerate(chunks):
-        # Compress data for faster upload
-        compressed_chunk = compress_energy_data(chunk)
-        
-        task = client.upload_historical_data(
-            file_data=compressed_chunk,
-            chunk_id=i,
-            total_chunks=len(chunks),
-            compression='gzip'
-        )
-        upload_tasks.append(task)
-    
-    # Upload chunks in parallel with controlled concurrency
-    results = await asyncio.gather(*upload_tasks, return_exceptions=True)
-    return results
+**Slow Response Times**:
+```bash
+# Check system status
+asoba-code status
+
+# Enable performance monitoring
+asoba-code config set system.log_level DEBUG
+
+# Check for bottlenecks
+asoba-code ask "Diagnose performance issues with my AsobaCode installation"
 ```
 
-#### **Memory Management**
-```javascript
-// Memory-efficient streaming for large files
-const streamProcessor = client.createStreamProcessor({
-    chunkSize: 1024 * 1024,  // 1MB chunks
-    maxConcurrentChunks: 3,
-    compressionLevel: 6,
-    memoryLimit: '500MB'
-});
-
-await streamProcessor.processFile('./very_large_energy_data.csv');
+**Memory Usage Optimization**:
+```yaml
+# Optimize configuration for resource-constrained environments
+system:
+  max_concurrent_operations: 1
+  cache_enabled: false
+  
+ai_models:
+  model_preferences:
+    complex_tasks: "claude-4-sonnet"  # Use lighter model
+    standard_tasks: "claude-4-haiku"
 ```
 
----
+#### **AI Model Issues**
 
-## **Integration Examples** {#integration-examples}
+**Cost Optimization**:
+```bash
+# Monitor AI costs
+asoba-code ask "Show my AI usage and costs for this month"
 
-### **React Frontend Integration**
-```jsx
-import React, { useState, useEffect } from 'react';
-import { OnaClient } from 'ona-energy-sdk/browser';
+# Enable aggressive cost optimization
+asoba-code config set ai_models.cost_optimization true
+asoba-code config set ai_models.routing_thresholds.cost_threshold 0.3
 
-const EnergyDashboard = () => {
-    const [client] = useState(() => new OnaClient({
-        apiKey: process.env.REACT_APP_ONA_API_KEY,
-        deployment: 'cloud'
-    }));
-    
-    const [forecast, setForecast] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const loadForecast = async () => {
-            try {
-                const result = await client.generateForecast({
-                    customerId: 'solar_farm_001',
-                    forecastWindow: 48,
-                    includeWeatherImpact: true
-                });
-                setForecast(result);
-            } catch (error) {
-                console.error('Forecast loading failed:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        loadForecast();
-    }, [client]);
-
-    if (loading) return <div>Loading forecast...</div>;
-
-    return (
-        <div className="energy-dashboard">
-            <h2>Energy Forecast</h2>
-            <div className="forecast-chart">
-                {/* Render forecast visualization */}
-            </div>
-            <div className="insights">
-                {forecast?.insights?.map((insight, i) => (
-                    <div key={i} className="insight-card">
-                        {insight}
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-};
-
-export default EnergyDashboard;
+# Use cost-effective models for routine tasks
+asoba-code ask "Use the most cost-effective model: analyze this simple Python function"
 ```
 
-### **Express.js Backend Integration**
-```javascript
-const express = require('express');
-const { OnaClient } = require('ona-energy-sdk');
+**Model Selection Problems**:
+```bash
+# Force specific model
+asoba-code ask "Using Claude 4 Opus: design a complex distributed system architecture"
 
-const app = express();
-const onaClient = new OnaClient({
-    apiKey: process.env.ONA_API_KEY,
-    deployment: 'hybrid'
-});
+# Check model availability
+asoba-code servers --health
 
-// Middleware for tier-based access control
-const checkTierAccess = (requiredTier) => (req, res, next) => {
-    const userTier = req.user.tier;
-    const tierHierarchy = { free: 1, professional: 2, enterprise: 3 };
-    
-    if (tierHierarchy[userTier] >= tierHierarchy[requiredTier]) {
-        next();
-    } else {
-        res.status(403).json({
-            error: 'Insufficient tier access',
-            currentTier: userTier,
-            requiredTier: requiredTier,
-            upgradeUrl: 'https://app.asoba.co/upgrade'
-        });
-    }
-};
+# Fallback configuration
+asoba-code config set ai_models.fallback_enabled true
+```
 
-// Endpoint for energy forecasting
-app.post('/api/forecast', checkTierAccess('professional'), async (req, res) => {
-    try {
-        const { customerId, forecastWindow, options } = req.body;
-        
-        const forecast = await onaClient.generateForecast({
-            customerId,
-            forecastWindow,
-            ...options,
-            userId: req.user.id  // For usage tracking
-        });
+### **Best Practices**
 
-        res.json({
-            success: true,
-            forecast,
-            metadata: {
-                processingTime: forecast.processingTime,
-                modelAccuracy: forecast.accuracy,
-                tier: req.user.tier
-            }
-        });
-    } catch (error) {
-        res.status(500).json({
-            error: 'Forecasting failed',
-            message: error.message,
-            supportContact: 'support@asoba.co'
-        });
-    }
-});
+#### **Project Setup**
 
-app.listen(3000, () => {
-    console.log('🚀 Energy API server running on port 3000');
-});
+**1. Initial Repository Setup**:
+```bash
+# Start with comprehensive analysis
+asoba-code ask "Analyze my new Python project and set up best practices for development workflow"
+
+# Establish baseline
+asoba-code ask "Create initial technical debt assessment and establish quality metrics baseline"
+```
+
+**2. Configuration for Teams**:
+```yaml
+# Team configuration template
+team:
+  name: "backend-team"
+  standards:
+    code_review_required: true
+    security_scan_on_pr: true
+    performance_benchmark: true
+  
+github:
+  auto_create_issues: true
+  assignees: ["tech-lead"]
+  labels: ["backend", "tech-debt"]
+```
+
+#### **Workflow Optimization**
+
+**1. Daily Development Workflow**:
+```bash
+# Morning: Check for new issues
+asoba-code ask "Review overnight technical debt scans and prioritize today's work"
+
+# Before commit: Pre-commit analysis  
+asoba-code ask "Review my staged changes and suggest improvements"
+
+# End of day: Team summary
+asoba-code ask "Generate end-of-day summary of code quality improvements"
+```
+
+**2. Weekly Team Reviews**:
+```bash
+# Weekly technical debt review
+asoba-code ask "Generate weekly technical debt report with trends and recommendations"
+
+# Performance monitoring
+asoba-code ask "Analyze application performance trends and identify optimization opportunities"
+
+# Security posture review
+asoba-code ask "Conduct weekly security review and update threat assessment"
+```
+
+#### **Cost Management**
+
+**1. Cost-Effective Usage**:
+```bash
+# Use appropriate models for task complexity
+asoba-code ask "Quick code review: check this function for basic issues"  # Uses cost-effective model
+asoba-code ask "Comprehensive architecture review with security analysis"  # Uses premium model
+
+# Batch similar requests
+asoba-code ask "Analyze all Python files in /src directory for common issues"
+```
+
+**2. Budget Monitoring**:
+```yaml
+# Set up cost alerts
+ai_models:
+  cost_monitoring:
+    monthly_budget: 100.00
+    alert_threshold: 0.8
+    auto_optimize: true
+```
+
+#### **Security Best Practices**
+
+**1. Credential Management**:
+```bash
+# Never commit credentials
+echo ".env" >> .gitignore
+echo "config.yaml" >> .gitignore
+
+# Use environment variables
+export AWS_ACCESS_KEY_ID=...
+export GITHUB_TOKEN=...
+
+# Rotate tokens regularly
+asoba-code ask "Help me set up automated GitHub token rotation"
+```
+
+**2. Security Scanning**:
+```bash
+# Regular security scans
+asoba-code ask "Perform comprehensive security audit and create prioritized remediation plan"
+
+# Dependency scanning
+asoba-code ask "Scan dependencies for known vulnerabilities and suggest updates"
+
+# Infrastructure security
+asoba-code ask "Review Terraform configurations for security best practices"
+```
+
+#### **Quality Assurance**
+
+**1. Automated Quality Checks**:
+```bash
+# Set up pre-commit hooks
+asoba-code ask "Create pre-commit hooks for code quality, security, and performance checks"
+
+# Continuous monitoring
+asoba-code ask "Set up automated quality monitoring with GitHub Actions integration"
+```
+
+**2. Technical Debt Management**:
+```bash
+# Regular debt assessment
+asoba-code ask "Quarterly technical debt assessment with ROI analysis for remediation"
+
+# Debt categorization
+asoba-code ask "Categorize technical debt by impact and effort, create prioritized backlog"
 ```
 
 ---
@@ -944,24 +963,53 @@ app.listen(3000, () => {
 ## **Support & Resources** {#support}
 
 ### **Documentation & Guides**
-- **📖 Complete API Reference**: [docs.asoba.co/api](https://docs.asoba.co/api)
-- **🎯 Best Practices Guide**: [docs.asoba.co/best-practices](https://docs.asoba.co/best-practices)
-- **🔧 Troubleshooting Guide**: [docs.asoba.co/troubleshooting](https://docs.asoba.co/troubleshooting)
-- **📊 Performance Optimization**: [docs.asoba.co/optimization](https://docs.asoba.co/optimization)
+- **📖 Complete CLI Reference**: [docs.asobacode.dev/cli](https://docs.asobacode.dev/cli)
+- **🎯 Best Practices Guide**: [docs.asobacode.dev/best-practices](https://docs.asobacode.dev/best-practices)
+- **🔧 Troubleshooting Guide**: [docs.asobacode.dev/troubleshooting](https://docs.asobacode.dev/troubleshooting)
+- **📊 Performance Optimization**: [docs.asobacode.dev/optimization](https://docs.asobacode.dev/optimization)
+- **🏗️ Architecture Guide**: [docs.asobacode.dev/architecture](https://docs.asobacode.dev/architecture)
 
 ### **Community & Support**
-- **💬 Developer Forum**: [community.asoba.co](https://community.asoba.co)
+- **💬 Developer Community**: [community.asobacode.dev](https://community.asobacode.dev)
 - **📧 Technical Support**: [support@asoba.co](mailto:support@asoba.co)
 - **🤝 Business Development**: 
   - Shingai: [shingai@asoba.co](mailto:shingai@asoba.co)
   - Gertie: [gertie@asoba.co](mailto:gertie@asoba.co)
-- **🔍 Feature Requests**: [info@asoba.co](mailto:info@asoba.co)
+- **🔍 Feature Requests**: [github.com/AsobaCloud/asoba-code/issues](https://github.com/AsobaCloud/asoba-code/issues)
 
-### **Emergency Support**
-For production issues requiring immediate attention:
-- **🚨 Emergency Hotline**: +27-XX-XXX-XXXX (Enterprise tier only)
-- **💬 Slack Integration**: #ona-support (Enterprise tier only)
-- **📱 SMS Alerts**: Critical system notifications
+### **Development Resources**
+- **📚 GitHub Repository**: [github.com/AsobaCloud/asoba-code](https://github.com/AsobaCloud/asoba-code)
+- **🔄 Release Notes**: [github.com/AsobaCloud/asoba-code/releases](https://github.com/AsobaCloud/asoba-code/releases)
+- **🐛 Bug Reports**: [github.com/AsobaCloud/asoba-code/issues](https://github.com/AsobaCloud/asoba-code/issues)
+- **💡 Discussions**: [github.com/AsobaCloud/asoba-code/discussions](https://github.com/AsobaCloud/asoba-code/discussions)
+
+### **Learning Resources**
+- **🎥 Video Tutorials**: [youtube.com/@asobacleanenergy](https://youtube.com/@asobacleanenergy)
+- **📝 Blog & Articles**: [blog.asoba.co](https://blog.asoba.co)
+- **🎓 Training Materials**: [learn.asobacode.dev](https://learn.asobacode.dev)
+- **🔬 Case Studies**: [case-studies.asobacode.dev](https://case-studies.asobacode.dev)
+
+### **Enterprise Support**
+For organizations requiring dedicated support:
+- **🚨 Priority Support**: 4-hour response time for critical issues
+- **👥 Dedicated Success Manager**: Personal onboarding and optimization
+- **🔧 Custom Integration**: Tailored MCP server development
+- **📊 Advanced Analytics**: Custom reporting and team productivity metrics
+- **🏢 On-Premise Deployment**: Private cloud and air-gapped environments
+
+**Contact Enterprise Sales**: [enterprise@asoba.co](mailto:enterprise@asoba.co)
+
+### **Status & Monitoring**
+- **📊 System Status**: [status.asobacode.dev](https://status.asobacode.dev)
+- **📈 Performance Metrics**: [metrics.asobacode.dev](https://metrics.asobacode.dev)
+- **🔔 Service Alerts**: Subscribe to status updates
+- **📱 Mobile App**: iOS and Android status monitoring
+
+### **Contributing**
+- **🤝 Contribution Guidelines**: [CONTRIBUTING.md](https://github.com/AsobaCloud/asoba-code/blob/main/CONTRIBUTING.md)
+- **📋 Code of Conduct**: [CODE_OF_CONDUCT.md](https://github.com/AsobaCloud/asoba-code/blob/main/CODE_OF_CONDUCT.md)
+- **🏆 Contributor Recognition**: [contributors.asobacode.dev](https://contributors.asobacode.dev)
+- **💰 Bug Bounty Program**: [security.asoba.co/bounty](https://security.asoba.co/bounty)
 
 ---
 

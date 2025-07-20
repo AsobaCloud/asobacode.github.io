@@ -1,1044 +1,1441 @@
 ---
-title: "API Endpoints"
+title: "CLI Commands & API Reference"
 layout: default
 nav_order: 2
 ---
 
-## Ona API Platform - Complete Endpoints Documentation
+## AsobaCode CLI - Complete Commands Documentation
 
-This comprehensive guide documents ALL available APIs in the Ona energy platform ecosystem, covering the complete range of power tools modules from basic data processing to advanced AI-driven optimization and policy intelligence. The platform supports both cloud-based high-scale deployments and edge computing for data sovereignty.
+This comprehensive reference documents ALL available commands in the AsobaCode CLI platform, covering the complete range of DevOps automation tools from basic code analysis to advanced AI-driven infrastructure deployment and technical debt management. The platform supports both local terminal usage and programmatic API integration.
 
 ---
 
 ## **Platform Architecture Overview**
 
-### **Multi-Deployment Model**
-- **Cloud APIs**: High-availability AWS infrastructure with global routing
-- **Edge Deployment**: Local processing nodes for data sovereignty and low latency
-- **Hybrid Integration**: Intelligent cloud-edge orchestration
+### **MCP-Based Architecture**
+- **Terminal Interface**: Claude Code-like conversational UI with natural language processing
+- **AI Model Router**: Intelligent routing between Claude 4, Llama 4, DeepSeek-R1, and cost-effective models
+- **GitHub Integration**: Seamless repository management with automated workflows
 
-### **Tiered Access Control**
-- **Free Tier**: 3 policy queries, 5 forecasts, 10 data operations per month
-- **Professional Tier**: 100 operations across all endpoints, up to 10,000 rows
-- **Enterprise Tier**: Unlimited access with dedicated support and custom deployments
+### **Cost-Optimized AI Routing**
+- **Simple Tasks**: Routed to cost-effective models (Claude Haiku, Amazon Nova)
+- **Complex Analysis**: Routed to premium models (Claude 4 Opus/Sonnet, Llama 4)
+- **Infrastructure Tasks**: Specialized routing for infrastructure-as-code generation
 
-### **Core Infrastructure**
-- **Base URL (Cloud)**: `https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod`
-- **Base URL (Freemium)**: `https://api.asoba.co/api`
-- **Edge URL**: `http://localhost:5000` (configurable)
+### **Core Components**
+- **AI Models Server**: `ai-models-server` - Advanced AI model access and routing
+- **GitHub Server**: `github-server` - Repository management and workflow automation
+- **Code Analysis Server**: `code-analysis-server` - Static analysis and technical debt detection
 
 ---
 
-## **1. Data Ingestion & Management APIs**
+## **1. Core Commands**
 
-### **Historical Data Upload** {#upload-historical}
+### **System Status & Health**
 
-**Endpoint: POST** `/upload_historical`
+#### **System Health Check**
 
-**Description**: Uploads historical energy data for AI model training and analysis.
+**Command**: `asoba-code status`
+
+**Description**: Comprehensive system health check including AI models, MCP servers, and connectivity status.
+
+**Usage**:
+```bash
+# Basic health check
+asoba-code status
+
+# Detailed health check with performance metrics
+asoba-code status --detailed
+
+# Health check with connectivity tests
+asoba-code status --test-connections
+```
+
+**Example Output**:
+```
+✅ AsobaCode CLI Status: Healthy
+
+🤖 AI Models:
+  ✅ Claude 4 Opus: Available (latency: 245ms)
+  ✅ Claude 4 Sonnet: Available (latency: 180ms)
+  ✅ Llama 4: Available (latency: 320ms)
+  ✅ DeepSeek-R1: Available (latency: 210ms)
+  ⚡ Cost Router: Optimal routing active
+
+🔗 MCP Servers:
+  ✅ ai-models-server: Connected
+  ✅ github-server: Connected
+  ✅ code-analysis-server: Connected
+
+📊 Performance:
+  • Request Success Rate: 99.7%
+  • Average Response Time: 245ms
+  • Active Sessions: 12
+  • Cache Hit Rate: 89.5%
+```
+
+#### **MCP Server Management**
+
+**Command**: `asoba-code servers`
+
+**Description**: List all available MCP servers and their status.
+
+**Usage**:
+```bash
+# List all servers
+asoba-code servers
+
+# Show server health details
+asoba-code servers --health
+
+# Show server capabilities
+asoba-code servers --capabilities
+
+# Restart specific server
+asoba-code servers restart github-server
+```
+
+**Example Output**:
+```
+📡 MCP Servers Status:
+
+🤖 ai-models-server
+  Status: ✅ Connected
+  Capabilities: Claude 4, Llama 4, DeepSeek-R1, Cost Optimization
+  Uptime: 72h 15m
+  Memory: 2.1GB / 4GB
+
+🐙 github-server
+  Status: ✅ Connected
+  Capabilities: Repository Analysis, Issue Management, PR Automation
+  Uptime: 48h 32m
+  API Rate Limit: 4,892 / 5,000 remaining
+
+🔍 code-analysis-server
+  Status: ✅ Connected
+  Capabilities: Static Analysis, Technical Debt, Security Scanning
+  Uptime: 24h 7m
+  Analysis Queue: 3 pending
+```
+
+### **Natural Language Interface**
+
+#### **Natural Language Commands**
+
+**Command**: `asoba-code ask "query"`
+
+**Description**: Execute commands using natural language, with intelligent AI model routing based on complexity.
+
+**Usage Examples**:
+```bash
+# Simple queries (routed to cost-effective models)
+asoba-code ask "What files have been modified in the last week?"
+asoba-code ask "Show me the TODO items in this project"
+asoba-code ask "List all Python files in the src directory"
+
+# Complex analysis (routed to premium models)
+asoba-code ask "Analyze the technical debt in this codebase and suggest refactoring priorities"
+asoba-code ask "Review this pull request for security vulnerabilities and performance issues"
+asoba-code ask "Generate a comprehensive test suite for the user authentication module"
+
+# Infrastructure tasks (specialized routing)
+asoba-code ask "Generate Kubernetes manifests for a scalable web application with Redis"
+asoba-code ask "Create Terraform modules for a multi-region AWS deployment"
+asoba-code ask "Setup CI/CD pipeline with automated testing and deployment"
+```
+
+**AI Model Routing**:
+- **Simple Tasks** → Claude Haiku, Amazon Nova (cost-effective)
+- **Complex Analysis** → Claude 4 Opus/Sonnet, Llama 4 (premium)
+- **Infrastructure Tasks** → Specialized models with IaC expertise
+- **Code Generation** → Models optimized for specific languages/frameworks
+
+**Example Output**:
+```
+🤖 Routing to Claude 4 Sonnet (Complex Analysis)
+
+📊 Technical Debt Analysis Results:
+
+🔴 High Priority Issues:
+  • Cyclomatic complexity >15 in authentication.py (lines 45-120)
+  • Duplicated code blocks in user_service.py and admin_service.py
+  • Missing error handling in payment_processor.py
+
+🟡 Medium Priority Issues:
+  • Long parameter lists in data_validator.py
+  • God class detected: ApplicationManager (247 lines)
+  • Inconsistent naming conventions in legacy modules
+
+✅ Refactoring Recommendations:
+  1. Extract authentication logic into smaller, focused classes
+  2. Create shared utilities for common validation patterns
+  3. Implement comprehensive error handling strategy
+  4. Add unit tests for critical payment processing functions
+
+💡 Estimated effort: 3-4 developer days
+💰 Cost impact: $0.23 (premium model usage)
+```
+
+### **Project Initialization**
+
+#### **Initialize AsobaCode Project**
+
+**Command**: `asoba-code init`
+
+**Description**: Initialize a new project with AsobaCode configuration and best practices.
+
+**Usage**:
+```bash
+# Interactive initialization
+asoba-code init
+
+# Initialize with specific template
+asoba-code init --template web-app
+asoba-code init --template microservice
+asoba-code init --template data-pipeline
+asoba-code init --template mobile-app
+
+# Initialize with custom configuration
+asoba-code init --config ./custom-config.yaml
+
+# Initialize in existing project
+asoba-code init --existing
+```
+
+**Configuration Options**:
+```yaml
+# .asoba-code.yaml
+project:
+  name: "my-awesome-project"
+  type: "web-application"
+  languages: ["typescript", "python"]
+  
+ai_routing:
+  cost_optimization: true
+  preferred_models:
+    simple: "claude-haiku"
+    complex: "claude-4-sonnet"
+    code_generation: "claude-4-opus"
+
+github:
+  integration: true
+  auto_pr_analysis: true
+  issue_automation: true
+
+code_analysis:
+  continuous_scanning: true
+  security_alerts: true
+  performance_monitoring: true
+  
+infrastructure:
+  cloud_provider: "aws"
+  deployment_strategy: "blue-green"
+  monitoring: true
+```
+
+**Example Output**:
+```
+🚀 Initializing AsobaCode Project...
+
+📝 Project Configuration:
+  • Name: my-awesome-project
+  • Type: Web Application
+  • Languages: TypeScript, Python
+  • Cloud Provider: AWS
+
+✅ Created .asoba-code.yaml
+✅ Setup AI model routing preferences
+✅ Configured GitHub integration
+✅ Enabled continuous code analysis
+✅ Setup infrastructure templates
+
+🎯 Next Steps:
+  1. Run 'asoba-code ask "analyze project structure"'
+  2. Generate initial tests with 'asoba-code generate tests'
+  3. Setup CI/CD with 'asoba-code setup ci-cd'
+
+💡 Pro tip: Use 'asoba-code ask' for natural language commands!
+```
+
+---
+
+## **2. Code Analysis Commands**
+
+### **Technical Debt Analysis**
+
+#### **Comprehensive Technical Debt Scan**
+
+**Command**: `asoba-code analyze debt`
+
+**Description**: AI-powered analysis of technical debt with prioritized remediation recommendations.
+
+**Usage**:
+```bash
+# Full project analysis
+asoba-code analyze debt
+
+# Analyze specific directory
+asoba-code analyze debt --path ./src
+
+# Focus on specific debt types
+asoba-code analyze debt --types complexity,duplication,maintainability
+
+# Generate detailed report
+asoba-code analyze debt --report --format json
+
+# Set severity threshold
+asoba-code analyze debt --min-severity medium
+```
 
 **Parameters**:
-- `region` (string, required): Target region (`africa`, `northamerica`, `europe`)
-- `filename` (string, required): Data file name (CSV format supported)
-- `customer_id` (string, required): Unique customer identifier
-- `manufacturer` (string, required): Equipment manufacturer for optimization
-- `location` (string, required): Geographic location for weather correlation
-- `equipment_type` (string, optional): `solar`, `wind`, `battery`, `grid`, `load`
+- `--path`: Specific directory or file to analyze
+- `--types`: Debt types (complexity, duplication, maintainability, testing, documentation)
+- `--report`: Generate detailed report file
+- `--format`: Output format (json, markdown, html, csv)
+- `--min-severity`: Minimum severity level (low, medium, high, critical)
+- `--exclude`: Exclude patterns or directories
+- `--include-metrics`: Include quantitative metrics
 
-**Example Request**:
-```python
-import requests
+**Example Output**:
+```
+🔍 Technical Debt Analysis Results
 
-url = f"{base_url}/upload_historical"
-params = {
-    "customer_id": "solar_farm_001",
-    "filename": "production_data_2024.csv",
-    "manufacturer": "SolarEdge",
-    "location": "CapeTown",
-    "region": "africa",
-    "equipment_type": "solar"
-}
-headers = {"x-api-key": "your-api-key"}
+📊 Overview:
+  • Total Issues: 47
+  • Critical: 3
+  • High: 12
+  • Medium: 23
+  • Low: 9
+  • Estimated Remediation Time: 18.5 developer days
 
-with open('production_data_2024.csv', 'rb') as file_data:
-    response = requests.post(url, params=params, headers=headers, data=file_data)
+🔴 Critical Issues:
+  1. Cyclomatic Complexity: authentication.py:45-120
+     • Complexity Score: 23 (threshold: 10)
+     • Impact: High maintenance cost, bug risk
+     • Effort: 2 days
+     • Recommendation: Extract into smaller methods
+
+  2. Code Duplication: user_service.py & admin_service.py
+     • Duplication: 85% similarity (67 lines)
+     • Impact: Maintenance overhead
+     • Effort: 1 day
+     • Recommendation: Create shared base class
+
+  3. Missing Error Handling: payment_processor.py
+     • Lines: 23, 45, 78, 92
+     • Impact: Runtime failures, poor UX
+     • Effort: 0.5 days
+     • Recommendation: Implement comprehensive exception handling
+
+🟡 Quick Wins (< 4 hours each):
+  • Add missing docstrings (12 functions)
+  • Fix inconsistent naming conventions (8 variables)
+  • Remove unused imports (15 files)
+  • Update deprecated API calls (6 instances)
+
+💡 Refactoring Strategy:
+  1. Address critical issues first (security & stability)
+  2. Implement automated tests before refactoring
+  3. Use incremental approach for large changes
+  4. Focus on high-traffic code paths
+
+📈 Metrics:
+  • Maintainability Index: 68/100 (target: >80)
+  • Test Coverage: 72% (target: >90%)
+  • Documentation Coverage: 45% (target: >80%)
 ```
 
-**Response**:
-```json
-{
-  "statusCode": 200,
-  "body": "Data uploaded successfully",
-  "processing_queue": "priority_queue",
-  "estimated_processing_time": "5-10 minutes"
-}
+#### **Code Quality Metrics**
+
+**Command**: `asoba-code metrics`
+
+**Description**: Generate comprehensive code quality metrics and trends.
+
+**Usage**:
+```bash
+# Generate all metrics
+asoba-code metrics
+
+# Specific metric categories
+asoba-code metrics --categories complexity,maintainability,testing
+
+# Historical trend analysis
+asoba-code metrics --trend --days 30
+
+# Export metrics for CI/CD
+asoba-code metrics --export --format prometheus
+```
+
+### **Security Scanning**
+
+#### **Vulnerability Detection**
+
+**Command**: `asoba-code scan security`
+
+**Description**: Comprehensive security vulnerability scanning with AI-powered threat analysis.
+
+**Usage**:
+```bash
+# Full security scan
+asoba-code scan security
+
+# Scan specific components
+asoba-code scan security --components dependencies,code,configuration
+
+# Generate security report
+asoba-code scan security --report --compliance OWASP-Top-10
+
+# Continuous monitoring mode
+asoba-code scan security --monitor --alert-webhook https://alerts.company.com
+```
+
+**Security Categories**:
+- **Dependencies**: Known vulnerabilities in packages
+- **Code Analysis**: Security anti-patterns, injection risks
+- **Configuration**: Misconfigurations, exposed secrets
+- **Infrastructure**: IaC security issues
+- **Compliance**: Regulatory compliance checks
+
+**Example Output**:
+```
+🛡️ Security Scan Results
+
+⚠️ Critical Vulnerabilities: 2
+🔴 High Risk: 5
+🟡 Medium Risk: 12
+
+🚨 Critical Issues:
+  1. SQL Injection Risk
+     File: user_queries.py:67
+     Issue: Unsanitized user input in SQL query
+     Impact: Data breach, unauthorized access
+     Fix: Use parameterized queries
+     CVSS Score: 9.1
+
+  2. Hardcoded API Key
+     File: config.py:15
+     Issue: API key committed to repository
+     Impact: Unauthorized API access
+     Fix: Use environment variables
+     CVSS Score: 8.5
+
+🔴 High Risk Issues:
+  • Weak password validation (authentication.py:23)
+  • Missing CSRF protection (api_routes.py:45)
+  • Unencrypted sensitive data storage (user_data.py:89)
+  • Outdated dependency: requests==2.25.1 (CVE-2023-32681)
+  • Insecure cookie settings (session_manager.py:34)
+
+🔧 Automated Fixes Available:
+  • Update dependencies (4 packages)
+  • Add security headers (3 routes)
+  • Implement input validation (7 functions)
+
+📋 Compliance Status:
+  • OWASP Top 10: 7/10 ✅
+  • SOC 2: 85% compliant
+  • PCI DSS: Requires attention (payment processing)
+```
+
+#### **Dependency Security**
+
+**Command**: `asoba-code scan dependencies`
+
+**Description**: Scan project dependencies for known vulnerabilities and license issues.
+
+**Usage**:
+```bash
+# Scan all dependencies
+asoba-code scan dependencies
+
+# Check for license compliance
+asoba-code scan dependencies --licenses --policy ./license-policy.yaml
+
+# Generate SBOM (Software Bill of Materials)
+asoba-code scan dependencies --sbom --format spdx
+```
+
+### **Performance Analysis**
+
+#### **Performance Profiling**
+
+**Command**: `asoba-code analyze performance`
+
+**Description**: Analyze code performance, identify bottlenecks, and suggest optimizations.
+
+**Usage**:
+```bash
+# Performance analysis
+asoba-code analyze performance
+
+# Focus on specific metrics
+asoba-code analyze performance --metrics cpu,memory,io
+
+# Benchmark against baselines
+asoba-code analyze performance --benchmark --baseline main
+
+# Generate performance report
+asoba-code analyze performance --report --format html
+```
+
+**Example Output**:
+```
+⚡ Performance Analysis Results
+
+🎯 Performance Score: 72/100
+
+🐌 Performance Bottlenecks:
+  1. Database Query Optimization
+     File: user_service.py:get_user_data()
+     Issue: N+1 query problem
+     Impact: 2.3s average response time
+     Optimization: Use query joins or caching
+     Potential Improvement: 85% faster
+
+  2. Large File Processing
+     File: data_processor.py:process_csv()
+     Issue: Loading entire file into memory
+     Impact: 450MB memory usage
+     Optimization: Stream processing
+     Potential Improvement: 90% less memory
+
+📊 Resource Usage:
+  • CPU Intensive Functions: 12 identified
+  • Memory Hotspots: 8 identified
+  • I/O Bottlenecks: 5 identified
+
+🚀 Optimization Recommendations:
+  1. Implement database query optimization (2-3 hours)
+  2. Add caching layer for frequently accessed data (4-6 hours)
+  3. Use async processing for I/O operations (1-2 days)
+  4. Optimize image processing pipeline (1 day)
 ```
 
 ---
 
-### **Real-Time Nowcast Ingestion** {#upload-nowcast}
+## **3. GitHub Integration Commands**
 
-**Endpoint: POST** `/upload_nowcast`
+### **Repository Analysis**
 
-**Description**: Ingests real-time data for immediate forecasting and dispatch decisions.
+#### **Repository Structure Analysis**
 
-**Parameters**:
-- `customer_id` (string, required): Customer identifier
-- `customer_type` (string, required): `residential`, `commercial`, `industrial`, `utility`
-- `filename` (string, required): Data identifier
-- `region` (string, required): Processing region
+**Command**: `asoba-code github analyze repo`
 
-**Request Body**:
-```json
-{
-  "parameters": {
-    "forecast_window": 24,
-    "confidence_interval": 0.95,
-    "weather_integration": true,
-    "dispatch_optimization": true
-  },
-  "data_points": [
-    {"timestamp": "2025-06-26T10:00:00Z", "value": 150.5, "unit": "kW"},
-    {"timestamp": "2025-06-26T10:15:00Z", "value": 148.2, "unit": "kW"}
-  ]
-}
+**Description**: Comprehensive analysis of GitHub repository structure, health, and best practices.
+
+**Usage**:
+```bash
+# Analyze current repository
+asoba-code github analyze repo
+
+# Analyze specific repository
+asoba-code github analyze repo --repo owner/repo-name
+
+# Include historical analysis
+asoba-code github analyze repo --history --days 90
+
+# Generate repository health report
+asoba-code github analyze repo --health-report
+```
+
+**Example Output**:
+```
+📊 Repository Analysis: awesome-project
+
+🏗️ Structure Health: 85/100
+  ✅ Clear directory structure
+  ✅ Proper README documentation
+  ✅ License file present
+  ⚠️ Missing CONTRIBUTING.md
+  ⚠️ No security policy (SECURITY.md)
+
+📈 Activity Metrics (Last 90 days):
+  • Commits: 247
+  • Pull Requests: 34 (28 merged, 6 open)
+  • Issues: 45 (32 closed, 13 open)
+  • Contributors: 8 active
+  • Code Churn: 15.2% (healthy)
+
+🔍 Code Quality:
+  • Test Coverage: 78%
+  • Documentation Coverage: 67%
+  • Dependency Health: 92% up-to-date
+  • Security Score: 94/100
+
+📋 Recommendations:
+  1. Add CONTRIBUTING.md for contributor guidelines
+  2. Create SECURITY.md for vulnerability reporting
+  3. Improve test coverage for payment module
+  4. Update deprecated GitHub Actions
+  5. Add branch protection rules
+```
+
+#### **Pull Request Analysis**
+
+**Command**: `asoba-code github analyze pr`
+
+**Description**: Automated pull request analysis with AI-powered code review.
+
+**Usage**:
+```bash
+# Analyze current branch PR
+asoba-code github analyze pr
+
+# Analyze specific PR
+asoba-code github analyze pr --number 123
+
+# Deep security analysis
+asoba-code github analyze pr --security-focus
+
+# Generate review comments
+asoba-code github analyze pr --auto-comment
+```
+
+**Example Output**:
+```
+🔍 Pull Request Analysis: #123 "Add user authentication"
+
+📊 Overview:
+  • Files Changed: 12
+  • Lines Added: +387
+  • Lines Deleted: -42
+  • Complexity Score: Medium
+  • Risk Level: Low
+
+✅ Positive Aspects:
+  • Comprehensive test coverage (95%)
+  • Clear commit messages
+  • Proper error handling
+  • Security best practices followed
+
+⚠️ Areas for Improvement:
+  1. Authentication.py:67 - Consider using constant-time comparison
+  2. UserService.py:134 - Add input validation for email format
+  3. Missing documentation for new API endpoints
+  4. Consider adding rate limiting for login attempts
+
+🛡️ Security Analysis:
+  ✅ No hardcoded secrets detected
+  ✅ Proper password hashing implemented
+  ✅ SQL injection protection in place
+  ⚠️ Consider implementing account lockout after failed attempts
+
+🚀 Suggestions:
+  • Add integration tests for authentication flow
+  • Document API changes in CHANGELOG.md
+  • Consider adding 2FA support in future iteration
+
+📝 Auto-generated review posted to GitHub
+```
+
+### **Issue Creation and Management**
+
+#### **Automated Issue Creation**
+
+**Command**: `asoba-code github create issue`
+
+**Description**: Create GitHub issues from code analysis results or natural language.
+
+**Usage**:
+```bash
+# Create issue from analysis results
+asoba-code github create issue --from-analysis security
+
+# Create issue with natural language
+asoba-code github create issue "Add rate limiting to API endpoints"
+
+# Create multiple issues from technical debt
+asoba-code github create issue --from-debt --priority high
+
+# Create issue with template
+asoba-code github create issue --template bug-report
+```
+
+#### **Issue Management**
+
+**Command**: `asoba-code github manage issues`
+
+**Description**: Intelligent issue management and automation.
+
+**Usage**:
+```bash
+# Auto-triage new issues
+asoba-code github manage issues --auto-triage
+
+# Update issue labels based on content
+asoba-code github manage issues --update-labels
+
+# Close stale issues
+asoba-code github manage issues --close-stale --days 30
+
+# Generate issue summary
+asoba-code github manage issues --summary
+```
+
+### **Workflow Automation**
+
+#### **CI/CD Pipeline Setup**
+
+**Command**: `asoba-code github setup ci-cd`
+
+**Description**: Generate and configure CI/CD pipelines with best practices.
+
+**Usage**:
+```bash
+# Setup basic CI/CD
+asoba-code github setup ci-cd
+
+# Setup with specific framework
+asoba-code github setup ci-cd --framework nodejs
+asoba-code github setup ci-cd --framework python
+asoba-code github setup ci-cd --framework docker
+
+# Include advanced features
+asoba-code github setup ci-cd --features security-scanning,performance-testing,deployment
+
+# Custom deployment target
+asoba-code github setup ci-cd --deploy-to aws-ecs
+```
+
+**Generated Workflow Features**:
+- Automated testing (unit, integration, e2e)
+- Security scanning
+- Code quality checks
+- Performance testing
+- Automated deployment
+- Rollback capabilities
+- Notification integrations
+
+**Example Output**:
+```
+🚀 CI/CD Pipeline Configuration
+
+✅ Generated Workflows:
+  • .github/workflows/ci.yml - Continuous Integration
+  • .github/workflows/cd.yml - Continuous Deployment
+  • .github/workflows/security.yml - Security Scanning
+  • .github/workflows/performance.yml - Performance Testing
+
+🔧 Pipeline Features:
+  ✅ Multi-environment testing (Node 16, 18, 20)
+  ✅ Automated security scanning (Snyk, CodeQL)
+  ✅ Code quality gates (ESLint, Prettier, SonarCloud)
+  ✅ Performance benchmarking
+  ✅ Automated deployment to staging
+  ✅ Manual approval for production
+  ✅ Rollback capabilities
+
+🎯 Next Steps:
+  1. Review generated workflows
+  2. Configure environment secrets
+  3. Setup deployment environments
+  4. Test pipeline with sample PR
+
+💡 Pro tip: Use 'asoba-code github analyze workflows' to optimize performance
+```
+
+#### **Automated Testing**
+
+**Command**: `asoba-code github setup testing`
+
+**Description**: Setup comprehensive automated testing strategies.
+
+**Usage**:
+```bash
+# Setup testing framework
+asoba-code github setup testing
+
+# Include specific test types
+asoba-code github setup testing --types unit,integration,e2e
+
+# Setup performance testing
+asoba-code github setup testing --performance
+
+# Setup accessibility testing
+asoba-code github setup testing --accessibility
 ```
 
 ---
 
-### **Data Interpolation & Cleaning** {#interpolate-data}
+## **4. Infrastructure Commands**
 
-**Endpoint: POST** `/interpolate`
+### **Infrastructure-as-Code Generation**
 
-**Description**: Advanced data processing using AI-driven interpolation and quality enhancement.
+#### **AWS Infrastructure**
 
-**Processing Modes**:
-- `fill_missing_blocks`: Intelligent gap filling using pattern recognition
-- `outlier_detection`: Statistical and ML-based anomaly identification
-- `quality_enhancement`: Data smoothing and noise reduction
-- `pattern_completion`: Seasonal and cyclical pattern reconstruction
+**Command**: `asoba-code infra generate aws`
 
-**Request Body**:
-```json
-{
-  "type": "production",
-  "mode": "fill_missing_blocks",
-  "data": [
-    {"timestamp": "2024-01-01T00:00:00", "value": 100},
-    {"timestamp": "2024-01-01T01:00:00", "value": null},
-    {"timestamp": "2024-01-01T02:00:00", "value": 120}
-  ],
-  "processing_options": {
-    "confidence_threshold": 0.85,
-    "seasonal_adjustment": true,
-    "weather_correlation": true,
-    "max_gap_hours": 6
-  }
-}
+**Description**: Generate production-ready AWS infrastructure with security and compliance built-in.
+
+**Usage**:
+```bash
+# Generate basic AWS infrastructure
+asoba-code infra generate aws
+
+# Generate for specific architecture
+asoba-code infra generate aws --pattern microservices
+asoba-code infra generate aws --pattern serverless
+asoba-code infra generate aws --pattern data-pipeline
+
+# Include compliance frameworks
+asoba-code infra generate aws --compliance SOC2,HIPAA
+
+# Multi-region deployment
+asoba-code infra generate aws --regions us-east-1,us-west-2,eu-west-1
 ```
 
-**Response**:
-```json
-{
-  "cleaned_data": [
-    {"timestamp": "2024-01-01T00:00:00", "value": 100, "quality": "original"},
-    {"timestamp": "2024-01-01T01:00:00", "value": 110, "quality": "interpolated"},
-    {"timestamp": "2024-01-01T02:00:00", "value": 120, "quality": "original"}
-  ],
-  "processing_stats": {
-    "rows_processed": 3,
-    "missing_filled": 1,
-    "outliers_detected": 0,
-    "quality_improvement": 15.2
-  }
-}
+**Example Output**:
+```
+🏗️ AWS Infrastructure Generated
+
+📁 Generated Files:
+  • terraform/
+    ├── main.tf - Core infrastructure
+    ├── vpc.tf - Network configuration
+    ├── security.tf - Security groups & IAM
+    ├── compute.tf - ECS/Lambda functions
+    ├── data.tf - RDS/DynamoDB configuration
+    ├── monitoring.tf - CloudWatch & alerting
+    └── variables.tf - Configuration variables
+
+🔒 Security Features:
+  ✅ VPC with private subnets
+  ✅ WAF with OWASP protection
+  ✅ Encryption at rest and in transit
+  ✅ IAM roles with least privilege
+  ✅ Security groups with minimal access
+  ✅ CloudTrail logging enabled
+  ✅ GuardDuty threat detection
+
+📊 Compliance:
+  ✅ SOC 2 Type II controls
+  ✅ HIPAA-ready configuration
+  ✅ PCI DSS compliance features
+
+🚀 Deployment:
+  • Estimated Cost: $247/month
+  • Deployment Time: ~15 minutes
+  • Auto-scaling: 2-10 instances
+  • Multi-AZ: Yes
+
+💡 Next Steps:
+  1. Review terraform/variables.tf
+  2. Configure AWS credentials
+  3. Run 'terraform plan'
+  4. Deploy with 'terraform apply'
+```
+
+#### **GCP Infrastructure**
+
+**Command**: `asoba-code infra generate gcp`
+
+**Description**: Generate Google Cloud Platform infrastructure templates.
+
+**Usage**:
+```bash
+# Generate GCP infrastructure
+asoba-code infra generate gcp
+
+# Cloud Run serverless deployment
+asoba-code infra generate gcp --service cloud-run
+
+# GKE Kubernetes cluster
+asoba-code infra generate gcp --service gke
+
+# Data analytics pipeline
+asoba-code infra generate gcp --pattern data-analytics
+```
+
+#### **Azure Infrastructure**
+
+**Command**: `asoba-code infra generate azure`
+
+**Description**: Generate Microsoft Azure infrastructure templates.
+
+**Usage**:
+```bash
+# Generate Azure infrastructure
+asoba-code infra generate azure
+
+# Azure Container Apps
+asoba-code infra generate azure --service container-apps
+
+# Azure Functions serverless
+asoba-code infra generate azure --service functions
+
+# Enterprise-ready with compliance
+asoba-code infra generate azure --enterprise --compliance ISO27001
+```
+
+#### **Multi-Cloud Deployment**
+
+**Command**: `asoba-code infra generate multi-cloud`
+
+**Description**: Generate multi-cloud deployment strategies for redundancy and vendor independence.
+
+**Usage**:
+```bash
+# Multi-cloud setup
+asoba-code infra generate multi-cloud --providers aws,gcp,azure
+
+# Active-passive configuration
+asoba-code infra generate multi-cloud --strategy active-passive
+
+# Global load balancing
+asoba-code infra generate multi-cloud --global-lb
+```
+
+### **Container and Kubernetes**
+
+#### **Docker Configuration**
+
+**Command**: `asoba-code docker generate`
+
+**Description**: Generate optimized Docker configurations with security best practices.
+
+**Usage**:
+```bash
+# Generate Dockerfile
+asoba-code docker generate
+
+# Multi-stage build
+asoba-code docker generate --multi-stage
+
+# Security-hardened image
+asoba-code docker generate --security-hardened
+
+# Docker Compose for development
+asoba-code docker generate --compose --environment dev
+```
+
+**Example Output**:
+```dockerfile
+# Generated Dockerfile with security best practices
+FROM node:18-alpine AS builder
+
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production && npm cache clean --force
+
+# Copy source code
+COPY --chown=nextjs:nodejs . .
+
+# Build application
+RUN npm run build
+
+# Production stage
+FROM node:18-alpine AS runner
+
+# Security updates
+RUN apk add --no-cache dumb-init
+
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+WORKDIR /app
+
+# Copy built application
+COPY --from=builder --chown=nextjs:nodejs /app .
+
+# Switch to non-root user
+USER nextjs
+
+# Expose port
+EXPOSE 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:3000/health || exit 1
+
+# Start application
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["npm", "start"]
+```
+
+#### **Kubernetes Manifests**
+
+**Command**: `asoba-code k8s generate`
+
+**Description**: Generate Kubernetes manifests with production-ready configurations.
+
+**Usage**:
+```bash
+# Generate K8s manifests
+asoba-code k8s generate
+
+# Include Helm charts
+asoba-code k8s generate --helm
+
+# Service mesh integration
+asoba-code k8s generate --service-mesh istio
+
+# Monitoring and observability
+asoba-code k8s generate --monitoring prometheus,grafana
+
+# GitOps ready
+asoba-code k8s generate --gitops --tool argocd
+```
+
+**Generated Resources**:
+- Deployment with resource limits
+- Service and Ingress configuration
+- ConfigMaps and Secrets
+- HorizontalPodAutoscaler
+- PodDisruptionBudget
+- NetworkPolicies
+- ServiceMonitor (Prometheus)
+- ServiceAccount with RBAC
+
+#### **Service Mesh and Monitoring**
+
+**Command**: `asoba-code k8s setup monitoring`
+
+**Description**: Setup comprehensive monitoring and observability stack.
+
+**Usage**:
+```bash
+# Setup Prometheus + Grafana
+asoba-code k8s setup monitoring
+
+# Include distributed tracing
+asoba-code k8s setup monitoring --tracing jaeger
+
+# Add log aggregation
+asoba-code k8s setup monitoring --logging fluentd,elasticsearch
+
+# Service mesh observability
+asoba-code k8s setup monitoring --service-mesh istio
 ```
 
 ---
 
-## **2. AI-Powered Forecasting APIs**
+## **5. Configuration & Management**
 
-### **Generation Forecasting** {#generate-forecast}
+### **Configuration Commands**
 
-**Endpoint: POST** `/forecast` or `/api/generate-forecast`
+#### **Global Configuration**
 
-**Description**: AI-driven forecasting for solar, wind, and load using advanced machine learning models.
+**Command**: `asoba-code config`
 
-**Model Types**:
-- `arima`: Best for regular patterns, fast processing
-- `lstm`: Excellent for complex patterns, moderate speed
-- `prophet`: Very good for seasonal data
-- `ensemble`: Combines multiple models for highest accuracy
+**Description**: Manage global AsobaCode configuration settings.
 
-**Request Body**:
-```json
-{
-  "historical_data": [
-    {"timestamp": "2024-01-01T00:00:00", "value": 100, "unit": "kW"},
-    {"timestamp": "2024-01-01T01:00:00", "value": 110, "unit": "kW"}
-  ],
-  "forecast_config": {
-    "horizon": 168,
-    "model_type": "ensemble",
-    "confidence_interval": 0.95,
-    "weather_integration": true,
-    "seasonal_adjustment": true
-  }
-}
+**Usage**:
+```bash
+# Show current configuration
+asoba-code config show
+
+# Set configuration values
+asoba-code config set ai.preferred_model claude-4-sonnet
+asoba-code config set github.auto_analysis true
+asoba-code config set cost_optimization.enabled true
+
+# Reset to defaults
+asoba-code config reset
+
+# Export configuration
+asoba-code config export --format yaml
 ```
 
-**Response**:
-```json
-{
-  "forecast": [
-    {
-      "timestamp": "2024-01-08T00:00:00", 
-      "value": 105.2, 
-      "confidence_lower": 98.1, 
-      "confidence_upper": 112.3,
-      "unit": "kW"
+**Configuration Categories**:
+```yaml
+ai:
+  preferred_model: "claude-4-sonnet"
+  cost_optimization: true
+  max_tokens: 4000
+  temperature: 0.1
+
+github:
+  auto_analysis: true
+  auto_pr_comments: false
+  default_branch: "main"
+  
+code_analysis:
+  continuous_scanning: true
+  security_alerts: true
+  min_severity: "medium"
+  
+infrastructure:
+  default_cloud: "aws"
+  compliance_frameworks: ["SOC2"]
+  multi_region: false
+
+notifications:
+  slack_webhook: "https://hooks.slack.com/..."
+  email_alerts: true
+  teams_webhook: null
+```
+
+#### **Project Configuration**
+
+**Command**: `asoba-code config project`
+
+**Description**: Manage project-specific configuration.
+
+**Usage**:
+```bash
+# Show project config
+asoba-code config project show
+
+# Set project-specific values
+asoba-code config project set languages python,typescript
+asoba-code config project set testing.framework pytest
+
+# Initialize project config
+asoba-code config project init
+```
+
+#### **Environment Variables**
+
+**Command**: `asoba-code config env`
+
+**Description**: Manage environment variables and secrets.
+
+**Usage**:
+```bash
+# List environment variables
+asoba-code config env list
+
+# Set environment variable
+asoba-code config env set API_KEY your-api-key
+
+# Load from .env file
+asoba-code config env load .env.production
+
+# Generate .env template
+asoba-code config env template
+```
+
+### **Usage and Cost Tracking**
+
+#### **Usage Statistics**
+
+**Command**: `asoba-code usage`
+
+**Description**: View AI usage statistics and cost optimization insights.
+
+**Usage**:
+```bash
+# Show current usage
+asoba-code usage
+
+# Detailed usage breakdown
+asoba-code usage --detailed
+
+# Usage for specific time period
+asoba-code usage --period last-30-days
+
+# Export usage data
+asoba-code usage --export --format csv
+```
+
+**Example Output**:
+```
+📊 AI Usage Statistics (Last 30 Days)
+
+💰 Cost Summary:
+  • Total Cost: $24.67
+  • Average Daily: $0.82
+  • Cost Savings (vs premium only): $156.23 (86% saved)
+
+🤖 Model Usage:
+  • Claude 4 Opus: 145 requests ($18.45)
+  • Claude 4 Sonnet: 267 requests ($5.23)
+  • Claude Haiku: 891 requests ($0.89)
+  • Llama 4: 56 requests ($0.10)
+
+⚡ Routing Efficiency:
+  • Simple Tasks → Cost-effective models: 78%
+  • Complex Tasks → Premium models: 22%
+  • Optimal routing score: 94/100
+
+📈 Usage Trends:
+  • Code Analysis: 45% of requests
+  • Infrastructure Generation: 25%
+  • Natural Language Queries: 20%
+  • Security Scanning: 10%
+
+💡 Cost Optimization Tips:
+  1. 67% of complex queries could use mid-tier models
+  2. Enable caching for repeated infrastructure patterns
+  3. Use batch processing for multiple file analysis
+```
+
+#### **Cost Optimization**
+
+**Command**: `asoba-code optimize costs`
+
+**Description**: Analyze and optimize AI usage costs.
+
+**Usage**:
+```bash
+# Analyze cost optimization opportunities
+asoba-code optimize costs
+
+# Enable aggressive cost optimization
+asoba-code optimize costs --aggressive
+
+# Set cost limits
+asoba-code optimize costs --daily-limit 5.00
+
+# Generate cost report
+asoba-code optimize costs --report
+```
+
+---
+
+## **6. Advanced Features**
+
+### **Batch Operations**
+
+#### **Multi-File Analysis**
+
+**Command**: `asoba-code batch analyze`
+
+**Description**: Process multiple files or directories in parallel for efficient analysis.
+
+**Usage**:
+```bash
+# Analyze multiple directories
+asoba-code batch analyze ./src ./tests ./docs
+
+# Batch security scanning
+asoba-code batch security --files "**/*.py" "**/*.js"
+
+# Parallel processing with custom threads
+asoba-code batch analyze --parallel 8
+
+# Process with different analysis types
+asoba-code batch analyze --types security,performance,debt
+```
+
+**Example Output**:
+```
+🔄 Batch Analysis Progress
+
+📊 Processing Status:
+  ✅ ./src (42 files) - Complete
+  🔄 ./tests (28 files) - 67% complete
+  ⏳ ./docs (15 files) - Queued
+
+⚡ Performance:
+  • Parallel Workers: 8
+  • Files Processed: 57/85
+  • Average Speed: 12 files/minute
+  • ETA: 2 minutes
+
+🎯 Results Summary:
+  • Security Issues: 12 found
+  • Performance Issues: 8 found
+  • Technical Debt: 23 items
+  • Total Processing Time: 4.2 minutes
+  • Cost: $1.23 (batch optimization: 45% savings)
+```
+
+#### **Parallel Processing Options**
+
+**Command**: `asoba-code batch config`
+
+**Description**: Configure batch processing settings for optimal performance.
+
+**Usage**:
+```bash
+# Set parallel workers
+asoba-code batch config --workers 12
+
+# Configure memory limits
+asoba-code batch config --memory-limit 4GB
+
+# Enable result caching
+asoba-code batch config --cache-results true
+
+# Set batch size for large repositories
+asoba-code batch config --batch-size 50
+```
+
+### **Integration Patterns**
+
+#### **API Integration**
+
+**Command**: `asoba-code integrate api`
+
+**Description**: Generate API integrations for external services and platforms.
+
+**Usage**:
+```bash
+# Generate REST API integration
+asoba-code integrate api --type rest --spec openapi.yaml
+
+# Generate GraphQL integration
+asoba-code integrate api --type graphql --endpoint https://api.example.com
+
+# Generate SDK for custom API
+asoba-code integrate api --generate-sdk --language typescript
+
+# Create API client with authentication
+asoba-code integrate api --auth oauth2 --scopes read,write
+```
+
+**Example Generated Integration**:
+```typescript
+// Generated API client with TypeScript
+export class ExampleAPIClient {
+  private baseURL: string;
+  private authToken: string;
+
+  constructor(config: APIConfig) {
+    this.baseURL = config.baseURL;
+    this.authToken = config.authToken;
+  }
+
+  async getUsers(params?: GetUsersParams): Promise<User[]> {
+    const response = await fetch(`${this.baseURL}/users`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${this.authToken}`,
+        'Content-Type': 'application/json',
+      },
+      ...params && { body: JSON.stringify(params) }
+    });
+
+    if (!response.ok) {
+      throw new APIError(response.status, await response.text());
     }
-  ],
-  "model_performance": {
-    "accuracy_metrics": {
-      "mape": 4.2,
-      "rmse": 2.1,
-      "r_squared": 0.94
-    },
-    "model_used": "ensemble",
-    "training_duration": "45 seconds"
-  },
-  "actionable_insights": [
-    "Peak generation expected at 14:00 local time",
-    "Weather volatility may impact afternoon output",
-    "Maintenance window optimal between 06:00-08:00"
-  ]
-}
-```
 
----
+    return response.json();
+  }
 
-### **Market Price Forecasting** {#price-forecast}
+  // Rate limiting built-in
+  private rateLimiter = new RateLimiter(100, 3600); // 100 requests per hour
 
-**Endpoint: POST** `/api/price-forecast`
-
-**Description**: Predict electricity market prices using historical data and market fundamentals.
-
-**Supported Markets**:
-- `caiso`: California ISO
-- `pjm`: PJM Interconnection
-- `ercot`: Texas ERCOT
-- `eskom`: South Africa Eskom
-- `nem`: Australia National Electricity Market
-
-**Request Body**:
-```json
-{
-  "historical_prices": [
-    {"timestamp": "2024-06-25T00:00:00", "price": 45.50, "currency": "USD"},
-    {"timestamp": "2024-06-25T01:00:00", "price": 42.30, "currency": "USD"}
-  ],
-  "market": "caiso",
-  "forecast_horizon": 24,
-  "include_fundamentals": true,
-  "renewable_penetration": true,
-  "duck_curve_adjustment": true
-}
-```
-
-**Response**:
-```json
-{
-  "price_forecast": [
-    {
-      "timestamp": "2024-06-26T00:00:00",
-      "price": 48.75,
-      "confidence_interval": [42.50, 55.00],
-      "currency": "USD",
-      "market_factors": ["high_demand", "low_wind"]
-    }
-  ],
-  "market_insights": {
-    "peak_price_time": "2024-06-26T19:00:00",
-    "expected_volatility": "moderate",
-    "renewable_impact": "high_solar_generation_midday"
+  // Automatic retries with exponential backoff
+  private async withRetry<T>(operation: () => Promise<T>): Promise<T> {
+    // Implementation...
   }
 }
 ```
 
----
+#### **Webhook Support**
 
-### **Weather Data Integration** {#weather-data}
+**Command**: `asoba-code integrate webhooks`
 
-**Endpoint: POST** `/api/weather-data`
+**Description**: Setup webhook integrations for real-time notifications and automation.
 
-**Description**: Download and process weather data for enhanced forecasting accuracy.
+**Usage**:
+```bash
+# Setup GitHub webhook integration
+asoba-code integrate webhooks --provider github --events push,pull_request
 
-**Request Body**:
-```json
-{
-  "location": {
-    "latitude": 37.7749,
-    "longitude": -122.4194,
-    "timezone": "US/Pacific"
-  },
-  "date_range": {
-    "start_date": "2024-01-01",
-    "end_date": "2024-01-07"
-  },
-  "parameters": [
-    "temperature",
-    "solar_radiation",
-    "wind_speed",
-    "cloud_cover",
-    "humidity",
-    "pressure"
-  ],
-  "forecast_mode": true
-}
+# Setup Slack notifications
+asoba-code integrate webhooks --provider slack --channel dev-alerts
+
+# Custom webhook endpoint
+asoba-code integrate webhooks --url https://your-app.com/webhook --secret your-secret
+
+# Setup webhook server
+asoba-code integrate webhooks --server --port 3000
 ```
 
-**Response**:
-```json
-{
-  "weather_data": [
-    {
-      "timestamp": "2024-01-01T00:00:00",
-      "temperature": 15.2,
-      "solar_radiation": 0,
-      "wind_speed": 3.5,
-      "cloud_cover": 20,
-      "humidity": 65,
-      "pressure": 1013.2
-    }
-  ],
-  "forecast_enhancement": {
-    "solar_correlation": 0.87,
-    "wind_correlation": 0.72,
-    "temperature_impact": "moderate"
-  }
-}
+#### **Third-Party Tool Integration**
+
+**Command**: `asoba-code integrate tools`
+
+**Description**: Integrate with popular development tools and platforms.
+
+**Usage**:
+```bash
+# Integrate with Jira
+asoba-code integrate tools --service jira --project-key PROJ
+
+# Integrate with Confluence
+asoba-code integrate tools --service confluence --space DEV
+
+# Integrate with Slack
+asoba-code integrate tools --service slack --workspace your-workspace
+
+# Integrate with Microsoft Teams
+asoba-code integrate tools --service teams --tenant your-tenant
+
+# Setup monitoring integrations
+asoba-code integrate tools --service datadog --api-key your-key
 ```
 
----
+**Integration Examples**:
 
-## **3. AI Model Training & Management APIs**
+```bash
+# Automated Jira ticket creation from security issues
+asoba-code scan security --auto-create-tickets --jira-project SEC
 
-### **Model Training** {#train-forecaster}
+# Send analysis results to Slack
+asoba-code analyze debt --notify-slack --channel tech-debt
 
-**Endpoint: POST** `/train`
+# Update Confluence documentation
+asoba-code generate docs --publish-confluence --space-key DEV
 
-**Description**: Train custom AI models for energy forecasting with advanced hyperparameter optimization.
-
-**Parameters**:
-- `customer_id` (string, required): Customer identifier
-- `location` (string, required): Geographic location
-- `manufacturer` (string, required): Equipment manufacturer
-- `serial_number` (string, required): Device identifier
-- `model_type` (string): `lstm`, `transformer`, `ensemble`
-- `testing` (boolean): Development mode flag
-
-**Request Body**:
-```json
-{
-  "training_config": {
-    "model_type": "ensemble",
-    "hyperparameter_tuning": true,
-    "cross_validation_folds": 5,
-    "early_stopping": true,
-    "feature_engineering": {
-      "weather_features": true,
-      "calendar_features": true,
-      "lag_features": [1, 2, 3, 6, 12, 24, 48, 168],
-      "rolling_statistics": [24, 168, 720]
-    }
-  },
-  "data_requirements": {
-    "minimum_data_points": 8760,
-    "validation_split": 0.2,
-    "test_split": 0.1
-  }
-}
-```
-
-**Response**:
-```json
-{
-  "statusCode": 200,
-  "training_job": {
-    "job_id": "training_job_ensemble_20250626",
-    "status": "initiated",
-    "estimated_completion": "2025-06-26T14:30:00Z",
-    "training_features": [
-      "weather_integration", 
-      "seasonal_patterns", 
-      "equipment_degradation"
-    ]
-  },
-  "training_progress_url": "/api/training-status/training_job_ensemble_20250626"
-}
+# Create GitHub issues from analysis
+asoba-code analyze performance --create-github-issues
 ```
 
 ---
 
-### **Training Status & Monitoring** {#training-status}
+### **Error Handling and Troubleshooting**
 
-**Endpoint: GET** `/api/training-status/{job_id}`
+#### **Common Error Scenarios**
 
-**Description**: Monitor training progress and retrieve model performance metrics.
+```bash
+# Network connectivity issues
+❌ Error: Unable to connect to AI models server
+💡 Solution: Check network connection and run 'asoba-code status'
 
-**Response**:
-```json
-{
-  "job_id": "training_job_ensemble_20250626",
-  "status": "completed",
-  "progress": 100,
-  "model_performance": {
-    "validation_accuracy": {
-      "mape": 3.8,
-      "rmse": 1.9,
-      "r_squared": 0.96
-    },
-    "cross_validation_scores": [0.94, 0.95, 0.96, 0.95, 0.97],
-    "feature_importance": {
-      "weather_temperature": 0.35,
-      "hour_of_day": 0.28,
-      "day_of_year": 0.20,
-      "lag_24h": 0.17
-    }
-  },
-  "model_artifacts": {
-    "model_id": "ensemble_model_v1.2.3",
-    "deployment_ready": true,
-    "size_mb": 45.2
-  }
-}
+# Authentication failures
+❌ Error: Invalid API key for GitHub integration
+💡 Solution: Run 'asoba-code config set github.token your-token'
+
+# Resource limitations
+❌ Error: Analysis timeout after 5 minutes
+💡 Solution: Use batch processing or increase timeout with --timeout 600
+
+# Model routing issues
+❌ Error: No available models for complex analysis
+💡 Solution: Check model availability with 'asoba-code servers --health'
 ```
 
----
+#### **Debug Mode**
 
-## **4. Energy Optimization & Dispatch APIs**
+```bash
+# Enable debug logging
+asoba-code --debug analyze debt
 
-### **Electricity Dispatch Optimization** {#dispatch-optimization}
+# Verbose output
+asoba-code --verbose github analyze repo
 
-**Endpoint: POST** `/api/dispatch-optimization`
-
-**Description**: Optimize solar, battery, and grid resources for maximum revenue or minimum cost.
-
-**Optimization Objectives**:
-- `revenue`: Maximize revenue from energy sales
-- `cost`: Minimize electricity costs
-- `carbon`: Minimize carbon footprint
-- `resilience`: Maximize grid independence
-
-**Request Body**:
-```json
-{
-  "forecasts": {
-    "solar_forecast": [150, 200, 180, 160],
-    "load_forecast": [120, 140, 160, 130],
-    "price_forecast": [45.50, 52.30, 48.75, 42.10]
-  },
-  "system_config": {
-    "battery_capacity_kwh": 100.0,
-    "battery_power_kw": 50.0,
-    "battery_min_soc": 0.2,
-    "battery_max_soc": 0.9,
-    "initial_soc": 0.5,
-    "roundtrip_efficiency": 0.85
-  },
-  "optimization_config": {
-    "objective": "revenue",
-    "time_horizon": 24,
-    "interval_minutes": 15,
-    "grid_export_limit": 200,
-    "demand_charges": true
-  }
-}
+# Performance profiling
+asoba-code --profile batch analyze ./src
 ```
 
-**Response**:
-```json
-{
-  "optimization_result": {
-    "dispatch_schedule": [
-      {
-        "timestamp": "2025-06-26T10:00:00",
-        "battery_power": 25.5,
-        "grid_power": -15.2,
-        "load_served": 120.0,
-        "soc": 0.65,
-        "action": "charging"
-      }
-    ],
-    "economic_summary": {
-      "total_revenue": 1250.75,
-      "electricity_cost": 890.25,
-      "net_benefit": 360.50,
-      "peak_shaving_savings": 125.30
-    },
-    "operational_insights": [
-      "Charge battery during low-price hours (10:00-14:00)",
-      "Discharge during peak pricing (17:00-21:00)",
-      "Export excess solar generation at midday"
-    ]
-  }
-}
-```
-
----
-
-### **Real-Time Dispatch Control** {#realtime-dispatch}
-
-**Endpoint: POST** `/api/realtime-dispatch`
-
-**Description**: Real-time dispatch commands for immediate energy system control.
-
-**Request Body**:
-```json
-{
-  "device_id": "battery_001",
-  "command": {
-    "action": "charge",
-    "power_kw": 25.5,
-    "duration_minutes": 15,
-    "priority": "high"
-  },
-  "safety_checks": {
-    "soc_limits": true,
-    "temperature_check": true,
-    "grid_constraints": true
-  }
-}
-```
-
----
-
-## **5. Policy & Compliance Intelligence APIs**
-
-### **Policy Compliance Query** {#policy-compliance}
-
-**Endpoint: POST** `/api/policy-compliance` or `/api/policy-compliance-freemium`
-
-**Description**: AI-powered policy analysis and regulatory compliance guidance using advanced RAG architecture.
-
-**Request Body**:
-```json
-{
-  "query": "What are the current grid-tie requirements for solar installations over 1MW in South Africa?",
-  "context": {
-    "region": "south_africa",
-    "sector": "renewable_energy",
-    "project_size": "utility_scale",
-    "installation_type": "ground_mounted"
-  },
-  "response_options": {
-    "include_citations": true,
-    "include_compliance_checklist": true,
-    "include_financial_incentives": true,
-    "detail_level": "comprehensive"
-  }
-}
-```
-
-**Response**:
-```json
-{
-  "answer": "Current South African grid-tie requirements for utility-scale solar installations include...",
-  "sources": [
-    "NERSA Grid Code Requirements 2024",
-    "Municipal Electricity Regulations Update",
-    "Eskom Connection Standards v3.2"
-  ],
-  "compliance_checklist": [
-    {
-      "requirement": "Technical compliance certification",
-      "status": "required",
-      "deadline": "Before commissioning",
-      "responsible_party": "Developer"
-    },
-    {
-      "requirement": "Environmental impact assessment",
-      "status": "required",
-      "deadline": "Development phase",
-      "responsible_party": "Environmental consultant"
-    }
-  ],
-  "financial_incentives": [
-    {
-      "program": "Renewable Energy IPP Procurement",
-      "benefit": "20-year power purchase agreement",
-      "eligibility": "Competitive bidding process"
-    }
-  ],
-  "next_steps": [
-    "Contact Eskom for grid impact study",
-    "Submit application to municipal authority",
-    "Schedule pre-installation inspection"
-  ],
-  "tier_info": {
-    "tier": "professional",
-    "queries_used": 15,
-    "queries_remaining": 85
-  }
-}
-```
-
----
-
-### **Regulatory Updates** {#regulatory-updates}
-
-**Endpoint: GET** `/api/regulatory-updates`
-
-**Description**: Retrieve latest regulatory changes and policy updates.
-
-**Parameters**:
-- `region`: Geographic region filter
-- `sector`: Industry sector filter
-- `since_date`: Updates since specific date
-- `priority`: `high`, `medium`, `low`
-
-**Response**:
-```json
-{
-  "updates": [
-    {
-      "id": "reg_update_2024_156",
-      "title": "Updated Grid Code Requirements for Renewable Energy",
-      "summary": "New technical standards for grid-connected renewable energy systems",
-      "effective_date": "2025-01-01",
-      "priority": "high",
-      "impact_assessment": "All new installations must comply",
-      "source": "NERSA",
-      "document_url": "https://nersa.org.za/grid-code-2024"
-    }
-  ]
-}
-```
-
----
-
-## **6. Results & Analytics APIs**
-
-### **Forecasting Results Retrieval** {#results}
-
-**Endpoint: GET** `/results` or `/api/forecast-results`
-
-**Description**: Retrieve comprehensive forecasting results with analytics and insights.
-
-**Parameters**:
-- `client_id` (string, required): Client organization identifier
-- `customer_id` (string, required): Customer identifier
-- `serial_number` (string, required): Device identifier
-- `format` (string): `json`, `csv`, `email`
-- `date_range` (string): Results date range
-
-**Response**:
-```json
-{
-  "results": {
-    "forecast_data": [
-      {
-        "timestamp": "2025-06-26T10:00:00",
-        "predicted_value": 145.2,
-        "actual_value": 142.8,
-        "accuracy": 98.3,
-        "confidence_interval": [138.5, 151.9]
-      }
-    ],
-    "performance_metrics": {
-      "overall_accuracy": 94.7,
-      "last_24h_accuracy": 96.2,
-      "trending": "improving",
-      "model_version": "ensemble_v1.2.3"
-    },
-    "business_insights": {
-      "revenue_optimization": "12.5% improvement possible",
-      "peak_demand_management": "Optimal charging window: 10:00-14:00",
-      "maintenance_recommendations": [
-        "Schedule cleaning during low-generation period",
-        "Monitor inverter performance metrics"
-      ]
-    }
-  }
-}
-```
-
----
-
-### **Project Economics Analysis** {#project-economics}
-
-**Endpoint: POST** `/api/project-economics`
-
-**Description**: Calculate financial metrics including ROI, NPV, and payback period for energy projects.
-
-**Request Body**:
-```json
-{
-  "project_config": {
-    "capital_cost": 500000,
-    "annual_revenue": 75000,
-    "annual_expenses": 15000,
-    "project_lifetime": 25,
-    "discount_rate": 0.08,
-    "degradation_rate": 0.005
-  },
-  "revenue_streams": {
-    "energy_sales": 45000,
-    "capacity_payments": 12000,
-    "ancillary_services": 8000,
-    "carbon_credits": 10000
-  },
-  "incentives": {
-    "tax_credit": 0.30,
-    "depreciation_schedule": "MACRS_5_year",
-    "grant_funding": 50000
-  }
-}
-```
-
-**Response**:
-```json
-{
-  "financial_metrics": {
-    "npv": 125750.50,
-    "irr": 0.142,
-    "payback_period": 7.2,
-    "lcoe": 0.045,
-    "roi": 0.251
-  },
-  "cash_flow_projection": [
-    {"year": 1, "cash_flow": 60000, "cumulative": 60000},
-    {"year": 2, "cash_flow": 65500, "cumulative": 125500}
-  ],
-  "sensitivity_analysis": {
-    "revenue_sensitivity": {
-      "+10%": {"npv": 175250.50, "irr": 0.168},
-      "-10%": {"npv": 76250.50, "irr": 0.116}
-    }
-  },
-  "investment_recommendation": "Proceed - Strong financial returns with acceptable risk profile"
-}
-```
-
----
-
-## **7. User & System Management APIs**
-
-### **User Registration** {#register}
-
-**Endpoint: POST** `/api/register`
-
-**Description**: Register new users and generate API keys with tier-based access control.
-
-**Request Body**:
-```json
-{
-  "email": "user@example.com",
-  "organization": "Solar Solutions Inc",
-  "use_case": "solar_forecasting",
-  "tier_preference": "professional"
-}
-```
-
-**Response**:
-```json
-{
-  "api_key": "ona_prod_xxxxxxxxxxxxx",
-  "email": "user@example.com",
-  "tier": "free",
-  "limits": {
-    "policy_queries_per_month": 3,
-    "forecasts_per_month": 5,
-    "data_cleaning_per_month": 10,
-    "max_rows_per_cleaning": 100
-  },
-  "upgrade_url": "https://app.asoba.co/upgrade"
-}
-```
-
----
-
-### **Usage Statistics** {#usage-stats}
-
-**Endpoint: GET** `/api/usage`
-
-**Description**: Retrieve current usage statistics and limits for authenticated user.
-
-**Response**:
-```json
-{
-  "user_email": "user@example.com",
-  "tier": "professional",
-  "current_month": "2025-06",
-  "usage": {
-    "policy_queries": 25,
-    "forecasts": 47,
-    "data_cleaning_operations": 12,
-    "model_training_jobs": 3
-  },
-  "limits": {
-    "policy_queries_per_month": 100,
-    "forecasts_per_month": 100,
-    "data_cleaning_per_month": 100,
-    "model_training_per_month": 10,
-    "max_rows_per_cleaning": 10000
-  },
-  "usage_percentage": {
-    "policy_queries": 25,
-    "forecasts": 47,
-    "data_cleaning": 12
-  }
-}
-```
-
----
-
-### **Client & Customer Management** {#manage-users}
-
-**Endpoint: POST** `/api/create-client`
-
-**Description**: Create and manage client organizations, customers, and devices.
-
-**Create Client**:
-```json
-{
-  "client_id": "solar_solutions_inc",
-  "name": "Solar Solutions Inc",
-  "contact_email": "admin@solarsolutions.com",
-  "tier": "enterprise",
-  "services": ["forecasting", "optimization", "policy_intelligence"]
-}
-```
-
-**Create Customer** (POST `/api/create-customer`):
-```json
-{
-  "client_id": "solar_solutions_inc",
-  "customer_id": "customer_001",
-  "contact_name": "John Smith",
-  "email": "john@example.com",
-  "location": "CapeTown",
-  "system_type": "commercial_solar"
-}
-```
-
-**Create Device** (POST `/api/create-device`):
-```json
-{
-  "customer_id": "customer_001",
-  "device_type": "inverter",
-  "serial_number": "SE12345",
-  "manufacturer": "SolarEdge",
-  "capacity_kw": 50.0,
-  "installation_date": "2024-06-15"
-}
-```
-
----
-
-## **8. System Health & Monitoring APIs**
-
-### **Health Check** {#health}
-
-**Endpoint: GET** `/health`
-
-**Description**: System health status and service availability check.
-
-**Response**:
-```json
-{
-  "status": "healthy",
-  "service": "Ona Energy Platform",
-  "version": "1.5.0",
-  "timestamp": "2025-06-26T10:30:00Z",
-  "components": {
-    "forecasting_engine": "operational",
-    "optimization_service": "operational",
-    "policy_intelligence": "operational",
-    "data_processing": "operational",
-    "weather_api": "operational"
-  },
-  "performance_metrics": {
-    "avg_response_time_ms": 245,
-    "success_rate_24h": 99.7,
-    "active_models": 156,
-    "processed_forecasts_today": 1247
-  }
-}
-```
-
----
-
-### **System Monitoring** {#monitoring}
-
-**Endpoint: GET** `/api/system-status`
-
-**Description**: Detailed system performance and monitoring metrics (Enterprise tier).
-
-**Response**:
-```json
-{
-  "system_metrics": {
-    "cpu_usage": 35.2,
-    "memory_usage": 67.8,
-    "disk_usage": 45.3,
-    "network_throughput": "125 Mbps"
-  },
-  "service_metrics": {
-    "active_forecasting_jobs": 12,
-    "training_queue_length": 3,
-    "api_requests_per_minute": 47,
-    "cache_hit_rate": 89.5
-  },
-  "model_performance": {
-    "average_model_accuracy": 94.7,
-    "models_requiring_retraining": 2,
-    "latest_model_deployment": "2025-06-25T14:30:00Z"
-  }
-}
-```
-
----
-
-## **API Integration Patterns**
-
-### **Authentication & Headers**
-
-All endpoints require proper authentication:
-
-```http
-X-API-Key: your-api-key-here
-Content-Type: application/json
-User-Agent: YourApp/1.0
-```
-
-### **Rate Limiting**
-
-Rate limits vary by tier and endpoint:
-
-```http
-X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 75
-X-RateLimit-Reset: 1640995200
-```
-
-### **Error Handling**
-
-Standardized error responses:
-
-```json
-{
-  "error": {
-    "code": "TIER_LIMIT_EXCEEDED",
-    "message": "Monthly query limit reached",
-    "details": {
-      "current_tier": "free",
-      "limit": 3,
-      "used": 3
-    },
-    "upgrade_url": "https://app.asoba.co/upgrade",
-    "support_contact": "support@asoba.co"
-  }
-}
-```
-
-### **Webhook Support**
-
-For long-running operations:
-
-```json
-{
-  "webhook_url": "https://your-app.com/ona-webhook",
-  "events": ["training_completed", "forecast_ready", "dispatch_executed"],
-  "secret": "webhook_secret_key"
-}
-```
-
----
-
-## **Edge Deployment APIs**
-
-All cloud APIs are available in edge deployment with identical interfaces:
-
-**Edge Base URL**: `http://localhost:5000`
-
-**Additional Edge Endpoints**:
-
-### **Edge Configuration** {#edge-config}
-
-**Endpoint: POST** `/api/edge/configure`
-
-**Description**: Configure edge deployment settings.
-
-**Request Body**:
-```json
-{
-  "cloud_sync": true,
-  "local_storage_limit": "100GB",
-  "auto_cleanup_days": 30,
-  "performance_mode": "balanced",
-  "security_level": "high"
-}
-```
-
-### **Edge Status** {#edge-status}
-
-**Endpoint: GET** `/api/edge/status`
-
-**Response**:
-```json
-{
-  "edge_node_id": "edge_001",
-  "cloud_connectivity": "connected",
-  "local_storage_used": "45.2GB",
-  "models_cached": 12,
-  "processing_capability": "full",
-  "sync_status": "up_to_date"
-}
-```
-
----
-
-## **Advanced Features**
-
-### **Batch Processing** {#batch-processing}
-
-**Endpoint: POST** `/api/batch-process`
-
-**Description**: Process multiple operations in a single request.
-
-```json
-{
-  "operations": [
-    {"type": "forecast", "customer_id": "cust_001", "horizon": 24},
-    {"type": "optimize", "customer_id": "cust_002", "objective": "cost"},
-    {"type": "interpolate", "customer_id": "cust_003", "mode": "quality_enhancement"}
-  ],
-  "execution_mode": "parallel",
-  "callback_url": "https://your-app.com/batch-complete"
-}
-```
-
-### **Model Marketplace** {#model-marketplace}
-
-**Endpoint: GET** `/api/models/marketplace`
-
-**Description**: Browse and deploy pre-trained models for specific use cases.
-
-```json
-{
-  "available_models": [
-    {
-      "model_id": "solar_residential_v2.1",
-      "name": "Residential Solar Forecasting",
-      "accuracy": 96.2,
-      "use_case": "rooftop_solar",
-      "region": "north_america",
-      "price": "free"
-    }
-  ]
-}
+#### **Support and Help**
+
+```bash
+# Get help for any command
+asoba-code help
+asoba-code analyze --help
+asoba-code github --help
+
+# Show version and environment info
+asoba-code --version
+asoba-code --env-info
+
+# Generate diagnostic report
+asoba-code diagnose --export diagnostic-report.json
 ```
 
 ---

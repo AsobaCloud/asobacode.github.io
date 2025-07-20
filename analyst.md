@@ -1,206 +1,537 @@
 ---
-title: "Ona On-Demand"
+title: "Advanced Features"
 layout: default
 nav_order: 4
 ---
 
-## Getting Started with Ona On-Demand {#getting-started-with-ona-on-demand}
+## Advanced Features & Use Cases {#getting-started-with-advanced-features}
 
-Welcome to Ona On-Demand—your comprehensive web app for navigating complex energy policies and managing grid operations with ease. This guide will help you get started quickly, understand best practices for interacting with the app, and explore key features.
+Welcome to the advanced features of AsobaCode CLI—your comprehensive platform for AI-powered DevOps automation, technical debt management, and infrastructure-as-code generation. This guide will help you explore advanced capabilities, understand best practices for complex workflows, and maximize your productivity.
 
-To use the Ona On-Demand app, you must first [log in here](https://app.asoba.co), and then provide billing for the subscription and features that fit your use case.
-
----
-
-## Ona Policy Analyst {#ona-policy-analyst}
-
-Ona's policy analyst is an AI-driven chatbot designed to provide real-time, accurate, and actionable insights on climate policies, energy laws, and market-related questions. Whether you need compliance guidance, regulatory insights, or help understanding legal routes for maximizing value of renewable assets, our chatbot is here to assist—ensuring you make informed decisions quickly.
-
-![Ona Policy Analyst Preview]({{ site.baseurl }}/assets/images/bg_preview.gif){:width="50%"}
-
-### Features & Benefits:
-
-- **AI-Enhanced Policy Querying**
-  - *Feature*: NLP-driven chatbot for instant retrieval and summarization of complex policy documents.
-  - *Benefit*: Accelerates regulatory compliance, reduces risk, and streamlines policy interpretation.
-
-- **Comprehensive Policy Knowledgebase**
-  - *Feature*: Continuous, automated updates from government databases, covering U.S. (DOE, EPA, FERC) and South African (DMRE, NERSA, Eskom Grid Codes) regulations.
-  - *Benefit*: Ensures highly accurate and relevant policy insights for compliance and strategic planning.
-
-## How Can Ona Policy Analyst Help You?
-
-Ona policy analyst is designed to support a variety of users, including:
-
-| Key Players | How the Policy Analyst Helps |
-|-------------|------------------------------|
-| Renewable Asset Owners | Get details on tax incentives, subsidies, and permitting requirements for solar and wind farms. |
-| Independent Power Producers (IPPs) | Learn about licensing, auction processes, and market participation in energy trading. |
-| Private Electricity Trading Companies | Stay compliant with regulations for energy markets and power purchase agreements. |
-| Municipal Grid Operators | Understand grid modernization policies, resilience planning, and regulatory compliance. |
-| Environmental & Policy Consulting Firms | Access climate policy updates and environmental compliance requirements. |
-| Climate Tech Companies | Discover funding opportunities, carbon credit regulations, and market trends. |
-| Renewable Energy Investors | Assess regulatory risks, incentives, and market conditions to inform investment decisions. |
-| Academia & Researchers | Access the latest energy trends, case studies, and historical regulatory changes for research and publications. |
-
-## Get the Best Answers from Ona Policy Analyst (Prompt Guide)
-
-To get the most relevant and accurate responses, follow these simple guidelines when crafting your prompts:
-
-### Prompt Best Practices
-
-- **Be Specific**: Instead of "Tell me about data privacy," ask "What are the GDPR requirements for storing customer data?"
-- **Provide Location & Context**: If your question relates to a specific region or industry, include that detail (e.g., "How does California's CCPA differ from GDPR?").
-- **Use Keywords**: Highlight important terms like "tax deductions for freelancers" rather than "tax savings."
-- **Ask Step-by-Step Questions**: Break down complex queries into separate steps for clarity.
-
-### Other Prompt Suggestions
-
-- "What are the key permitting challenges for utility-scale solar projects in the U.S.?"
-- "What are the compliance requirements for FERC Order 2222?"
-- "What funding is available for municipal grid modernization projects?"
-
-## Common Questions & Quick Answers
-
-1. **How accurate is the chatbot's information?**  
-   The chatbot sources information from trusted databases and policy documents, ensuring high accuracy. However, always verify with official sources for legally binding decisions.
-
-2. **Can I request specific policy documents?**  
-   Yes! You can email us at info@asoba.co with a subject line that includes "Data Request" to ask for summaries or direct references to official documentation where available.
-
-3. **What if I get an incomplete or unclear response?**  
-   Try rephrasing your question with more context or detail. Additionally, view our prompt guide for details on structuring your queries effectively.
+To access advanced features, ensure you have properly configured AWS Bedrock access and GitHub integration as described in our [Installation Guide](sdk.html).
 
 ---
 
-## Grid Operations {#grid-operations}
+## **Advanced Workflow Automation** {#advanced-workflow-automation}
 
-### Overview
-The Ona On-Demand app also contains grid operations and load forecasting features, designed to provide comprehensive insights for municipal grid operators, metering companies, and IPPs into network structures, load profiles, and energy resource management.
+AsobaCode CLI excels at orchestrating complex, multi-step DevOps workflows that span across repositories, environments, and teams. These advanced automation capabilities enable enterprise-scale operations with minimal manual intervention.
 
-![Minigrid Network Operations]({{ site.baseurl }}/assets/images/network-ops.gif){:width="50%"}
+### Multi-step DevOps Workflows
 
-### Grid Operations Capabilities
+**Automated Release Pipeline**
+```bash
+# Create a comprehensive release workflow
+asobacode workflow create --name "production-release" \
+  --steps "security-scan,integration-tests,staging-deploy,smoke-tests,production-deploy,rollback-plan"
+```
 
-#### 1. Comprehensive Network Representation
-The tool offers a robust network hierarchy system that:
-- Represents both existing and planned network structures
-- Spans multiple levels of network topology:
-  - Feeder T-off (sub-feeder level)
-  - Substation busbar
-  - Main transmission substation
-  - Regional (Eskom Operating Unit) level
-  - National network integration
+**Cross-Repository Dependency Management**
+```bash
+# Analyze and update dependencies across multiple repos
+asobacode deps analyze --org myorg --include-private \
+  --security-scan --update-policy semver-minor \
+  --create-prs --auto-merge-safe
+```
 
-#### 2. Advanced Network Topology Management
-Key topology features include:
-- Dynamic parent-child node associations
-- Flexible node composition (supporting both loads/DER and child nodes)
-- Multiple load/DER portion support per category
-- Unique element identifiers aligned with Network Information System (NIS) standards
+### Complex Infrastructure Deployments
 
-### Load and Distributed Energy Resource (DER) Analysis
+**Multi-Cloud Deployment Orchestration**
+- Simultaneous deployments across AWS, Azure, and GCP
+- Environment promotion with validation gates
+- Blue-green deployment strategies with automatic rollback
+- Resource cost optimization across cloud providers
 
-#### 3. Comprehensive Profiling
-The system provides in-depth load and DER modeling:
-- Integrated load and distributed generation profiles
-- Support for variable renewable energy
-- Detailed modeling of:
-  - Battery storage systems
-  - Electric vehicle integration
-  - Energy efficiency tracking
-  - Demand Side Management capabilities
+```bash
+# Deploy to multiple cloud environments with validation
+asobacode deploy multi-cloud \
+  --environments "aws-prod,azure-dr,gcp-dev" \
+  --validation-gates "security,performance,cost" \
+  --rollback-strategy blue-green
+```
 
-#### 4. Granular Forecasting Capabilities
-Powerful forecasting tools enable:
-- Geographic and profile-based load/DER representations
-- Customer-level modeling with network-wide summation
-- Detailed resource profiling:
-  - Load profiles
-  - Generation profiles
-  - Renewable resource tracking (wind, solar)
-  - Battery charging and discharging cycle analysis
+### Cross-Repository Analysis
 
-#### 5. Intuitive Navigation and Visualization
-Enhanced user experience with:
-- Comprehensive network hierarchy navigation
-- Manual and automatic zoom functionality
-- Detailed element information display
-- Load/DER portion breakdown views
-- Intelligent search capabilities for network elements
+**Organization-Wide Technical Debt Assessment**
+```bash
+# Analyze technical debt across all repositories
+asobacode analyze org-wide --metrics "complexity,coverage,security,performance" \
+  --generate-report --prioritize-by-impact \
+  --create-tracking-issues
+```
 
-#### 6. Comprehensive Editing Tools
-Powerful management features:
-- Create and modify network elements
-- Link and unlink GIS polygon loads/DER
-- Edit load/DER portion details
-- Visual status indicators for calculation states
+**Best Practices:**
+- Schedule automated weekly cross-repo analysis
+- Set up alerts for critical security vulnerabilities
+- Use dependency graphs to understand impact of changes
+- Implement automated remediation for low-risk issues
 
-### Key Benefits
-- Holistic network and resource modeling
-- Detailed forecasting capabilities
-- Flexible and intuitive user interface
-- Comprehensive energy resource tracking
+### Team-wide Technical Debt Management
+
+**Automated Debt Tracking**
+- Continuous monitoring of code quality metrics
+- Intelligent prioritization based on business impact
+- Automated issue creation and assignment
+- Progress tracking with executive dashboards
+
+```bash
+# Create comprehensive technical debt management plan
+asobacode debt-management init \
+  --tracking-system jira \
+  --priority-matrix "security,maintainability,performance" \
+  --auto-assign-teams \
+  --sla-tracking
+```
 
 ---
 
-## On-Demand Model Training {#on-demand-model-training}
+## **AI Model Intelligence & Cost Optimization** {#ai-model-intelligence}
 
-### Overview
-This feature allows researchers, individuals, and smaller scale IPPs to upload CSV interval data and train models or generate one-off forecasts on the fly.
+AsobaCode CLI incorporates sophisticated AI model routing and cost optimization strategies to maximize performance while minimizing expenses across different AI providers and model types.
 
-![Ona On-Demand Model Training]({{ site.baseurl }}/assets/images/on-demand-api.gif){:width="50%"}
+### Intelligent Model Routing Strategies
 
-### Getting Started
-1. **Subscribe and Obtain API Key**: Once you subscribe, head to Settings to get your API key. You'll need this to run queries.
-2. **Obtain Interval Data**: Ensure you have a minimum of 12 months of data (preferably 36 months for highest accuracy). Data should be in intervals of at most 60 minutes (minimum of 8760 rows for 12 months). A built-in interpolation feature is on the roadmap to handle gaps due to inverter faults or poor cell service.
-3. **Input Data into the 'Train' Tab**: Once model training is complete, results will be delivered via email.
-4. **Use the 'Inference' Tab**: With a trained model, use the 'Inference' tab to generate one-off forecasts for the site/device you trained against. Input the target forecasting window (1 day ahead or 1 week ahead), API key, and location.
+**Dynamic Model Selection**
+```bash
+# Configure intelligent model routing based on task complexity
+asobacode ai-config routing \
+  --simple-tasks "claude-3-haiku" \
+  --complex-analysis "claude-3-opus" \
+  --code-generation "claude-3-5-sonnet" \
+  --fallback-strategy "graceful-degradation"
+```
 
-In both tabs, you will see both API response data and backend logs to track progress.
+**Performance-Based Routing**
+- Real-time latency monitoring
+- Accuracy scoring for different model types
+- Automatic failover to backup providers
+- Regional model selection for compliance
 
-### Supported Inverter OEMs/Meter Data Providers
+### Cost Optimization Techniques
 
-| Provider       | Device Type  |
-|----------------|--------------|
-| Lux            | Inverter     |
-| Solarman       | Inverter     |
-| Macrocomm      | Smart Meter  |
-| Switch Energy  | Data Logger  |
-| Utility API    | Smart Meter  |
-| SolarEdge      | Inverter     |
+**Token Usage Optimization**
+```bash
+# Enable advanced cost optimization
+asobacode config set cost-optimization \
+  --token-compression enabled \
+  --context-pruning intelligent \
+  --batch-processing auto \
+  --cache-strategy aggressive
+```
 
-Don't see your OEM?  [Let us know](mailto:support@asoba.co) and we can add it!
+**Cost Monitoring and Alerts**
+- Real-time spend tracking per project/team
+- Budget alerts and automatic throttling
+- Usage pattern analysis and recommendations
+- ROI measurement for AI-assisted development
 
-### Key Features
-- **CSV Data Upload**: Seamlessly upload interval data for immediate processing.
-- **Model Training**: Train forecasting models on-demand with uploaded data.
-- **One-Off Forecasts**: Generate forecasts quickly without long-term commitments.
+### Performance vs Cost Trade-offs
 
-#### Data Ingestion
-- You can upload historical data for individual inverters or smart meters.
-- The system ideally uses five years of data with 30-minute or 60-minute intervals.
-- If sufficient historical data isn't available, the system can use interpolation or digital twins to create synthetic datasets for initial training.
+**Adaptive Quality Settings**
+```bash
+# Configure adaptive quality based on context
+asobacode ai-config adaptive-quality \
+  --development-mode "fast-iterations" \
+  --production-mode "high-accuracy" \
+  --review-mode "comprehensive-analysis"
+```
 
-#### Forecasting
-- The app generates day-ahead forecasts using data from the last seven days.
-- Forecasts provide either 30-minute or 60-minute intervals for the next 24 hours.
-- This accurate day-ahead forecasting is crucial for energy trading and allocation decisions.
+**Smart Caching Strategies**
+- Semantic similarity matching for cached responses
+- Cross-team cache sharing for common patterns
+- Intelligent cache invalidation
+- Distributed cache architecture for enterprise teams
 
-#### Scheduled Processing
-- The system can set up a scheduled process to regularly ingest data.
-- It generates daily forecasts on a rolling basis for each demand or production point.
-- This automation allows for consistent updating of forecasts without manual intervention.
+### Usage Monitoring and Analytics
 
-#### Data Storage
-- Processed data is stored in a data lake, typically an S3 bucket.
-- The results are saved as CSV files that users can access.
-- This storage method allows for easy retrieval and analysis of historical forecasts.
+**Comprehensive Analytics Dashboard**
+- Model performance metrics by task type
+- Cost breakdown by team and project
+- Accuracy tracking and model comparison
+- Usage patterns and optimization recommendations
 
-#### Flexible Data Retrieval
-- The system offers multiple options for data retrieval.
-- Data can be included in the API response for immediate access.
-- Alternatively, the system can automatically push data to a location of your choice once it's ready.
+```bash
+# Generate detailed usage analytics
+asobacode analytics generate \
+  --timeframe "last-30-days" \
+  --breakdown "team,project,model" \
+  --export-format "dashboard,csv,json" \
+  --include-recommendations
+```
+
+---
+
+## **Enterprise Integration Patterns** {#enterprise-integration}
+
+AsobaCode CLI provides robust integration capabilities for enterprise environments, supporting complex CI/CD pipelines, webhook automation, and compliance frameworks.
+
+### CI/CD Pipeline Integration
+
+**Jenkins Integration**
+```groovy
+// Jenkinsfile example
+pipeline {
+    stages {
+        stage('AsobaCode Analysis') {
+            steps {
+                sh 'asobacode analyze --format junit --output results.xml'
+                sh 'asobacode security-scan --fail-on-critical'
+            }
+        }
+    }
+}
+```
+
+**GitHub Actions Integration**
+```yaml
+# .github/workflows/asobacode.yml
+name: AsobaCode Analysis
+on: [push, pull_request]
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run AsobaCode Analysis
+        uses: asobacode/github-action@v1
+        with:
+          analysis-type: 'comprehensive'
+          fail-on-issues: 'critical,high'
+```
+
+### Webhook Automation
+
+**Advanced Webhook Configuration**
+```bash
+# Set up intelligent webhook routing
+asobacode webhooks create \
+  --name "deployment-automation" \
+  --triggers "push:main,pr:opened,release:published" \
+  --actions "security-scan,deploy-staging,notify-teams" \
+  --filters "path:src/**,!path:**/*.md"
+```
+
+**Event-Driven Workflows**
+- Automatic security scanning on code changes
+- Intelligent test selection based on changed files
+- Dynamic environment provisioning
+- Slack/Teams notifications with context
+
+### Multi-cloud Deployments
+
+**Cloud-Agnostic Infrastructure**
+```bash
+# Deploy identical infrastructure across clouds
+asobacode infra deploy \
+  --template "microservices-stack" \
+  --clouds "aws,azure,gcp" \
+  --regions "us-east-1,eastus,us-central1" \
+  --sync-configurations
+```
+
+**Cross-Cloud Disaster Recovery**
+- Automated failover between cloud providers
+- Data synchronization and backup strategies
+- Network configuration for cross-cloud communication
+- Cost optimization across multiple clouds
+
+### Compliance and Security Automation
+
+**SOC2 Compliance Automation**
+```bash
+# Implement SOC2 compliance checks
+asobacode compliance enable soc2 \
+  --audit-logging enabled \
+  --access-controls rbac \
+  --data-encryption "at-rest,in-transit" \
+  --monitoring "real-time,alerting"
+```
+
+**Automated Security Policies**
+- Continuous compliance monitoring
+- Automated evidence collection
+- Policy enforcement across all environments
+- Integration with security information systems
+
+---
+
+## **Advanced Code Analysis** {#advanced-code-analysis}
+
+AsobaCode CLI provides sophisticated code analysis capabilities that go beyond basic linting to offer deep insights into code quality, security, and performance.
+
+### Cross-Language Analysis Capabilities
+
+**Multi-Language Project Analysis**
+```bash
+# Analyze complex polyglot projects
+asobacode analyze cross-language \
+  --languages "python,typescript,go,rust" \
+  --detect-interfaces \
+  --dependency-mapping \
+  --performance-bottlenecks
+```
+
+**Language-Specific Deep Analysis**
+- Python: Memory usage patterns, GIL contention analysis
+- TypeScript: Type safety coverage, unused exports
+- Go: Goroutine leak detection, race condition analysis
+- Rust: Ownership pattern optimization, unsafe block review
+
+### Security Vulnerability Detection
+
+**Advanced Security Scanning**
+```bash
+# Comprehensive security analysis
+asobacode security scan \
+  --include-dependencies \
+  --check-licenses \
+  --detect-secrets \
+  --analyze-data-flow \
+  --generate-sbom
+```
+
+**Zero-Day Vulnerability Protection**
+- Real-time vulnerability database updates
+- AI-powered pattern recognition for new attack vectors
+- Custom rule creation for organization-specific risks
+- Integration with threat intelligence feeds
+
+### Performance Bottleneck Identification
+
+**Intelligent Performance Analysis**
+```bash
+# Deep performance profiling
+asobacode performance analyze \
+  --profile-types "cpu,memory,io,network" \
+  --benchmark-comparisons \
+  --optimization-suggestions \
+  --load-testing-integration
+```
+
+**Performance Optimization Recommendations**
+- Algorithmic complexity analysis
+- Database query optimization suggestions
+- Caching strategy recommendations
+- Microservice communication optimization
+
+### Technical Debt Scoring and Prioritization
+
+**Comprehensive Debt Scoring**
+```bash
+# Advanced technical debt analysis
+asobacode debt-analysis \
+  --scoring-model "business-impact" \
+  --prioritization "roi-based" \
+  --effort-estimation \
+  --create-remediation-plan
+```
+
+**Smart Prioritization Matrix**
+- Business impact assessment
+- Development effort estimation
+- Risk factor analysis
+- ROI calculation for debt remediation
+
+---
+
+## **GitHub Automation & Team Workflows** {#github-automation}
+
+Streamline your team's GitHub workflows with intelligent automation that enhances productivity and maintains code quality standards.
+
+### Automated Issue Creation and Management
+
+**Intelligent Issue Generation**
+```bash
+# Auto-create issues from analysis results
+asobacode github auto-issues \
+  --from-analysis "security,performance,debt" \
+  --assign-by-expertise \
+  --link-related-issues \
+  --estimate-effort
+```
+
+**Smart Issue Routing**
+- Automatic assignment based on code ownership
+- Priority setting based on impact analysis
+- Label application using ML classification
+- Due date estimation using historical data
+
+### PR Analysis and Suggestions
+
+**Comprehensive PR Review**
+```bash
+# Enhanced PR analysis
+asobacode github pr-review \
+  --check-standards \
+  --security-impact \
+  --performance-impact \
+  --suggest-improvements \
+  --estimate-review-time
+```
+
+**AI-Powered Code Suggestions**
+- Performance optimization recommendations
+- Security vulnerability fixes
+- Code style and best practice improvements
+- Test coverage enhancement suggestions
+
+### Team Productivity Analytics
+
+**Advanced Team Metrics**
+```bash
+# Generate team productivity insights
+asobacode analytics team \
+  --metrics "velocity,quality,collaboration" \
+  --timeframe "last-quarter" \
+  --compare-teams \
+  --identify-bottlenecks
+```
+
+**Productivity Insights**
+- Code review efficiency analysis
+- Feature delivery velocity tracking
+- Technical debt impact on productivity
+- Collaboration pattern analysis
+
+### Release Automation
+
+**Intelligent Release Management**
+```bash
+# Automated release process
+asobacode release automate \
+  --strategy "semantic-versioning" \
+  --changelog-generation "ai-powered" \
+  --rollback-plan "automatic" \
+  --notification-channels "slack,email"
+```
+
+**Release Quality Assurance**
+- Automated testing before release
+- Performance regression detection
+- Security scan integration
+- Rollback automation on issues
+
+---
+
+## **Infrastructure-as-Code Excellence** {#infrastructure-as-code}
+
+Transform your infrastructure management with AI-powered Infrastructure-as-Code generation, compliance automation, and best practices enforcement.
+
+### Multi-Cloud Template Generation
+
+**Intelligent Template Creation**
+```bash
+# Generate optimized IaC templates
+asobacode iac generate \
+  --architecture "microservices" \
+  --clouds "aws,azure,gcp" \
+  --compliance "soc2,gdpr,hipaa" \
+  --optimization "cost,performance,security"
+```
+
+**Cloud-Specific Optimizations**
+- AWS: Native service integration, cost optimization
+- Azure: Enterprise integration, Active Directory alignment
+- GCP: AI/ML service integration, data analytics optimization
+- Multi-cloud: Consistency, disaster recovery, cost arbitrage
+
+### Compliance Frameworks (SOC2, ISO27001)
+
+**Automated Compliance Implementation**
+```bash
+# Implement compliance frameworks
+asobacode compliance implement \
+  --frameworks "soc2,iso27001,gdpr" \
+  --generate-policies \
+  --setup-monitoring \
+  --create-audit-trails
+```
+
+**Continuous Compliance Monitoring**
+- Real-time compliance status tracking
+- Automated evidence collection
+- Policy drift detection and remediation
+- Audit preparation automation
+
+### Container Orchestration
+
+**Advanced Container Management**
+```bash
+# Optimize container orchestration
+asobacode containers optimize \
+  --platform "kubernetes" \
+  --scaling-strategy "predictive" \
+  --security-hardening \
+  --cost-optimization
+```
+
+**Enterprise Container Patterns**
+- Multi-cluster management
+- Service mesh implementation
+- Security policy automation
+- Resource optimization strategies
+
+### Monitoring and Observability Setup
+
+**Comprehensive Observability Stack**
+```bash
+# Deploy complete observability solution
+asobacode observability deploy \
+  --stack "prometheus,grafana,jaeger,elk" \
+  --alerts "intelligent" \
+  --dashboards "role-based" \
+  --cost-tracking
+```
+
+**Intelligent Monitoring Configuration**
+- AI-powered anomaly detection
+- Predictive alerting to prevent issues
+- Custom dashboard generation
+- Performance optimization recommendations
+
+### Best Practices and Troubleshooting
+
+**Common Challenges and Solutions**
+
+1. **Cross-Cloud Consistency**
+   - Use standardized naming conventions
+   - Implement infrastructure testing
+   - Version control all templates
+   - Automate validation processes
+
+2. **Compliance Automation**
+   - Start with framework templates
+   - Implement continuous monitoring
+   - Automate evidence collection
+   - Regular compliance assessments
+
+3. **Cost Optimization**
+   - Right-size resources based on usage
+   - Implement auto-scaling policies
+   - Use spot instances where appropriate
+   - Regular cost analysis and optimization
+
+4. **Security Hardening**
+   - Implement least privilege access
+   - Use infrastructure secrets management
+   - Regular security scanning
+   - Automated patch management
+
+**Troubleshooting Guide**
+
+```bash
+# Debug infrastructure issues
+asobacode iac debug \
+  --analyze-failures \
+  --check-dependencies \
+  --validate-permissions \
+  --generate-fix-suggestions
+```
+
+**Performance Optimization**
+- Infrastructure cost analysis
+- Resource utilization optimization
+- Network performance tuning
+- Storage optimization strategies
 
 ---
 
