@@ -107,8 +107,16 @@ export MISTRAL_STATUS_URL="http://your-mistral-server:8000/status"
 export MISTRAL_FALLBACK_IP="your-server-ip"
 export AI_PROVIDER_STRATEGY="cost_optimized"  # Routes to cheapest model first
 
+# Advanced multi-provider configuration
+export AI_DEFAULT_PROVIDER="auto"             # Intelligent selection
+export AI_COST_BUDGET="10.00"                 # Monthly budget limit
+export AI_MAX_RETRIES="3"                     # Retry failed requests
+
 # Optional: Custom configuration path
 export ASOBACODE_CONFIG_PATH=/custom/path/to/config.yaml
+
+# Verify multi-provider setup
+asoba-code ask "Show available providers and current routing strategy"
 ```
 
 ---
@@ -283,14 +291,35 @@ AsobaCode CLI is built on a modular **Model Context Protocol (MCP) architecture*
 **Provider Configuration**:
 ```bash
 # Default: Bedrock only (works immediately)
-# No configuration needed
+# No configuration needed - works out of the box
 
-# Optional: Enable custom models for cost savings
+# Optional: Enable custom models for cost savings (30x reduction)
 export MISTRAL_STATUS_URL="http://your-server:8000/status"
 export MISTRAL_FALLBACK_IP="your-server-ip"
 
 # Advanced: Configure routing strategy
-export AI_PROVIDER_STRATEGY="cost_optimized"  # or "quality_first"
+export AI_PROVIDER_STRATEGY="cost_optimized"  # Routes to cheapest first
+export AI_PROVIDER_STRATEGY="quality_first"   # Prefers Bedrock models  
+export AI_PROVIDER_STRATEGY="bedrock_only"    # Bedrock only, no custom models
+
+# Cost management
+export AI_COST_BUDGET="50.00"        # Monthly budget limit ($50)
+export AI_COST_ALERT_THRESHOLD="0.8" # Alert at 80% of budget
+
+# Test your configuration
+asoba-code ask "Show current provider configuration and cost tracking"
+```
+
+**Configuration Verification:**
+```bash
+# Check which providers are available and enabled
+asoba-code servers --health
+
+# Test provider routing with a sample request
+asoba-code ask "Generate a simple Python function and show which provider was used"
+
+# View cost tracking and usage
+asoba-code ask "Show my AI usage statistics and cost breakdown for today"
 ```
 
 **Intelligent Provider Selection Examples**:
@@ -1111,6 +1140,17 @@ For organizations requiring dedicated support:
 
 ---
 
+## Advanced Resources {#advanced-resources}
+
+For deeper integration and customization:
+
+- **[Custom Model Integration](custom-model-integration.html)** - Complete guide to integrating fine-tuned models for 30x cost reduction
+- **[MCP Server Development](mcp-server-development.html)** - Build custom tools and extend AsobaCode's capabilities  
+- **[Troubleshooting Guide](troubleshooting.html)** - Comprehensive troubleshooting for all aspects of AsobaCode
+- **[Advanced Features](analyst.html)** - Enterprise workflows and team management features
+
+---
+
 **© 2025 Asoba Corporation. All rights reserved.**
 
-*Ona SDK: Empowering developers to build the next generation of intelligent energy applications through cutting-edge AI, comprehensive data processing, and seamless integration capabilities.*
+*AsobaCode CLI: Empowering developers to build the next generation of intelligent DevOps automation through cutting-edge AI, multi-provider architecture, and seamless integration capabilities.*
