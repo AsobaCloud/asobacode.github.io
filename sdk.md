@@ -19,11 +19,11 @@ AsobaCode CLI supports **Python 3.10+**, **Multi-Cloud Infrastructure**, and **A
 - **Technical Debt Intelligence** – Automated identification, tracking, and remediation of code quality issues
 - **Infrastructure Automation** – Intelligent template generation for AWS, GCP, Azure with compliance built-in
 - **Terminal-Native Design** – Built specifically for developers who live in the command line
-- **Cost-Optimized AI** – Intelligent model routing reduces AI costs by 60%+ over traditional approaches
+- **Cost-Optimized AI** – Multi-provider architecture with 30x cost reduction for infrastructure tasks
 
 ### **🏗️ Architecture Overview**
 - **MCP-Based**: Modular Model Context Protocol architecture with extensible server design
-- **AI Model Router**: Intelligent routing between Claude 4, Llama 4, DeepSeek-R1, and cost-effective models
+- **Multi-Provider AI**: AWS Bedrock + custom fine-tuned models with intelligent routing and fallback
 - **GitHub Integration**: Seamless repository management with automated issue creation and PR analysis
 - **Multi-Cloud Support**: Native support for AWS, GCP, Azure infrastructure deployment
 
@@ -101,6 +101,11 @@ aws configure
 
 # GitHub Configuration (Optional)
 export GITHUB_TOKEN=ghp_your_github_personal_access_token
+
+# Custom AI Models Configuration (Optional - 30x cost reduction)
+export MISTRAL_STATUS_URL="http://your-mistral-server:8000/status"
+export MISTRAL_FALLBACK_IP="your-server-ip"
+export AI_PROVIDER_STRATEGY="cost_optimized"  # Routes to cheapest model first
 
 # Optional: Custom configuration path
 export ASOBACODE_CONFIG_PATH=/custom/path/to/config.yaml
@@ -253,33 +258,56 @@ AsobaCode CLI is built on a modular **Model Context Protocol (MCP) architecture*
 **Purpose**: Intelligent AI model routing and code generation capabilities
 
 **Core Features**:
-- **Multi-Model Support**: Claude 4 Opus/Sonnet, Llama 4, DeepSeek-R1, and specialized models
-- **Intelligent Routing**: Automatically selects optimal model based on task complexity
-- **Cost Optimization**: Routes simple tasks to cost-effective models (60%+ savings)
+- **Multi-Provider Architecture**: AWS Bedrock + Custom fine-tuned models with intelligent routing
+- **Provider Abstraction**: Unified interface supporting multiple AI providers
+- **Cost Optimization**: 30x cost reduction for infrastructure tasks with custom models
+- **Graceful Fallback**: Automatic cascade from custom models to Bedrock
 - **Context Management**: Maintains conversation history and project context
 
-**Available Models**:
-```bash
-# Check available AI models
-asoba-code ask "What AI models are available?"
-
-# Model capabilities:
-# - Claude 4 Opus: Complex reasoning, architecture design, comprehensive analysis
-# - Claude 4 Sonnet: Balanced performance for most development tasks
-# - Llama 4 Scout: Fast code generation and simple analysis
-# - DeepSeek-R1: Mathematical reasoning and algorithm optimization
+**Provider Architecture**:
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  Provider Manager                          │
+│              Intelligent Routing & Fallback                │
+├─────────────────────────────────────────────────────────────┤
+│  AWS Bedrock Provider    │    Custom Mistral Provider      │
+│  ┌─────────────────────┐ │    ┌─────────────────────────┐    │
+│  │ Claude 4 Sonnet     │ │    │ Fine-tuned Mistral 7B   │    │
+│  │ Llama 4 Scout       │ │    │ Infrastructure-focused  │    │
+│  │ DeepSeek-R1         │ │    │ 30x cost reduction      │    │
+│  │ Out-of-box ready    │ │    │ Optional configuration  │    │
+│  └─────────────────────┘ │    └─────────────────────────┘    │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-**Example Usage**:
+**Provider Configuration**:
 ```bash
-# Generate complex infrastructure code (uses Claude 4 Opus)
-asoba-code ask "Create a complete microservices architecture with Kubernetes, monitoring, and CI/CD pipeline"
+# Default: Bedrock only (works immediately)
+# No configuration needed
 
-# Simple code generation (uses cost-effective model)
+# Optional: Enable custom models for cost savings
+export MISTRAL_STATUS_URL="http://your-server:8000/status"
+export MISTRAL_FALLBACK_IP="your-server-ip"
+
+# Advanced: Configure routing strategy
+export AI_PROVIDER_STRATEGY="cost_optimized"  # or "quality_first"
+```
+
+**Intelligent Provider Selection Examples**:
+```bash
+# Infrastructure tasks → Custom Mistral (30x cheaper)
+asoba-code ask "Create a Terraform configuration for AWS VPC with auto-scaling"
+asoba-code ask "Generate Kubernetes deployment manifests for microservices"
+
+# Complex reasoning → Bedrock Claude models (high quality)
+asoba-code ask "Design a distributed systems architecture with fault tolerance"
+
+# Auto-selection based on availability and task
 asoba-code ask "Write a Python function to validate email addresses"
+# → Uses custom model if available, falls back to Bedrock seamlessly
 
-# Code analysis (intelligent model selection)
-asoba-code ask "Analyze this codebase for performance bottlenecks and security issues"
+# Force specific provider
+asoba-code ask "Using Bedrock models: analyze this code for security vulnerabilities"
 ```
 
 ---
@@ -553,20 +581,40 @@ export AWS_PROFILE=asobacode
 # AsobaCode CLI Configuration
 version: "1.0"
 
-# AI Model Settings
+# AI Model Settings - Multi-Provider Configuration
 ai_models:
-  default_provider: "aws_bedrock"
-  cost_optimization: true
-  model_preferences:
-    complex_tasks: "claude-4-opus"
-    standard_tasks: "claude-4-sonnet"
-    simple_tasks: "claude-4-haiku"
-    reasoning_tasks: "deepseek-r1"
+  default_provider: "auto"  # auto, bedrock, mistral
+  fallback_strategy: "cost_optimized"  # cost_optimized, quality_first, bedrock_only
   
-  routing_thresholds:
-    complexity_threshold: 0.7
-    cost_threshold: 0.5
-    quality_threshold: 0.8
+  providers:
+    # AWS Bedrock (always enabled)
+    bedrock:
+      enabled: true
+      region: "us-east-1"
+      preferred_models:
+        - "anthropic.claude-3-5-sonnet-20240620-v1:0"
+        - "meta.llama4-scout-17b-instruct-v1:0"
+      specialties: ["reasoning", "analysis", "complex_tasks"]
+    
+    # Custom Mistral (optional - 30x cost reduction)
+    mistral:
+      enabled: false  # Auto-enabled when URLs provided
+      discovery_url: ""  # Set via MISTRAL_STATUS_URL
+      fallback_ip: ""    # Set via MISTRAL_FALLBACK_IP
+      specialties: ["infrastructure", "yaml", "terraform", "kubernetes"]
+      cost_multiplier: 0.03  # 30x cheaper than Bedrock
+  
+  routing:
+    languages:
+      terraform: "mistral"      # Infrastructure prefers cost-effective
+      yaml: "mistral"
+      kubernetes: "mistral"
+      python: "auto"            # General code uses auto-selection
+      rust: "bedrock"           # Complex languages prefer quality
+    complexity:
+      low: "auto"               # Cost-optimized for simple tasks
+      medium: "auto"            # Balanced selection
+      high: "bedrock"           # Quality-first for complex tasks
 
 # GitHub Integration
 github:

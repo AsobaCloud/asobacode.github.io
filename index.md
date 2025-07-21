@@ -14,7 +14,7 @@ Welcome to **AsobaCode CLI** - the AI-powered terminal development platform that
 
 AsobaCode CLI is a **terminal-native development platform** that combines three powerful MCP servers with an intelligent terminal interface to automate complex software engineering tasks:
 
-🤖 **AI Models Server** - Access to Claude 4 Opus/Sonnet, Llama 4, DeepSeek-R1, and fine-tuned models  
+🤖 **AI Models Server** - Multi-provider access to AWS Bedrock + custom fine-tuned models with intelligent routing  
 🐙 **GitHub Integration Server** - Automated repository management, issue tracking, and PR workflows  
 🔍 **Code Analysis Server** - Advanced static analysis, technical debt detection, and security scanning  
 💬 **Terminal Interface** - Claude Code-like conversational interface with natural language routing
@@ -37,13 +37,17 @@ pip install -e .
 export AWS_DEFAULT_REGION=us-east-1
 aws configure  # or set environment variables
 
-# 4. Optional: Set GitHub token
+# 4. Optional: Enable custom models for 30x cost reduction
+export MISTRAL_STATUS_URL="http://your-server:8000/status"
+export MISTRAL_FALLBACK_IP="your-server-ip"
+
+# 5. Optional: Set GitHub token
 export GITHUB_TOKEN=your_github_token_here
 
-# 5. Add to PATH
+# 6. Add to PATH
 export PATH=$PATH:$HOME/.local/bin
 
-# 6. Start using AsobaCode CLI
+# 7. Start using AsobaCode CLI
 asoba-code --help
 asoba-code status  # Check system health
 ```
@@ -52,12 +56,12 @@ asoba-code status  # Check system health
 
 ### Core Capabilities {#core-capabilities}
 
-#### 🧠 **Advanced AI Integration**
-- **Claude 4 Opus & Sonnet** - Latest Anthropic models for highest quality code generation
-- **Llama 4 Scout & Maverick** - Cutting-edge Meta models for reasoning tasks  
-- **DeepSeek-R1** - Specialized mathematical and logical reasoning
-- **Intelligent Model Routing** - Automatically selects optimal model based on task complexity
-- **Cost Optimization** - Routes simple tasks to cost-effective models
+#### 🧠 **Multi-Provider AI Integration**
+- **AWS Bedrock Provider** - Claude 4 Sonnet, Llama 4 Scout, DeepSeek-R1 (out-of-box)
+- **Custom Model Provider** - Fine-tuned Mistral 7B for infrastructure tasks (optional)
+- **Intelligent Provider Routing** - Task-based selection with automatic fallback
+- **30x Cost Reduction** - Custom models for infrastructure code generation
+- **Graceful Fallback** - Seamless Bedrock usage when custom models unavailable
 
 #### 🚀 **Infrastructure-as-Code Automation**
 - **Multi-Cloud Support** - AWS, GCP, Azure infrastructure automation
@@ -146,7 +150,7 @@ Set up automated workflows, team dashboards, and continuous monitoring for your 
 ### Why Choose AsobaCode CLI?
 
 ✅ **AI Vendor Independence** - No dependency on single AI providers  
-✅ **Cost Optimized** - Intelligent model routing reduces AI costs by 60%+  
+✅ **Cost Optimized** - Custom models provide 30x cost reduction for infrastructure tasks  
 ✅ **Terminal Native** - Built for developers who live in the terminal  
 ✅ **Enterprise Ready** - Security, compliance, and scalability built-in  
 ✅ **Open Architecture** - Extensible MCP-based design for custom integrations  
@@ -158,7 +162,7 @@ Key features include:
 - **Multi-Cloud Infrastructure Automation** - AWS, GCP, Azure support with intelligent template generation
 - **Advanced Code Analysis** - Multi-language support with security and performance insights
 - **GitHub Integration** - Automated issue creation, PR analysis, and workflow automation
-- **Cost-Optimized AI** - Intelligent model routing with 60%+ cost savings over traditional approaches
+- **Cost-Optimized AI** - Multi-provider architecture with 30x cost reduction for infrastructure tasks
 - **Terminal-Native Design** - Built specifically for command-line workflows and DevOps automation
 - **MCP Protocol Foundation** - Extensible architecture for custom tool integration
 
