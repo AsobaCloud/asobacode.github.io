@@ -4,7 +4,7 @@ layout: default
 nav_order: 8
 ---
 
-## Troubleshooting Guide {#troubleshooting}
+# Troubleshooting
 
 > **Common issues and solutions for AsobaCode CLI**
 

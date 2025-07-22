@@ -4,7 +4,7 @@ layout: default
 nav_order: 7
 ---
 
-## MCP Server Development Guide {#mcp-server-development}
+# MCP Server Development
 
 > **Complete guide to developing custom MCP servers for AsobaCode's extensible architecture**
 
@@ -1597,7 +1597,7 @@ if __name__ == "__main__":
 ### Advanced MCP Development Resources {#advanced-resources}
 
 1. **[Custom Model Integration](custom-model-integration.html)** - Integrate custom AI models
-2. **[Model Integration Guide](model-integration.html)** - Add new AI providers
+2. **[Custom Model Setup Guide](custom-model-integration.html)** - Add custom AI providers
 3. **[Advanced Features](analyst.html)** - Enterprise workflows and patterns
 4. **[Troubleshooting Guide](troubleshooting.html)** - Debug and optimize MCP servers
 
@@ -1616,4 +1616,4 @@ For organizations building complex MCP server architectures:
 
 **Ready to extend AsobaCode with your own powerful MCP servers?**
 
-[Start building your first MCP server →](sdk.html#installation)
+[Start building your first MCP server →](sdk.html)
