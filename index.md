@@ -14,20 +14,53 @@ Cut infrastructure costs by 96% while automating DevOps tasks with natural langu
 
 ## Quick Start
 
-Get up and running in 30 seconds:
+Get up and running in 3 steps:
 
 ```bash
-# 1. Install
-pip install asoba-code
+# 1. Clone and install
+git clone https://github.com/AsobaCloud/asoba-code.git
+cd asoba-code
+pip install -e .
 
-# 2. Try it
-asoba-code ask "create terraform for a web app with database"
+# 2. Configure AWS
+aws configure
 
-# 3. Deploy
-asoba-code ask "deploy this to AWS and set up monitoring"
+# 3. Launch interactive mode
+asoba-code
 ```
 
-**That's it.** AsobaCode handles AWS credentials, generates production-ready code, and walks you through deployment.
+**Example session:**
+
+```
+📊 AsobaCode Status
+📁 Config: configs
+⏱️  Timeout: 60s
+🖥️  Servers: 3 discovered
+🐍 Python: 3.10+
+
+🖥️  MCP Servers
+Server                    Status    Capabilities
+ai-models-server         ✅ running   generate_code, analyze_code, refactor_code
+github-server            ✅ running   create_issue, manage_pr, repository_analysis  
+code-analysis-server     ✅ running   analyze_complexity, detect_smells, security_scan
+
+💬 AsobaCode Interactive Mode
+Type your request or 'help' for assistance.
+
+> create terraform for web app with database
+
+🤖 AI Models Server: Routing to cost-optimized Mistral provider
+🔄 Generating Terraform configuration...
+
+✅ Generated: main.tf (247 lines)
+✅ Generated: variables.tf (18 lines)
+✅ Generated: outputs.tf (12 lines)
+
+💰 Cost: $0.03 (vs $1.20 with Claude-4)
+⏱️  Time: 3.2 seconds
+
+Files saved to ./terraform/
+```
 
 ---
 
@@ -43,14 +76,20 @@ asoba-code ask "deploy this to AWS and set up monitoring"
 ## Why DevOps Teams Choose AsobaCode
 
 ### **Massive Cost Savings**
-- **Traditional AI tools**: $10/day for infrastructure tasks
-- **With AsobaCode**: $0.40/day using custom fine-tuned models
-- **Annual savings**: ~$3,500 per engineer
+```
+Traditional AI Tools:    $10.00/day for infrastructure tasks
+AsobaCode Custom Models: $0.40/day (96% savings)
+Annual Savings:          ~$3,500 per engineer
+```
 
 ### **Works Out of the Box**
-- No complex setup or API keys required
-- Automatically configures AWS credentials
-- Instant access to enterprise-grade AI models
+```
+📊 AsobaCode Status Check
+✅ AWS Bedrock: Connected (Claude-4, Llama-4, DeepSeek-R1)
+✅ Custom Models: Connected (Mistral-7B-IaC)
+✅ GitHub Integration: Ready
+✅ Cost Optimization: Active (96% savings)
+```
 
 ### **Terminal Native**
 - Built for developers who live in the command line
@@ -61,29 +100,81 @@ asoba-code ask "deploy this to AWS and set up monitoring"
 
 ## Real-World Examples
 
-```bash
-# Infrastructure automation
-asoba-code ask "create a highly available web application on AWS with auto-scaling"
+### Infrastructure Generation
+```
+> create highly available web application on AWS with auto-scaling
 
-# Security analysis  
-asoba-code ask "scan this codebase for security vulnerabilities and create GitHub issues"
+🔍 Analyzing requirements...
+🏗️  Designing 3-tier architecture...
+🤖 Generating infrastructure code...
 
-# Team workflows
-asoba-code ask "analyze our latest PR and suggest improvements"
+✅ Created:
+   └── terraform/
+       ├── main.tf              (VPC, ALB, ASG, RDS)
+       ├── security-groups.tf   (Least-privilege rules)
+       ├── monitoring.tf        (CloudWatch, alerts)
+       ├── variables.tf         (Environment configs)
+       └── outputs.tf           (Endpoints, IDs)
+
+🛡️  Security: WAF, encryption at rest/transit
+📊 Monitoring: CloudWatch dashboards, SNS alerts
+💰 Cost: $0.04 (custom model) vs $1.50 (premium AI)
 ```
 
-Each command generates production-ready code with security best practices built-in.
+### Security Analysis
+```
+> scan this codebase for security vulnerabilities and create GitHub issues
+
+🔍 Code Analysis Server: Starting security scan...
+📁 Scanning 47 Python files, 12 JS files...
+
+⚠️  Found 8 security issues:
+   ├── SQL Injection risk in auth/login.py:45
+   ├── Hardcoded API key in config/settings.py:12
+   ├── XSS vulnerability in templates/user.html:23
+   └── ... 5 more issues
+
+🐙 GitHub Integration: Creating issues...
+✅ Created issue #156: [Security] SQL Injection in authentication
+✅ Created issue #157: [Security] Hardcoded secrets in config
+✅ Created issue #158: [Security] XSS prevention needed
+
+📊 Security Score: 6.2/10 (Medium Risk)
+💰 Cost: $0.75 (analysis) vs $3.20 (premium AI)
+```
+
+### GitHub Workflows
+```
+> analyze our latest PR and suggest improvements
+
+🐙 Fetching PR #234: "Add user dashboard feature"
+📊 Analyzing 15 changed files...
+
+📋 PR Analysis Report:
+├── ✅ Code Quality: Good (8.1/10)
+├── ⚠️  Test Coverage: 67% (recommend 80%+)
+├── 🔒 Security: 2 minor issues found
+└── 📈 Performance: Potential N+1 query issue
+
+🤖 Suggested Improvements:
+1. Add unit tests for UserDashboard class
+2. Fix database query optimization in dashboard.py:89
+3. Add input validation for dashboard filters
+
+💬 Comment posted to PR #234
+💰 Cost: $0.15 vs $0.85 (premium AI)
+```
 
 ---
 
 ## Cost Comparison
 
-| Task Type | Traditional Tools | AsobaCode | Savings |
-|-----------|------------------|-----------|---------|
-| Daily infrastructure tasks | $10.00 | $0.40 | 96% |
-| Security analysis | $5.00 | $0.75 | 85% |
-| Code reviews | $3.00 | $0.25 | 92% |
-| **Monthly total** | **$540** | **$42** | **$498 saved** |
+| Task Type | Traditional Tools | AsobaCode | Monthly Savings |
+|-----------|------------------|-----------|-----------------|
+| Infrastructure tasks (daily) | $300 | $12 | $288 (96%) |
+| Security analysis (weekly) | $150 | $22 | $128 (85%) |
+| Code reviews (daily) | $90 | $7 | $83 (92%) |
+| **Total Monthly** | **$540** | **$41** | **$499 saved** |
 
 ---
 
@@ -92,6 +183,7 @@ Each command generates production-ready code with security best practices built-
 ### Prerequisites
 - Python 3.10+
 - Git
+- AWS account (for AI models)
 
 ### Install AsobaCode
 ```bash
@@ -100,37 +192,88 @@ cd asoba-code
 pip install -e .
 ```
 
-### Optional: Enable Cost Optimization
+### Configure AWS Credentials
 ```bash
-# Connect to custom AI models for 96% cost reduction
-export AI_PROVIDER_STRATEGY="cost_optimized"
-export MISTRAL_STATUS_URL="http://your-server:8000/status"
+aws configure
+# Enter: Access Key, Secret Key, Region (us-east-1)
 ```
 
-### Verify Installation
+### Launch AsobaCode
 ```bash
-asoba-code --help
-asoba-code status
+asoba-code
+```
+
+**Expected startup:**
+```
+🚀 AsobaCode CLI v1.0.0
+📊 Initializing MCP servers...
+
+✅ AI Models Server: Connected to AWS Bedrock
+✅ GitHub Server: Ready (set GITHUB_TOKEN for full features)
+✅ Code Analysis Server: Loaded 47 analysis rules
+
+💬 Interactive Mode Active
+Type your request or 'help' for commands.
+
+>
+```
+
+---
+
+## Optional: Enable 96% Cost Savings
+
+Connect custom AI models for maximum cost reduction:
+
+```bash
+# Configure cost-optimized routing
+export AI_PROVIDER_STRATEGY="cost_optimized"
+export MISTRAL_STATUS_URL="http://your-server:8000/status"
+
+# Verify savings are active
+asoba-code
+```
+
+**With cost optimization enabled:**
+```
+✅ Cost Optimization Active
+├── Infrastructure tasks → Custom Mistral-7B (96% cheaper)
+├── Complex analysis → Premium Bedrock models (quality)
+└── Automatic fallback → Ensures reliability
+
+💰 Estimated monthly savings: $498 (96% reduction)
 ```
 
 ---
 
 ## Your First Commands
 
+Once in interactive mode, try these:
+
 ### Generate Infrastructure
-```bash
-asoba-code ask "create terraform for a simple web application"
+```
+> create terraform for simple web application
+
+🤖 Routing to cost-optimized provider...
+✅ Generated complete Terraform configuration
+💰 Cost: $0.03 vs $1.20 premium
 ```
 
-### Analyze Your Code
-```bash
-asoba-code ask "analyze this Python project for technical debt"
+### Analyze Code
+```
+> analyze this Python project for technical debt
+
+🔍 Scanning codebase...
+📊 Technical Debt Score: 7.2/10
+⚠️  Found 12 improvement opportunities
 ```
 
 ### GitHub Integration
-```bash
-export GITHUB_TOKEN=your_token_here
-asoba-code ask "create GitHub issues for the security vulnerabilities you found"
+```
+> create GitHub issues for the problems you found
+
+🐙 Creating prioritized issues...
+✅ Created 5 issues with detailed descriptions
+🏷️  Tagged with: technical-debt, priority-medium
 ```
 
 ---
@@ -138,7 +281,7 @@ asoba-code ask "create GitHub issues for the security vulnerabilities you found"
 ## Next Steps
 
 - **[Learn Core Concepts](sdk.html)** - Understand how AsobaCode works
-- **[See All Commands](endpoints.html)** - Complete CLI reference
+- **[Command Reference](endpoints.html)** - See all available commands
 - **[Custom Models Setup](custom-model-integration.html)** - Maximum cost savings (advanced)
 - **[Team Integration](mcp-server-development.html)** - Scale across your team
 
