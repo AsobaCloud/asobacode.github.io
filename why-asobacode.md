@@ -1,7 +1,7 @@
 ---
 title: "Why AsobaCode?"
 layout: default
-nav_order: 0
+nav_order: 1
 ---
 
 ## Why AsobaCode? {#why-asobacode}

@@ -1,7 +1,7 @@
 ---
 title: "AsobaCode CLI"
 layout: default
-nav_order: 1
+nav_order: 0
 ---
 
 # AsobaCode CLI
@@ -29,37 +29,25 @@ aws configure
 asoba-code
 ```
 
-**Example session:**
+**Actual AsobaCode startup:**
 
 ```
-📊 AsobaCode Status
-📁 Config: configs
-⏱️  Timeout: 60s
-🖥️  Servers: 3 discovered
-🐍 Python: 3.10+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 🤖 AsobaCode AI Assistant                                           │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│ 🚀 Welcome to AsobaCode Interactive Mode!                          │
+│                                                                     │
+│ Type your questions or commands naturally:                          │
+│ • 'generate a python hello world function'                         │
+│ • 'show status' or 'list servers'                                  │
+│ • 'help' for assistance                                             │
+│                                                                     │
+│ Use 'exit' or Ctrl+C to quit                                       │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
 
-🖥️  MCP Servers
-Server                    Status    Capabilities
-ai-models-server         ✅ running   generate_code, analyze_code, refactor_code
-github-server            ✅ running   create_issue, manage_pr, repository_analysis  
-code-analysis-server     ✅ running   analyze_complexity, detect_smells, security_scan
-
-💬 AsobaCode Interactive Mode
-Type your request or 'help' for assistance.
-
-> create terraform for web app with database
-
-🤖 AI Models Server: Routing to cost-optimized Mistral provider
-🔄 Generating Terraform configuration...
-
-✅ Generated: main.tf (247 lines)
-✅ Generated: variables.tf (18 lines)
-✅ Generated: outputs.tf (12 lines)
-
-💰 Cost: $0.03 (vs $1.20 with Claude-4)
-⏱️  Time: 3.2 seconds
-
-Files saved to ./terraform/
+🤖 |
 ```
 
 ---
@@ -73,108 +61,106 @@ Files saved to ./terraform/
 
 ---
 
-## Why DevOps Teams Choose AsobaCode
-
-### **Massive Cost Savings**
-```
-Traditional AI Tools:    $10.00/day for infrastructure tasks
-AsobaCode Custom Models: $0.40/day (96% savings)
-Annual Savings:          ~$3,500 per engineer
-```
-
-### **Works Out of the Box**
-```
-📊 AsobaCode Status Check
-✅ AWS Bedrock: Connected (Claude-4, Llama-4, DeepSeek-R1)
-✅ Custom Models: Connected (Mistral-7B-IaC)
-✅ GitHub Integration: Ready
-✅ Cost Optimization: Active (96% savings)
-```
-
-### **Terminal Native**
-- Built for developers who live in the command line
-- No switching between tools or web interfaces
-- Conversational interface like Claude Code
-
----
-
 ## Real-World Examples
 
 ### Infrastructure Generation
 ```
-> create highly available web application on AWS with auto-scaling
+🤖 | create terraform for web app with database
 
-🔍 Analyzing requirements...
-🏗️  Designing 3-tier architecture...
-🤖 Generating infrastructure code...
+┌─────────────────────────────────────────────────────────────────────┐
+│ 🤖 AI Models Server                                                 │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│ 🔄 Routing to cost-optimized Mistral provider...                   │
+│ 🏗️  Generating Terraform configuration...                          │
+│                                                                     │
+│ ✅ Generated: main.tf (247 lines)                                  │
+│ ✅ Generated: variables.tf (18 lines)                              │
+│ ✅ Generated: outputs.tf (12 lines)                                │
+│                                                                     │
+│ 💰 Cost: $0.03 (vs $1.20 with Claude-4)                          │
+│ ⏱️  Time: 3.2 seconds                                              │
+│                                                                     │
+│ Files saved to ./terraform/                                         │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
 
-✅ Created:
-   └── terraform/
-       ├── main.tf              (VPC, ALB, ASG, RDS)
-       ├── security-groups.tf   (Least-privilege rules)
-       ├── monitoring.tf        (CloudWatch, alerts)
-       ├── variables.tf         (Environment configs)
-       └── outputs.tf           (Endpoints, IDs)
-
-🛡️  Security: WAF, encryption at rest/transit
-📊 Monitoring: CloudWatch dashboards, SNS alerts
-💰 Cost: $0.04 (custom model) vs $1.50 (premium AI)
+🤖 |
 ```
 
-### Security Analysis
+### Security Analysis  
 ```
-> scan this codebase for security vulnerabilities and create GitHub issues
+🤖 | scan this codebase for security vulnerabilities
 
-🔍 Code Analysis Server: Starting security scan...
-📁 Scanning 47 Python files, 12 JS files...
+┌─────────────────────────────────────────────────────────────────────┐
+│ 🔍 Code Analysis Server                                             │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│ 📁 Scanning 47 Python files, 12 JS files...                       │
+│                                                                     │
+│ ⚠️  Found 8 security issues:                                       │
+│   ├── SQL Injection risk in auth/login.py:45                      │
+│   ├── Hardcoded API key in config/settings.py:12                  │
+│   ├── XSS vulnerability in templates/user.html:23                 │
+│   └── ... 5 more issues                                           │
+│                                                                     │
+│ 📊 Security Score: 6.2/10 (Medium Risk)                           │
+│ 💰 Cost: $0.75 (analysis) vs $3.20 (premium AI)                  │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
 
-⚠️  Found 8 security issues:
-   ├── SQL Injection risk in auth/login.py:45
-   ├── Hardcoded API key in config/settings.py:12
-   ├── XSS vulnerability in templates/user.html:23
-   └── ... 5 more issues
-
-🐙 GitHub Integration: Creating issues...
-✅ Created issue #156: [Security] SQL Injection in authentication
-✅ Created issue #157: [Security] Hardcoded secrets in config
-✅ Created issue #158: [Security] XSS prevention needed
-
-📊 Security Score: 6.2/10 (Medium Risk)
-💰 Cost: $0.75 (analysis) vs $3.20 (premium AI)
+🤖 |
 ```
 
-### GitHub Workflows
+### GitHub Integration
 ```
-> analyze our latest PR and suggest improvements
+🤖 | create GitHub issues for security problems found
 
-🐙 Fetching PR #234: "Add user dashboard feature"
-📊 Analyzing 15 changed files...
+┌─────────────────────────────────────────────────────────────────────┐
+│ 🐙 GitHub Integration Server                                        │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│ 🔄 Creating prioritized issues...                                  │
+│                                                                     │
+│ ✅ Created issue #156: [Security] SQL Injection in authentication  │
+│ ✅ Created issue #157: [Security] Hardcoded secrets in config      │
+│ ✅ Created issue #158: [Security] XSS prevention needed            │
+│                                                                     │
+│ 🏷️  Tagged with: security, high-priority, technical-debt          │
+│ 💰 Cost: $0.15 vs $0.85 (premium AI)                             │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
 
-📋 PR Analysis Report:
-├── ✅ Code Quality: Good (8.1/10)
-├── ⚠️  Test Coverage: 67% (recommend 80%+)
-├── 🔒 Security: 2 minor issues found
-└── 📈 Performance: Potential N+1 query issue
-
-🤖 Suggested Improvements:
-1. Add unit tests for UserDashboard class
-2. Fix database query optimization in dashboard.py:89
-3. Add input validation for dashboard filters
-
-💬 Comment posted to PR #234
-💰 Cost: $0.15 vs $0.85 (premium AI)
+🤖 |
 ```
 
 ---
 
-## Cost Comparison
+## Why DevOps Teams Choose AsobaCode
 
-| Task Type | Traditional Tools | AsobaCode | Monthly Savings |
-|-----------|------------------|-----------|-----------------|
-| Infrastructure tasks (daily) | $300 | $12 | $288 (96%) |
-| Security analysis (weekly) | $150 | $22 | $128 (85%) |
-| Code reviews (daily) | $90 | $7 | $83 (92%) |
-| **Total Monthly** | **$540** | **$41** | **$499 saved** |
+### **Massive Cost Savings**
+- **Traditional AI tools**: $10/day for infrastructure tasks
+- **AsobaCode custom models**: $0.40/day (96% cheaper)
+- **Annual savings**: ~$3,500 per engineer
+
+### **Terminal Native Interface**
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│ 🤖 AsobaCode AI Assistant                                           │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│ Built for developers who live in the command line                   │
+│ • No switching between tools or web interfaces                      │
+│ • Conversational interface like Claude Code                         │  
+│ • Persistent context across sessions                                │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### **Works Out of the Box**
+- AWS Bedrock integration (Claude-4, Llama-4, DeepSeek-R1)
+- Optional custom models for 96% cost reduction
+- Automatic provider routing and fallback
 
 ---
 
@@ -203,19 +189,87 @@ aws configure
 asoba-code
 ```
 
-**Expected startup:**
+You'll see the interactive welcome screen shown above, ready to accept natural language commands.
+
+---
+
+## Your First Commands
+
+Try these in the interactive mode:
+
+### Check System Status
 ```
-🚀 AsobaCode CLI v1.0.0
-📊 Initializing MCP servers...
+🤖 | show status
 
-✅ AI Models Server: Connected to AWS Bedrock
-✅ GitHub Server: Ready (set GITHUB_TOKEN for full features)
-✅ Code Analysis Server: Loaded 47 analysis rules
+┌─────────────────────────────────────────────────────────────────────┐
+│ 📊 AsobaCode System Status                                          │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│ ✅ AWS Bedrock: Connected (Claude-4, Llama-4, DeepSeek-R1)        │
+│ ✅ GitHub Integration: Ready                                        │
+│ ✅ Code Analysis: 47 rules loaded                                  │
+│ ⚠️  Custom Models: Not configured (optional 96% savings)          │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
 
-💬 Interactive Mode Active
-Type your request or 'help' for commands.
+🤖 |
+```
 
->
+### Generate Code
+```
+🤖 | generate a python hello world function
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 🤖 AI Models Server                                                 │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│ def hello_world():                                                   │
+│     """A simple hello world function."""                           │
+│     print("Hello, World!")                                         │
+│     return "Hello, World!"                                         │
+│                                                                     │
+│ # Usage                                                             │
+│ if __name__ == "__main__":                                          │
+│     hello_world()                                                   │
+│                                                                     │
+│ 💰 Cost: $0.02 • ⏱️ Time: 1.1s                                    │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+🤖 |
+```
+
+### Get Help
+```
+🤖 | help
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 🚀 AsobaCode Commands                                               │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│ Infrastructure:                                                     │
+│ • 'create terraform for web app'                                   │
+│ • 'generate kubernetes deployment'                                  │
+│ • 'docker configuration for python app'                            │
+│                                                                     │
+│ Code Analysis:                                                      │
+│ • 'analyze this code for bugs'                                     │
+│ • 'scan for security vulnerabilities'                              │
+│ • 'check code quality'                                             │
+│                                                                     │
+│ GitHub:                                                             │
+│ • 'create issues for problems found'                               │
+│ • 'analyze latest pull request'                                    │
+│ • 'review repository structure'                                    │
+│                                                                     │
+│ System:                                                             │
+│ • 'show status' - system health                                    │
+│ • 'list servers' - MCP server status                              │
+│ • 'exit' - quit AsobaCode                                          │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+🤖 |
 ```
 
 ---
@@ -229,51 +283,23 @@ Connect custom AI models for maximum cost reduction:
 export AI_PROVIDER_STRATEGY="cost_optimized"
 export MISTRAL_STATUS_URL="http://your-server:8000/status"
 
-# Verify savings are active
+# Launch AsobaCode
 asoba-code
 ```
 
-**With cost optimization enabled:**
+**With cost optimization:**
 ```
-✅ Cost Optimization Active
-├── Infrastructure tasks → Custom Mistral-7B (96% cheaper)
-├── Complex analysis → Premium Bedrock models (quality)
-└── Automatic fallback → Ensures reliability
-
-💰 Estimated monthly savings: $498 (96% reduction)
-```
-
----
-
-## Your First Commands
-
-Once in interactive mode, try these:
-
-### Generate Infrastructure
-```
-> create terraform for simple web application
-
-🤖 Routing to cost-optimized provider...
-✅ Generated complete Terraform configuration
-💰 Cost: $0.03 vs $1.20 premium
-```
-
-### Analyze Code
-```
-> analyze this Python project for technical debt
-
-🔍 Scanning codebase...
-📊 Technical Debt Score: 7.2/10
-⚠️  Found 12 improvement opportunities
-```
-
-### GitHub Integration
-```
-> create GitHub issues for the problems you found
-
-🐙 Creating prioritized issues...
-✅ Created 5 issues with detailed descriptions
-🏷️  Tagged with: technical-debt, priority-medium
+┌─────────────────────────────────────────────────────────────────────┐
+│ 💰 Cost Optimization Active                                        │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│ ✅ Infrastructure tasks → Custom Mistral-7B (96% cheaper)          │
+│ ✅ Complex analysis → Premium Bedrock models (quality)             │
+│ ✅ Automatic fallback → Ensures reliability                        │
+│                                                                     │
+│ 📊 Estimated monthly savings: $498 (96% reduction)                 │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
