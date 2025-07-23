@@ -274,7 +274,7 @@ Try these in the interactive mode:
 
 ---
 
-## Optional: Enable 96% Cost Savings
+## Optional: Enable 96% Cost Savings {#optional-enable-96-cost-savings}
 
 Connect custom AI models for maximum cost reduction:
 
@@ -304,7 +304,7 @@ asoba-code
 
 ---
 
-## Next Steps
+## Next Steps {#next-steps}
 
 - **[Learn Core Concepts](sdk.html)** - Understand how AsobaCode works
 - **[Command Reference](endpoints.html)** - See all available commands
