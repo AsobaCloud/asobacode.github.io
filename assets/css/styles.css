@@ -656,3 +656,15 @@ p, ul, ol, div, blockquote, table, h1, h2, h3, h4, h5, h6 {
   width: 100% !important;
   max-width: 100% !important;
 }
+
+/* Fix anchor navigation - ensure headers appear below top nav bar */
+html {
+  scroll-padding-top: 90px; /* 70px header + 20px buffer */
+}
+
+/* Additional padding for anchor targets */
+h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
+  scroll-margin-top: 90px;
+  padding-top: 20px;
+  margin-top: -20px;
+}
