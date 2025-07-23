@@ -4,7 +4,7 @@ layout: default
 nav_order: 4
 ---
 
-# Custom Models Setup
+# Custom Models Setup {#overview}
 
 **Advanced cost optimization with custom fine-tuned models.**
 
@@ -12,7 +12,7 @@ Integrate your own models for 96% cost reduction on infrastructure tasks while m
 
 ---
 
-## Why Custom Models?
+## Why Custom Models? {#quick-start}
 
 ### Massive Cost Savings
 - **Traditional AI**: $10/day for infrastructure tasks
@@ -31,7 +31,7 @@ Integrate your own models for 96% cost reduction on infrastructure tasks while m
 
 ---
 
-## Featured: IaC Model with CLAUDE.md Integration
+## Featured: IaC Model with CLAUDE.md Integration {#model-server-setup}
 
 **Production-ready Infrastructure as Code model with systematic methodology.**
 
@@ -41,7 +41,7 @@ Integrate your own models for 96% cost reduction on infrastructure tasks while m
 - **Adaptive workflow** - Simple requests get quick responses, complex projects get full methodology
 - **96% cost reduction** - Specialized for infrastructure tasks
 
-### Quick Setup
+### Quick Setup {#configuration}
 ```bash
 # Deploy enhanced IaC model server
 git clone https://github.com/your-org/iac-model-server
@@ -55,7 +55,7 @@ export MISTRAL_STATUS_URL="http://your-server:8000/status"
 export AI_PROVIDER_STRATEGY="cost_optimized"
 ```
 
-### What You Get
+### What You Get {#usage-examples}
 - **Systematic infrastructure planning** for complex projects
 - **Security by default** - IAM, encryption, monitoring included
 - **Complete deployment guidance** - Tests, runbooks, operational procedures
@@ -80,14 +80,14 @@ Generated:
 
 ---
 
-## Generic Custom Model Integration
+## Generic Custom Model Integration {#architecture}
 
 ### Prerequisites
 - Python 3.10+
 - Custom model server running
 - Model accessible via HTTP API
 
-### Basic Setup
+### Basic Setup {#custom-provider-implementation}
 
 1. **Deploy your model server:**
 ```bash
@@ -107,7 +107,7 @@ export MISTRAL_FALLBACK_IP="your-server-ip"
 asoba-code status
 ```
 
-### Expected Status Output
+### Expected Status Output {#load-balancing}
 ```
 ✅ AsobaCode CLI Status
    Version: 1.0.0
@@ -124,17 +124,17 @@ asoba-code status
 
 ---
 
-## Model Server Requirements
+## Model Server Requirements {#real-world-examples}
 
 Your custom model server needs these endpoints:
 
-### Health Check
+### Health Check {#performance-optimization}
 ```
 GET /health
 Response: {"status": "healthy", "model": "your-model-name"}
 ```
 
-### Generation Endpoint
+### Generation Endpoint {#cost-monitoring}
 ```
 POST /generate
 Body: {
@@ -160,7 +160,7 @@ Response: {
 
 ---
 
-## Routing Configuration
+## Routing Configuration {#troubleshooting}
 
 AsobaCode automatically routes requests to optimize cost and quality:
 

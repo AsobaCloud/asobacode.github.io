@@ -12,7 +12,7 @@ Cut infrastructure costs by 96% while automating DevOps tasks with natural langu
 
 ---
 
-## Quick Start
+## Quick Start {#quick-start}
 
 Get up and running in 3 steps:
 
@@ -52,7 +52,7 @@ asoba-code
 
 ---
 
-## What AsobaCode Does
+## What AsobaCode Does {#what-is-asobacode}
 
 🤖 **Generate Infrastructure Code** - Terraform, Kubernetes, Docker configs through natural language  
 🔍 **Analyze Code Quality** - Find security issues, technical debt, and optimization opportunities  
@@ -61,7 +61,7 @@ asoba-code
 
 ---
 
-## Real-World Examples
+## Real-World Examples {#core-capabilities}
 
 ### Infrastructure Generation
 ```
@@ -136,14 +136,14 @@ asoba-code
 
 ---
 
-## Why DevOps Teams Choose AsobaCode
+## Why DevOps Teams Choose AsobaCode {#key-use-cases}
 
 ### **Massive Cost Savings**
 - **Traditional AI tools**: $10/day for infrastructure tasks
 - **AsobaCode custom models**: $0.40/day (96% cheaper)
 - **Annual savings**: ~$3,500 per engineer
 
-### **Terminal Native Interface**
+### **Terminal Native Interface** {#architecture}
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
 │ 🤖 AsobaCode AI Assistant                                           │
@@ -164,7 +164,7 @@ asoba-code
 
 ---
 
-## Installation
+## Installation {#getting-started}
 
 ### Prerequisites
 - Python 3.10+
@@ -193,7 +193,7 @@ You'll see the interactive welcome screen shown above, ready to accept natural l
 
 ---
 
-## Your First Commands
+## Your First Commands {#getting-started-steps}
 
 Try these in the interactive mode:
 

@@ -4,13 +4,13 @@ layout: default
 nav_order: 2
 ---
 
-# Learn Core Concepts
+# Learn Core Concepts {#getting-started}
 
 Understanding how AsobaCode works to maximize your productivity and cost savings.
 
 ---
 
-## How AsobaCode Works
+## How AsobaCode Works {#installation}
 
 AsobaCode combines three powerful capabilities in one terminal command:
 
@@ -31,7 +31,7 @@ AsobaCode combines three powerful capabilities in one terminal command:
 
 ---
 
-## Cost Optimization
+## Cost Optimization {#cost-optimization}
 
 ### How We Reduce AI Costs by 96%
 
@@ -55,7 +55,7 @@ AsobaCode combines three powerful capabilities in one terminal command:
 
 ---
 
-## Multi-Provider AI Architecture
+## Multi-Provider AI Architecture {#ai-models-server}
 
 ```
 User Command: "create terraform for web app"
@@ -83,7 +83,7 @@ User Command: "analyze security vulnerabilities"
 
 ---
 
-## Key Use Cases
+## Key Use Cases {#real-world-examples}
 
 ### **DevOps Engineers**
 ```bash
@@ -114,9 +114,9 @@ asoba-code ask "create Kubernetes manifests for microservices with service mesh 
 
 ---
 
-## Command Examples
+## Command Examples {#usage-examples}
 
-### Infrastructure Generation
+### Infrastructure Generation {#advanced-workflow}
 ```bash
 # Simple web application
 asoba-code ask "terraform for web app with database"
@@ -128,7 +128,7 @@ asoba-code ask "create production-ready infrastructure with load balancing, auto
 asoba-code ask "deploy this application to both AWS and GCP with traffic distribution"
 ```
 
-### Code Analysis
+### Code Analysis {#code-analysis-server}
 ```bash
 # Security scan
 asoba-code ask "find security vulnerabilities in this codebase"
@@ -140,7 +140,7 @@ asoba-code ask "analyze code quality and identify refactoring opportunities"
 asoba-code ask "review this code for performance bottlenecks and suggest optimizations"
 ```
 
-### GitHub Integration
+### GitHub Integration {#github-server}
 ```bash
 # Issue management
 asoba-code ask "create GitHub issues for all the problems you found"
@@ -154,7 +154,7 @@ asoba-code ask "analyze our GitHub issues and create a sprint plan"
 
 ---
 
-## Advanced Configuration
+## Advanced Configuration {#configuration-management}
 
 ### Cost Optimization Setup
 ```bash
@@ -175,7 +175,7 @@ export GITHUB_TOKEN=your_personal_access_token
 asoba-code ask "show me open issues in this repository"
 ```
 
-### AWS Configuration
+### AWS Configuration {#environment-variables}
 ```bash  
 # AsobaCode works with existing AWS credentials
 aws configure
@@ -188,7 +188,7 @@ export AWS_DEFAULT_REGION=us-east-1
 
 ---
 
-## Best Practices
+## Best Practices {#troubleshooting}
 
 ### **Maximize Cost Savings**
 - Use descriptive commands for infrastructure tasks (routes to cheap models)
@@ -207,7 +207,7 @@ export AWS_DEFAULT_REGION=us-east-1
 
 ---
 
-## Next Steps
+## Next Steps {#support}
 
 - **[See All Commands](endpoints.html)** - Complete command reference
 - **[Custom Models Setup](custom-model-integration.html)** - Advanced cost optimization  

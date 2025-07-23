@@ -8,7 +8,7 @@ nav_order: 5
 
 This page provides access to additional resources including tutorials, demos, and case studies to help you better understand the AsobaCode CLI platform and its capabilities for AI-powered DevOps automation.
 
-## Video Tutorials
+## Video Tutorials {#video-tutorials}
 
 Our video tutorials offer in-depth demonstrations and explanations of various aspects of the AsobaCode CLI system. These sessions are designed to help you understand specific features and real-world use cases.
 
@@ -21,7 +21,7 @@ Our video tutorials offer in-depth demonstrations and explanations of various as
 
 ---
 
-## Case Studies
+## Case Studies {#case-studies}
 
 These detailed case studies demonstrate the effectiveness of AsobaCode CLI in real-world DevOps scenarios, providing empirical evidence of productivity improvements and cost savings.
 
@@ -33,18 +33,18 @@ These detailed case studies demonstrate the effectiveness of AsobaCode CLI in re
 
 ---
 
-## Developer Resources
+## Developer Resources {#developer-resources}
 
 ### **GitHub Repository**
 - **Main Repository**: [github.com/AsobaCloud/asoba-code](https://github.com/AsobaCloud/asoba-code)
 - **Documentation**: [github.com/AsobaCloud/asobacode.github.io](https://github.com/AsobaCloud/asobacode.github.io)
 
-### **Community & Support**
+### **Community & Support** {#community-support}
 - **Developer Forum**: [community.asobacode.dev](https://community.asobacode.dev)
 - **Discord Community**: [discord.gg/asobacode](https://discord.gg/asobacode)
 - **Stack Overflow**: Tag questions with `asobacode-cli`
 
-### **Documentation Links**
+### **Documentation Links** {#documentation-links}
 - **Installation Guide**: [Installation & Setup](sdk.html)
 - **CLI Commands**: [Complete Command Reference](endpoints.html)
 - **MCP Architecture**: [Technical Architecture](https://docs.asobacode.dev/architecture)
@@ -52,7 +52,7 @@ These detailed case studies demonstrate the effectiveness of AsobaCode CLI in re
 
 ---
 
-## Get Help & Stay Updated
+## Get Help & Stay Updated {#stay-updated}
 
 <div class="page-end-section">
   <div class="end-column">

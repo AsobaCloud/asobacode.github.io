@@ -8,7 +8,7 @@ nav_order: 6
 
 This page provides access to Asoba's legal documentation, including our Terms of Service, End User License Agreement (EULA), and Privacy Policy.
 
-## Terms of Service
+## Terms of Service {#terms-of-service}
 
 ### Introduction
 
@@ -26,7 +26,7 @@ Asoba provides data analytics, interpolation, and forecasting services focused o
 
 To access certain features of our Services, you may need to register for an account. You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete.
 
-### API Usage and Rate Limits
+### API Usage and Rate Limits {#api-usage-policy}
 
 Our API services are subject to rate limits and usage restrictions as described in our documentation. We reserve the right to modify these limits at any time to ensure fair usage and system stability.
 
@@ -48,7 +48,7 @@ We may terminate or suspend your access to the Services immediately, without pri
 
 ---
 
-## End User License Agreement (EULA)
+## End User License Agreement (EULA) {#end-user-license-agreement-eula}
 
 ### Grant of License
 
@@ -85,7 +85,7 @@ This EULA remains in effect until terminated. It will terminate automatically if
 
 ---
 
-## Privacy Policy
+## Privacy Policy {#privacy-policy}
 
 ### Information We Collect
 
@@ -116,7 +116,7 @@ We may share your information with:
 - In response to legal process or when required by law
 - With your consent or at your direction
 
-### Data Security
+### Data Security {#data-processing-agreement}
 
 We take reasonable measures to help protect your personal information from loss, theft, misuse, unauthorized access, disclosure, alteration, and destruction.
 

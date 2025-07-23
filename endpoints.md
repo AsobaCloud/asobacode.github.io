@@ -12,7 +12,7 @@ Complete guide to all AsobaCode CLI commands.
 
 ## Basic Commands
 
-### **`asoba-code ask`**
+### **`asoba-code ask`** {#natural-language}
 The main command for all AI-powered tasks. Use natural language to describe what you want.
 
 ```bash
@@ -31,7 +31,7 @@ asoba-code ask "scan this code for security vulnerabilities"
 asoba-code ask "create GitHub issues for the problems you found"
 ```
 
-### **`asoba-code status`**
+### **`asoba-code status`** {#system-status}
 Check system health and configuration.
 
 ```bash
@@ -44,7 +44,7 @@ Shows:
 - GitHub integration status
 - System configuration
 
-### **`asoba-code --help`**
+### **`asoba-code --help`** {#project-init}
 Display available commands and options.
 
 ```bash
@@ -53,7 +53,7 @@ asoba-code --help
 
 ---
 
-## Infrastructure Commands
+## Infrastructure Commands {#infrastructure-generation}
 
 ### Generate Terraform
 ```bash
@@ -67,7 +67,7 @@ asoba-code ask "terraform for highly available web application with auto-scaling
 asoba-code ask "create terraform for AWS and GCP deployment with traffic routing"
 ```
 
-### Generate Kubernetes
+### Generate Kubernetes {#container-orchestration}
 ```bash
 # Basic deployment
 asoba-code ask "create kubernetes manifests for my web application"
@@ -95,7 +95,7 @@ asoba-code ask "docker-compose for web app with database and redis"
 
 ## Code Analysis Commands
 
-### Security Analysis
+### Security Analysis {#security-scanning}
 ```bash
 # Basic security scan
 asoba-code ask "scan this codebase for security vulnerabilities"
@@ -107,7 +107,7 @@ asoba-code ask "perform comprehensive security audit with threat modeling"
 asoba-code ask "check dependencies for known vulnerabilities"
 ```
 
-### Technical Debt Analysis
+### Technical Debt Analysis {#technical-debt}
 ```bash
 # Code quality analysis
 asoba-code ask "analyze code quality and identify technical debt"
@@ -119,7 +119,7 @@ asoba-code ask "review code for performance bottlenecks and optimization opportu
 asoba-code ask "analyze system architecture and suggest improvements"
 ```
 
-### Code Review
+### Code Review {#performance-analysis}
 ```bash
 # General code review
 asoba-code ask "review this code and suggest improvements"
@@ -135,7 +135,7 @@ asoba-code ask "identify refactoring opportunities in this codebase"
 
 ## GitHub Integration Commands
 
-### Issue Management
+### Issue Management {#issue-management}
 ```bash
 # Create issues from analysis
 asoba-code ask "create GitHub issues for all the problems you found"
@@ -147,7 +147,7 @@ asoba-code ask "analyze open GitHub issues and prioritize them"
 asoba-code ask "create sprint plan based on GitHub issues"
 ```
 
-### Pull Request Analysis
+### Pull Request Analysis {#integration-patterns}
 ```bash
 # PR review
 asoba-code ask "review the latest pull request"
@@ -159,7 +159,7 @@ asoba-code ask "analyze PR #123 and suggest improvements"
 asoba-code ask "compare feature branch with main and highlight changes"
 ```
 
-### Repository Management
+### Repository Management {#repository-analysis}
 ```bash
 # Repository overview
 asoba-code ask "analyze this repository structure and health"
@@ -175,7 +175,7 @@ asoba-code ask "review documentation and suggest improvements"
 
 ## Advanced Commands
 
-### Multi-Step Workflows
+### Multi-Step Workflows {#workflow-automation}
 ```bash
 # Complete infrastructure deployment
 asoba-code ask "deploy microservices architecture with monitoring, logging, security, and CI/CD pipeline"
@@ -187,7 +187,7 @@ asoba-code ask "perform security audit, create findings report, and generate rem
 asoba-code ask "analyze technical debt, create improvement plan, and generate GitHub issues"
 ```
 
-### Cost Optimization
+### Cost Optimization {#batch-operations}
 ```bash
 # Infrastructure cost analysis
 asoba-code ask "analyze AWS infrastructure costs and suggest optimizations"
@@ -199,7 +199,7 @@ asoba-code ask "review resource utilization and recommend rightsizing"
 asoba-code ask "create cost monitoring and alerting for AWS resources"
 ```
 
-### Compliance & Governance
+### Compliance & Governance {#compliance-automation}
 ```bash
 # Compliance check
 asoba-code ask "review infrastructure for SOC2 compliance requirements"
@@ -213,9 +213,9 @@ asoba-code ask "prepare compliance audit documentation and evidence"
 
 ---
 
-## Configuration Commands
+## Configuration Commands {#configuration-commands}
 
-### Cost Optimization Setup
+### Cost Optimization Setup {#usage-tracking}
 ```bash
 # Enable custom models
 export AI_PROVIDER_STRATEGY="cost_optimized"
@@ -234,7 +234,7 @@ export GITHUB_TOKEN=your_personal_access_token
 asoba-code ask "list open issues in this repository"
 ```
 
-### AWS Configuration
+### AWS Configuration {#environment-setup}
 ```bash
 # Use existing AWS CLI configuration
 aws configure
@@ -281,7 +281,7 @@ asoba-code ask "analyze security vulnerabilities in authentication module"
 
 ---
 
-## Troubleshooting Commands
+## Troubleshooting Commands {#troubleshooting}
 
 ### System Diagnostics
 ```bash
