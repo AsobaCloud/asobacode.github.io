@@ -340,31 +340,119 @@ pre code {
   box-shadow: none;
 }
 
-/* Syntax highlighting for common elements */
-pre code .comment {
+/* Rouge syntax highlighting for Jekyll */
+/* Comments */
+.highlight .c,    /* Comment */
+.highlight .cm,   /* Comment.Multiline */
+.highlight .cp,   /* Comment.Preproc */  
+.highlight .c1,   /* Comment.Single */
+.highlight .cs {  /* Comment.Special */
   color: var(--ubuntu-bright-black);
   font-style: italic;
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
-pre code .string {
+/* Strings */
+.highlight .s,    /* Literal.String */
+.highlight .sb,   /* Literal.String.Backtick */
+.highlight .sc,   /* Literal.String.Char */
+.highlight .s2,   /* Literal.String.Double */
+.highlight .se,   /* Literal.String.Escape */
+.highlight .sh,   /* Literal.String.Heredoc */
+.highlight .si,   /* Literal.String.Interpol */
+.highlight .sx,   /* Literal.String.Other */
+.highlight .sr,   /* Literal.String.Regex */
+.highlight .s1,   /* Literal.String.Single */
+.highlight .ss {  /* Literal.String.Symbol */
   color: var(--ubuntu-bright-green);
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
-pre code .number {
+/* Numbers */
+.highlight .m,    /* Literal.Number */
+.highlight .mb,   /* Literal.Number.Bin */
+.highlight .mf,   /* Literal.Number.Float */
+.highlight .mh,   /* Literal.Number.Hex */
+.highlight .mi,   /* Literal.Number.Integer */
+.highlight .il,   /* Literal.Number.Integer.Long */
+.highlight .mo {  /* Literal.Number.Oct */
   color: var(--ubuntu-bright-cyan);
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
-pre code .keyword {
+/* Keywords */
+.highlight .k,    /* Keyword */
+.highlight .kc,   /* Keyword.Constant */
+.highlight .kd,   /* Keyword.Declaration */
+.highlight .kn,   /* Keyword.Namespace */
+.highlight .kp,   /* Keyword.Pseudo */
+.highlight .kr,   /* Keyword.Reserved */
+.highlight .kt {  /* Keyword.Type */
   color: var(--ubuntu-bright-blue);
   font-weight: bold;
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
-pre code .operator {
+/* Operators */
+.highlight .o,    /* Operator */
+.highlight .ow {  /* Operator.Word */
   color: var(--ubuntu-bright-yellow);
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
-pre code .function {
+/* Functions and Names */
+.highlight .n,    /* Name */
+.highlight .na,   /* Name.Attribute */
+.highlight .nb,   /* Name.Builtin */
+.highlight .bp,   /* Name.Builtin.Pseudo */
+.highlight .nc,   /* Name.Class */
+.highlight .no,   /* Name.Constant */
+.highlight .nd,   /* Name.Decorator */
+.highlight .ni,   /* Name.Entity */
+.highlight .ne,   /* Name.Exception */
+.highlight .nf,   /* Name.Function */
+.highlight .nl,   /* Name.Label */
+.highlight .nn,   /* Name.Namespace */
+.highlight .nx,   /* Name.Other */
+.highlight .py,   /* Name.Property */
+.highlight .nt,   /* Name.Tag */
+.highlight .nv,   /* Name.Variable */
+.highlight .vc,   /* Name.Variable.Class */
+.highlight .vg,   /* Name.Variable.Global */
+.highlight .vi {  /* Name.Variable.Instance */
+  color: var(--ubuntu-fg);
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* Special highlighting for function names */
+.highlight .nf {  /* Name.Function */
   color: var(--ubuntu-bright-purple);
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* Variables */
+.highlight .nv,   /* Name.Variable */
+.highlight .vc,   /* Name.Variable.Class */
+.highlight .vg,   /* Name.Variable.Global */
+.highlight .vi {  /* Name.Variable.Instance */
+  color: var(--ubuntu-bright-cyan);
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* Generic tokens */
+.highlight .gd {  /* Generic.Deleted */
+  color: var(--ubuntu-bright-red);
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.highlight .gi {  /* Generic.Inserted */
+  color: var(--ubuntu-bright-green);
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* Ensure all syntax highlighting elements use the same font */
+.highlight * {
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
 /* Special styling for bash/shell commands */
