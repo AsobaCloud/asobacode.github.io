@@ -64,7 +64,7 @@ User Command: "create terraform for web app"
          ↓
 ┌─────────────────────────────────────┐
 │  Infrastructure Task Detected       │
-│  → Route to Custom Model (96% cheaper) │
+│  → Route to Custom Model (96% cheaper)│
 │  → Generate Terraform + Security    │
 │  → Fallback to Bedrock if needed    │
 └─────────────────────────────────────┘
@@ -77,7 +77,7 @@ User Command: "analyze security vulnerabilities"
 │  Complex Analysis Detected          │
 │  → Route to Premium Model (quality) │
 │  → Deep security scan + reports     │
-│  → Create GitHub issues            │
+│  → Create GitHub issues             │
 └─────────────────────────────────────┘
 ```
 

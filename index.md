@@ -74,12 +74,12 @@ asoba-code
 │ 🔄 Routing to cost-optimized Mistral provider...                   │
 │ 🏗️  Generating Terraform configuration...                          │
 │                                                                     │
-│ ✅ Generated: main.tf (247 lines)                                  │
-│ ✅ Generated: variables.tf (18 lines)                              │
-│ ✅ Generated: outputs.tf (12 lines)                                │
+│ ✅ Generated: main.tf (247 lines)                                   │
+│ ✅ Generated: variables.tf (18 lines)                               │
+│ ✅ Generated: outputs.tf (12 lines)                                 │
 │                                                                     │
-│ 💰 Cost: $0.03 (vs $1.20 with Claude-4)                          │
-│ ⏱️  Time: 3.2 seconds                                              │
+│ 💰 Cost: $0.03 (vs $1.20 with Claude-4)                           │
+│ ⏱️  Time: 3.2 seconds                                               │
 │                                                                     │
 │ Files saved to ./terraform/                                         │
 │                                                                     │
@@ -96,16 +96,16 @@ asoba-code
 │ 🔍 Code Analysis Server                                             │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
-│ 📁 Scanning 47 Python files, 12 JS files...                       │
+│ 📁 Scanning 47 Python files, 12 JS files...                        │
 │                                                                     │
 │ ⚠️  Found 8 security issues:                                       │
-│   ├── SQL Injection risk in auth/login.py:45                      │
-│   ├── Hardcoded API key in config/settings.py:12                  │
-│   ├── XSS vulnerability in templates/user.html:23                 │
-│   └── ... 5 more issues                                           │
+│   ├── SQL Injection risk in auth/login.py:45                       │
+│   ├── Hardcoded API key in config/settings.py:12                   │
+│   ├── XSS vulnerability in templates/user.html:23                  │
+│   └── ... 5 more issues                                            │
 │                                                                     │
-│ 📊 Security Score: 6.2/10 (Medium Risk)                           │
-│ 💰 Cost: $0.75 (analysis) vs $3.20 (premium AI)                  │
+│ 📊 Security Score: 6.2/10 (Medium Risk)                            │
+│ 💰 Cost: $0.75 (analysis) vs $3.20 (premium AI)                   │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 
@@ -120,14 +120,14 @@ asoba-code
 │ 🐙 GitHub Integration Server                                        │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
-│ 🔄 Creating prioritized issues...                                  │
+│ 🔄 Creating prioritized issues...                                   │
 │                                                                     │
-│ ✅ Created issue #156: [Security] SQL Injection in authentication  │
-│ ✅ Created issue #157: [Security] Hardcoded secrets in config      │
-│ ✅ Created issue #158: [Security] XSS prevention needed            │
+│ ✅ Created issue #156: [Security] SQL Injection in authentication   │
+│ ✅ Created issue #157: [Security] Hardcoded secrets in config       │
+│ ✅ Created issue #158: [Security] XSS prevention needed             │
 │                                                                     │
-│ 🏷️  Tagged with: security, high-priority, technical-debt          │
-│ 💰 Cost: $0.15 vs $0.85 (premium AI)                             │
+│ 🏷️  Tagged with: security, high-priority, technical-debt           │
+│ 💰 Cost: $0.15 vs $0.85 (premium AI)                              │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 
@@ -151,7 +151,7 @@ asoba-code
 │                                                                     │
 │ Built for developers who live in the command line                   │
 │ • No switching between tools or web interfaces                      │
-│ • Conversational interface like Claude Code                         │  
+│ • Conversational interface like Claude Code                         │
 │ • Persistent context across sessions                                │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
@@ -207,8 +207,8 @@ Try these in the interactive mode:
 │                                                                     │
 │ ✅ AWS Bedrock: Connected (Claude-4, Llama-4, DeepSeek-R1)        │
 │ ✅ GitHub Integration: Ready                                        │
-│ ✅ Code Analysis: 47 rules loaded                                  │
-│ ⚠️  Custom Models: Not configured (optional 96% savings)          │
+│ ✅ Code Analysis: 47 rules loaded                                   │
+│ ⚠️  Custom Models: Not configured (optional 96% savings)           │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 
@@ -232,7 +232,7 @@ Try these in the interactive mode:
 │ if __name__ == "__main__":                                          │
 │     hello_world()                                                   │
 │                                                                     │
-│ 💰 Cost: $0.02 • ⏱️ Time: 1.1s                                    │
+│ 💰 Cost: $0.02 • ⏱️ Time: 1.1s                                     │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 
