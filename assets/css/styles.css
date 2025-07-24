@@ -10,6 +10,26 @@
   --text-light: #4D4D4D;
   --background-light: #f5f5f5;
   --white: #fff;
+  
+  /* Ubuntu Terminal Color Scheme */
+  --ubuntu-bg: #2E3436;
+  --ubuntu-fg: #B5BBAE;
+  --ubuntu-black: #2E3436;
+  --ubuntu-red: #AE5E5E;
+  --ubuntu-green: #4E9A06;
+  --ubuntu-yellow: #8A7000;
+  --ubuntu-blue: #3465A4;
+  --ubuntu-purple: #75507B;
+  --ubuntu-cyan: #06989A;
+  --ubuntu-white: #B5BBAE;
+  --ubuntu-bright-black: #555753;
+  --ubuntu-bright-red: #EF2929;
+  --ubuntu-bright-green: #8AE234;
+  --ubuntu-bright-yellow: #FCE94F;
+  --ubuntu-bright-blue: #729FCF;
+  --ubuntu-bright-purple: #AD7FA8;
+  --ubuntu-bright-cyan: #34E2E2;
+  --ubuntu-bright-white: #EEEEEC;
 }
 
 /* Reset and base styles */
@@ -259,30 +279,146 @@ strong {
   color: var(--text-dark);
 }
 
+/* Inline code styling */
 code {
-  background-color: #121212;
-  color: #4CAF50; /* Green text */
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  font-family: monospace;
+  background-color: var(--ubuntu-bg);
+  color: var(--ubuntu-fg);
+  padding: 0.2em 0.6em;
+  border: 1px solid var(--ubuntu-bright-black);
+  border-radius: 2px;
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+/* Code block styling with Ubuntu terminal appearance */
 pre {
-  background-color: #121212;
-  color: #4CAF50; /* Green text */
-  padding: 16px;
-  border-radius: 4px;
+  background-color: var(--ubuntu-bg);
+  color: var(--ubuntu-fg);
+  padding: 20px;
+  border: 2px solid var(--ubuntu-bright-black);
+  border-radius: 6px;
   overflow-x: auto;
-  margin: 15px 0;
+  margin: 20px 0;
+  font-family: 'Ubuntu Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+/* Terminal-like header bar for code blocks */
+pre::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--ubuntu-red) 0%,
+    var(--ubuntu-yellow) 33%,
+    var(--ubuntu-green) 66%,
+    var(--ubuntu-blue) 100%
+  );
+  border-radius: 4px 4px 0 0;
 }
 
 pre code {
   background-color: transparent;
   padding: 0;
+  border: none;
   border-radius: 0;
   display: block;
   overflow-x: auto;
-  line-height: 1.45;
+  line-height: 1.5;
+  color: inherit;
+  font-size: inherit;
+  box-shadow: none;
+}
+
+/* Syntax highlighting for common elements */
+pre code .comment {
+  color: var(--ubuntu-bright-black);
+  font-style: italic;
+}
+
+pre code .string {
+  color: var(--ubuntu-bright-green);
+}
+
+pre code .number {
+  color: var(--ubuntu-bright-cyan);
+}
+
+pre code .keyword {
+  color: var(--ubuntu-bright-blue);
+  font-weight: bold;
+}
+
+pre code .operator {
+  color: var(--ubuntu-bright-yellow);
+}
+
+pre code .function {
+  color: var(--ubuntu-bright-purple);
+}
+
+/* Special styling for bash/shell commands */
+pre code:has(.bash), 
+pre[class*="bash"],
+pre[class*="shell"] {
+  position: relative;
+}
+
+pre code:has(.bash)::before,
+pre[class*="bash"]::before,
+pre[class*="shell"]::before {
+  content: "$ ";
+  color: var(--ubuntu-bright-green);
+  font-weight: bold;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+/* Adjust padding for bash/shell blocks to account for prompt */
+pre[class*="bash"] code,
+pre[class*="shell"] code {
+  padding-left: 30px;
+}
+
+/* Terminal window styling for larger code blocks */
+pre.terminal {
+  background-color: var(--ubuntu-bg);
+  border: 2px solid var(--ubuntu-bright-black);
+  border-radius: 8px;
+  position: relative;
+  padding-top: 35px;
+}
+
+pre.terminal::before {
+  content: "●●●";
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  color: var(--ubuntu-red);
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+pre.terminal::after {
+  content: "Terminal";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--ubuntu-white);
+  font-size: 12px;
+  font-weight: normal;
 }
 
 /* Media Queries for Mobile */
