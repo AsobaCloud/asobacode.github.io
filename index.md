@@ -1,5 +1,5 @@
 ---
-title: "AsobaCode CLI"
+title: "Getting Started"
 layout: default
 nav_order: 0
 ---

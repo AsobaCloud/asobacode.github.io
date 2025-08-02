@@ -1,198 +1,61 @@
 ---
-title: "Command Reference"
+title: "Commands"
 layout: default
-nav_order: 3
+nav_order: 2
 ---
 
-# Command Reference
+# Interactive Mode Commands
 
-Complete guide to all AsobaCode CLI commands.
-
----
-
-## Basic Commands
-
-### **`asoba-code ask`** {#natural-language}
-The main command for all AI-powered tasks. Use natural language to describe what you want.
-
-```bash
-asoba-code ask "your request here"
-```
-
-**Examples:**
-```bash
-# Infrastructure
-asoba-code ask "create terraform for a web application with database"
-
-# Code analysis
-asoba-code ask "scan this code for security vulnerabilities"
-
-# GitHub integration
-asoba-code ask "create GitHub issues for the problems you found"
-```
-
-### **`asoba-code status`** {#system-status}
-Check system health and configuration.
-
-```bash
-asoba-code status
-```
-
-Shows:
-- AI provider status
-- Cost optimization status
-- GitHub integration status
-- System configuration
-
-### **`asoba-code --help`** {#project-init}
-Display available commands and options.
-
-```bash
-asoba-code --help
-```
+Complete reference for all `/` commands available in AsobaCode interactive mode.
 
 ---
 
-## Infrastructure Commands {#infrastructure-generation}
+## Getting Started
 
-### Generate Terraform
+Launch AsobaCode interactive mode:
+
 ```bash
-# Simple web app
-asoba-code ask "create terraform for web app with RDS database"
-
-# Production setup
-asoba-code ask "terraform for highly available web application with auto-scaling, load balancer, and monitoring on AWS"
-
-# Multi-cloud
-asoba-code ask "create terraform for AWS and GCP deployment with traffic routing"
+asoba-code
 ```
 
-### Generate Kubernetes {#container-orchestration}
-```bash
-# Basic deployment
-asoba-code ask "create kubernetes manifests for my web application"
+You'll see the interactive prompt:
 
-# Microservices
-asoba-code ask "generate k8s configs for microservices with service mesh and monitoring"
-
-# Production ready
-asoba-code ask "kubernetes deployment with auto-scaling, health checks, and security policies"
+```
+🤖 | 
 ```
 
-### Generate Docker
-```bash
-# Simple Dockerfile
-asoba-code ask "create dockerfile for Node.js application"
-
-# Multi-stage build
-asoba-code ask "dockerfile with multi-stage build for production deployment"
-
-# Docker Compose
-asoba-code ask "docker-compose for web app with database and redis"
-```
+All commands start with `/` and can be typed directly at this prompt.
 
 ---
 
-## Code Analysis Commands
+## 📤 Upload Commands
 
-### Security Analysis {#security-scanning}
-```bash
-# Basic security scan
-asoba-code ask "scan this codebase for security vulnerabilities"
+### `/upload-inverter upload`
 
-# Detailed security review
-asoba-code ask "perform comprehensive security audit with threat modeling"
+Upload data files for processing and model training.
 
-# Dependency scanning
-asoba-code ask "check dependencies for known vulnerabilities"
-```
-
-### Technical Debt Analysis {#technical-debt}
-```bash
-# Code quality analysis
-asoba-code ask "analyze code quality and identify technical debt"
-
-# Performance review
-asoba-code ask "review code for performance bottlenecks and optimization opportunities"
-
-# Architecture analysis
-asoba-code ask "analyze system architecture and suggest improvements"
-```
-
-### Code Review {#performance-analysis}
-```bash
-# General code review
-asoba-code ask "review this code and suggest improvements"
-
-# Best practices check
-asoba-code ask "check if code follows best practices and industry standards"
-
-# Refactoring suggestions
-asoba-code ask "identify refactoring opportunities in this codebase"
-```
-
----
-
-## GitHub Integration Commands
-
-### Issue Management {#issue-management}
-```bash
-# Create issues from analysis
-asoba-code ask "create GitHub issues for all the problems you found"
-
-# Analyze existing issues
-asoba-code ask "analyze open GitHub issues and prioritize them"
-
-# Sprint planning
-asoba-code ask "create sprint plan based on GitHub issues"
-```
-
-### Pull Request Analysis {#integration-patterns}
-```bash
-# PR review
-asoba-code ask "review the latest pull request"
-
-# PR analysis with suggestions
-asoba-code ask "analyze PR #123 and suggest improvements"
-
-# Compare branches
-asoba-code ask "compare feature branch with main and highlight changes"
-```
-
-### Repository Management {#repository-analysis}
-```bash
-# Repository overview
-asoba-code ask "analyze this repository structure and health"
-
-# Contribution analysis
-asoba-code ask "analyze team contributions and code patterns"
-
-# Documentation review
-asoba-code ask "review documentation and suggest improvements"
-```
-
----
-
-## Agent Integration Commands
-
-### **`/upload-inverter`** {#upload-inverter}
-Upload data files and monitor processing pipeline through to model training completion.
-
-**Upload Data:**
 ```bash
 /upload-inverter upload CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER FILE_PATH REGION CLIENT_ID
 ```
 
-**Parameters:**
-- `CUSTOMER_ID`: Unique customer identifier
-- `LOCATION`: Geographic location (e.g., "Cape Town")
-- `MANUFACTURER`: Equipment manufacturer (e.g., "SolarEdge", "LuxPower")
-- `SERIAL_NUMBER`: Device serial number
-- `FILE_PATH`: Path to CSV data file
-- `REGION`: AWS region (e.g., "af-south-1")
-- `CLIENT_ID`: Client identifier for multi-tenant support
+**Example:**
+```bash
+/upload-inverter upload SOLAR001 "Cape Town" "SolarEdge" SE12345 /data/inverter.csv af-south-1 client123
+```
 
-**Check Status:**
+**Parameters:**
+- `CUSTOMER_ID` - Unique customer identifier
+- `LOCATION` - Installation location (quoted if contains spaces)
+- `MANUFACTURER` - Equipment manufacturer name
+- `SERIAL_NUMBER` - Equipment serial number
+- `FILE_PATH` - Path to CSV data file
+- `REGION` - AWS region (e.g., af-south-1)
+- `CLIENT_ID` - Client identifier
+
+### `/upload-inverter status`
+
+Check upload and training status.
+
 ```bash
 # Check specific upload
 /upload-inverter status UPLOAD_ID
@@ -203,213 +66,173 @@ Upload data files and monitor processing pipeline through to model training comp
 
 **Example:**
 ```bash
-# Upload inverter data
-/upload-inverter upload SOLAR001 "Cape Town" "SolarEdge" SE12345 /data/inverter.csv af-south-1 client123
-
-# Monitor processing
 /upload-inverter status SOLAR001_SE12345_1754151842
 ```
 
-### **`/forecast-inverter`** {#forecast-inverter}
-Generate and retrieve forecasts using trained models. (🚧 Currently mock implementation)
+**Status Display:**
+```
+⚙️ Upload Status: PROCESSING
+📋 Upload ID: SOLAR001_SE12345_1754151842
+👤 Customer: SOLAR001
+📍 Current Stage: trainForecaster
+⏱️  Duration: 0:15:23
 
-**Start Forecast Generation:**
+Pipeline Progress:
+✅ Upload         → Completed (0:00:45)
+✅ Ingestion      → Completed (0:02:15)
+✅ Interpolation  → Completed (0:08:30)
+🔄 Training       → In Progress (0:15:23)
+```
+
+---
+
+## 📈 Forecast Commands
+
+### `/forecast-inverter start`
+
+Generate new forecasts for trained models.
+
 ```bash
-/forecast-inverter start CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER REGION FORECAST_TYPE HORIZON_DAYS FREQUENCY
+/forecast-inverter start CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER REGION FORECAST_TYPE DAYS FREQUENCY
+```
+
+**Example:**
+```bash
+/forecast-inverter start SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 P50 7 daily
 ```
 
 **Parameters:**
-- `FORECAST_TYPE`: Forecast type ("P50", "P90")
-- `HORIZON_DAYS`: Number of days to forecast (1-30)
-- `FREQUENCY`: Forecast frequency ("daily", "hourly")
+- `CUSTOMER_ID` - Customer identifier (must match trained model)
+- `LOCATION` - Installation location
+- `MANUFACTURER` - Equipment manufacturer
+- `SERIAL_NUMBER` - Equipment serial number
+- `REGION` - AWS region
+- `FORECAST_TYPE` - P50 or P90 forecast type
+- `DAYS` - Number of days to forecast
+- `FREQUENCY` - daily or hourly
 
-**Retrieve Forecast Results:**
+### `/forecast-inverter get`
+
+Download generated forecast results.
+
 ```bash
-/forecast-inverter get CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER REGION OUTPUT_DIR FORECAST_TYPE
+/forecast-inverter get CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER REGION OUTPUT_PATH FORECAST_TYPE
 ```
 
-**Check Status:**
+**Example:**
+```bash
+/forecast-inverter get SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 /tmp/forecasts P50
+```
+
+### `/forecast-inverter status`
+
+Check forecast generation status.
+
 ```bash
 # Check specific forecast
-/forecast-inverter status REQUEST_ID
+/forecast-inverter status FORECAST_ID
 
 # List all recent forecasts
 /forecast-inverter status
 ```
 
-**Example:**
-```bash
-# Generate 7-day P50 forecast
-/forecast-inverter start SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 P50 7 daily
-
-# Get results
-/forecast-inverter get SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 /tmp/forecasts P50
-
-# Check status
-/forecast-inverter status forecast_SOLAR001_SE12345_P50_1754151842
-```
-
-**Note:** Forecast endpoints are placeholder only. Upload agent uses real Ona Power Tools APIs.
-
 ---
 
-## Advanced Commands
+## 🔄 Workflow Example
 
-### Multi-Step Workflows {#workflow-automation}
+Complete workflow from data upload to forecast generation:
+
+### 1. Upload Training Data
 ```bash
-# Complete infrastructure deployment
-asoba-code ask "deploy microservices architecture with monitoring, logging, security, and CI/CD pipeline"
-
-# End-to-end security review
-asoba-code ask "perform security audit, create findings report, and generate remediation plan"
-
-# Code quality improvement
-asoba-code ask "analyze technical debt, create improvement plan, and generate GitHub issues"
+🤖 | /upload-inverter upload SOLAR001 "Cape Town" "SolarEdge" SE12345 /data/solar_data.csv af-south-1 client123
 ```
 
-### Cost Optimization {#batch-operations}
+### 2. Monitor Training Progress
 ```bash
-# Infrastructure cost analysis
-asoba-code ask "analyze AWS infrastructure costs and suggest optimizations"
-
-# Resource optimization
-asoba-code ask "review resource utilization and recommend rightsizing"
-
-# Cost monitoring setup
-asoba-code ask "create cost monitoring and alerting for AWS resources"
+🤖 | /upload-inverter status SOLAR001_SE12345_1754151842
 ```
 
-### Compliance & Governance {#compliance-automation}
+Wait for training to complete (status shows "✅ Training → Completed").
+
+### 3. Generate Forecast
 ```bash
-# Compliance check
-asoba-code ask "review infrastructure for SOC2 compliance requirements"
+🤖 | /forecast-inverter start SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 P50 7 daily
+```
 
-# Security governance
-asoba-code ask "implement security governance policies and monitoring"
-
-# Audit preparation
-asoba-code ask "prepare compliance audit documentation and evidence"
+### 4. Download Results
+```bash
+🤖 | /forecast-inverter get SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 /tmp/forecasts P50
 ```
 
 ---
 
-## Configuration Commands {#configuration-commands}
+## 💡 Tips & Best Practices
 
-### Cost Optimization Setup {#usage-tracking}
-```bash
-# Enable custom models
-export AI_PROVIDER_STRATEGY="cost_optimized"
-export MISTRAL_STATUS_URL="http://your-server:8000/status"
+### File Requirements
+- **CSV format** with timestamp and generation columns
+- **Consistent naming** for customer IDs and serial numbers
+- **Valid file paths** accessible from current directory
 
-# Verify setup
-asoba-code status
-```
+### Monitoring
+- Use `status` commands regularly to track progress
+- Training typically takes 10-30 minutes depending on data size
+- Forecast generation is usually quick (1-2 minutes)
 
-### GitHub Integration Setup
-```bash
-# Set GitHub token
-export GITHUB_TOKEN=your_personal_access_token
+### Error Handling
+- Commands validate parameters before execution
+- Clear error messages guide you to correct issues
+- Use `status` to check for detailed error information
 
-# Test integration
-asoba-code ask "list open issues in this repository"
-```
-
-### AWS Configuration {#environment-setup}
-```bash
-# Use existing AWS CLI configuration
-aws configure
-
-# Or set environment variables
-export AWS_ACCESS_KEY_ID=your_key
-export AWS_SECRET_ACCESS_KEY=your_secret
-export AWS_DEFAULT_REGION=us-east-1
-```
+### Regional Considerations
+- Use `af-south-1` for South African deployments
+- Ensure AWS credentials are configured for the specified region
+- Data processing occurs in the specified region
 
 ---
 
-## Command Patterns
+## 🔧 Status Indicators
 
-### Best Practices for Commands
+| Icon | Stage | Description |
+|------|--------|-------------|
+| ⏳ | Pending | Waiting to start |
+| 🔄 | Processing | Currently running |
+| ✅ | Completed | Successfully finished |
+| ❌ | Failed | Error occurred |
+| ⚠️ | Warning | Completed with warnings |
 
-**✅ Good Commands (Clear and Specific)**
-```bash
-asoba-code ask "create terraform for web application with PostgreSQL database and Redis cache"
-asoba-code ask "scan Python code for SQL injection vulnerabilities"
-asoba-code ask "review latest commit for code quality issues"
-```
+### Pipeline Stages
 
-**❌ Avoid Vague Commands**
-```bash
-asoba-code ask "help me"
-asoba-code ask "fix my code"
-asoba-code ask "make it better"
-```
+**Upload Pipeline:**
+1. **Upload** - File transfer to S3
+2. **Ingestion** - Data validation and formatting
+3. **Interpolation** - Gap filling and cleaning
+4. **Training** - ML model training
 
-### Command Structure
-```bash
-asoba-code ask "[action] [target] [context/requirements]"
-
-# Examples:
-asoba-code ask "create terraform for web app with high availability"
-#              ↑      ↑        ↑
-#           action  target   context
-
-asoba-code ask "analyze security vulnerabilities in authentication module"
-#              ↑       ↑                      ↑
-#           action  target                context
-```
+**Forecast Pipeline:**
+1. **Generation** - Creating forecast using trained model
+2. **Processing** - Output formatting and validation
+3. **Storage** - Saving results for download
 
 ---
 
-## Troubleshooting Commands {#troubleshooting}
+## Common Issues
 
-### System Diagnostics
-```bash
-# Check system status
-asoba-code status
+### Upload Fails
+- Check file path exists and is readable
+- Verify CSV format is correct
+- Ensure AWS credentials are configured
 
-# Verbose output
-asoba-code --verbose ask "your command"
+### Training Stuck
+- Large datasets take longer (15-30 minutes)
+- Check CloudWatch logs for detailed progress
+- Contact support if stuck over 1 hour
 
-# Debug mode
-asoba-code --debug ask "your command"
-```
+### Forecast Generation Fails
+- Ensure model training completed successfully
+- Verify customer ID and equipment details match exactly
+- Check forecast parameters are valid
 
-### Common Issues
-```bash
-# Test AI connectivity
-asoba-code ask "hello world test"
-
-# Test GitHub integration
-asoba-code ask "test github connection"
-
-# Test AWS credentials
-asoba-code ask "test aws connection"
-```
-
----
-
-## Output Formats
-
-AsobaCode automatically formats output based on the request type:
-
-- **Code files** → Saved to appropriate files (main.tf, deployment.yaml, etc.)
-- **Analysis reports** → Formatted markdown with actionable recommendations
-- **GitHub integration** → Creates issues, comments, or PRs directly
-- **Status information** → Terminal-friendly formatted output
-
----
-
-## Getting Help
-
-### Built-in Help
-```bash
-asoba-code --help
-asoba-code ask --help
-```
-
-### Support Resources
-- **[Troubleshooting Guide](troubleshooting.html)** - Common issues and solutions
-- **[Custom Models](custom-model-integration.html)** - Advanced cost optimization
-- **Email**: support@asoba.co
-- **Discord**: [Join our community](https://discord.gg/nNV5evcr)
+### Downloads Fail
+- Confirm forecast generation completed
+- Check output directory exists and is writable
+- Verify forecast type matches what was generated

@@ -1,6 +1,7 @@
 ---
+title: "Use Case - Predictive O&M"
 layout: default
-title: O&M Predictive Intelligence
+nav_order: 3
 description: Transform solar O&M costs into strategic asset optimization through AI-powered predictive maintenance
 ---
 
