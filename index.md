@@ -57,7 +57,8 @@ asoba-code
 🤖 **Generate Infrastructure Code** - Terraform, Kubernetes, Docker configs through natural language  
 🔍 **Analyze Code Quality** - Find security issues, technical debt, and optimization opportunities  
 🐙 **Manage GitHub Workflows** - Create issues, analyze PRs, automate project management  
-💰 **Cost Optimization** - Uses custom AI models to reduce infrastructure automation costs by 96%
+💰 **Cost Optimization** - Uses custom AI models to reduce infrastructure automation costs by 96%  
+📤 **Agent Integration** - Single-responsibility agents for API workflows with OODA decision framework
 
 ---
 
@@ -271,6 +272,44 @@ Try these in the interactive mode:
 
 🤖 |
 ```
+
+---
+
+## Agent Integration {#agent-integration}
+
+AsobaCode includes **single-responsibility agents** that integrate with external APIs for data processing workflows:
+
+### Upload Agent (Production Ready)
+```bash
+# Upload data for processing and training
+/upload-inverter upload SOLAR001 "Cape Town" "SolarEdge" SE12345 /data/inverter.csv af-south-1 client123
+
+# Monitor processing status
+/upload-inverter status SOLAR001_SE12345_1754151842
+```
+
+**Features:**
+- ✅ **Real Ona Power Tools API integration**
+- ✅ **S3 upload pipeline with automatic training triggers**
+- ✅ **CloudWatch monitoring for real-time status**
+- ✅ **Beautiful status displays with progress tracking**
+
+### Forecast Agent (Ready for Implementation)
+```bash
+# Generate forecast (currently mock)
+/forecast-inverter start SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 P50 7 daily
+
+# Retrieve results
+/forecast-inverter get SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 /tmp/forecasts P50
+```
+
+**OODA Decision Framework:**
+- **🔍 Observe**: Gather data from APIs and system status
+- **🧭 Orient**: Analyze patterns and create insights  
+- **💡 Decide**: Generate actionable plans
+- **🎯 Act**: Execute with real-time monitoring
+
+[Learn more about Agent Integration →](agent-integration.html)
 
 ---
 

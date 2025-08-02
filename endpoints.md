@@ -173,6 +173,86 @@ asoba-code ask "review documentation and suggest improvements"
 
 ---
 
+## Agent Integration Commands
+
+### **`/upload-inverter`** {#upload-inverter}
+Upload data files and monitor processing pipeline through to model training completion.
+
+**Upload Data:**
+```bash
+/upload-inverter upload CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER FILE_PATH REGION CLIENT_ID
+```
+
+**Parameters:**
+- `CUSTOMER_ID`: Unique customer identifier
+- `LOCATION`: Geographic location (e.g., "Cape Town")
+- `MANUFACTURER`: Equipment manufacturer (e.g., "SolarEdge", "LuxPower")
+- `SERIAL_NUMBER`: Device serial number
+- `FILE_PATH`: Path to CSV data file
+- `REGION`: AWS region (e.g., "af-south-1")
+- `CLIENT_ID`: Client identifier for multi-tenant support
+
+**Check Status:**
+```bash
+# Check specific upload
+/upload-inverter status UPLOAD_ID
+
+# List all recent uploads
+/upload-inverter status
+```
+
+**Example:**
+```bash
+# Upload inverter data
+/upload-inverter upload SOLAR001 "Cape Town" "SolarEdge" SE12345 /data/inverter.csv af-south-1 client123
+
+# Monitor processing
+/upload-inverter status SOLAR001_SE12345_1754151842
+```
+
+### **`/forecast-inverter`** {#forecast-inverter}
+Generate and retrieve forecasts using trained models. (🚧 Currently mock implementation)
+
+**Start Forecast Generation:**
+```bash
+/forecast-inverter start CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER REGION FORECAST_TYPE HORIZON_DAYS FREQUENCY
+```
+
+**Parameters:**
+- `FORECAST_TYPE`: Forecast type ("P50", "P90")
+- `HORIZON_DAYS`: Number of days to forecast (1-30)
+- `FREQUENCY`: Forecast frequency ("daily", "hourly")
+
+**Retrieve Forecast Results:**
+```bash
+/forecast-inverter get CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER REGION OUTPUT_DIR FORECAST_TYPE
+```
+
+**Check Status:**
+```bash
+# Check specific forecast
+/forecast-inverter status REQUEST_ID
+
+# List all recent forecasts
+/forecast-inverter status
+```
+
+**Example:**
+```bash
+# Generate 7-day P50 forecast
+/forecast-inverter start SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 P50 7 daily
+
+# Get results
+/forecast-inverter get SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 /tmp/forecasts P50
+
+# Check status
+/forecast-inverter status forecast_SOLAR001_SE12345_P50_1754151842
+```
+
+**Note:** Forecast endpoints are placeholder only. Upload agent uses real Ona Power Tools APIs.
+
+---
+
 ## Advanced Commands
 
 ### Multi-Step Workflows {#workflow-automation}
