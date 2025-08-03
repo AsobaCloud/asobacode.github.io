@@ -71,62 +71,81 @@ You'll see the interactive prompt:
 
 ---
 
-## Agentic Workflow Overview {#agentic-workflow}
+## Understanding Agents {#agentic-workflow}
 
-Understand the OODA loop: Observe → Orient → Decide → Act
+Learn how agents work in AsobaCode and how to create custom single-use agents.
 
-### The OODA Loop in Operations
+### What Are Agents?
 
-AsobaCode implements the **OODA (Observe-Orient-Decide-Act) loop** for autonomous operations management.
+Agents in AsobaCode are **specialized AI components** that perform specific tasks. Each agent follows the **single responsibility principle** - doing one thing well.
 
-### 1. Observe: Data Ingestion & Normalization
+### Types of Agents
 
-**Data Sources:**
-- Real-time weather station feeds
-- SCADA system integration
-- Equipment performance metrics
-- Maintenance history and costs
-
-**Processing Commands:**
+**1. Built-in Agents:**
 ```bash
-# Weather normalization
-🤖 | /weather-normalize --site SITE001 --period 2024-01-01:2024-01-31
+# Code generation agent
+🤖 | /generate "python function to parse JSON"
 
-# Performance monitoring
-🤖 | /monitor-site --site PORTFOLIO_001 --frequency 15min
+# Documentation agent
+🤖 | /docs "explain AWS Lambda best practices"
+
+# Analysis agent
+🤖 | /analyze "review this terraform module for security issues"
 ```
 
-### 2. Orient: Fault Detection & Diagnostics
-
-**AI-Powered Analysis:**
+**2. Model-Specific Agents:**
 ```bash
-# Automated fault detection
-🤖 | /fault-detection --equipment inverter --threshold 0.85 --site SITE001
-
-# Equipment diagnosis with Mistral models
-🤖 | /model mistral-policy-analysis "analyze equipment failure patterns and economic impact"
+# Use a specific model as an agent
+🤖 | /model claude-3-sonnet "complex reasoning task"
+🤖 | /model mistral-7b "generate infrastructure code"
 ```
 
-### 3. Decide: Economic Analysis & Prioritization
-
-**Financial Optimization:**
+**3. Custom Single-Use Agents:**
 ```bash
-# Energy-at-Risk calculation
-🤖 | /calculate-ear --equipment INV_001 --degradation-rate 0.15 --horizon 30days
-
-# Maintenance optimization
-🤖 | /optimize-dispatch --sites all --constraints weather,crew,parts --objective max_revenue
+# Define your own agent for specific workflows
+🤖 | /agent create data-validator --task "validate CSV format"
+🤖 | /agent create cost-analyzer --task "analyze AWS spending"
 ```
 
-### 4. Act: Work Order Creation & Dispatch
+### Creating Custom Agents
 
-**Automated Actions:**
+**Agent Definition:**
+```yaml
+# custom-agents.yaml
+agents:
+  log-analyzer:
+    description: "Analyzes application logs for errors"
+    model: "claude-3-haiku"
+    system_prompt: "You are a log analysis expert..."
+    
+  api-tester:
+    description: "Tests API endpoints and reports issues"
+    model: "mistral-7b"
+    system_prompt: "You test APIs systematically..."
+```
+
+**Using Custom Agents:**
 ```bash
-# Generate work orders
-🤖 | /create-work-orders --priority high --auto-dispatch enabled
+# Invoke custom agent
+🤖 | /log-analyzer --file app.log --severity error
 
-# Track dispatch performance
-🤖 | /track-dispatch --dashboard portfolio --metrics mttr,cost,recovery
+# Chain agents together
+🤖 | /api-tester --endpoint /users | /log-analyzer
+```
+
+### Agent Orchestration
+
+Agents can work together in workflows:
+
+```bash
+# Sequential execution
+🤖 | /analyze code.py > /generate tests > /validate
+
+# Parallel execution
+🤖 | /parallel --agents "analyzer,linter,security-scan" --target src/
+
+# Conditional execution
+🤖 | /if-error /analyze > /debug > /fix
 ```
 
 ---
@@ -141,20 +160,8 @@ Configure AWS Bedrock and deploy custom fine-tuned models.
 - **Amazon Nova Pro** - Primary model for best availability
 - **Amazon Nova Lite** - Fast fallback option
 
-**Configuration Setup:**
-```yaml
-# File: configs/default.yaml
-ai_models:
-  providers:
-    bedrock:
-      enabled: true
-      region: "us-east-1"
-      default_model: "amazon.nova-pro-v1:0"
-      preferred_models:
-        - "amazon.nova-pro-v1:0"
-        - "amazon.nova-lite-v1:0"
-        - "anthropic.claude-3-5-sonnet-20240620-v1:0"
-```
+**Setup Process:**
+Configure AWS credentials and region for Bedrock access. AsobaCode will automatically detect available models in your region.
 
 ### Custom Fine-Tuned Models
 

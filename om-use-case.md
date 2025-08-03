@@ -139,44 +139,20 @@ Based on the MCP framework's distributed agent capabilities:
 
 ## Technical Implementation Details
 
-### OODA Loop in Action
+### Custom Agent Implementation
 {: .fs-6 }
 
-**1. Observe:** Continuous Data Ingestion
-```bash
-# Real-time monitoring setup
-🤖 | /monitor-site --site PORTFOLIO_001 --frequency 15min --alerts enabled
+AsobaCode enables you to create **custom single-use agents** tailored to your specific O&M workflows through natural language interactions and custom model integration.
 
-# Weather normalization
-🤖 | /weather-normalize --sites all --historical-baseline 3years
-```
+**Agent Workflow Pattern:**
 
-**2. Orient:** AI-Powered Diagnostics  
-```bash
-# Automated fault detection across portfolio
-🤖 | /fault-detection --scope portfolio --threshold 0.90 --alert-priority high
+**Observe Phase:** Data collection and monitoring agents can be created to gather equipment telemetry, weather data, and performance metrics.
 
-# Specific equipment analysis
-🤖 | /diagnose-inverter --inverter-id SMA_SITE_001_INV_12 --pattern-match historical
-```
+**Orient Phase:** Diagnostic agents apply trained models to analyze patterns, classify faults, and identify anomalies in equipment behavior.
 
-**3. Decide:** Economic Optimization
-```bash
-# Energy-at-Risk calculation
-🤖 | /calculate-ear --equipment INV_001 --degradation-rate 0.15 --horizon 30days
+**Decide Phase:** Economic optimization agents calculate financial impact, prioritize maintenance actions, and optimize resource allocation.
 
-# Maintenance optimization
-🤖 | /optimize-dispatch --sites all --constraints weather,crew,parts --objective max_revenue
-```
-
-**4. Act:** Automated Work Orders
-```bash
-# Generate priority-based work orders
-🤖 | /create-work-orders --priority high --auto-dispatch enabled --warranty-optimize true
-
-# Track dispatch performance
-🤖 | /track-dispatch --dashboard portfolio --metrics mttr,cost,recovery
-```
+**Act Phase:** Execution agents generate work orders, coordinate with existing CMMS systems, and track performance metrics.
 
 ### Custom Model Integration
 {: .fs-6 }
