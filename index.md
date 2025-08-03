@@ -1,398 +1,64 @@
 ---
-title: "Getting Started"
+title: "Home"
 layout: default
-nav_order: 0
+nav_order: 1
 ---
 
 # AsobaCode CLI
+{: .fs-9 }
 
 **AI-powered infrastructure automation for your terminal.**
+{: .fs-6 .fw-300 }
 
-Cut infrastructure costs by 96% while automating DevOps tasks with natural language commands.
+Transform reactive operations into proactive intelligence with industry-specific AI models.
+{: .fs-5 .fw-300 }
 
----
-
-## Quick Start {#quick-start}
-
-Get up and running in 3 steps:
-
-```bash
-# 1. Clone and install
-git clone https://github.com/AsobaCloud/asoba-code.git
-cd asoba-code
-pip install -e .
-
-# 2. Configure AWS
-aws configure
-
-# 3. Launch interactive mode
-asoba-code
-```
-
-**Actual AsobaCode startup:**
-
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│ 🤖 AsobaCode AI Assistant                                           │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ 🚀 Welcome to AsobaCode Interactive Mode!                          │
-│                                                                     │
-│ Type your questions or commands naturally:                          │
-│ • 'generate a python hello world function'                         │
-│ • 'show status' or 'list servers'                                  │
-│ • 'help' for assistance                                             │
-│                                                                     │
-│ Use 'exit' or Ctrl+C to quit                                       │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-
-🤖 |
-```
+[Get Started Now](#quick-launch-guide){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[View Demo](https://www.youtube.com/watch?v=demo){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 
-## What AsobaCode Does {#what-is-asobacode}
+## Quick Launch Guide
 
-🤖 **Generate Infrastructure Code** - Terraform, Kubernetes, Docker configs through natural language  
-🔍 **Analyze Code Quality** - Find security issues, technical debt, and optimization opportunities  
-🐙 **Manage GitHub Workflows** - Create issues, analyze PRs, automate project management  
-💰 **Cost Optimization** - Uses custom AI models to reduce infrastructure automation costs by 96%  
-📤 **Agent Integration** - Single-responsibility agents for API workflows with OODA decision framework
+Choose your path based on your role:
 
----
+### 🛠️ [Developers](developers.html)
+**5-minute technical setup**  
+AWS credentials, installation, immediate CLI validation
 
-## Real-World Examples {#core-capabilities}
-
-### Infrastructure Generation
-```
-🤖 | create terraform for web app with database
-
-┌─────────────────────────────────────────────────────────────────────┐
-│ 🤖 AI Models Server                                                 │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ 🔄 Routing to cost-optimized Mistral provider...                   │
-│ 🏗️  Generating Terraform configuration...                          │
-│                                                                     │
-│ ✅ Generated: main.tf (247 lines)                                   │
-│ ✅ Generated: variables.tf (18 lines)                               │
-│ ✅ Generated: outputs.tf (12 lines)                                 │
-│                                                                     │
-│ 💰 Cost: $0.03 (vs $1.20 with Claude-4)                           │
-│ ⏱️  Time: 3.2 seconds                                               │
-│                                                                     │
-│ Files saved to ./terraform/                                         │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-
-🤖 |
-```
-
-### Security Analysis  
-```
-🤖 | scan this codebase for security vulnerabilities
-
-┌─────────────────────────────────────────────────────────────────────┐
-│ 🔍 Code Analysis Server                                             │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ 📁 Scanning 47 Python files, 12 JS files...                        │
-│                                                                     │
-│ ⚠️  Found 8 security issues:                                       │
-│   ├── SQL Injection risk in auth/login.py:45                       │
-│   ├── Hardcoded API key in config/settings.py:12                   │
-│   ├── XSS vulnerability in templates/user.html:23                  │
-│   └── ... 5 more issues                                            │
-│                                                                     │
-│ 📊 Security Score: 6.2/10 (Medium Risk)                            │
-│ 💰 Cost: $0.75 (analysis) vs $3.20 (premium AI)                   │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-
-🤖 |
-```
-
-### GitHub Integration
-```
-🤖 | create GitHub issues for security problems found
-
-┌─────────────────────────────────────────────────────────────────────┐
-│ 🐙 GitHub Integration Server                                        │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ 🔄 Creating prioritized issues...                                   │
-│                                                                     │
-│ ✅ Created issue #156: [Security] SQL Injection in authentication   │
-│ ✅ Created issue #157: [Security] Hardcoded secrets in config       │
-│ ✅ Created issue #158: [Security] XSS prevention needed             │
-│                                                                     │
-│ 🏷️  Tagged with: security, high-priority, technical-debt           │
-│ 💰 Cost: $0.15 vs $0.85 (premium AI)                              │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-
-🤖 |
-```
+### 💼 [Business Users](business-users.html)  
+**Understanding the value proposition**  
+Why AsobaCode, industry-specific AI advantages, ROI examples
 
 ---
 
-## Why DevOps Teams Choose AsobaCode {#key-use-cases}
+## Interactive Exploration
 
-### **Massive Cost Savings**
-- **Traditional AI tools**: $10/day for infrastructure tasks
-- **AsobaCode custom models**: $0.40/day (96% cheaper)
-- **Annual savings**: ~$3,500 per engineer
+Learn how to use AsobaCode effectively:
 
-### **Terminal Native Interface** {#architecture}
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│ 🤖 AsobaCode AI Assistant                                           │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ Built for developers who live in the command line                   │
-│ • No switching between tools or web interfaces                      │
-│ • Conversational interface like Claude Code                         │
-│ • Persistent context across sessions                                │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
+### 📝 [Using `/` Commands](using-commands.html)
+Interactive CLI commands with examples
 
-### **Works Out of the Box**
-- AWS Bedrock integration (Claude-4, Llama-4, DeepSeek-R1)
-- Optional custom models for 96% cost reduction
-- Automatic provider routing and fallback
+### 🔄 [Agentic Workflow Overview](agentic-workflow.html)  
+OODA loop: Observe → Orient → Decide → Act
+
+### 🤖 [Loading Bedrock & Custom Models](loading-models.html)
+AWS Bedrock configuration and custom fine-tuned models
 
 ---
 
-## Installation {#getting-started}
+## Example Use Case
 
-### Prerequisites
-- Python 3.10+
-- Git
-- AWS account (for AI models)
-
-### Install AsobaCode
-```bash
-git clone https://github.com/AsobaCloud/asoba-code.git
-cd asoba-code
-pip install -e .
-```
-
-### Configure AWS Credentials
-```bash
-aws configure
-# Enter: Access Key, Secret Key, Region (us-east-1)
-```
-
-### Launch AsobaCode
-```bash
-asoba-code
-```
-
-You'll see the interactive welcome screen shown above, ready to accept natural language commands.
+### ⚡ [O&M Operations](om-use-case.html)
+**Real-world solar operations & maintenance**  
+See how AsobaCode transforms reactive maintenance into proactive intelligence
 
 ---
 
-## Your First Commands {#getting-started-steps}
+## Ready to Get Started?
 
-Try these in the interactive mode:
+1. **Technical users**: Start with [5-minute Developer Setup](developers.html)
+2. **Business users**: Learn [Why AsobaCode](business-users.html) first
+3. **See it in action**: Explore the [O&M Use Case](om-use-case.html)
 
-### Check System Status
-```
-🤖 | show status
-
-┌─────────────────────────────────────────────────────────────────────┐
-│ 📊 AsobaCode System Status                                          │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ ✅ AWS Bedrock: Connected (Claude-4, Llama-4, DeepSeek-R1)        │
-│ ✅ GitHub Integration: Ready                                        │
-│ ✅ Code Analysis: 47 rules loaded                                   │
-│ ⚠️  Custom Models: Not configured (optional 96% savings)           │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-
-🤖 |
-```
-
-### Generate Code
-```
-🤖 | generate a python hello world function
-
-┌─────────────────────────────────────────────────────────────────────┐
-│ 🤖 AI Models Server                                                 │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ def hello_world():                                                   │
-│     """A simple hello world function."""                           │
-│     print("Hello, World!")                                         │
-│     return "Hello, World!"                                         │
-│                                                                     │
-│ # Usage                                                             │
-│ if __name__ == "__main__":                                          │
-│     hello_world()                                                   │
-│                                                                     │
-│ 💰 Cost: $0.02 • ⏱️ Time: 1.1s                                     │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-
-🤖 |
-```
-
-### Get Help
-```
-🤖 | help
-
-┌─────────────────────────────────────────────────────────────────────┐
-│ 🚀 AsobaCode Commands                                               │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ Infrastructure:                                                     │
-│ • 'create terraform for web app'                                   │
-│ • 'generate kubernetes deployment'                                  │
-│ • 'docker configuration for python app'                            │
-│                                                                     │
-│ Code Analysis:                                                      │
-│ • 'analyze this code for bugs'                                     │
-│ • 'scan for security vulnerabilities'                              │
-│ • 'check code quality'                                             │
-│                                                                     │
-│ GitHub:                                                             │
-│ • 'create issues for problems found'                               │
-│ • 'analyze latest pull request'                                    │
-│ • 'review repository structure'                                    │
-│                                                                     │
-│ System:                                                             │
-│ • 'show status' - system health                                    │
-│ • 'list servers' - MCP server status                              │
-│ • 'exit' - quit AsobaCode                                          │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-
-🤖 |
-```
-
----
-
-## Agent Integration {#agent-integration}
-
-AsobaCode includes **single-responsibility agents** that integrate with external APIs for data processing workflows:
-
-### Upload Agent (Production Ready)
-```bash
-# Upload data for processing and training
-/upload-inverter upload SOLAR001 "Cape Town" "SolarEdge" SE12345 /data/inverter.csv af-south-1 client123
-
-# Monitor processing status
-/upload-inverter status SOLAR001_SE12345_1754151842
-```
-
-**Features:**
-- ✅ **Real Ona Power Tools API integration**
-- ✅ **S3 upload pipeline with automatic training triggers**
-- ✅ **CloudWatch monitoring for real-time status**
-- ✅ **Beautiful status displays with progress tracking**
-
-### Forecast Agent (Ready for Implementation)
-```bash
-# Generate forecast (currently mock)
-/forecast-inverter start SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 P50 7 daily
-
-# Retrieve results
-/forecast-inverter get SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 /tmp/forecasts P50
-```
-
-**OODA Decision Framework:**
-- **🔍 Observe**: Gather data from APIs and system status
-- **🧭 Orient**: Analyze patterns and create insights  
-- **💡 Decide**: Generate actionable plans
-- **🎯 Act**: Execute with real-time monitoring
-
-[Learn more about Agent Integration →](agent-integration.html)
-
----
-
-## Optional: Enable 96% Cost Savings {#optional-enable-96-cost-savings}
-
-Connect custom AI models for maximum cost reduction:
-
-```bash
-# Configure cost-optimized routing
-export AI_PROVIDER_STRATEGY="cost_optimized"
-export MISTRAL_STATUS_URL="http://your-server:8000/status"
-
-# Launch AsobaCode
-asoba-code
-```
-
-**With cost optimization:**
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│ 💰 Cost Optimization Active                                        │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ ✅ Infrastructure tasks → Custom Mistral-7B (96% cheaper)          │
-│ ✅ Complex analysis → Premium Bedrock models (quality)             │
-│ ✅ Automatic fallback → Ensures reliability                        │
-│                                                                     │
-│ 📊 Estimated monthly savings: $498 (96% reduction)                 │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## Next Steps {#next-steps}
-
-- **[Learn Core Concepts](sdk.html)** - Understand how AsobaCode works
-- **[Command Reference](endpoints.html)** - See all available commands
-- **[Custom Models Setup](custom-model-integration.html)** - Maximum cost savings (advanced)
-- **[Team Integration](mcp-server-development.html)** - Scale across your team
-
----
-
-## Get Help
-
-<div class="page-end-section">
-  <div class="end-column">
-    <div class="support-cta">
-      <h3>Contact Support</h3>
-      <p>Questions? We're here to help.</p>
-      <a href="mailto:support@asoba.co" class="support-button">Email Support</a>
-      <a href="https://discord.gg/nNV5evcr" target="_blank" class="support-button" style="margin-top: 10px; display: inline-block;">
-        <svg width="16" height="16" style="margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-        </svg>
-        Join Discord
-      </a>
-    </div>
-  </div>
-  
-  <div class="end-column">
-    <div id="mc_embed_shell">
-      <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-      <style type="text/css">
-        #mc_embed_signup{background:#fff; false;clear:left; font:14px Helvetica,Arial,sans-serif; width: 100%;}
-      </style>
-      <div id="mc_embed_signup">
-        <form action="https://asoba.us10.list-manage.com/subscribe/post?u=459ea321d7831d7b9f5fac70f&amp;id=e03a70f492&amp;f_id=000a9ae3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-          <div id="mc_embed_signup_scroll">
-            <h3>Subscribe to Updates</h3>
-            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-            <div class="mc-field-group"><label for="mce-FNAME">First Name </label><input type="text" name="FNAME" class=" text" id="mce-FNAME" value=""></div>
-            <div class="mc-field-group"><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" value="" required=""></div>
-            <div id="mce-responses" class="clear">
-              <div class="response" id="mce-error-response" style="display: none;"></div>
-              <div class="response" id="mce-success-response" style="display: none;"></div>
-            </div>
-            <div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_459ea321d7831d7b9f5fac70f_e03a70f492" tabindex="-1" value=""></div>
-            <div class="clear"><input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe"></div>
-          </div>
-        </form>
-      </div>
-      <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-      <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';fnames[7]='MMERGE7';ftypes[7]='url';fnames[8]='MMERGE8';ftypes[8]='text';fnames[9]='MMERGE9';ftypes[9]='text';fnames[10]='MMERGE10';ftypes[10]='text';fnames[11]='MMERGE11';ftypes[11]='url';fnames[12]='MMERGE12';ftypes[12]='text';fnames[13]='MMERGE13';ftypes[13]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-    </div>
-  </div>
-</div>
+[Talk to Sales](mailto:sales@asoba.co?subject=AsobaCode%20Enterprise%20Demo){: .btn .btn-outline .fs-5 }
