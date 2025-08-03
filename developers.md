@@ -1,7 +1,8 @@
 ---
 title: "Developers (5-minute setup)"
 layout: default
-nav_order: 2
+parent: "Quick Launch Guide"
+nav_order: 1
 ---
 
 # Developers: 5-Minute Setup

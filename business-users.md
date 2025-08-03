@@ -1,7 +1,8 @@
 ---
 title: "Business Users"
 layout: default
-nav_order: 3
+parent: "Quick Launch Guide"
+nav_order: 2
 ---
 
 # Business Users: Why AsobaCode
