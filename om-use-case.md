@@ -54,35 +54,48 @@ Every maintenance action includes real-time **Energy-at-Risk (EAR)** calculation
 
 ---
 
-## Real-World Implementation: 500MW Solar Portfolio
+## The MCP Framework Advantage
 
-### Before AsobaCode
+### How Asoba's Architecture Enables O&M Transformation
 {: .fs-6 }
 
-**📊 Baseline Performance (Annual):**
-- **Equipment Failures:** 15-20 major failures per month
-- **MTTR:** 8-12 hours average  
-- **Unplanned Downtime:** 8-12 hours/month per site
-- **Diagnostic Time:** 2-4 hours per incident
-- **Warranty Recovery:** 30-40% of eligible claims
-- **Operational Costs:** $100K/month across portfolio
+**🏗️ Single-Responsibility Agent Architecture:**
+The Model Context Protocol (MCP) enables specialized agents that each handle one specific task:
 
-### After AsobaCode Implementation  
+**Observe Phase Agents:**
+- **SCADA Agent**: Pulls inverter telemetry data at configured intervals
+- **Weather Agent**: Fetches irradiance and temperature data
+- **Interpolation Agent**: Fills data gaps and standardizes time series
+
+**Orient Phase Agents:**
+- **Baseline Agent**: Establishes expected performance patterns
+- **Anomaly Agent**: Detects deviations from normal behavior
+- **Diagnostic Agent**: Classifies fault types using trained ML models
+
+**Decide Phase Agents:**
+- **EAR Calculator**: Computes Energy-at-Risk for each fault
+- **Cost Estimator**: Calculates dispatch and repair costs
+- **Optimizer Agent**: Determines optimal maintenance timing
+
+**Act Phase Agents:**
+- **Work Order Agent**: Generates CMMS-compatible work orders
+- **Dispatch Agent**: Schedules crews based on availability
+- **Documentation Agent**: Captures compliance and warranty data
+
+### Expected Performance Improvements
 {: .fs-6 }
 
-**📈 Transformed Performance (Annual):**
-- **Equipment Failures:** 3-5 failures per month (most prevented)
-- **MTTR:** 2-4 hours average
-- **Unplanned Downtime:** 2-3 hours/month per site  
-- **Diagnostic Time:** 15-30 minutes per incident
-- **Warranty Recovery:** 85-95% of eligible claims
-- **Operational Costs:** $40-60K/month across portfolio
+Based on the MCP framework's distributed agent capabilities:
 
-**🎯 Key Improvements:**
-- **75% reduction** in unplanned downtime
-- **85% faster** diagnostic time
-- **140% improvement** in warranty recovery
-- **40-60% reduction** in operational costs
+**⚡ Response Time Improvements:**
+- **Detection latency**: From 4-8 hours to <5 minutes
+- **Diagnostic accuracy**: From 45% to 85% fault classification
+- **MTTR reduction**: 25-40% improvement from baseline
+
+**💰 Financial Impact Projections (per 10MW):**
+- **Revenue protection**: $180K-320K annually 
+- **Operational savings**: $85K-140K through optimized dispatching
+- **Risk mitigation**: $45K-75K from warranty and insurance optimization
 
 ---
 
@@ -180,20 +193,20 @@ Every maintenance action includes real-time **Energy-at-Risk (EAR)** calculation
 
 ---
 
-## Case Study: String Performance Issue
+## Illustrative Example: String Performance Issue
 
-### Scenario
+### Example Scenario
 {: .fs-6 }
-**Site:** 50MW solar facility  
-**Issue:** String 47 showing 18% underperformance  
+**Site:** 1.5MW solar facility  
+**Issue:** String 3 showing 18% underperformance  
 **Traditional Response:** Wait for quarterly inspection, reactive replacement
 
-### AsobaCode Response (Real Example)
+### How AsobaCode Would Respond
 {: .fs-6 }
 
 **Day 1 - Observe:**
 ```bash
-🤖 | Monitor detects String 47 underperforming by 18%
+🤖 | Monitor detects String 3 underperforming by 18%
 🤖 | Weather data confirms clear skies (no irradiance issue)  
 🤖 | Historical analysis shows gradual decline over 3 weeks
 ```
@@ -220,11 +233,11 @@ Every maintenance action includes real-time **Energy-at-Risk (EAR)** calculation
 🤖 | Repair completed in 2 hours vs. 6-hour reactive response
 ```
 
-**Result:**
-- **$28,800 annual energy recovery**
-- **Warranty claim approved** ($1,200 parts cost recovered)
-- **2-hour repair time** vs. 6-hour traditional response
-- **Zero unplanned downtime** (scheduled maintenance window)
+**Projected Results:**
+- **Energy recovery** through faster fault resolution
+- **Warranty claim optimization** through proper documentation
+- **Reduced repair time** vs. traditional reactive response
+- **Planned maintenance** vs. emergency downtime
 
 ---
 
