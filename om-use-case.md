@@ -7,7 +7,7 @@ nav_order: 7
 # Example O&M Use Case
 {: .fs-8 }
 
-Real-world solar operations & maintenance transformation with AsobaCode.
+Real-world solar operations & maintenance transformation with Ona Terminal.
 {: .fs-6 .fw-300 }
 
 ---
@@ -33,11 +33,11 @@ Solar asset managers face a critical challenge: **maintenance costs are unpredic
 
 ---
 
-## The AsobaCode Solution: Proactive Intelligence
+## The Ona Terminal Solution: Proactive Intelligence
 
 Transform your O&M operation into a **predictive intelligence system** that prevents faults before they occur and optimizes every maintenance decision financially.
 
-### How AsobaCode Transforms O&M
+### How Ona Terminal Transforms O&M
 {: .fs-6 }
 
 **🧠 Learn from Historical Data:**
@@ -104,7 +104,7 @@ Based on the MCP framework's distributed agent capabilities:
 ### Financial Metrics (500MW Portfolio)
 {: .fs-6 }
 
-| Metric | Before AsobaCode | After AsobaCode | Annual Savings |
+| Metric | Before Ona Terminal | After Ona Terminal | Annual Savings |
 |--------|------------------|-----------------|----------------|
 | **Lost Revenue** | $4.5M | $1.2M | **$3.3M** |
 | **Emergency Dispatch** | $480K | $120K | **$360K** |
@@ -142,7 +142,7 @@ Based on the MCP framework's distributed agent capabilities:
 ### Custom Agent Implementation
 {: .fs-6 }
 
-AsobaCode enables you to create **custom single-use agents** tailored to your specific O&M workflows through natural language interactions and custom model integration.
+Ona Terminal enables you to create **custom single-use agents** tailored to your specific O&M workflows through natural language interactions and custom model integration.
 
 **Agent Workflow Pattern:**
 
@@ -177,7 +177,7 @@ AsobaCode enables you to create **custom single-use agents** tailored to your sp
 **Issue:** String 3 showing 18% underperformance  
 **Traditional Response:** Wait for quarterly inspection, reactive replacement
 
-### How AsobaCode Would Respond
+### How Ona Terminal Would Respond
 {: .fs-6 }
 
 **Day 1 - Observe:**
@@ -285,7 +285,7 @@ AsobaCode enables you to create **custom single-use agents** tailored to your sp
 
 ---
 
-[Talk to Sales](mailto:sales@asoba.co?subject=AsobaCode%20O&M%20Solution){: .btn .btn-primary .fs-5 .mr-4 }
+[Talk to Sales](mailto:sales@asoba.co?subject=Ona Terminal%20O&M%20Solution){: .btn .btn-primary .fs-5 .mr-4 }
 [Technical Demo](developers.html){: .btn .btn-outline .fs-5 }
 
 ---

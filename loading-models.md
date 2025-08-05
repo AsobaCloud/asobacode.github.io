@@ -62,7 +62,7 @@ aws bedrock invoke-model \
   --region us-east-1 \
   --cli-binary-format raw-in-base64-out
 
-# Test from AsobaCode CLI
+# Test from Ona Terminal CLI
 🤖 | /test-models
 
 # Show current model configuration  
@@ -259,7 +259,7 @@ ai_models:
 {: .fs-6 }
 
 ```bash
-# Let AsobaCode choose optimal model
+# Let Ona Terminal choose optimal model
 🤖 | optimize maintenance schedule for Q2 considering weather and energy prices
 
 # Override for specific requirements

@@ -8,7 +8,7 @@ nav_order: 1
 # Developers: 5-Minute Setup
 {: .fs-8 }
 
-Get AsobaCode running with Amazon Nova Pro models and throttling resistance.
+Get Ona Terminal running with Amazon Nova Pro models and throttling resistance.
 {: .fs-6 .fw-300 }
 
 ---
@@ -29,12 +29,12 @@ If you don't have AWS Bedrock access:
 
 ## Installation & Setup
 
-### Step 1: Install AsobaCode (2 minutes)
+### Step 1: Install Ona Terminal (2 minutes)
 
 ```bash
 # Clone repository
-git clone https://github.com/AsobaCloud/asoba-code.git
-cd asoba-code
+git clone https://github.com/AsobaCloud/ona-terminal.git
+cd ona-terminal
 
 # Install with automatic PATH setup
 ./install.sh
@@ -64,7 +64,7 @@ aws bedrock invoke-model \
 
 ### Launch Interactive Mode
 ```bash
-asoba-code
+ona-terminal
 ```
 
 ### Run Validation Commands
@@ -128,7 +128,7 @@ print(fibonacci(10))  # Output: 55
 ```
 
 **🚨 "ThrottlingException"**:
-✅ **No action needed!** AsobaCode automatically handles throttling with:
+✅ **No action needed!** Ona Terminal automatically handles throttling with:
 - Availability caching (5-minute TTL)
 - Circuit breaker protection  
 - Exponential backoff

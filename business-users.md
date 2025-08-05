@@ -5,7 +5,7 @@ parent: "Quick Launch Guide"
 nav_order: 2
 ---
 
-# Business Users: Why AsobaCode
+# Business Users: Why Ona Terminal
 {: .fs-8 }
 
 Transform reactive operations into proactive intelligence with industry-specific AI.
@@ -13,7 +13,7 @@ Transform reactive operations into proactive intelligence with industry-specific
 
 ---
 
-## Why AsobaCode: Reactive vs. Proactive O&M
+## Why Ona Terminal: Reactive vs. Proactive O&M
 
 ### The Problem: Reactive Operations
 {: .fs-6 }
@@ -27,9 +27,9 @@ Transform reactive operations into proactive intelligence with industry-specific
 ### The Solution: Proactive Intelligence
 {: .fs-6 }
 
-**AsobaCode transforms operations into proactive intelligence:**
+**Ona Terminal transforms operations into proactive intelligence:**
 
-| Reactive Approach | AsobaCode Proactive |
+| Reactive Approach | Ona Terminal Proactive |
 |------------------|-------------------|
 | 🔴 Equipment fails unexpectedly | 🟢 AI predicts failures 2-4 weeks early |
 | 🔴 Manual diagnosis (hours/days) | 🟢 Automated fault detection (minutes) |
@@ -52,7 +52,7 @@ Bloomberg trained a 50B parameter model specifically for finance. Results vs. ge
 - **3x faster** processing of domain-specific queries  
 - **90% fewer** hallucinations on technical financial concepts
 
-### AsobaCode's Fine-Tuned Models
+### Ona Terminal's Fine-Tuned Models
 {: .fs-6 }
 
 **Our specialized models for solar/O&M operations:**
@@ -83,7 +83,7 @@ Bloomberg trained a 50B parameter model specifically for finance. Results vs. ge
 
 **📊 Quantified ROI (6-month typical deployment):**
 
-| Metric | Before AsobaCode | After AsobaCode | Improvement |
+| Metric | Before Ona Terminal | After Ona Terminal | Improvement |
 |--------|------------------|-----------------|-------------|
 | **MTTR** | 12-24 hours | 3-6 hours | 75% reduction |
 | **Unplanned Downtime** | 8-12 hours/month | 2-3 hours/month | 75% reduction |
@@ -123,7 +123,7 @@ Bloomberg trained a 50B parameter model specifically for finance. Results vs. ge
 {: .fs-6 }
 
 1. **[See the Full O&M Use Case](om-use-case.html)** - Detailed business problem and solution
-2. **[Schedule Enterprise Demo](mailto:sales@asoba.co?subject=AsobaCode%20Enterprise%20Demo)** - Custom deployment discussion
+2. **[Schedule Enterprise Demo](mailto:sales@asoba.co?subject=Ona Terminal%20Enterprise%20Demo)** - Custom deployment discussion
 3. **[Technical Implementation](developers.html)** - Share with your engineering team
 
 ### For Technical Teams
@@ -135,7 +135,7 @@ Bloomberg trained a 50B parameter model specifically for finance. Results vs. ge
 
 ---
 
-[Talk to Sales](mailto:sales@asoba.co?subject=AsobaCode%20Enterprise%20Demo){: .btn .btn-primary .fs-5 .mr-4 }
+[Talk to Sales](mailto:sales@asoba.co?subject=Ona Terminal%20Enterprise%20Demo){: .btn .btn-primary .fs-5 .mr-4 }
 [View Technical Demo](developers.html){: .btn .btn-outline .fs-5 }
 
 ---

@@ -33,7 +33,7 @@ ChatGPT: "Here's terraform code to deploy Lambda on-premises..."
 # (Proceeds to generate nonsense - Lambda only runs on AWS)
 
 # With OODA system prompt:
-AsobaCode: "OBSERVE: Lambda is AWS-only service. 
+Ona Terminal: "OBSERVE: Lambda is AWS-only service. 
             ORIENT: Request conflicts with Lambda constraints.
             DECIDE: Suggest alternatives (containers, OpenFaaS).
             ACT: Provide correct on-premises serverless options."

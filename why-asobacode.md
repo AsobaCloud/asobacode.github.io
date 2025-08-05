@@ -1,12 +1,12 @@
 ---
-title: "Why AsobaCode?"
+title: "Why Ona Terminal?"
 layout: default
 nav_order: 1
 ---
 
-## Why AsobaCode? {#why-asobacode}
+## Why Ona Terminal? {#why-ona-terminal}
 
-AsobaCode represents a fundamental shift from AI service consumer to AI capability owner. In an era of increasing AI vendor lock-in and unpredictable pricing, we've built a terminal-native development platform that gives you complete control over your AI-powered DevOps workflows.
+Ona Terminal represents a fundamental shift from AI service consumer to AI capability owner. In an era of increasing AI vendor lock-in and unpredictable pricing, we've built a terminal-native development platform that gives you complete control over your AI-powered DevOps workflows.
 
 ---
 
@@ -30,7 +30,7 @@ Foundation model economics are unsustainable:
 ## Our Solution: AI Vendor Independence {#our-solution}
 
 ### 🏗️ **MCP-Based Architecture**
-AsobaCode leverages Model Context Protocol (MCP) to create a tightly controlled development environment:
+Ona Terminal leverages Model Context Protocol (MCP) to create a tightly controlled development environment:
 
 ```
 GitHub Issues → MCP Agent → Explore → Plan → Code → Deploy
@@ -83,7 +83,7 @@ While competitors remain dependent on external AI providers:
 ## Real-World Impact {#real-world-impact}
 
 ### 🏭 **Production Infrastructure Capabilities**
-AsobaCode automates complex infrastructure with proven capabilities:
+Ona Terminal automates complex infrastructure with proven capabilities:
 - **Multi-Region Deployment**: 15+ Lambda functions across af-south-1/us-east-1 regions
 - **Complex Orchestration**: CloudFormation templates with cross-stack dependencies
 - **Compliance Automation**: Infrastructure templates with built-in security patterns
@@ -141,7 +141,7 @@ AsobaCode automates complex infrastructure with proven capabilities:
 
 ---
 
-## The AsobaCode Difference {#the-difference}
+## The Ona Terminal Difference {#the-difference}
 
 ### ✅ **What You Get**
 - **Complete AI Ownership**: No vendor lock-in or pricing surprises
@@ -151,7 +151,7 @@ AsobaCode automates complex infrastructure with proven capabilities:
 - **Reality-Focused AI**: Models that tell you the truth, not what you want to hear
 
 ### 🚀 **Ready to Start?**
-AsobaCode is ready for production use today. Join the growing community of developers who have achieved AI vendor independence while building superior development capabilities.
+Ona Terminal is ready for production use today. Join the growing community of developers who have achieved AI vendor independence while building superior development capabilities.
 
 **[Get Started with Installation →](sdk.html)**
 

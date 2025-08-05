@@ -4,7 +4,7 @@ layout: default
 nav_order: 1
 ---
 
-# AsobaCode CLI
+# Ona Terminal
 {: .fs-9 }
 
 **AI-powered infrastructure automation for your terminal.**
@@ -39,7 +39,7 @@ Transform reactive operations into proactive intelligence with industry-specific
     <p>Automated, smart business workflows paired with highly efficient compute</p>
   </div>
   <div class="paradigm-media">
-    <img src="{{ site.baseurl }}/assets/images/asobacode-terminal.svg" alt="AsobaCode Terminal Interface" class="demo-gif">
+    <img src="{{ site.baseurl }}/assets/images/ona-terminal.svg" alt="Ona Terminal Interface" class="demo-gif">
   </div>
 </div>
 
@@ -224,7 +224,7 @@ Transform reactive operations into proactive intelligence with industry-specific
 
 ## Interactive Exploration
 
-Learn how to use AsobaCode effectively:
+Learn how to use Ona Terminal effectively:
 
 <div class="exploration-cards">
   <div class="exploration-card">
@@ -258,17 +258,17 @@ Learn how to use AsobaCode effectively:
 
 ### ⚡ [O&M Operations](om-use-case.html)
 **Real-world solar operations & maintenance**  
-See how AsobaCode transforms reactive maintenance into proactive intelligence
+See how Ona Terminal transforms reactive maintenance into proactive intelligence
 
 ---
 
 ## Ready to Get Started?
 
 1. **Technical users**: Start with [5-minute Developer Setup](developers.html)
-2. **Business users**: Learn [Why AsobaCode](business-users.html) first
+2. **Business users**: Learn [Why Ona Terminal](business-users.html) first
 3. **See it in action**: Explore the [O&M Use Case](om-use-case.html)
 
-[Talk to Sales](mailto:sales@asoba.co?subject=AsobaCode%20Enterprise%20Demo){: .btn .btn-outline .fs-5 }
+[Talk to Sales](mailto:sales@asoba.co?subject=Ona%20Terminal%20Enterprise%20Demo){: .btn .btn-outline .fs-5 }
 
 ---
 

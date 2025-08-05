@@ -6,29 +6,29 @@ nav_order: 5
 
 ## Media & Resources
 
-This page provides access to additional resources including tutorials, demos, and case studies to help you better understand the AsobaCode CLI platform and its capabilities for AI-powered DevOps automation.
+This page provides access to additional resources including tutorials, demos, and case studies to help you better understand the Ona Terminal CLI platform and its capabilities for AI-powered DevOps automation.
 
 ## Video Tutorials {#video-tutorials}
 
-Our video tutorials offer in-depth demonstrations and explanations of various aspects of the AsobaCode CLI system. These sessions are designed to help you understand specific features and real-world use cases.
+Our video tutorials offer in-depth demonstrations and explanations of various aspects of the Ona Terminal CLI system. These sessions are designed to help you understand specific features and real-world use cases.
 
 | Tutorial Title | Description | Link |
 |---------------|-------------|------|
-| AsobaCode CLI Platform Overview | A comprehensive overview of the AsobaCode CLI, its MCP architecture, and key capabilities for DevOps automation. | [Watch Tutorial](https://www.youtube.com/watch?v=placeholder1) |
+| Ona Terminal CLI Platform Overview | A comprehensive overview of the Ona Terminal CLI, its MCP architecture, and key capabilities for DevOps automation. | [Watch Tutorial](https://www.youtube.com/watch?v=placeholder1) |
 | Technical Debt Analysis & Automation | Learn how AI-powered code analysis identifies technical debt and automatically creates GitHub issues with remediation steps. | [Watch Tutorial](https://www.youtube.com/watch?v=placeholder2) |
-| Infrastructure-as-Code Generation | Best practices for using AsobaCode CLI to generate AWS, GCP, and Azure infrastructure templates with compliance built-in. | [Watch Tutorial](https://www.youtube.com/watch?v=placeholder3) |
+| Infrastructure-as-Code Generation | Best practices for using Ona Terminal CLI to generate AWS, GCP, and Azure infrastructure templates with compliance built-in. | [Watch Tutorial](https://www.youtube.com/watch?v=placeholder3) |
 | AI Model Routing & Cost Optimization | Deep dive into intelligent AI model selection and cost optimization strategies for different development tasks. | [Watch Tutorial](https://www.youtube.com/watch?v=placeholder4) |
 
 ---
 
 ## Case Studies {#case-studies}
 
-These detailed case studies demonstrate the effectiveness of AsobaCode CLI in real-world DevOps scenarios, providing empirical evidence of productivity improvements and cost savings.
+These detailed case studies demonstrate the effectiveness of Ona Terminal CLI in real-world DevOps scenarios, providing empirical evidence of productivity improvements and cost savings.
 
 | Case Study | Focus Area | Link |
 |------------|------------|------|
-| Enterprise Technical Debt Reduction | A detailed analysis of how AsobaCode CLI helped a Fortune 500 company reduce technical debt by 65% in 6 months. | [View Case Study](https://docs.google.com/presentation/d/placeholder1) |
-| Startup Infrastructure Automation | An examination of how a fast-growing startup used AsobaCode CLI to automate their entire AWS infrastructure deployment pipeline. | [View Case Study](https://docs.google.com/presentation/d/placeholder2) |
+| Enterprise Technical Debt Reduction | A detailed analysis of how Ona Terminal CLI helped a Fortune 500 company reduce technical debt by 65% in 6 months. | [View Case Study](https://docs.google.com/presentation/d/placeholder1) |
+| Startup Infrastructure Automation | An examination of how a fast-growing startup used Ona Terminal CLI to automate their entire AWS infrastructure deployment pipeline. | [View Case Study](https://docs.google.com/presentation/d/placeholder2) |
 | AI Cost Optimization Success Story | How intelligent model routing reduced AI development costs by 67% while maintaining code quality standards. | [View Case Study](https://docs.google.com/presentation/d/placeholder3) |
 
 ---
@@ -36,19 +36,19 @@ These detailed case studies demonstrate the effectiveness of AsobaCode CLI in re
 ## Developer Resources {#developer-resources}
 
 ### **GitHub Repository**
-- **Main Repository**: [github.com/AsobaCloud/asoba-code](https://github.com/AsobaCloud/asoba-code)
-- **Documentation**: [github.com/AsobaCloud/asobacode.github.io](https://github.com/AsobaCloud/asobacode.github.io)
+- **Main Repository**: [github.com/AsobaCloud/ona-terminal](https://github.com/AsobaCloud/ona-terminal)
+- **Documentation**: [github.com/AsobaCloud/ona-terminal.github.io](https://github.com/AsobaCloud/ona-terminal.github.io)
 
 ### **Community & Support** {#community-support}
-- **Developer Forum**: [community.asobacode.dev](https://community.asobacode.dev)
-- **Discord Community**: [discord.gg/asobacode](https://discord.gg/asobacode)
-- **Stack Overflow**: Tag questions with `asobacode-cli`
+- **Developer Forum**: [community.ona-terminal.dev](https://community.ona-terminal.dev)
+- **Discord Community**: [discord.gg/ona-terminal](https://discord.gg/ona-terminal)
+- **Stack Overflow**: Tag questions with `ona-terminal-cli`
 
 ### **Documentation Links** {#documentation-links}
 - **Installation Guide**: [Installation & Setup](sdk.html)
 - **CLI Commands**: [Complete Command Reference](endpoints.html)
-- **MCP Architecture**: [Technical Architecture](https://docs.asobacode.dev/architecture)
-- **Contributing Guide**: [How to Contribute](https://github.com/AsobaCloud/asoba-code/blob/main/CONTRIBUTING.md)
+- **MCP Architecture**: [Technical Architecture](https://docs.ona-terminal.dev/architecture)
+- **Contributing Guide**: [How to Contribute](https://github.com/AsobaCloud/ona-terminal/blob/main/CONTRIBUTING.md)
 
 ---
 

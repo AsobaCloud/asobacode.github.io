@@ -22,7 +22,7 @@
   <rect x="40" y="30" width="720" height="340" rx="8" class="terminal-border"/>
   
   <!-- Header -->
-  <text x="400" y="55" text-anchor="middle" class="terminal-text header-text" font-size="14">AsobaCode Terminal</text>
+  <text x="400" y="55" text-anchor="middle" class="terminal-text header-text" font-size="14">Ona Terminal</text>
   
   <!-- Content lines -->
   <text x="60" y="85" class="terminal-text prompt-text">Type your questions or requests naturally:</text>

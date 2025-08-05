@@ -6,16 +6,16 @@ nav_order: 2
 
 # Interactive Mode Commands
 
-Complete reference for all `/` commands available in AsobaCode interactive mode.
+Complete reference for all `/` commands available in Ona Terminal interactive mode.
 
 ---
 
 ## Getting Started
 
-Launch AsobaCode interactive mode:
+Launch Ona Terminal interactive mode:
 
 ```bash
-asoba-code
+ona-terminal
 ```
 
 You'll see the interactive prompt:

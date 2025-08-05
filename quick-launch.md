@@ -12,7 +12,7 @@ Choose your path based on your role and goals.
 
 ## Developers (5-minute setup) {#developers}
 
-Get AsobaCode running with Amazon Nova Pro models and throttling resistance.
+Get Ona Terminal running with Amazon Nova Pro models and throttling resistance.
 
 ### Prerequisites
 
@@ -22,12 +22,12 @@ Get AsobaCode running with Amazon Nova Pro models and throttling resistance.
 
 ### Installation & Setup
 
-**Step 1: Install AsobaCode (2 minutes)**
+**Step 1: Install Ona Terminal (2 minutes)**
 
 ```bash
 # Clone repository
-git clone https://github.com/AsobaCloud/asoba-code.git
-cd asoba-code
+git clone https://github.com/AsobaCloud/ona-terminal.git
+cd ona-terminal
 
 # Install with automatic PATH setup
 ./install.sh
@@ -55,7 +55,7 @@ aws bedrock invoke-model \
 
 ```bash
 # Launch interactive mode
-asoba-code
+ona-terminal
 
 # Run validation commands
 🤖 | /help
@@ -69,7 +69,7 @@ asoba-code
 
 Transform reactive operations into proactive intelligence with industry-specific AI.
 
-### Why AsobaCode: Reactive vs. Proactive O&M
+### Why Ona Terminal: Reactive vs. Proactive O&M
 
 **Traditional operations management is reactive:**
 - Equipment fails → scramble to fix → high MTTR
@@ -77,9 +77,9 @@ Transform reactive operations into proactive intelligence with industry-specific
 - Manual diagnostics delay proper repairs
 - Warranty claims often missed due to poor documentation
 
-**AsobaCode transforms operations into proactive intelligence:**
+**Ona Terminal transforms operations into proactive intelligence:**
 
-| Reactive Approach | AsobaCode Proactive |
+| Reactive Approach | Ona Terminal Proactive |
 |------------------|-------------------|
 | 🔴 Equipment fails unexpectedly | 🟢 AI predicts failures 2-4 weeks early |
 | 🔴 Manual diagnosis (hours/days) | 🟢 Automated fault detection (minutes) |
@@ -97,7 +97,7 @@ Bloomberg trained a 50B parameter model specifically for finance. Results vs. ge
 - **3x faster** processing of domain-specific queries  
 - **90% fewer** hallucinations on technical financial concepts
 
-**AsobaCode's Fine-Tuned Models:**
+**Ona Terminal's Fine-Tuned Models:**
 
 🔹 **Mistral Policy Analysis Model (7B)**
 - Fine-tuned for economic, regulatory, social, environmental analysis
@@ -119,10 +119,10 @@ Bloomberg trained a 50B parameter model specifically for finance. Results vs. ge
 ### Next Steps
 
 1. **[See the Full O&M Use Case](om-use-case.html)** - Detailed business problem and solution
-2. **[Schedule Enterprise Demo](mailto:sales@asoba.co?subject=AsobaCode%20Enterprise%20Demo)** - Custom deployment discussion
+2. **[Schedule Enterprise Demo](mailto:sales@asoba.co?subject=Ona Terminal%20Enterprise%20Demo)** - Custom deployment discussion
 3. **[Technical Implementation](#developers)** - Share with your engineering team
 
-[Talk to Sales](mailto:sales@asoba.co?subject=AsobaCode%20Enterprise%20Demo){: .btn .btn-primary .fs-5 }
+[Talk to Sales](mailto:sales@asoba.co?subject=Ona Terminal%20Enterprise%20Demo){: .btn .btn-primary .fs-5 }
 
 ---
 

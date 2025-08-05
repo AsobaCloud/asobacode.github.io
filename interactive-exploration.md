@@ -6,19 +6,19 @@ nav_order: 3
 
 # Interactive Exploration
 
-Learn how to use AsobaCode effectively through hands-on interaction.
+Learn how to use Ona Terminal effectively through hands-on interaction.
 
 ---
 
 ## Using / Commands (Interactive Mode) {#using-commands}
 
-Master AsobaCode's interactive CLI with slash commands and examples.
+Master Ona Terminal's interactive CLI with slash commands and examples.
 
 ### Getting Started
 
 Launch interactive mode:
 ```bash
-asoba-code
+ona-terminal
 ```
 
 You'll see the interactive prompt:
@@ -73,11 +73,11 @@ You'll see the interactive prompt:
 
 ## Understanding Agents {#agentic-workflow}
 
-Learn how agents work in AsobaCode and how to create custom single-use agents.
+Learn how agents work in Ona Terminal and how to create custom single-use agents.
 
 ### What Are Agents?
 
-Agents in AsobaCode are **specialized AI components** that perform specific tasks. Each agent follows the **single responsibility principle** - doing one thing well.
+Agents in Ona Terminal are **specialized AI components** that perform specific tasks. Each agent follows the **single responsibility principle** - doing one thing well.
 
 ### Types of Agents
 
@@ -161,7 +161,7 @@ Configure AWS Bedrock and deploy custom fine-tuned models.
 - **Amazon Nova Lite** - Fast fallback option
 
 **Setup Process:**
-Configure AWS credentials and region for Bedrock access. AsobaCode will automatically detect available models in your region.
+Configure AWS credentials and region for Bedrock access. Ona Terminal will automatically detect available models in your region.
 
 ### Custom Fine-Tuned Models
 

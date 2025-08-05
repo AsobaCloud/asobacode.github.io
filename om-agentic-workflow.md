@@ -372,7 +372,7 @@ Ready to transform your O&M operation from reactive cost center to predictive pr
   <p>Join leading solar operators who have reduced MTTR by 40%, cut O&M costs by 30%, and improved portfolio returns by 15-25% through predictive maintenance intelligence.</p>
   
   <div class="cta-buttons">
-    <a href="mailto:contact@asobacode.com?subject=O&M Predictive Intelligence Consultation" class="cta-button primary">Schedule Business Case Review</a>
+    <a href="mailto:contact@asoba.co?subject=O&M Predictive Intelligence Consultation" class="cta-button primary">Schedule Business Case Review</a>
     <a href="/docs/om-technical-details" class="cta-button secondary">Technical Implementation Details</a>
   </div>
 </div>

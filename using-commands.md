@@ -7,7 +7,7 @@ nav_order: 4
 # Using `/` Commands (Interactive Mode)
 {: .fs-8 }
 
-Master AsobaCode's interactive CLI with slash commands and examples.
+Master Ona Terminal's interactive CLI with slash commands and examples.
 {: .fs-6 .fw-300 }
 
 ---
@@ -16,7 +16,7 @@ Master AsobaCode's interactive CLI with slash commands and examples.
 
 Launch interactive mode:
 ```bash
-asoba-code
+ona-terminal
 ```
 
 You'll see the interactive prompt:

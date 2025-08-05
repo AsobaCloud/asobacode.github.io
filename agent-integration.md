@@ -20,7 +20,7 @@ Powerful single-responsibility agents that integrate with external APIs for data
 
 ## Overview
 
-AsobaCode includes a sophisticated agent system that bridges the gap between the terminal interface and external APIs. These agents are designed with **single-responsibility principles** and follow the **OODA Loop framework** for structured decision-making.
+Ona Terminal includes a sophisticated agent system that bridges the gap between the terminal interface and external APIs. These agents are designed with **single-responsibility principles** and follow the **OODA Loop framework** for structured decision-making.
 
 ### Key Features
 

@@ -14,7 +14,7 @@ Understand the OODA loop: Observe → Orient → Decide → Act
 
 ## The OODA Loop in Operations
 
-AsobaCode implements the **OODA (Observe-Orient-Decide-Act) loop** for autonomous operations management. This military-tested decision framework enables proactive, intelligent responses to operational challenges.
+Ona Terminal implements the **OODA (Observe-Orient-Decide-Act) loop** for autonomous operations management. This military-tested decision framework enables proactive, intelligent responses to operational challenges.
 
 ### Why OODA for O&M?
 {: .fs-6 }
@@ -251,7 +251,7 @@ graph TD
 ### Cycle Time Optimization
 {: .fs-6 }
 
-| Phase | Traditional O&M | AsobaCode OODA | Improvement |
+| Phase | Traditional O&M | Ona Terminal OODA | Improvement |
 |-------|----------------|----------------|-------------|
 | **Observe** | Manual inspection (days) | Real-time monitoring (minutes) | 99% faster |
 | **Orient** | Expert diagnosis (hours) | AI analysis (minutes) | 95% faster |

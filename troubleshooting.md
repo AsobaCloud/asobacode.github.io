@@ -6,9 +6,9 @@ nav_order: 8
 
 # Troubleshooting
 
-> **Common issues and solutions for AsobaCode CLI**
+> **Common issues and solutions for Ona Terminal CLI**
 
-This comprehensive guide covers common problems and their solutions when using AsobaCode's multi-provider AI architecture and MCP servers.
+This comprehensive guide covers common problems and their solutions when using Ona Terminal's multi-provider AI architecture and MCP servers.
 
 ---
 
@@ -18,20 +18,20 @@ Start troubleshooting with these essential commands:
 
 ```bash
 # Check system status
-asoba-code status
+ona-terminal status
 
 # Verify server health
-asoba-code servers --health
+ona-terminal servers --health
 
 # Test connectivity
-asoba-code ask "Test system connectivity and show available providers"
+ona-terminal ask "Test system connectivity and show available providers"
 
 # Show configuration
-asoba-code config show
+ona-terminal config show
 
 # Enable debug mode
 export LOG_LEVEL=DEBUG
-asoba-code --debug ask "Debug test request"
+ona-terminal --debug ask "Debug test request"
 ```
 
 ---
@@ -40,14 +40,14 @@ asoba-code --debug ask "Debug test request"
 
 ### Command Not Found Error {#command-not-found}
 
-**Problem**: `asoba-code: command not found`
+**Problem**: `ona-terminal: command not found`
 
 **Cause**: The installation directory is not in your PATH.
 
 **Solutions**:
 ```bash
-# Method 1: Check if asoba-code exists
-ls -la ~/.local/bin/asoba-code
+# Method 1: Check if ona-terminal exists
+ls -la ~/.local/bin/ona-terminal
 
 # If it exists, add to PATH:
 export PATH=$PATH:$HOME/.local/bin
@@ -57,7 +57,7 @@ echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
 source ~/.bashrc
 
 # Method 3: Use full path directly
-~/.local/bin/asoba-code --help
+~/.local/bin/ona-terminal --help
 
 # Method 4: Reinstall with different method
 pip install --user -e .
@@ -67,7 +67,7 @@ pip install --user -e .
 
 **Problem**: `ERROR: Python 3.10+ required`
 
-**Cause**: AsobaCode requires Python 3.10 or higher for FastMCP compatibility.
+**Cause**: Ona Terminal requires Python 3.10 or higher for FastMCP compatibility.
 
 **Solutions**:
 ```bash
@@ -90,8 +90,8 @@ brew install python@3.10
 sudo yum install python310 python310-pip
 
 # Create virtual environment with correct Python version
-python3.10 -m venv asobacode-env
-source asobacode-env/bin/activate
+python3.10 -m venv ona-terminal-env
+source ona-terminal-env/bin/activate
 pip install -e .
 ```
 
@@ -102,8 +102,8 @@ pip install -e .
 **Solutions**:
 ```bash
 # Method 1: Use virtual environment (recommended)
-python3.10 -m venv asobacode-env
-source asobacode-env/bin/activate
+python3.10 -m venv ona-terminal-env
+source ona-terminal-env/bin/activate
 pip install -e .
 
 # Method 2: Clear pip cache
@@ -116,7 +116,7 @@ pip-compile requirements.in
 pip-sync requirements.txt
 
 # Method 4: Fresh installation
-pip uninstall asoba-code
+pip uninstall ona-terminal
 pip install -e . --no-cache-dir
 ```
 
@@ -154,14 +154,14 @@ export AWS_SECRET_ACCESS_KEY=your_secret_key
 export AWS_DEFAULT_REGION=us-east-1
 
 # Method 3: AWS profile
-aws configure --profile asobacode
-export AWS_PROFILE=asobacode
+aws configure --profile ona-terminal
+export AWS_PROFILE=ona-terminal
 
 # Method 4: IAM roles (for EC2/ECS)
 # Attach appropriate IAM role with Bedrock permissions
 
 # Verify configuration
-asoba-code ask "Test AWS Bedrock connectivity"
+ona-terminal ask "Test AWS Bedrock connectivity"
 ```
 
 **Required AWS Permissions**:
@@ -209,8 +209,8 @@ export GITHUB_TOKEN=ghp_your_github_personal_access_token
 # ✓ read:user (user information)
 
 # Test integration
-asoba-code ask "List my GitHub repositories"
-asoba-code ask "Test GitHub connectivity"
+ona-terminal ask "List my GitHub repositories"
+ona-terminal ask "Test GitHub connectivity"
 ```
 
 ### Custom Model Configuration {#custom-model-config}
@@ -227,9 +227,9 @@ echo $MISTRAL_STATUS_URL
 echo $MISTRAL_FALLBACK_IP
 echo $AI_PROVIDER_STRATEGY
 
-# Test from AsobaCode
-asoba-code servers --health
-asoba-code ask "Show available AI providers"
+# Test from Ona Terminal
+ona-terminal servers --health
+ona-terminal ask "Show available AI providers"
 ```
 
 **Solutions**:
@@ -247,8 +247,8 @@ export AI_DEFAULT_PROVIDER="auto"
 export MISTRAL_SERVER_IPS="10.0.1.50,10.0.1.51,10.0.1.52"
 
 # Test detection and routing
-asoba-code ask "Generate simple Terraform configuration"
-asoba-code ask "Show me which provider was used and the cost breakdown"
+ona-terminal ask "Generate simple Terraform configuration"
+ona-terminal ask "Show me which provider was used and the cost breakdown"
 ```
 
 ---
@@ -273,10 +273,10 @@ aws bedrock list-foundation-models --region us-east-1 --output table
 # 4. Wait for approval (can take several hours)
 
 # Method 3: Use available models
-asoba-code ask "What Bedrock models are available in my account?"
+ona-terminal ask "What Bedrock models are available in my account?"
 
 # Method 4: Configure alternative models
-asoba-code config set ai_models.preferred_models '["anthropic.claude-3-haiku-20240307-v1:0"]'
+ona-terminal config set ai_models.preferred_models '["anthropic.claude-3-haiku-20240307-v1:0"]'
 ```
 
 ### Throttling Errors {#throttling-errors}
@@ -297,10 +297,10 @@ export AI_PROVIDER_STRATEGY="cost_optimized"
 export MISTRAL_STATUS_URL="http://your-server:8000/status"
 
 # Method 3: Implement request batching
-asoba-code ask "Analyze all Python files in src/ directory in a single request"
+ona-terminal ask "Analyze all Python files in src/ directory in a single request"
 
 # Method 4: Monitor usage
-asoba-code ask "Show my AI usage and rate limit status"
+ona-terminal ask "Show my AI usage and rate limit status"
 ```
 
 ### High AI Costs {#high-costs}
@@ -319,11 +319,11 @@ export MISTRAL_STATUS_URL="http://your-server:8000/status"
 export MISTRAL_FALLBACK_IP="your-server-ip"
 
 # Method 3: Monitor and optimize
-asoba-code ask "Show cost breakdown for my last 10 requests"
-asoba-code ask "Suggest ways to reduce my AI costs"
+ona-terminal ask "Show cost breakdown for my last 10 requests"
+ona-terminal ask "Suggest ways to reduce my AI costs"
 
 # Method 4: Batch similar requests
-asoba-code ask "Analyze all infrastructure files and create comprehensive report"
+ona-terminal ask "Analyze all infrastructure files and create comprehensive report"
 ```
 
 **Cost Optimization Strategies**:
@@ -421,12 +421,12 @@ ai_models:
 
 ```bash
 # Method 2: Override provider selection
-asoba-code ask "Using Bedrock models: analyze this code for security"
-asoba-code ask "Using custom models: generate Terraform configuration"
+ona-terminal ask "Using Bedrock models: analyze this code for security"
+ona-terminal ask "Using custom models: generate Terraform configuration"
 
 # Method 3: Test routing decisions
-asoba-code ask "Show me which provider would be used for terraform code generation"
-asoba-code ask "Explain the routing decision for my last request"
+ona-terminal ask "Show me which provider would be used for terraform code generation"
+ona-terminal ask "Explain the routing decision for my last request"
 ```
 
 ---
@@ -441,7 +441,7 @@ asoba-code ask "Explain the routing decision for my last request"
 ```bash
 # Enable performance monitoring
 export LOG_LEVEL=DEBUG
-time asoba-code ask "Simple test request"
+time ona-terminal ask "Simple test request"
 
 # Check system resources
 htop
@@ -504,11 +504,11 @@ def generate_with_cache(prompt_hash):
 free -h
 ps aux --sort=-%mem | head -10
 
-# Monitor AsobaCode memory usage
-ps -p $(pgrep -f asoba-code) -o pid,ppid,cmd,%mem,%cpu
+# Monitor Ona Terminal memory usage
+ps -p $(pgrep -f ona-terminal) -o pid,ppid,cmd,%mem,%cpu
 
 # Check for memory leaks
-valgrind --leak-check=full asoba-code ask "test"
+valgrind --leak-check=full ona-terminal ask "test"
 ```
 
 **Solutions**:
@@ -596,7 +596,7 @@ curl -H "Authorization: token $GITHUB_TOKEN" \
 # Go to Organization → Settings → Third-party access
 
 # Method 4: Test with specific repository
-asoba-code ask "Analyze repository structure for your-org/your-repo"
+ona-terminal ask "Analyze repository structure for your-org/your-repo"
 ```
 
 ### Webhook Issues {#webhook-issues}
@@ -622,8 +622,8 @@ tail -f /var/log/webhook.log
 journalctl -u webhook-service -f
 
 # Method 4: Validate webhook configuration
-asoba-code config show --section github
-asoba-code ask "Test GitHub webhook connectivity"
+ona-terminal config show --section github
+ona-terminal ask "Test GitHub webhook connectivity"
 ```
 
 ---
@@ -636,14 +636,14 @@ asoba-code ask "Test GitHub webhook connectivity"
 ```bash
 # Method 1: Environment variables
 export LOG_LEVEL=DEBUG
-export ASOBACODE_DEBUG=true
+export ONA_TERMINAL_DEBUG=true
 
 # Method 2: Command line flags
-asoba-code --debug ask "your query"
-asoba-code --verbose status
+ona-terminal --debug ask "your query"
+ona-terminal --verbose status
 
 # Method 3: Detailed system status
-asoba-code status --verbose --debug
+ona-terminal status --verbose --debug
 ```
 
 ### Log Analysis {#log-analysis}
@@ -658,16 +658,16 @@ python3 --version >> troubleshooting-logs/system.txt
 pip list > troubleshooting-logs/packages.txt
 env | grep -E "(AWS|GITHUB|MISTRAL|AI_)" > troubleshooting-logs/env.txt
 
-# AsobaCode logs
-asoba-code --debug status > troubleshooting-logs/status.log 2>&1
-asoba-code --debug servers --health > troubleshooting-logs/servers.log 2>&1
+# Ona Terminal logs
+ona-terminal --debug status > troubleshooting-logs/status.log 2>&1
+ona-terminal --debug servers --health > troubleshooting-logs/servers.log 2>&1
 
 # Configuration (remove sensitive data)
-asoba-code config show > troubleshooting-logs/config.yaml
+ona-terminal config show > troubleshooting-logs/config.yaml
 sed -i 's/[A-Za-z0-9+/=]{20,}/***REDACTED***/g' troubleshooting-logs/config.yaml
 
 # Test logs
-asoba-code --debug ask "Test request for troubleshooting" > troubleshooting-logs/test.log 2>&1
+ona-terminal --debug ask "Test request for troubleshooting" > troubleshooting-logs/test.log 2>&1
 ```
 
 ### Network Diagnostics {#network-diagnostics}
@@ -698,12 +698,12 @@ openssl s_client -connect api.anthropic.com:443 -servername api.anthropic.com
 ### Performance Profiling {#performance-profiling}
 
 ```python
-# Profile AsobaCode performance
+# Profile Ona Terminal performance
 import cProfile
 import pstats
 from asoba_code.client.manager import MCPClientManager
 
-def profile_asobacode():
+def profile_ona-terminal():
     client = MCPClientManager()
     
     # Profile a typical operation
@@ -719,14 +719,14 @@ def profile_asobacode():
     pr.disable()
     
     # Save profile results
-    pr.dump_stats('asobacode_profile.stats')
+    pr.dump_stats('ona-terminal_profile.stats')
     
     # Print top time consumers
-    stats = pstats.Stats('asobacode_profile.stats')
+    stats = pstats.Stats('ona-terminal_profile.stats')
     stats.sort_stats('cumulative').print_stats(10)
 
 if __name__ == "__main__":
-    profile_asobacode()
+    profile_ona-terminal()
 ```
 
 ---
@@ -773,22 +773,22 @@ if __name__ == "__main__":
 
 ```bash
 # Built-in help
-asoba-code --help
-asoba-code config --help
-asoba-code servers --help
+ona-terminal --help
+ona-terminal config --help
+ona-terminal servers --help
 
 # System diagnostics
-asoba-code status --verbose
-asoba-code servers --health --debug
-asoba-code config validate
+ona-terminal status --verbose
+ona-terminal servers --health --debug
+ona-terminal config validate
 ```
 
 ### Community Support {#community-support}
 
 - **💬 Discord Community**: [Join Our Discord](https://discord.gg/nNV5evcr)
-- **📚 Documentation**: [docs.asobacode.dev](https://docs.asobacode.dev)
-- **🐛 GitHub Issues**: [Report Issues](https://github.com/AsobaCloud/asoba-code/issues)
-- **💡 Discussions**: [GitHub Discussions](https://github.com/AsobaCloud/asoba-code/discussions)
+- **📚 Documentation**: [docs.ona-terminal.dev](https://docs.ona-terminal.dev)
+- **🐛 GitHub Issues**: [Report Issues](https://github.com/AsobaCloud/ona-terminal/issues)
+- **💡 Discussions**: [GitHub Discussions](https://github.com/AsobaCloud/ona-terminal/discussions)
 
 ### Professional Support {#professional-support}
 
@@ -803,7 +803,7 @@ When reporting issues, please include:
 
 ```bash
 # Generate comprehensive diagnostic report
-asoba-code --debug status > diagnostic-report.txt 2>&1
+ona-terminal --debug status > diagnostic-report.txt 2>&1
 echo "--- Environment ---" >> diagnostic-report.txt
 env | grep -E "(AWS|GITHUB|MISTRAL|AI_)" >> diagnostic-report.txt
 echo "--- System ---" >> diagnostic-report.txt
