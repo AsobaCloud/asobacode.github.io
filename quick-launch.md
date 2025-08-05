@@ -71,11 +71,16 @@ Transform reactive operations into proactive intelligence with industry-specific
 
 ### Why Ona Terminal: Reactive vs. Proactive O&M
 
-**Traditional operations management is reactive:**
-- Equipment fails → scramble to fix → high MTTR
-- Unplanned downtime costs $50,000+ per hour
-- Manual diagnostics delay proper repairs
-- Warranty claims often missed due to poor documentation
+<div class="video-placeholder">
+  <div class="video-content">
+    <div class="play-button">▶️</div>
+    <div class="video-info">
+      <h4>Reactive vs. Proactive Operations Management</h4>
+      <p>See how Ona Terminal transforms traditional reactive workflows into proactive intelligence</p>
+      <span class="video-duration">4:32</span>
+    </div>
+  </div>
+</div>
 
 **Ona Terminal transforms operations into proactive intelligence:**
 
@@ -91,28 +96,39 @@ Transform reactive operations into proactive intelligence with industry-specific
 
 ### Industry-Specific AI Advantage
 
-**BloombergGPT Example:**
-Bloomberg trained a 50B parameter model specifically for finance. Results vs. general LLMs:
-- **50% better** accuracy on financial tasks
-- **3x faster** processing of domain-specific queries  
-- **90% fewer** hallucinations on technical financial concepts
+**Learn More:**
 
-**Ona Terminal's Fine-Tuned Models:**
-
-🔹 **Mistral Policy Analysis Model (7B)**
-- Fine-tuned for economic, regulatory, social, environmental analysis
-- Specialized endpoints: /analyze/economic, /analyze/regulatory
-- Training loss: 0.45 over 3 epochs
-
-🔹 **Mistral Infrastructure-as-Code Model (7B)**  
-- Specialized for Terraform, Kubernetes, Docker generation
-- Endpoints: /generate/terraform, /generate/kubernetes, /generate/docker
-- Optimized for infrastructure deployment tasks
-
-🔹 **Qwen Claude-MD Model (14B)**
-- 14B parameter model with CLAUDE.md methodology integration
-- Advanced reasoning capabilities for complex tasks
-- Configurable deployment options (g5.2xlarge to g5.8xlarge)
+<div class="blog-cards">
+  <div class="blog-card">
+    <div class="blog-image">
+      <img src="{{ site.baseurl }}/assets/images/homegrown-llms.jpg" alt="Custom AI Models" />
+    </div>
+    <div class="blog-content">
+      <h3><a href="/blog/homegrown-llms">Our Homegrown LLMs</a></h3>
+      <p>How we fine-tuned specialized models for infrastructure automation and policy analysis</p>
+    </div>
+  </div>
+  
+  <div class="blog-card">
+    <div class="blog-image">
+      <img src="{{ site.baseurl }}/assets/images/ooda-business.jpg" alt="OODA Loops in Business" />
+    </div>
+    <div class="blog-content">
+      <h3><a href="/blog/ooda-business-operations">From Fighter Pilots to Solar Farms: How OODA Loops Transform Business Operations</a></h3>
+      <p>Military decision-making frameworks applied to energy asset management</p>
+    </div>
+  </div>
+  
+  <div class="blog-card">
+    <div class="blog-image">
+      <img src="{{ site.baseurl }}/assets/images/ooda-intro.jpg" alt="Introduction to OODA" />
+    </div>
+    <div class="blog-content">
+      <h3><a href="/blog/introduction-to-ooda-loops">Introduction to OODA Loops</a></h3>
+      <p>Understanding the Observe-Orient-Decide-Act framework for systematic decision making</p>
+    </div>
+  </div>
+</div>
 
 **Domain-specific fine-tuned models deliver superior performance for specialized tasks.**
 
@@ -170,3 +186,149 @@ Bloomberg trained a 50B parameter model specifically for finance. Results vs. ge
     </div>
   </div>
 </div>
+
+<style>
+.video-placeholder {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 40px;
+  margin: 30px 0;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.video-content {
+  position: relative;
+  z-index: 1;
+}
+
+.play-button {
+  font-size: 4em;
+  margin-bottom: 20px;
+  opacity: 0.9;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+}
+
+.video-info h4 {
+  font-size: 1.5em;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.video-info p {
+  font-size: 1.1em;
+  margin: 0 0 15px 0;
+  opacity: 0.9;
+}
+
+.video-duration {
+  background: rgba(0,0,0,0.3);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.blog-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin: 30px 0 40px 0;
+}
+
+.blog-card {
+  border: 2px solid #e1e4e8;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.blog-card:hover {
+  border-color: #4551bf;
+  box-shadow: 0 8px 25px rgba(69, 81, 191, 0.15);
+  transform: translateY(-4px);
+}
+
+.blog-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover .blog-image img {
+  transform: scale(1.05);
+}
+
+.blog-content {
+  padding: 25px;
+}
+
+.blog-content h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.2em;
+  line-height: 1.3;
+}
+
+.blog-content h3 a {
+  color: #2c3e50;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.blog-content h3 a:hover {
+  color: #4551bf;
+}
+
+.blog-content p {
+  color: #666;
+  margin: 0;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .blog-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .video-placeholder {
+    padding: 30px 20px;
+  }
+  
+  .play-button {
+    font-size: 3em;
+  }
+}
+</style>
