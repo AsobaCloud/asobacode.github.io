@@ -79,19 +79,17 @@ Revenue protection delivers $180K-320K annually. Operational savings through opt
 
 **Conservative ROI: 425% in first year**
 
-### How This Plays Out in Real Operations
+### Operational Improvements
 {: .fs-6 }
 
-The numbers tell one story, but the operational transformation tells another. Consider three scenarios that demonstrate how predictive intelligence changes everything about how you manage solar assets.
+**String Degradation Detection:**
+Traditional monitoring shows 3-week delay in detection with 15% performance loss. Ona Terminal provides 2-day early warning with preventive intervention. This results in $28K annual energy recovery per string.
 
-**The String That Saved Christmas**
-Last December, at a 25MW facility in Arizona, String 12 began showing subtle performance degradation—a 3% decline that would have gone unnoticed for weeks under traditional monitoring. Ona Terminal's diagnostic agents identified the pattern within 48 hours and classified it as likely DC combiner failure. The system calculated that waiting for quarterly inspection would cost $28,000 in lost generation during peak winter pricing. Instead, a targeted repair preserved full performance and captured a warranty claim that traditional reactive maintenance would have missed.
+**Inverter Component Failure:**  
+Traditional reactive approach requires complete inverter replacement costing $15K. Predictive analysis enables targeted component replacement at $3K cost. This delivers $12K cost avoidance plus warranty claim preservation.
 
-**The $12,000 Component Replacement**
-At a Texas facility, traditional monitoring would have detected an inverter issue only after complete failure, necessitating a $15,000 full unit replacement during the warranty void period. Ona Terminal's predictive analysis identified component-level degradation patterns three weeks early. A targeted $3,000 component replacement under warranty coverage not only avoided the larger expense but kept the facility at full generation during a high-value production period.
-
-**The Tracker That Learned to Dance**
-Quarterly manual inspections at a California facility consistently missed tracker alignment issues that developed between visits. Real-time monitoring now catches micro-adjustments needed for optimal sun tracking, delivering a consistent 2-3% generation improvement. More importantly, the system learned the facility's specific wind and thermal expansion patterns, proactively adjusting alignment parameters before issues develop rather than reacting to performance losses.
+**Tracker Alignment Issues:**
+Quarterly manual inspection finds issues after performance loss occurs. Real-time tracking alignment monitoring provides continuous optimization. This generates 2-3% generation improvement from optimal tracking.
 
 ---
 
