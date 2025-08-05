@@ -33,13 +33,13 @@ Transform reactive operations into proactive intelligence with industry-specific
   </div>
 </div>
 
-<div class="paradigm-section">
+<div class="paradigm-card">
   <div class="paradigm-text">
     <h2>A new paradigm for energy asset management</h2>
     <p>Automated, smart business workflows paired with highly efficient compute</p>
   </div>
   <div class="paradigm-media">
-    <img src="{{ site.baseurl }}/assets/images/ona-terminal.svg" alt="Ona Terminal Interface" class="demo-gif">
+    <img src="{{ site.baseurl }}/assets/images/asobacode-terminal.svg" alt="Ona Terminal Interface" class="demo-gif">
   </div>
 </div>
 
@@ -102,12 +102,23 @@ Transform reactive operations into proactive intelligence with industry-specific
   color: white;
 }
 
-.paradigm-section {
+.paradigm-card {
   display: flex;
   align-items: center;
   gap: 30px;
   margin: 40px 0;
   flex-wrap: wrap;
+  border: 2px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 30px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.paradigm-card:hover {
+  border-color: #4551bf;
+  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
+  transform: translateY(-2px);
 }
 
 .paradigm-text {
@@ -202,7 +213,7 @@ Transform reactive operations into proactive intelligence with industry-specific
     min-width: auto;
   }
   
-  .paradigm-section {
+  .paradigm-card {
     flex-direction: column;
   }
   
