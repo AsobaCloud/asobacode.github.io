@@ -39,7 +39,7 @@ Transform reactive operations into proactive intelligence with industry-specific
     <p>Automated, smart business workflows paired with highly efficient compute</p>
   </div>
   <div class="paradigm-media">
-    <img src="{{ site.baseurl }}/assets/images/asobacode-demo.gif" alt="AsobaCode in action" class="demo-gif">
+    <img src="{{ site.baseurl }}/assets/images/asobacode-terminal.svg" alt="AsobaCode Terminal Interface" class="demo-gif">
   </div>
 </div>
 
@@ -140,6 +140,59 @@ Transform reactive operations into proactive intelligence with industry-specific
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+.exploration-cards {
+  display: flex;
+  gap: 20px;
+  margin: 30px 0 40px 0;
+  flex-wrap: wrap;
+}
+
+.exploration-card {
+  flex: 1;
+  min-width: 250px;
+  border: 2px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.exploration-card:hover {
+  border-color: #4551bf;
+  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
+  transform: translateY(-2px);
+}
+
+.exploration-icon {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.exploration-content h3 {
+  font-size: 1.2em;
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+}
+
+.exploration-content h3 a {
+  color: #4551bf;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.exploration-content h3 a:hover {
+  color: #3a47a3;
+  text-decoration: underline;
+}
+
+.exploration-content p {
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+  font-size: 0.95em;
+}
+
 @media (max-width: 768px) {
   .user-path-buttons {
     flex-direction: column;
@@ -156,6 +209,14 @@ Transform reactive operations into proactive intelligence with industry-specific
   .paradigm-media {
     min-width: auto;
   }
+  
+  .exploration-cards {
+    flex-direction: column;
+  }
+  
+  .exploration-card {
+    min-width: auto;
+  }
 }
 </style>
 
@@ -165,14 +226,31 @@ Transform reactive operations into proactive intelligence with industry-specific
 
 Learn how to use AsobaCode effectively:
 
-### 📝 [Using `/` Commands](using-commands.html)
-Interactive CLI commands with examples
-
-### 🔄 [Agentic Workflow Overview](agentic-workflow.html)  
-OODA loop: Observe → Orient → Decide → Act
-
-### 🤖 [Loading Bedrock & Custom Models](loading-models.html)
-AWS Bedrock configuration and custom fine-tuned models
+<div class="exploration-cards">
+  <div class="exploration-card">
+    <div class="exploration-icon">📝</div>
+    <div class="exploration-content">
+      <h3><a href="using-commands.html">Using `/` Commands</a></h3>
+      <p>Interactive CLI commands with examples</p>
+    </div>
+  </div>
+  
+  <div class="exploration-card">
+    <div class="exploration-icon">🔄</div>
+    <div class="exploration-content">
+      <h3><a href="agentic-workflow.html">Agentic Workflow Overview</a></h3>
+      <p>OODA loop: Observe → Orient → Decide → Act</p>
+    </div>
+  </div>
+  
+  <div class="exploration-card">
+    <div class="exploration-icon">🤖</div>
+    <div class="exploration-content">
+      <h3><a href="loading-models.html">Loading Bedrock & Custom Models</a></h3>
+      <p>AWS Bedrock configuration and custom fine-tuned models</p>
+    </div>
+  </div>
+</div>
 
 ---
 
