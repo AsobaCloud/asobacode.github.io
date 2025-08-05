@@ -101,7 +101,20 @@ Transform reactive operations into proactive intelligence with industry-specific
 <div class="blog-cards">
   <div class="blog-card">
     <div class="blog-image">
-      <img src="{{ site.baseurl }}/assets/images/homegrown-llms.jpg" alt="Custom AI Models" />
+      <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="llmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="400" height="200" fill="url(#llmGrad)"/>
+        <circle cx="120" cy="100" r="40" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+        <circle cx="200" cy="60" r="25" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <circle cx="280" cy="120" r="35" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+        <path d="M120 100 L200 60 M200 60 L280 120 M120 100 L280 120" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+        <text x="200" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Custom AI Models</text>
+      </svg>
     </div>
     <div class="blog-content">
       <h3><a href="/blog/homegrown-llms">Our Homegrown LLMs</a></h3>
@@ -111,7 +124,25 @@ Transform reactive operations into proactive intelligence with industry-specific
   
   <div class="blog-card">
     <div class="blog-image">
-      <img src="{{ site.baseurl }}/assets/images/ooda-business.jpg" alt="OODA Loops in Business" />
+      <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="oodaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="400" height="200" fill="url(#oodaGrad)"/>
+        <polygon points="50,150 100,50 150,150" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <rect x="180" y="80" width="60" height="40" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+        <circle cx="320" cy="100" r="30" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+        <path d="M150 100 L180 100 M240 100 L290 100" stroke="rgba(255,255,255,0.5)" stroke-width="3" marker-end="url(#arrowhead)"/>
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="rgba(255,255,255,0.8)" />
+          </marker>
+        </defs>
+        <text x="200" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">OODA in Business</text>
+      </svg>
     </div>
     <div class="blog-content">
       <h3><a href="/blog/ooda-business-operations">From Fighter Pilots to Solar Farms: How OODA Loops Transform Business Operations</a></h3>
@@ -121,7 +152,26 @@ Transform reactive operations into proactive intelligence with industry-specific
   
   <div class="blog-card">
     <div class="blog-image">
-      <img src="{{ site.baseurl }}/assets/images/ooda-intro.jpg" alt="Introduction to OODA" />
+      <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="introGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="400" height="200" fill="url(#introGrad)"/>
+        <circle cx="100" cy="70" r="20" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <circle cx="200" cy="70" r="20" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <circle cx="300" cy="70" r="20" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <circle cx="150" cy="130" r="20" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <circle cx="250" cy="130" r="20" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <path d="M100 70 L150 130 M200 70 L150 130 M200 70 L250 130 M300 70 L250 130" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+        <text x="100" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">O</text>
+        <text x="200" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">O</text>
+        <text x="300" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">D</text>
+        <text x="150" y="155" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">A</text>
+        <text x="200" y="175" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">OODA Framework</text>
+      </svg>
     </div>
     <div class="blog-content">
       <h3><a href="/blog/introduction-to-ooda-loops">Introduction to OODA Loops</a></h3>
@@ -249,9 +299,21 @@ Transform reactive operations into proactive intelligence with industry-specific
 
 .blog-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   margin: 30px 0 40px 0;
+}
+
+@media (max-width: 1200px) {
+  .blog-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 .blog-card {
@@ -318,11 +380,6 @@ Transform reactive operations into proactive intelligence with industry-specific
 }
 
 @media (max-width: 768px) {
-  .blog-cards {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
   .video-placeholder {
     padding: 30px 20px;
   }
