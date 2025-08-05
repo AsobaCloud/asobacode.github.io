@@ -125,78 +125,81 @@ Ona Terminal enables you to create **custom single-use agents** tailored to your
 
 ---
 
-## A Day in the Life: When Intelligence Meets Reality
+## Illustrative Example: String Performance Issue
 
-Let's follow a real scenario as it unfolds—the kind of situation that happens somewhere in your portfolio every single week, but with a completely different outcome than you're used to experiencing.
+### Example Scenario
+{: .fs-6 }
+**Site:** 1.5MW solar facility  
+**Issue:** String 3 showing 18% underperformance  
+**Traditional Response:** Wait for quarterly inspection, reactive replacement
 
-### The Story Begins: Monday Morning at Phoenix Solar
+### How Ona Terminal Would Respond
 {: .fs-6 }
 
-At a 1.5MW facility outside Phoenix, String 3 has been quietly developing problems. Traditional monitoring systems wouldn't catch this for weeks, but Ona Terminal's continuous intelligence is already at work.
+**Day 1 - Observe:**
+Monitor detects String 3 underperforming by 18%. Weather data confirms clear skies (no irradiance issue). Historical analysis shows gradual decline over 3 weeks.
 
-**Day 1: The First Signs**
-By sunrise, monitoring agents have detected that String 3 is underperforming by 18%. While a human operator might dismiss this as weather-related, the system immediately cross-references weather data and confirms clear skies—ruling out irradiance issues. Historical analysis reveals this isn't a sudden failure but a gradual decline developing over three weeks, a signature pattern that human operators rarely catch early enough.
+**Day 1 - Orient:**
+AI diagnostics suggest DC combiner failure. Pattern matches manufacturer TSB for this combiner model. Warranty check confirms coverage expires in 45 days.
 
-Within hours, diagnostic agents have analyzed the performance fingerprint and identified the most likely cause: DC combiner failure. The system goes deeper, matching the pattern against manufacturer technical service bulletins for this specific combiner model. Most critically, it discovers that warranty coverage expires in just 45 days—information buried in documentation that would take a human hours to locate.
+**Day 2 - Decide:**
+EAR calculation: $2,400/month revenue loss if unrepaired. Repair cost estimate: $1,200 parts + $800 labor. Optimal timing: Schedule within 30 days to preserve warranty.
 
-**Day 2: The Financial Picture Becomes Clear**
-Energy-at-Risk calculations reveal that leaving this issue unrepaired will cost $2,400 per month in lost revenue. Cost estimation agents determine that repair will require $1,200 in parts plus $800 in labor. The optimizer agent processes all variables and determines the optimal timing: schedule repair within 30 days to preserve warranty coverage while minimizing revenue loss.
+**Day 5 - Act:**
+Work order generated with specific combiner part number. Technician scheduled with DC combiner replacement experience. Photo requirements included for warranty claim documentation. Repair completed in 2 hours vs. 6-hour reactive response.
 
-**Day 5: Precision Execution**
-A work order generates automatically with the specific combiner part number, eliminating guesswork and reducing truck rolls. The dispatch system schedules a technician with proven DC combiner replacement experience rather than sending whoever happens to be available. Photo requirements for warranty claim documentation are included in the work order, ensuring nothing gets missed.
-
-The repair completes in 2 hours instead of the 6-hour reactive response typical for unplanned failures. Energy production returns to full capacity, warranty claims are properly documented, and the facility continues generating maximum revenue.
-
-**The Outcome: Prevention Pays**
-This single intervention demonstrates the compound benefits of predictive intelligence: faster fault resolution preserves energy generation, proper documentation optimizes warranty claims, planned maintenance reduces repair time, and scheduled interventions eliminate emergency downtime premiums.
+**Projected Results:**
+Energy recovery through faster fault resolution. Warranty claim optimization through proper documentation. Reduced repair time vs. traditional reactive response. Planned maintenance vs. emergency downtime.
 
 ---
 
-## Your Journey to Operational Excellence
+## Implementation Roadmap
 
-Transforming your O&M operations doesn't happen overnight, but it doesn't take years either. The path to predictive intelligence unfolds in three carefully orchestrated phases, each building on the previous while delivering immediate value.
-
-### Phase 1: Building the Foundation (Weeks 1-4)
+### Phase 1: Foundation (Weeks 1-4)
 {: .fs-6 }
 
-The transformation begins with data integration and intelligence training. During the first two weeks, Ona Terminal connects to your existing SCADA systems and weather data sources, creating a unified data foundation. Historical data flows into the system for normalization and analysis, while baseline performance patterns are established for each piece of equipment. This isn't just data migration—it's the creation of institutional memory that captures everything your operations team has learned over years of experience.
+**Week 1-2: Data Integration**
+Connect SCADA systems and weather data. Historical data import and normalization. Baseline performance establishment.
 
-Weeks three and four focus on intelligence training. Custom solar diagnostics models deploy using your specific equipment configurations and historical maintenance data. The system learns not just what normal looks like, but what your particular inverters, trackers, and environmental conditions mean for performance patterns. Diagnostic accuracy validation ensures the AI understands your operations as well as your most experienced technicians.
+**Week 3-4: Model Training**  
+Deploy custom solar diagnostics models. Train on historical maintenance data. Validate diagnostic accuracy.
 
-### Phase 2: Automation Takes Flight (Weeks 5-8)  
+### Phase 2: Automation (Weeks 5-8)
 {: .fs-6 }
 
-The second phase brings the OODA loop online with full automation capabilities. During weeks five and six, automated monitoring and alerting systems activate, while AI-powered fault detection begins identifying issues before they become problems. Economic optimization integration ensures that every decision considers financial impact alongside technical requirements.
+**Week 5-6: OODA Loop Implementation**
+Automated monitoring and alerting. AI-powered fault detection. Economic optimization integration.
 
-Weeks seven and eight focus on seamless integration with your existing workflows. Work order automation connects with your CMMS, dispatch optimization aligns with your crew schedules, and performance tracking dashboards provide real-time visibility into the transformation's impact. Your team works with familiar tools enhanced by unprecedented intelligence.
+**Week 7-8: CMMS Integration**
+Work order automation. Dispatch optimization. Performance tracking dashboards.
 
-### Phase 3: Continuous Optimization (Weeks 9-12)
+### Phase 3: Optimization (Weeks 9-12)
 {: .fs-6 }
 
-The final phase unlocks advanced capabilities that compound your operational advantages. Predictive maintenance scheduling evolves from reactive to truly prescriptive, multi-site optimization coordinates resources across your entire portfolio, and warranty claim automation ensures you never miss another opportunity to recover costs.
+**Week 9-10: Advanced Features**
+Predictive maintenance scheduling. Multi-site optimization. Warranty claim automation.
 
-The journey concludes with comprehensive ROI validation through performance metrics analysis and cost-benefit validation. But this isn't really an ending—it's the beginning of continuous improvement implementation that keeps your operations at the leading edge of solar asset management.
+**Week 11-12: ROI Validation**
+Performance metrics analysis. Cost-benefit validation. Continuous improvement implementation.
 
 ---
 
-## Ready to Transform Your Operations?
+## Getting Started
 
-The opportunity to revolutionize your O&M operations is clearer than ever. The question isn't whether predictive intelligence will transform solar asset management—it's whether you'll be among the early adopters who capture competitive advantage or among those who follow later at higher cost.
-
-### If You're Managing Assets
+### For Asset Managers
 {: .fs-6 }
 
-Your immediate next step is understanding exactly how this transformation applies to your specific portfolio. **[Schedule a Portfolio Assessment](mailto:sales@asoba.co?subject=Portfolio%20Assessment%20Request)** to receive a custom ROI analysis based on your actual facilities, equipment mix, and current O&M costs. From there, we'll identify your highest-impact facility for **[Pilot Site Implementation](mailto:sales@asoba.co?subject=Pilot%20Site%20Implementation)**, allowing you to prove the value before committing to portfolio-wide deployment. Once you're convinced by the results, **[Technical Integration](developers.html)** connects our teams to ensure seamless deployment across your operations.
+**[Schedule Portfolio Assessment](mailto:sales@asoba.co?subject=Portfolio%20Assessment%20Request)** - Custom ROI analysis based on your facilities, equipment mix, and current O&M costs. **[Pilot Site Selection](mailto:sales@asoba.co?subject=Pilot%20Site%20Implementation)** - Start with highest-impact facility to prove value before portfolio-wide deployment. **[Technical Integration](developers.html)** - Connect with your engineering team for seamless deployment.
 
-### If You're Leading Technical Implementation
+### For Technical Teams
 {: .fs-6 }
 
-Get hands-on experience immediately with our **[5-Minute Setup](developers.html)** that demonstrates core capabilities on sample data. Then **[Configure Custom Models](loading-models.html)** to deploy your fine-tuned models specific to your equipment and operating environment. Finally, **[Master CLI Commands](using-commands.html)** to learn the OODA workflow tools that will become essential to your daily operations.
+**[5-Minute Setup](developers.html)** - Get hands-on experience with core capabilities on sample data. **[Configure Custom Models](loading-models.html)** - Deploy your fine-tuned models specific to your equipment and operating environment. **[Master CLI Commands](using-commands.html)** - Learn the OODA workflow tools for daily operations.
 
-### If You're Making Investment Decisions
+### For Executives
 {: .fs-6 }
 
-Start with our **[Business Case Calculator](mailto:sales@asoba.co?subject=ROI%20Calculator%20Request)** to receive custom financial analysis based on your portfolio size and current O&M performance. Schedule an **[Executive Demo](mailto:sales@asoba.co?subject=Executive%20Demo%20Request)** to see the solution in action with realistic scenarios from your industry. When you're ready to move forward, **[Implementation Planning](mailto:sales@asoba.co?subject=Implementation%20Planning)** sessions will design a deployment strategy that fits your timeline and risk tolerance.
+**[Business Case Calculator](mailto:sales@asoba.co?subject=ROI%20Calculator%20Request)** - Custom financial analysis based on your portfolio size and current O&M performance. **[Executive Demo](mailto:sales@asoba.co?subject=Executive%20Demo%20Request)** - See the solution in action with realistic scenarios. **[Implementation Planning](mailto:sales@asoba.co?subject=Implementation%20Planning)** - Deployment strategy sessions that fit your timeline and risk tolerance.
 
 ---
 
