@@ -12,51 +12,54 @@ Real-world solar operations & maintenance transformation with Ona Terminal.
 
 ---
 
-## The Crisis Hidden in Your Solar Portfolio
+## The Business Problem: O&M Is Bleeding Your Returns
 
-Picture this: It's Monday morning, and your largest solar facility—the crown jewel of your 500MW portfolio—is suddenly producing 30% less power than expected. Your operations team scrambles to understand what's happening while every hour of delay costs thousands in lost revenue.
+Solar asset managers face a fundamental challenge: traditional operations and maintenance approaches are reactive, unpredictable, and destroying portfolio returns. Equipment failures are detected only after performance losses begin, repairs are scheduled reactively, and maintenance costs spiral out of control.
 
-This scenario plays out across the solar industry every single day. What starts as a small equipment issue becomes a financial hemorrhage because traditional operations and maintenance (O&M) approaches are fundamentally reactive. By the time you know something is wrong, the damage is already done.
+**Financial Impact:**
+Delayed fault response costs $45,000-$85,000 annual lost revenue per MW. Poor maintenance scheduling wastes 25-40% of O&M budgets on unnecessary truck rolls and reactive scheduling. Preventable equipment failures cause 2-4% annual generation loss. Limited insurance benefits result from poor maintenance documentation.
 
-Consider the real financial impact rippling through your portfolio right now. Across every megawatt you manage, **delayed fault response is costing you between $45,000 and $85,000 annually**. But that's just the beginning. Poor maintenance scheduling wastes up to 40% of your O&M budget on unnecessary emergency dispatches and inefficient truck rolls. Meanwhile, preventable equipment failures are stealing 2-4% of your annual generation, and inadequate documentation is leaving money on the table through missed warranty claims and reduced insurance benefits.
-
-The operational reality is even more painful. When equipment fails unexpectedly, your team enters crisis mode—scrambling technicians, expediting parts orders, and accepting whatever repair timeline they can manage. The typical response time stretches between 12 and 24 hours, during which your facility bleeds revenue. Manual diagnostics slow everything down, warranty deadlines slip by unnoticed, and reactive scheduling drives up both travel costs and technician downtime.
-
----
-
-## From Reactive Crisis to Predictive Mastery
-
-Now imagine a different Monday morning. Your phone buzzes with a notification—not about equipment failure, but about an opportunity. Your intelligent operations system has identified that String 7 at your Phoenix facility will likely develop performance issues in the next two weeks. It's already calculated the optimal intervention window, scheduled the right technician with the specific expertise needed, and determined that acting now will save $28,000 in lost revenue while preserving warranty coverage.
-
-This is the transformation Ona Terminal delivers: converting your O&M operation from a reactive cost center into a **predictive intelligence engine** that prevents problems before they occur and optimizes every maintenance decision for maximum financial return.
-
-The transformation unfolds across four key capabilities that work together seamlessly. First, Ona Terminal learns from your complete operational history—every maintenance report, equipment manual, warranty document, and years of inverter performance data become the foundation for specialized AI models that understand your specific equipment and environment better than any human expert could.
-
-Second, continuous monitoring agents pull real-time inverter data and systematically review performance patterns, developing the ability to spot fault signatures weeks before equipment actually fails. This isn't just data collection—it's pattern recognition that gets smarter with every day of operation.
-
-Third, when fault patterns emerge, the system automatically diagnoses issues, calculates their financial impact, and determines the optimal intervention timing. No more guessing about priority or urgency—every decision is backed by precise financial analysis.
-
-Finally, every maintenance action includes real-time Energy-at-Risk (EAR) calculations weighed against dispatch costs, ensuring that your team always takes the action that delivers maximum ROI. Resources get deployed where they create the most value, not just where problems seem most urgent.
+**Operational Challenges:**
+Equipment fails unexpectedly, creating emergency response situations with 12-24 hour MTTR. Manual diagnostics delay proper repairs. Warranty claims are often missed due to poor documentation. Reactive scheduling increases travel costs and creates technician utilization gaps.
 
 ---
 
-## The Intelligence Behind the Transformation
+## The Ona Terminal Solution: Predictive Intelligence
 
-What makes this level of operational excellence possible? The answer lies in Asoba's Model Context Protocol (MCP) framework—a revolutionary approach that deploys specialized AI agents, each focused on mastering one specific aspect of your operations.
+Ona Terminal transforms O&M operations from reactive cost centers into **predictive intelligence systems** that prevent faults before they occur and optimize every maintenance decision for maximum ROI. Instead of responding to equipment failures, you anticipate and prevent them.
 
-Think of it as assembling the world's most capable O&M team, where each team member is an AI agent with superhuman focus and capability. Unlike monolithic systems that try to do everything poorly, MCP creates specialists that excel at their specific roles while seamlessly collaborating with their teammates.
+**How Ona Terminal Transforms O&M:**
 
-The intelligence unfolds through four distinct phases, mirroring how the best human operators think through complex problems. During the **Observe** phase, dedicated agents continuously monitor your operations: SCADA agents pull inverter telemetry data at precise intervals, weather agents fetch irradiance and temperature data to distinguish environmental factors from equipment issues, and interpolation agents fill data gaps to ensure your analysis never misses critical patterns.
+Ona Terminal trains specialized AI models on your complete O&M corpus including maintenance reports, equipment manuals, warranty documents, and years of inverter performance data. Agentic systems pull real-time inverter data, systematically review performance patterns, and spot fault signatures weeks before equipment failure. When fault patterns are detected, the system automatically diagnoses issues, calculates financial impact, and determines optimal intervention timing. Every maintenance action includes real-time Energy-at-Risk (EAR) calculation versus dispatch costs, ensuring maximum ROI.
 
-In the **Orient** phase, analytical agents make sense of what's happening. Baseline agents establish what normal performance looks like for each piece of equipment, anomaly agents detect when reality deviates from expectations, and diagnostic agents apply trained machine learning models to classify exactly what type of fault is developing.
+---
 
-The **Decide** phase brings financial intelligence to every decision. Energy-at-Risk calculators compute the exact revenue impact of each fault, cost estimators determine dispatch and repair expenses, and optimizer agents determine the precise timing that maximizes your return on every maintenance action.
+## The MCP Framework Advantage
 
-Finally, in the **Act** phase, execution agents take care of implementation. Work order agents generate CMMS-compatible instructions with all the right details, dispatch agents schedule crews based on availability and expertise, and documentation agents capture everything needed for compliance and warranty claims.
+### How Asoba's Architecture Enables O&M Transformation
+{: .fs-6 }
 
-This coordinated intelligence delivers transformational performance improvements. Detection latency drops from 4-8 hours to under 5 minutes. Diagnostic accuracy jumps from 45% to 85% fault classification. Mean time to repair improves by 25-40% across your entire portfolio.
+The Model Context Protocol (MCP) enables specialized agents that each handle one specific task through single-responsibility agent architecture. 
 
-The financial impact scales impressively. For every 10MW facility, you can expect $180K-320K in annual revenue protection, $85K-140K in operational savings through optimized dispatching, and $45K-75K in risk mitigation from warranty and insurance optimization.
+**Observe Phase Agents:**
+SCADA agents pull inverter telemetry data at configured intervals. Weather agents fetch irradiance and temperature data. Interpolation agents fill data gaps and standardize time series.
+
+**Orient Phase Agents:**
+Baseline agents establish expected performance patterns. Anomaly agents detect deviations from normal behavior. Diagnostic agents classify fault types using trained ML models.
+
+**Decide Phase Agents:**
+EAR calculators compute Energy-at-Risk for each fault. Cost estimators calculate dispatch and repair costs. Optimizer agents determine optimal maintenance timing.
+
+**Act Phase Agents:**
+Work order agents generate CMMS-compatible work orders. Dispatch agents schedule crews based on availability. Documentation agents capture compliance and warranty data.
+
+### Expected Performance Improvements
+{: .fs-6 }
+
+Based on the MCP framework's distributed agent capabilities, detection latency improves from 4-8 hours to under 5 minutes. Diagnostic accuracy increases from 45% to 85% fault classification. MTTR reduction shows 25-40% improvement from baseline.
+
+**Financial Impact Projections (per 10MW):**
+Revenue protection delivers $180K-320K annually. Operational savings through optimized dispatching provide $85K-140K. Risk mitigation from warranty and insurance optimization contributes $45K-75K.
 
 ---
 
