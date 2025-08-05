@@ -71,32 +71,24 @@ OODA (Observe-Orient-Decide-Act) forces models to:
 ### System Prompt Architecture
 {: .fs-6 }
 
-```yaml
-# OODA System Prompt Structure
-system_prompt: |
-  You MUST follow the OODA loop for EVERY request:
-  
-  OBSERVE:
-  - What are the actual requirements?
-  - What constraints exist?
-  - What data is available?
-  
-  ORIENT:
-  - What patterns apply here?
-  - What are the technical limitations?
-  - What assumptions need validation?
-  
-  DECIDE:
-  - What are the viable options?
-  - What are the tradeoffs?
-  - What is the optimal approach?
-  
-  ACT:
-  - Generate the solution
-  - Include verification steps
-  - Document assumptions and limitations
-  
-  NEVER skip steps. NEVER assume. ALWAYS verify.
+```markdown
+# OODA System Prompt Structure (from ooda.md)
+
+## Output Contract (strict order; missing/extra/out-of-order = invalid)
+<requirements>Task in your words; assumptions & unknowns.</requirements>
+<observe>What you checked, what's available vs missing, anomalies found (≤6 bullets).</observe>
+<orient>Concise analysis; exactly 2 material risks/limitations and how to test/mitigate them.</orient>
+<decide>Recommended plan (≤6 steps) with success criteria (quantified). Note options considered.</decide>
+<act>"PENDING-APPROVAL" or executed steps + results summary.</act>
+<checklist>{"Followed_SOP":true,"Avoided_Sycophancy":true,"Citations":["doc|status|inference"],"Confidence":0.0-1.0}</checklist>
+
+## OODA Rules
+1) Follow OBSERVE → ORIENT → DECIDE → (await user approval) → ACT.
+2) Create artifacts: insights-YYYYMMDD_HHMMSSZ.md and plan-YYYYMMDD_HHMMSSZ.md
+3) After plan creation, prompt: "Proceed / Modify / Alternate / More analysis?" and wait.
+
+¤¤IMMUTABLE¤¤ FINAL ORDER: requirements → observe → orient → decide → act → checklist. 
+Two risks required. Missing/out-of-order tags → invalid; regenerate. ¤¤END¤¤
 ```
 
 ### Why System-Level Enforcement
