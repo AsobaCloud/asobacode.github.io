@@ -13,6 +13,7 @@ Real-world solar operations & maintenance transformation with Ona Terminal.
 ---
 
 ## The Business Problem: O&M Is Bleeding Your Returns
+{: #the-business-problem-o-m-is-bleeding-your-returns }
 
 Solar asset managers face a fundamental challenge: traditional operations and maintenance approaches are reactive, unpredictable, and destroying portfolio returns. Equipment failures are detected only after performance losses begin, repairs are scheduled reactively, and maintenance costs spiral out of control.
 
@@ -25,6 +26,7 @@ Equipment fails unexpectedly, creating emergency response situations with 12-24 
 ---
 
 ## The Ona Terminal Solution: Predictive Intelligence
+{: #the-ona-terminal-solution-predictive-intelligence }
 
 Ona Terminal transforms O&M operations from reactive cost centers into **predictive intelligence systems** that prevent faults before they occur and optimize every maintenance decision for maximum ROI. Instead of responding to equipment failures, you anticipate and prevent them.
 
@@ -35,6 +37,7 @@ Ona Terminal trains specialized AI models on your complete O&M corpus including 
 ---
 
 ## The MCP Framework Advantage
+{: #the-mcp-framework-advantage }
 
 ### How Asoba's Architecture Enables O&M Transformation
 {: .fs-6 }
@@ -64,6 +67,7 @@ Revenue protection delivers $180K-320K annually. Operational savings through opt
 ---
 
 ## Detailed Business Impact Analysis
+{: #detailed-business-impact-analysis }
 
 ### Financial Metrics (500MW Portfolio)
 {: .fs-6 }
@@ -126,6 +130,7 @@ Ona Terminal enables you to create **custom single-use agents** tailored to your
 ---
 
 ## Illustrative Example: String Performance Issue
+{: #illustrative-example-string-performance-issue }
 
 ### Example Scenario
 {: .fs-6 }
@@ -154,6 +159,7 @@ Energy recovery through faster fault resolution. Warranty claim optimization thr
 ---
 
 ## Implementation Roadmap
+{: #implementation-roadmap }
 
 ### Phase 1: Foundation (Weeks 1-4)
 {: .fs-6 }
@@ -185,6 +191,7 @@ Performance metrics analysis. Cost-benefit validation. Continuous improvement im
 ---
 
 ## Getting Started
+{: #getting-started }
 
 ### For Asset Managers
 {: .fs-6 }
