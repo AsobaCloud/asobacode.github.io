@@ -193,20 +193,69 @@ Performance metrics analysis. Cost-benefit validation. Continuous improvement im
 ## Getting Started
 {: #getting-started }
 
-### For Asset Managers
-{: .fs-6 }
+<div class="getting-started-cards">
+  <div class="start-card">
+    <h3>For Asset Managers</h3>
+    <p><strong><a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3-n_SUGacXWO0GDVkR9J1LCNwoUEUPH_kTw-_yeDaVuFaMysg0rIiZLUy9cKeZlcziEYgFG8Kx">Schedule Portfolio Assessment</a></strong> - Custom ROI analysis based on your facilities, equipment mix, and current O&M costs.</p>
+    <p><strong><a href="mailto:sales@asoba.co?subject=Pilot%20Site%20Implementation">Pilot Site Selection</a></strong> - Start with highest-impact facility to prove value before portfolio-wide deployment.</p>
+    <p><strong><a href="developers.html">Technical Integration</a></strong> - Connect with your engineering team for seamless deployment.</p>
+  </div>
+  
+  <div class="start-card">
+    <h3>For Technical Teams</h3>
+    <p><strong><a href="developers.html">5-Minute Setup</a></strong> - Get hands-on experience with core capabilities on sample data.</p>
+    <p><strong><a href="loading-models.html">Configure Custom Models</a></strong> - Deploy your fine-tuned models specific to your equipment and operating environment.</p>
+    <p><strong><a href="using-commands.html">Master CLI Commands</a></strong> - Learn the OODA workflow tools for daily operations.</p>
+  </div>
+</div>
 
-**[Schedule Portfolio Assessment](mailto:sales@asoba.co?subject=Portfolio%20Assessment%20Request)** - Custom ROI analysis based on your facilities, equipment mix, and current O&M costs. **[Pilot Site Selection](mailto:sales@asoba.co?subject=Pilot%20Site%20Implementation)** - Start with highest-impact facility to prove value before portfolio-wide deployment. **[Technical Integration](developers.html)** - Connect with your engineering team for seamless deployment.
+<style>
+.getting-started-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+}
 
-### For Technical Teams
-{: .fs-6 }
+.start-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-**[5-Minute Setup](developers.html)** - Get hands-on experience with core capabilities on sample data. **[Configure Custom Models](loading-models.html)** - Deploy your fine-tuned models specific to your equipment and operating environment. **[Master CLI Commands](using-commands.html)** - Learn the OODA workflow tools for daily operations.
+.start-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #4551bf;
+  font-size: 1.25rem;
+}
 
-### For Executives
-{: .fs-6 }
+.start-card p {
+  margin-bottom: 1rem;
+}
 
-**[Business Case Calculator](mailto:sales@asoba.co?subject=ROI%20Calculator%20Request)** - Custom financial analysis based on your portfolio size and current O&M performance. **[Executive Demo](mailto:sales@asoba.co?subject=Executive%20Demo%20Request)** - See the solution in action with realistic scenarios. **[Implementation Planning](mailto:sales@asoba.co?subject=Implementation%20Planning)** - Deployment strategy sessions that fit your timeline and risk tolerance.
+.start-card p:last-child {
+  margin-bottom: 0;
+}
+
+.start-card a {
+  color: #4551bf;
+  text-decoration: none;
+}
+
+.start-card a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .getting-started-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+</style>
 
 ---
 
