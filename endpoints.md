@@ -6,7 +6,7 @@ nav_order: 2
 
 # Interactive Mode Commands
 
-Complete reference for all `/` commands available in Ona Terminal interactive mode.
+Complete reference for all `/` commands available in AsobaCode interactive mode.
 
 ---
 
@@ -25,6 +25,257 @@ You'll see the interactive prompt:
 ```
 
 All commands start with `/` and can be typed directly at this prompt.
+
+---
+
+## 🛠️ System Commands
+
+### `/help`
+
+Show the help menu and available commands.
+
+```bash
+/help
+```
+
+### `/commands`
+
+List all available slash commands with detailed information.
+
+```bash
+/commands
+```
+
+### `/status`
+
+Check system status and model availability.
+
+```bash
+/status
+```
+
+**Example Output:**
+```
+📆 AsobaCode Status
+📍 Config: configs
+⏱️  Timeout: 60s
+🖥️  Servers: 3 discovered
+🐍 Python: 3.10+
+```
+
+### `/models`
+
+Manage and view available AI models.
+
+```bash
+# List all available models
+/models list
+
+# Add a custom model
+/models add mymodel --endpoint http://localhost:8000
+
+# Test model connectivity
+/models test mymodel
+
+# Remove a model
+/models remove mymodel
+```
+
+### `/configure`
+
+Open interactive configuration management interface.
+
+```bash
+/configure
+```
+
+### `/servers`
+
+List MCP servers and their status.
+
+```bash
+# List all servers
+/servers
+
+# Show server health status
+/servers --health
+```
+
+### `/exit`
+
+Exit the interactive mode.
+
+```bash
+/exit
+```
+
+---
+
+## 📁 File Operations
+
+### `/read`
+
+Read and analyze file contents with AI assistance.
+
+```bash
+# Read a file
+/read config.py
+
+# Read with line limit
+/read --lines 50 large_file.txt
+```
+
+**Supported File Types:**
+- Text files (`.py`, `.js`, `.md`, `.txt`, etc.)
+- PDF documents (`.pdf`)
+- Word documents (`.docx`, `.doc`) 
+- PowerPoint presentations (`.pptx`)
+- Excel spreadsheets (`.xlsx`, `.xls`)
+
+### `/list`
+
+List directory contents.
+
+```bash
+# List current directory
+/list
+
+# List specific directory
+/list src/
+
+# Show all files including hidden
+/list --all
+
+# Show detailed information
+/list --details
+```
+
+### `/find`
+
+Search for files and content.
+
+```bash
+# Find files by pattern
+/find *.py
+
+# Search content within files
+/find --type content "def main"
+
+# Search for directories
+/find --type dir config
+```
+
+### `/edit`
+
+AI-assisted file editing (coming soon).
+
+```bash
+/edit config.py
+/edit src/main.py "add error handling"
+```
+
+---
+
+## 🐙 GitHub Integration
+
+### `/github auth`
+
+Manage GitHub authentication.
+
+```bash
+# Login to GitHub
+/github auth login
+
+# Check authentication status
+/github auth status
+
+# Logout from GitHub
+/github auth logout
+```
+
+### `/github repo`
+
+Repository management commands.
+
+```bash
+# Get repository information
+/github repo info owner/repo
+```
+
+### `/github issues`
+
+Issue management commands.
+
+```bash
+# List issues
+/github issues list owner/repo
+
+# Filter by state
+/github issues list owner/repo --state=closed
+```
+
+### `/github pr`
+
+Pull request commands.
+
+```bash
+# List pull requests
+/github pr list owner/repo
+
+# Filter by state
+/github pr list owner/repo --state=all
+```
+
+### `/github webhook`
+
+Webhook management.
+
+```bash
+# List webhooks
+/github webhook list owner/repo
+```
+
+### `/github rate-limit`
+
+Check GitHub API rate limits.
+
+```bash
+/github rate-limit
+```
+
+---
+
+## 📝 Planning & Configuration
+
+### `/ona`
+
+Manage .ona planning files.
+
+```bash
+# Set up .ona environment
+/ona setup
+
+# List planning files
+/ona list
+
+# Create new planning file
+/ona create --content "Planning content" --type plan
+```
+
+### `/prompts`
+
+Manage system prompts.
+
+```bash
+# List available prompts
+/prompts list
+
+# Select a system prompt
+/prompts select medium
+
+# Show current prompt
+/prompts show
+```
 
 ---
 
