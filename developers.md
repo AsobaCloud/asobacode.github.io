@@ -1,22 +1,23 @@
 ---
-title: "Developers (5-minute setup)"
+title: "Developer Quick Start"
 layout: default
 parent: "Quick Launch Guide"
 nav_order: 1
 ---
 
-# Developers: 5-Minute Setup
+# Developer Quick Start
 {: .fs-8 }
 
-Get Ona Terminal running with Amazon Nova Pro models and throttling resistance.
+Get started with the Terminal development environment and start contributing to the project.
 {: .fs-6 .fw-300 }
 
 ---
 
 ## Prerequisites
 
-✅ **AWS credentials** with Bedrock access  
 ✅ **Python 3.10+** and **Git** installed  
+✅ **Poetry** for dependency management  
+✅ **Pre-commit** for git hooks  
 ✅ **Terminal/Command Line** environment
 
 ### Get AWS Credentials
@@ -33,8 +34,8 @@ If you don't have AWS Bedrock access:
 
 ```bash
 # Clone repository
-git clone https://github.com/AsobaCloud/ona-terminal.git
-cd ona-terminal
+git clone https://github.com/AsobaCloud/terminal.git
+cd terminal
 
 # Install with automatic PATH setup
 ./install.sh

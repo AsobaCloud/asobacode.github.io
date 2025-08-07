@@ -1,12 +1,12 @@
 ---
-title: "Troubleshooting"
+title: "Troubleshooting Guide"
 layout: default
 nav_order: 8
 ---
 
-# Troubleshooting
+# Troubleshooting Guide
 
-> **Common issues and solutions for Ona Terminal CLI**
+> **Common issues and solutions for Terminal**
 
 This comprehensive guide covers common problems and their solutions when using Ona Terminal's multi-provider AI architecture and MCP servers.
 
@@ -344,8 +344,8 @@ ona-terminal ask "Analyze all infrastructure files and create comprehensive repo
 **Diagnosis**:
 ```python
 # Test provider directly
-from asoba_code.servers.ai_models.providers.manager import ProviderManager
-from asoba_code.config.loader import ConfigLoader
+from ona_terminal.servers.ai_models.providers.manager import ProviderManager
+from ona_terminal.config.loader import ConfigLoader
 
 config = ConfigLoader().load_config()
 manager = ProviderManager(config)
@@ -382,7 +382,7 @@ curl -X POST http://your-server:8000/generate \
 **Diagnosis**:
 ```python
 # Test routing logic
-from asoba_code.servers.ai_models.routing import ModelRouter
+from ona_terminal.servers.ai_models.routing import ModelRouter
 
 config = {"ai_models": {"fallback_strategy": "cost_optimized"}}
 router = ModelRouter(config)
@@ -701,7 +701,7 @@ openssl s_client -connect api.anthropic.com:443 -servername api.anthropic.com
 # Profile Ona Terminal performance
 import cProfile
 import pstats
-from asoba_code.client.manager import MCPClientManager
+from ona_terminal.client.manager import MCPClientManager
 
 def profile_ona-terminal():
     client = MCPClientManager()
@@ -787,8 +787,8 @@ ona-terminal config validate
 
 - **💬 Discord Community**: [Join Our Discord](https://discord.gg/nNV5evcr)
 - **📚 Documentation**: [docs.ona-terminal.dev](https://docs.ona-terminal.dev)
-- **🐛 GitHub Issues**: [Report Issues](https://github.com/AsobaCloud/ona-terminal/issues)
-- **💡 Discussions**: [GitHub Discussions](https://github.com/AsobaCloud/ona-terminal/discussions)
+- **🐛 GitHub Issues**: [Report Issues](https://github.com/AsobaCloud/terminal/issues)
+- **💡 Discussions**: [GitHub Discussions](https://github.com/AsobaCloud/terminal/discussions)
 
 ### Professional Support {#professional-support}
 

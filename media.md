@@ -4,9 +4,9 @@ layout: default
 nav_order: 5
 ---
 
-## Media & Resources
+## Media & Brand Assets
 
-This page provides access to additional resources including tutorials, demos, and case studies to help you better understand the Ona Terminal CLI platform and its capabilities for AI-powered DevOps automation.
+Official media resources and brand guidelines for Terminal.s including tutorials, demos, and case studies to help you better understand the Ona Terminal CLI platform and its capabilities for AI-powered DevOps automation.
 
 ## Video Tutorials {#video-tutorials}
 
@@ -36,19 +36,19 @@ These detailed case studies demonstrate the effectiveness of Ona Terminal CLI in
 ## Developer Resources {#developer-resources}
 
 ### **GitHub Repository**
-- **Main Repository**: [github.com/AsobaCloud/ona-terminal](https://github.com/AsobaCloud/ona-terminal)
-- **Documentation**: [github.com/AsobaCloud/ona-terminal.github.io](https://github.com/AsobaCloud/ona-terminal.github.io)
+- **Main Repository**: [github.com/AsobaCloud/terminal](https://github.com/AsobaCloud/terminal)
+- **Documentation**: [github.com/AsobaCloud/terminal.github.io](https://github.com/AsobaCloud/terminal.github.io)
 
 ### **Community & Support** {#community-support}
-- **Developer Forum**: [community.ona-terminal.dev](https://community.ona-terminal.dev)
-- **Discord Community**: [discord.gg/ona-terminal](https://discord.gg/ona-terminal)
-- **Stack Overflow**: Tag questions with `ona-terminal-cli`
+- **Developer Forum**: [community.terminal.dev](https://community.terminal.dev)
+- **Discord Community**: [discord.gg/terminal](https://discord.gg/terminal)
+- **Stack Overflow**: Tag questions with `terminal-cli`
 
 ### **Documentation Links** {#documentation-links}
 - **Installation Guide**: [Installation & Setup](sdk.html)
 - **CLI Commands**: [Complete Command Reference](endpoints.html)
-- **MCP Architecture**: [Technical Architecture](https://docs.ona-terminal.dev/architecture)
-- **Contributing Guide**: [How to Contribute](https://github.com/AsobaCloud/ona-terminal/blob/main/CONTRIBUTING.md)
+- **MCP Architecture**: [Technical Architecture](https://docs.terminal.dev/architecture)
+- **Contributing Guide**: [How to Contribute](https://github.com/AsobaCloud/terminal/blob/main/CONTRIBUTING.md)
 
 ---
 

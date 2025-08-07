@@ -246,7 +246,7 @@ training_corpus = {
 #### **Model Fine-Tuning Process**
 ```bash
 # Fine-tune Mistral model for O&M domain expertise
-asoba-code train --model mistral-7b \
+ona-terminal train --model mistral-7b \
   --domain om_dispatch \
   --corpus ./data/om_training_corpus \
   --specialization "solar_maintenance_optimization" \

@@ -12,7 +12,7 @@ Choose your path based on your role and goals.
 
 ## Developers (5-minute setup) {#developers}
 
-Get Ona Terminal running with Amazon Nova Pro models and throttling resistance.
+Get Terminal running with Amazon Nova Pro models and throttling resistance.
 
 ### Prerequisites
 
@@ -22,12 +22,32 @@ Get Ona Terminal running with Amazon Nova Pro models and throttling resistance.
 
 ### Installation & Setup
 
-**Step 1: Install Ona Terminal (2 minutes)**
+**Step 1: Install Terminal (2 minutes)**
+
+#### Windows Command Prompt
+
+```cmd
+:: Clone the repository
+git clone https://github.com/AsobaCloud/terminal.git
+cd terminal
+
+:: Create and activate virtual environment
+python -m venv venv
+call venv\Scripts\activate.bat
+
+:: Install in development mode
+pip install -e .
+
+:: Verify installation
+ona-terminal --version
+```
+
+#### Linux/macOS
 
 ```bash
 # Clone repository
-git clone https://github.com/AsobaCloud/ona-terminal.git
-cd ona-terminal
+git clone https://github.com/AsobaCloud/terminal.git
+cd terminal
 
 # Install with automatic PATH setup
 ./install.sh

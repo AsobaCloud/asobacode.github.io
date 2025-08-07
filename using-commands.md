@@ -28,40 +28,139 @@ Type any command or natural language request.
 
 ---
 
-## Essential Commands
+## Essential System Commands
 
-### System Commands
+### Help and Discovery
 {: .fs-6 }
 
 ```bash
 # Show all available commands
 🤖 | /help
 
-# List all slash commands
+# List all slash commands with descriptions
 🤖 | /commands
 
-# Check system status and model availability
-🤖 | /status
-
-# Show available AI models
-🤖 | /models
-
-# Exit the CLI
-🤖 | /exit
+# Get help for specific command
+🤖 | /help github
 ```
 
-### Code Generation
+### System Status and Configuration  
 {: .fs-6 }
 
 ```bash
-# Generate code with natural language
-🤖 | generate a python function that reads CSV files
-🤖 | create a terraform module for AWS S3 bucket
-🤖 | write unit tests for my authentication function
+# Check system status and model availability
+🤖 | /status
+🤖 | /health
 
-# Generate with specific complexity
-🤖 | /generate --complexity high --language rust "HTTP client with retry logic"
-🤖 | /generate --complexity low --language python "hello world function"
+# List available MCP servers and their status
+🤖 | /servers
+
+# Show available AI models
+🤖 | /models
+🤖 | /model
+
+# Interactive configuration management
+🤖 | /configure
+```
+
+---
+
+## File Operations
+
+### Reading and Viewing Files
+{: .fs-6 }
+
+```bash
+# Read and display file contents
+🤖 | /read config.py
+🤖 | /read README.md
+🤖 | /read src/main.py
+
+# Read with line limit
+🤖 | /read --lines 50 large_file.txt
+```
+
+### Directory Operations
+{: .fs-6 }
+
+```bash
+# List directory contents
+🤖 | /list
+🤖 | /list src/
+
+# List with hidden files
+🤖 | /list --all
+
+# List with detailed information  
+🤖 | /list --details
+```
+
+### Search Operations
+{: .fs-6 }
+
+```bash
+# Search for files and content
+🤖 | /find main.py
+🤖 | /find "function name"
+🤖 | /find "import requests"
+
+# Search by type
+🤖 | /find --type file "*.py"
+🤖 | /find --type dir "test*"
+🤖 | /find --type content "TODO"
+
+# Search in specific path
+🤖 | /find pattern --path src/
+```
+
+---
+
+## Code Operations
+
+### AI-Assisted File Editing
+{: .fs-6 }
+
+```bash
+# Edit files with AI assistance
+🤖 | /edit config.py
+🤖 | /edit src/main.py "add error handling"
+🤖 | /edit README.md "update installation instructions"
+
+# Interactive editing
+🤖 | /edit app.py
+# Follow prompts for what changes to make
+```
+
+---
+
+## GitHub Integration
+
+### Repository Operations
+{: .fs-6 }
+
+```bash
+# GitHub authentication
+🤖 | /github auth login
+🤖 | /github auth status
+🤖 | /github auth logout
+
+# Repository information
+🤖 | /github repo info owner/repo
+🤖 | /github repo info owner/repo --details
+
+# Issues management
+🤖 | /github issues list owner/repo
+🤖 | /github issues list owner/repo --state=closed
+
+# Pull requests
+🤖 | /github pr list owner/repo
+🤖 | /github pr list owner/repo --state=all
+
+# Webhooks
+🤖 | /github webhook list owner/repo
+
+# Rate limiting
+🤖 | /github rate-limit
 ```
 
 ---
@@ -73,243 +172,189 @@ Type any command or natural language request.
 
 ```bash
 # Upload inverter data for analysis
-🤖 | /upload-inverter upload --file inverter_data.csv --site-id SITE001
+🤖 | /upload-inverter upload CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER FILE_PATH REGION CLIENT_ID
+🤖 | /upload-inverter CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER FILE_PATH REGION CLIENT_ID
+🤖 | /upload-inverter CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER FILE_PATH REGION CLIENT_ID
 
 # Check upload status
-🤖 | /upload-inverter status --job-id abc123
+🤖 | /upload-inverter status [UPLOAD_ID]
+🤖 | /upload-inverter status [UPLOAD_ID]
 
-# Start forecasting analysis
-🤖 | /forecast-inverter start --site-id SITE001 --horizon 30days
+# Generate forecasts
+🤖 | /forecast-inverter start CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER REGION FORECAST_TYPE HORIZON_DAYS FREQUENCY
+🤖 | /forecast-inverter start CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER REGION FORECAST_TYPE HORIZON_DAYS FREQUENCY
+🤖 | /forecast-inverter start CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER REGION FORECAST_TYPE HORIZON_DAYS FREQUENCY
 
 # Get forecast results
-🤖 | /forecast-inverter get --forecast-id xyz789
+🤖 | /forecast-inverter get CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER REGION OUTPUT_DIR FORECAST_TYPE
+🤖 | /forecast-inverter get CUSTOMER_ID LOCATION MANUFACTURER SERIAL_NUMBER REGION OUTPUT_DIR FORECAST_TYPE
 
-# Generate maintenance recommendations
-🤖 | /diagnose-inverter --inverter-id INV001 --symptoms "low output, error code E042"
+# Check forecast status
+🤖 | /forecast-inverter status [REQUEST_ID]
+🤖 | /forecast-inverter status [REQUEST_ID]
 ```
 
-### Data Analysis Commands
+### Example O&M Workflows
 {: .fs-6 }
 
 ```bash
-# Weather data normalization
-🤖 | /weather-normalize --data-file production.csv --location "Phoenix, AZ"
+# Upload inverter data
+🤖 | /upload-inverter SOLAR001 "Cape Town" "SolarEdge" SE12345 /data/inverter.csv af-south-1 client123
 
-# Performance analysis
-🤖 | /performance-analysis --site SITE001 --start 2024-01-01 --end 2024-01-31
+# Monitor processing
+🤖 | /upload-inverter status SOLAR001_SE12345_1754151842
 
-# Fault detection
-🤖 | /fault-detection --equipment inverter --data-source scada --threshold 0.85
+# Generate 7-day forecast
+🤖 | /forecast-inverter start SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 P50 7 daily
+
+# Get forecast results
+🤖 | /forecast-inverter get SOLAR001 "Cape Town" "SolarEdge" SE12345 af-south-1 /tmp/forecasts P50
 ```
 
 ---
 
-## Error Management & Troubleshooting
+## Configuration and Prompts
 
-### Error Handling Commands
+### System Prompt Management
 {: .fs-6 }
 
 ```bash
-# Show recent errors
-🤖 | /errors recent
+# List all available system prompts
+🤖 | /prompts list
 
-# Get detailed error information
-🤖 | /error-detail --error-id ERR123
+# Select a system prompt for current and future sessions
+🤖 | /prompts select simple
+🤖 | /prompts select medium
+🤖 | /prompts select ooda
 
-# Retry failed operations
-🤖 | /retry --job-id abc123
-
-# Clear error logs
-🤖 | /errors clear
+# Show current prompt
+🤖 | /prompts current
 ```
 
-### Debugging Commands
+### Planning File Management (.ona)
 {: .fs-6 }
 
 ```bash
-# Show verbose logs
-🤖 | /debug on
+# Set up .ona directory and .gitignore
+🤖 | /ona setup
+🤖 | /ona setup
 
-# Test model connectivity
-🤖 | /test-models
+# List all planning files in .ona directory
+🤖 | /ona list
+🤖 | /ona list
 
-# Show cache statistics
-🤖 | /cache-stats
+# Create planning files
+🤖 | /ona create --content "Planning content here" --type plan
+🤖 | /ona create --content "Analysis content here" --type insights
 
-# Clear availability cache
-🤖 | /cache-clear
-
-# Show circuit breaker status
-🤖 | /circuit-breaker status
-```
-
----
-
-## Advanced Features
-
-### Model Selection
-{: .fs-6 }
-
-```bash
-# Use specific model for generation
-🤖 | /model amazon.nova-pro-v1:0 "generate Python code for data validation"
-
-# Switch default model
-🤖 | /set-model amazon.nova-lite-v1:0
-
-# Compare outputs from different models
-🤖 | /compare-models "write a sorting algorithm" --models nova-pro,claude-sonnet
-```
-
-### Configuration Commands
-{: .fs-6 }
-
-```bash
-# Show current configuration
-🤖 | /config show
-
-# Update configuration
-🤖 | /config set provider.bedrock.default_model amazon.nova-lite-v1:0
-
-# Reset to defaults
-🤖 | /config reset
-
-# Save current session configuration
-🤖 | /config save --name my-setup
+# Show .ona status
+🤖 | /ona status
 ```
 
 ---
 
-## Command Examples by Use Case
+## Command Categories Reference
 
-### Solar Site Analysis
-{: .fs-6 }
+### System Commands
+- `/help` - Show help information
+- `/commands` - List all slash commands  
+- `/status` - Show system status
+- `/servers` - List MCP servers
+- `/models` - Show available AI models
+- `/configure` - Interactive configuration
+
+### File Operations  
+- `/read` - Read file contents
+- `/list` - List directory contents
+- `/find` - Search for files and content
+- `/edit` - AI-assisted file editing
+
+### GitHub Integration
+- `/github` - Complete GitHub operations suite
+
+### O&M Operations
+- `/upload-inverter` - Data upload workflows
+- `/forecast-inverter` - Forecast generation
+
+### Configuration
+- `/prompts` - System prompt management
+- `/ona` - Planning file management
+
+---
+
+## Natural Language Integration
+
+You can also use natural language for complex tasks:
 
 ```bash
-# Complete site health check
-🤖 | analyze solar site performance for SITE001 over the last 30 days
+# Code generation
+🤖 | generate a python function that reads CSV files
+🤖 | create a terraform module for AWS S3 bucket
+🤖 | write unit tests for my authentication function
 
-# Equipment-specific diagnostics
-🤖 | /diagnose-inverter --inverter-id SMA001 --symptoms "output 15% below expected"
+# Analysis and review
+🤖 | analyze this Python file for performance issues
+🤖 | review my repository structure and suggest improvements
+🤖 | scan my codebase for security vulnerabilities
 
-# Weather impact analysis
-🤖 | compare actual vs weather-normalized performance for January 2024
-```
-
-### Maintenance Planning
-{: .fs-6 }
-
-```bash
-# Generate maintenance schedule
-🤖 | create preventive maintenance schedule for 50MW solar site
-
-# Economic dispatch optimization
-🤖 | optimize maintenance timing considering weather forecast and energy prices
-
-# Warranty validation
-🤖 | /warranty-check --equipment-id INV001 --failure-type "DC combiner fault"
-```
-
-### Report Generation
-{: .fs-6 }
-
-```bash
-# Monthly performance report
-🤖 | generate monthly performance report for SITE001 January 2024
-
-# Compliance documentation
-🤖 | /compliance-report --standard NERC --site SITE001 --period Q1-2024
-
-# Executive summary
-🤖 | create executive summary of site performance and recommendations
+# Infrastructure operations
+🤖 | deploy a microservices architecture on AWS
+🤖 | create a Kubernetes deployment with monitoring
+🤖 | analyze my inverter data and generate forecast
 ```
 
 ---
 
-## Tips for Effective Usage
+## Tips and Best Practices
 
-### Natural Language Best Practices
-{: .fs-6 }
+### Command Efficiency
+- Use shorter aliases when available (e.g., `/ls` instead of `/list`)
+- Tab completion works for command names and file paths
+- Use `--help` with any command to see detailed options
 
-✅ **Good**: "Generate Python code to parse solar inverter CSV data with error handling"  
-❌ **Vague**: "Write code"
+### File Operations
+- Always use absolute paths or ensure you're in the correct directory
+- Use `/find` to locate files before reading them
+- The `/edit` command provides AI assistance for complex modifications
 
-✅ **Good**: "Analyze inverter INV001 performance drop of 20% since last week"  
-❌ **Vague**: "Check inverter"
+### GitHub Workflows
+- Set up authentication once with `/github auth login`
+- Use `/github rate-limit` to check API limits before bulk operations
+- Repository analysis works with both public and private repos
 
-### Command Chaining
-{: .fs-6 }
+### O&M Operations
+- Upload data files should be in CSV format
+- Monitor upload status before starting forecasts
+- Forecast generation may take several minutes for large datasets
 
-```bash
-# Chain operations for complex workflows
-🤖 | /upload-inverter upload --file data.csv && /analyze-performance --auto-report
-```
-
-### Getting Help
-{: .fs-6 }
-
-```bash
-# Get help for specific commands
-🤖 | /help upload-inverter
-🤖 | /help forecast-inverter
-
-# Show command examples
-🤖 | /examples fault-detection
-```
+### Planning Integration
+- Use `/ona setup` once per project to initialize planning files
+- Planning files are automatically excluded from git tracking
+- System prompts automatically create planning artifacts in `.ona/`
 
 ---
 
-## What's Next?
+## Troubleshooting
 
-1. **[Understand Agentic Workflows](agentic-workflow.html)** - Learn the OODA loop process
-2. **[Configure Custom Models](loading-models.html)** - Add your fine-tuned models
-3. **[Explore O&M Use Case](om-use-case.html)** - See real-world applications
+### Command Not Found
+If a command isn't recognized:
+- Check `/commands` to see all available commands
+- Ensure you're using the correct syntax with `/help command_name`
+- Try the command aliases (e.g., `/gh` instead of `/github`)
 
-[Learn Agentic Workflows](agentic-workflow.html){: .btn .btn-primary }
+### File Operations Issues
+- Use absolute paths or check current directory with `/list`
+- Verify file permissions for `/read` and `/edit` operations
+- Use `/find` to locate files before operating on them
 
----
+### GitHub Integration Issues
+- Check authentication status with `/github auth status`
+- Verify repository permissions and access
+- Use `/github rate-limit` to check API quotas
 
-## Get Help & Stay Updated
+### O&M Data Issues
+- Ensure CSV files are properly formatted
+- Check file paths are accessible
+- Monitor upload status before proceeding with forecasts
 
-<div class="page-end-section">
-  <div class="end-column">
-    <div class="support-cta">
-      <h3>Contact Support</h3>
-      <p>For technical assistance, feature requests, or any other questions, please reach out to our dedicated support team.</p>
-      <a href="mailto:support@asoba.co" class="support-button">Email Support</a>
-      <a href="https://discord.gg/nNV5evcr" target="_blank" class="support-button" style="margin-top: 10px; display: inline-block;">
-        <svg width="16" height="16" style="margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-        </svg>
-        Join Our Discord
-      </a>
-    </div>
-  </div>
-  
-  <div class="end-column">
-    <div id="mc_embed_shell">
-      <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-      <style type="text/css">
-        #mc_embed_signup{background:#fff; false;clear:left; font:14px Helvetica,Arial,sans-serif; width: 100%;}
-      </style>
-      <div id="mc_embed_signup">
-        <form action="https://asoba.us10.list-manage.com/subscribe/post?u=459ea321d7831d7b9f5fac70f&amp;id=e03a70f492&amp;f_id=000a9ae3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-          <div id="mc_embed_signup_scroll">
-            <h3>Subscribe to Updates</h3>
-            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-            <div class="mc-field-group"><label for="mce-FNAME">First Name </label><input type="text" name="FNAME" class=" text" id="mce-FNAME" value=""></div>
-            <div class="mc-field-group"><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" value="" required=""></div>
-            <div id="mce-responses" class="clear">
-              <div class="response" id="mce-error-response" style="display: none;"></div>
-              <div class="response" id="mce-success-response" style="display: none;"></div>
-            </div>
-            <div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_459ea321d7831d7b9f5fac70f_e03a70f492" tabindex="-1" value=""></div>
-            <div class="clear"><input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe"></div>
-          </div>
-        </form>
-      </div>
-      <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-      <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';fnames[7]='MMERGE7';ftypes[7]='url';fnames[8]='MMERGE8';ftypes[8]='text';fnames[9]='MMERGE9';ftypes[9]='text';fnames[10]='MMERGE10';ftypes[10]='text';fnames[11]='MMERGE11';ftypes[11]='url';fnames[12]='MMERGE12';ftypes[12]='text';fnames[13]='MMERGE13';ftypes[13]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-    </div>
-  </div>
-</div>
+For additional help, use `/help` followed by the specific command name for detailed usage information.

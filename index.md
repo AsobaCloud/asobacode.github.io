@@ -39,7 +39,7 @@ Transform reactive operations into proactive intelligence with industry-specific
     <p>Automated, smart business workflows paired with highly efficient compute</p>
   </div>
   <div class="paradigm-media">
-    <img src="{{ site.baseurl }}/assets/images/asobacode-terminal.svg" alt="Ona Terminal Interface" class="demo-gif">
+    <img src="{{ site.baseurl }}/assets/images/onaterminal-terminal.svg" alt="Ona Terminal Interface" class="demo-gif">
   </div>
 </div>
 
