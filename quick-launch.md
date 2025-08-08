@@ -54,16 +54,33 @@ ona-terminal --version
 
 #### Linux/macOS
 
+**Step-by-step installation:**
+
+1. **Clone the repository**
 ```bash
-# Clone repository
 git clone https://github.com/AsobaCloud/terminal.git
 cd terminal
+```
 
-# Install with automatic PATH setup
+2. **Run the installation script**
+```bash
 ./install.sh
+```
 
-# Reload shell configuration
-source ~/.bashrc  # or ~/.zshrc, or restart terminal
+3. **Reload your shell configuration**
+```bash
+# For bash users:
+source ~/.bashrc
+
+# For zsh users:
+source ~/.zshrc
+
+# OR restart your terminal completely
+```
+
+4. **Verify installation**
+```bash
+ona-terminal --version
 ```
 
 **Step 2: Configure AWS (2 minutes)**

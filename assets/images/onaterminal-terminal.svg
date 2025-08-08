@@ -50,8 +50,8 @@
   <text x="650" y="435" class="terminal-text subtle-text" font-size="9">Provider: bedrock | Model: amazon.nova-pro-v1:0 | Cost: $0.0002</text>
   
   <!-- Response content -->
-  <text x="70" y="455" class="terminal-text prompt-text" font-size="11">The assetmgmt.pdf document is not present in the current working directory.</text>
-  <text x="70" y="475" class="terminal-text info-text" font-size="11">Please upload the file or use '/find assetmgmt.pdf' to locate it.</text>
+  <text x="70" y="455" class="terminal-text prompt-text" font-size="11">Solar Farm Delta-7 shows 94.2% capacity factor with 847 MWh generated this month.</text>
+  <text x="70" y="475" class="terminal-text info-text" font-size="11">Performance exceeds forecast by 12%, with optimal inverter efficiency at 98.1%.</text>
   
   <!-- Provider info -->
   <text x="70" y="515" class="terminal-text subtle-text" font-size="10">Provider: bedrock</text>
