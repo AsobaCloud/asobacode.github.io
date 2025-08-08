@@ -69,14 +69,9 @@ cd terminal
 
 3. **Reload your shell configuration**
 ```bash
-# For bash users:
 source ~/.bashrc
-
-# For zsh users:
-source ~/.zshrc
-
-# OR restart your terminal completely
 ```
+or restart your terminal completely
 
 4. **Verify installation**
 ```bash
