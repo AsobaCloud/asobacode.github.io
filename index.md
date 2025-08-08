@@ -19,7 +19,7 @@ Transform reactive operations into proactive intelligence with industry-specific
     <div class="path-content">
       <h3>Developer</h3>
       <p>You directly interface with assets on a daily basis</p>
-      <a href="developers.html" class="path-link">5-minute setup →</a>
+      <a href="quick-launch.html" class="path-link">5-minute setup →</a>
     </div>
   </div>
   

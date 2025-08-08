@@ -24,8 +24,18 @@ Get Terminal running with Amazon Nova Pro models and throttling resistance.
 
 **Step 1: Install Terminal (2 minutes)**
 
-#### Windows Command Prompt
+#### Windows (Recommended: Use Installer)
 
+**Option 1: Windows Installer (Easiest)**
+1. Download `ona-terminal-setup.exe` from [Releases](https://github.com/AsobaCloud/terminal/releases)
+2. Run the installer with administrator privileges
+3. Follow the installation wizard
+4. The installer will:
+   - Install to `C:\Program Files\OnaTerminal\`
+   - Create Start Menu shortcuts
+   - Optionally add to PATH for command-line access
+
+**Option 2: Manual Installation**
 ```cmd
 :: Clone the repository
 git clone https://github.com/AsobaCloud/terminal.git

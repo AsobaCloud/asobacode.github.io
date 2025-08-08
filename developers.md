@@ -32,6 +32,23 @@ If you don't have AWS Bedrock access:
 
 ### Step 1: Install Ona Terminal (2 minutes)
 
+#### Windows
+**Option 1: Windows Installer (Recommended)**
+1. Download `ona-terminal-setup.exe` from [GitHub Releases](https://github.com/AsobaCloud/terminal/releases)
+2. Run installer as administrator 
+3. Follow installation wizard
+4. Verify: Open Command Prompt and run `ona-terminal --version`
+
+**Option 2: Manual Installation**  
+```cmd
+git clone https://github.com/AsobaCloud/terminal.git
+cd terminal
+python -m venv venv
+call venv\Scripts\activate.bat
+pip install -e .
+```
+
+#### Linux/macOS
 ```bash
 # Clone repository
 git clone https://github.com/AsobaCloud/terminal.git
