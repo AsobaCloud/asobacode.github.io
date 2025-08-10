@@ -46,6 +46,18 @@ You'll see the interactive prompt:
 🤖 | /exit
 ```
 
+**Intelligent Search:**
+```bash
+# Search your codebase with AI-powered relevance ranking
+🤖 | /search "authentication logic"
+🤖 | /search "database connection"
+🤖 | /search "error handling patterns"
+
+# Advanced search with filters
+🤖 | /search "API endpoints" --extensions .py .js --max-results 20
+🤖 | /search "configuration" --directory ./src --extensions .yaml .json
+```
+
 **Code Generation:**
 ```bash
 # Generate code with natural language

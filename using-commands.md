@@ -99,7 +99,7 @@ Type any command or natural language request.
 {: .fs-6 }
 
 ```bash
-# Search for files and content
+# Search for files and content by literal pattern
 🤖 | /find main.py
 🤖 | /find "function name"
 🤖 | /find "import requests"
@@ -112,6 +112,64 @@ Type any command or natural language request.
 # Search in specific path
 🤖 | /find pattern --path src/
 ```
+
+### Intelligent Search with AI-Powered Results
+{: .fs-6 }
+
+The `/search` command provides **intelligent, context-aware search** with relevance ranking and smart result limits. Perfect for exploring large codebases and finding relevant information quickly.
+
+**Basic Search:**
+```bash
+# Search for concepts, patterns, or terms
+🤖 | /search "authentication logic"
+🤖 | /search "database migration"
+🤖 | /search "error handling"
+
+# Search with regex patterns (automatically detected)
+🤖 | /search "function\s+\w+Auth"
+🤖 | /search "class.*Controller"
+```
+
+**Advanced Search Options:**
+```bash
+# Limit results to specific file types
+🤖 | /search "configuration" --extensions .py .yaml .json
+
+# Search in specific directory
+🤖 | /search "deployment scripts" --directory ./infrastructure
+
+# Limit number of results (default: 50)
+🤖 | /search "test cases" --max-results 10
+
+# Combined options for focused search
+🤖 | /search "API endpoints" --directory ./src --extensions .py .js --max-results 25
+```
+
+**What Makes Search Intelligent:**
+
+✅ **Relevance Scoring** - Results ranked by filename matches, occurrence count, and file importance  
+✅ **Context Snippets** - Shows actual match context, not just filenames  
+✅ **Smart Size Limits** - Automatically handles large results with intelligent truncation  
+✅ **File Type Priority** - Prioritizes important development files (.py, .js, .md)  
+✅ **Regex Support** - Automatically detects and handles regex patterns  
+
+**Example Output:**
+```
+Found 15 files matching 'authentication'. Showing top 15 results.
+
+/src/auth/login.py
+Match found: 'def authenticate_user(username, password): # Main authentication logic' - File contains 8 occurrences of 'authentication'.
+
+/docs/security.md  
+Match found: 'Authentication is handled through JWT tokens with 24-hour expiry' - File contains 12 occurrences of 'authentication'.
+
+/tests/test_auth.py
+Match found: 'class TestAuthentication(unittest.TestCase): def test_valid_authentication' - File contains 15 occurrences of 'authentication'.
+```
+
+**Search vs Find:**
+- **`/search`** - Intelligent content search with AI-powered ranking and context
+- **`/find`** - Simple file/pattern matching for when you know exactly what you're looking for
 
 ---
 
@@ -266,7 +324,8 @@ Type any command or natural language request.
 ### File Operations  
 - `/read` - Read file contents
 - `/list` - List directory contents
-- `/find` - Search for files and content
+- `/find` - Search for files and content by literal pattern
+- `/search` - Intelligent content search with AI-powered ranking and context
 - `/edit` - AI-assisted file editing
 
 ### GitHub Integration
