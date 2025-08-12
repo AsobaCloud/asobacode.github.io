@@ -573,6 +573,7 @@ pre.terminal::after {
   flex-grow: 1;
   font-weight: bold;
   color: var(--text-dark);
+  font-size: 13px; /* Reduced from default 14px to prevent wrapping */
 }
 
 .toggle-icon {
