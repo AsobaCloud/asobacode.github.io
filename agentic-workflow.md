@@ -180,7 +180,7 @@ Traditional O&M is **reactive**: equipment fails → scramble to fix → high co
 
 ## Workflow Visualization
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[Observe: Data Ingestion] --> B[Weather Normalization]
     A --> C[Equipment Monitoring]
@@ -211,7 +211,12 @@ graph TD
     style E fill:#f3e5f5
     style I fill:#fff3e0
     style M fill:#e8f5e8
-```
+</div>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
 ---
 
