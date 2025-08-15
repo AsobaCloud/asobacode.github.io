@@ -78,7 +78,7 @@ You'll see the interactive prompt:
 🤖 | /model mistral-iac-generation "create terraform for multi-AZ deployment"
 
 # Use Qwen Claude-MD model for complex reasoning
-🤖 | /model qwen-claude-md "complex architectural design with CLAUDE.md methodology"
+🤖 | /model qwen-claude-md "complex architectural design with INSTRUCTIONS.md methodology"
 ```
 
 ---
@@ -203,7 +203,7 @@ Configure AWS credentials and region for Bedrock access. Ona Terminal will autom
 🤖 | /deploy-model --name qwen-claude-md --instance g5.4xlarge
 
 # Complex reasoning tasks
-🤖 | /model qwen-claude-md "architectural design following CLAUDE.md explore-plan-code-commit methodology"
+🤖 | /model qwen-claude-md "architectural design following INSTRUCTIONS.md explore-plan-code-commit methodology"
 ```
 
 ### Model Deployment Commands

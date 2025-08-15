@@ -62,7 +62,7 @@ jobs:
             TEST_CRITERIA='
         ## 🧪 Test Criteria for Completion
 
-        ### API Tests (Required - CLAUDE.md Compliance)
+        ### API Tests (Required - INSTRUCTIONS.md Compliance)
         - [ ] **Endpoint Availability**: GET/POST requests return proper HTTP status codes
         - [ ] **Response Format**: JSON responses match documented schema
         - [ ] **Authentication**: Proper Auth0 JWT validation for protected endpoints
@@ -87,7 +87,7 @@ jobs:
             TEST_CRITERIA='
         ## 🧪 Test Criteria for Completion
 
-        ### Frontend Tests (Required - CLAUDE.md Compliance)
+        ### Frontend Tests (Required - INSTRUCTIONS.md Compliance)
         - [ ] **Component Rendering**: UI components render correctly in different browsers
         - [ ] **User Interactions**: All buttons, forms, and interactive elements function properly
         - [ ] **Responsive Design**: Layout adapts correctly to mobile/tablet/desktop screens
@@ -112,7 +112,7 @@ jobs:
             TEST_CRITERIA='
         ## 🧪 Test Criteria for Completion
 
-        ### Functional Tests (Required - CLAUDE.md Compliance)
+        ### Functional Tests (Required - INSTRUCTIONS.md Compliance)
         - [ ] **Core Functionality**: Main feature/fix works as described in issue
         - [ ] **Integration**: Changes integrate properly with existing systems
         - [ ] **Backward Compatibility**: Existing functionality remains unaffected
@@ -151,7 +151,7 @@ jobs:
       run: |
         gh issue comment ${{ github.event.issue.number }} --body "🧪 **Automated Test Criteria Added**
         
-        This issue has been automatically enhanced with **${{ steps.determine-type.outputs.test-type }}** test criteria based on CLAUDE.md compliance principles.
+        This issue has been automatically enhanced with **${{ steps.determine-type.outputs.test-type }}** test criteria based on INSTRUCTIONS.md compliance principles.
         
         **✅ Requirements for completion:**
         - All test checkboxes must be completed before marking as Done

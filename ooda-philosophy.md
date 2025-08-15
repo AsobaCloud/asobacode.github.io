@@ -205,7 +205,7 @@ When OODA is embedded in the system prompt, users can't accidentally bypass syst
 ### Customizing OODA for Your Domain
 {: .fs-6 }
 
-The OODA framework can be adapted for different professional contexts by modifying the system prompt in your CLAUDE.md file:
+The OODA framework can be adapted for different professional contexts by modifying the system prompt in your INSTRUCTIONS.md file:
 
 Different domains require adapted OODA frameworks that reflect their specific constraints and priorities:
 
@@ -233,10 +233,10 @@ DECIDE: Select optimal design balancing cost/performance
 ACT: Provide complete specifications with monitoring
 ```
 
-### Implementation in CLAUDE.md
+### Implementation in INSTRUCTIONS.md
 {: .fs-6 }
 
-Add domain-specific OODA to your project's CLAUDE.md system prompt to enforce the methodology across all interactions.
+Add domain-specific OODA to your project's INSTRUCTIONS.md system prompt to enforce the methodology across all interactions.
 
 ---
 
