@@ -73,23 +73,17 @@ layout: default
             <span class="toggle-icon">+</span>
           </div>
           <ul class="sub-menu">
-            <li><a href="{{ site.baseurl }}/interactive-exploration.html#using-commands">Using / Commands (Interactive Mode)</a></li>
             <li><a href="{{ site.baseurl }}/interactive-exploration.html#agentic-workflow">Understanding Agents</a></li>
             <li><a href="{{ site.baseurl }}/interactive-exploration.html#loading-models">Loading Bedrock & Custom Models</a></li>
           </ul>
         </li>
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/using-cli-commands.html">Using CLI Commands</a>
+            <a href="{{ site.baseurl }}/commands-reference.html">CLI Commands Reference</a>
             <span class="toggle-icon">+</span>
           </div>
         </li>
-        <li class="nav-item">
-          <div class="nav-header">
-            <a href="{{ site.baseurl }}/using-cli-commands.html">Using CLI Commands</a>
-            <span class="toggle-icon">+</span>
-          </div>
-        </li>
+        
         <li class="nav-item">
           <div class="nav-header">
             <a href="{{ site.baseurl }}/om-use-case.html">Example O&M Use Case</a>
@@ -202,7 +196,11 @@ layout: default
 
   <style>
     .nav-list .nav-item {
-      margin-bottom: -10px; /* Reduce space between menu items */
+      margin-bottom: -15px; /* Further reduce space between menu items */
+      font-size: 0.95em; /* Slightly smaller font size */
+    }
+    .sub-menu a {
+      font-size: 0.8em; /* Slightly smaller font size for sub-menu items */
     }
     .sidebar {
       overflow-y: auto; /* Add scrollbar when content overflows */
