@@ -1,8 +1,8 @@
 ---
-title: "Use Case - Predictive O&M"
+title: "O&M Agentic Workflow: Technical Deep Dive"
 layout: default
 nav_order: 3
-description: Transform solar O&M costs into strategic asset optimization through AI-powered predictive maintenance
+description: Technical deep dive into implementing AI-powered predictive maintenance workflows with Ona Terminal's agentic framework.
 ---
 
 # Transform O&M from Cost Center to Profit Driver
@@ -34,45 +34,9 @@ When fault patterns are detected, the system automatically diagnoses the issue, 
 ### 💰 **Optimizes Every Dispatch Decision**
 Every maintenance action is financially justified with real-time calculation of **Energy-at-Risk (EAR)** versus dispatch costs, ensuring maximum ROI on every truck roll.
 
-## Business Value: The Numbers That Matter
+## Business Value (Overview)
 
-### Immediate Financial Impact (10 MW Facility Example)
-
-<div class="value-metrics">
-  <div class="metric-card primary">
-    <div class="metric-value">$847,000</div>
-    <div class="metric-label">Annual Energy Recovery</div>
-    <div class="metric-description">MWh saved through predictive intervention</div>
-  </div>
-  
-  <div class="metric-card success">
-    <div class="metric-value">72%</div>
-    <div class="metric-label">Reduction in Emergency Calls</div>
-    <div class="metric-description">Preventive maintenance eliminates crisis response</div>
-  </div>
-  
-  <div class="metric-card info">
-    <div class="metric-value">$180,000</div>
-    <div class="metric-label">Annual Cost Avoidance</div>
-    <div class="metric-description">Eliminated false dispatches and optimized routing</div>
-  </div>
-  
-  <div class="metric-card warning">
-    <div class="metric-value">15-25%</div>
-    <div class="metric-label">Insurance Premium Reduction</div>
-    <div class="metric-description">Risk mitigation through documented predictive maintenance</div>
-  </div>
-</div>
-
-### Strategic Value Creation
-
-**Asset Life Extension**: Predictive maintenance extends equipment life by 15-20%, deferring $2-4M in replacement costs for a typical 50 MW portfolio.
-
-**Performance Ratio Optimization**: Proactive soiling management and component replacement maintains 2-3% higher annual generation compared to reactive approaches.
-
-**Portfolio Intelligence**: Cross-facility learning identifies systematic issues and optimization opportunities that individual site analysis misses.
-
-**Insurance & Finance Benefits**: Documented predictive maintenance programs qualify for preferred insurance rates and improved debt financing terms.
+For a detailed breakdown of the financial and strategic value of Ona Terminal's O&M solution, including ROI and impact metrics, please refer to the [Example O&M Use Case](om-use-case.html) page.
 
 ## How It Works: From Data to Decisions
 
@@ -324,288 +288,21 @@ def execute_om_workflow(asset_id, fault_trigger):
 
 This approach mirrors the insurance "Agent Catalog (Default Pack)" and "Underwriting example" sequences—only the decision output changes from price/limits to dispatch.
 
-### Investment & Returns
+## Investment & Returns (Overview)
 
-**Total Investment**: $125,000-$200,000 implementation + $35,000-$55,000 annual operation
+For a detailed analysis of the investment required and the projected financial returns, please refer to the [Example O&M Use Case](om-use-case.html) page.
 
-**Financial Returns (10 MW facility)**:
-- **Year 1**: $310,000-$535,000 benefit = 180-350% ROI
-- **Year 2**: $425,000-$650,000 benefit (improved model accuracy)
-- **Year 3**: $475,000-$720,000 benefit (full optimization)
+## Why This Matters Now (Overview)
 
-**Payback Period**: 4-8 months across all facility sizes
+For a discussion on the current market trends, competitive advantages, and strategic importance of adopting predictive O&M, please refer to the [Example O&M Use Case](om-use-case.html) page.
 
-## Why This Matters Now
+## Getting Started (Overview)
 
-### Market Transformation
-- **Asset Aging**: Early solar installations entering high-maintenance periods
-- **Cost Pressure**: Increasing competition requiring operational excellence
-- **Insurance Evolution**: Data-driven risk assessment becoming standard
-- **Technology Maturity**: AI and automation capabilities now production-ready
-
-### Competitive Advantage
-- **Early Adoption**: First-mover advantage in predictive maintenance
-- **Operational Excellence**: Superior performance attracts capital and contracts
-- **Risk Management**: Improved insurance terms and financing conditions
-- **Scalability**: Framework supports portfolio growth and diversification
-
-## Getting Started
-
-Ready to transform your O&M operation from reactive cost center to predictive profit driver?
-
-### Immediate Next Steps
-
-1. **Portfolio Assessment**: Evaluate your current O&M costs and performance metrics
-2. **Data Audit**: Inventory historical maintenance data and system capabilities
-3. **Pilot Planning**: Identify 2-3 representative facilities for initial deployment
-4. **Business Case**: Quantify expected returns for your specific portfolio
-
-### Success Requirements
-
-- **Historical Data**: 12+ months of maintenance records and performance data
-- **SCADA Access**: Real-time inverter and environmental monitoring
-- **Organizational Commitment**: Dedicated project team and change management
-- **Performance Baseline**: Current cost and performance metrics for comparison
-
-<div class="cta-section">
-  <h3>Transform Your O&M Operation</h3>
-  <p>Join leading solar operators who have reduced MTTR by 40%, cut O&M costs by 30%, and improved portfolio returns by 15-25% through predictive maintenance intelligence.</p>
-  
-  <div class="cta-buttons">
-    <a href="mailto:contact@asoba.co?subject=O&M Predictive Intelligence Consultation" class="cta-button primary">Schedule Business Case Review</a>
-    <a href="/docs/om-technical-details" class="cta-button secondary">Technical Implementation Details</a>
-  </div>
-</div>
+For a comprehensive guide on getting started with Ona Terminal's O&M solution, including immediate next steps, success requirements, and contact information, please refer to the [Example O&M Use Case](om-use-case.html) page.
 
 ---
 
-<style>
-.value-metrics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
 
-.metric-card {
-  background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.07);
-  border-left: 4px solid;
-}
-
-.metric-card.primary { border-left-color: #007bff; }
-.metric-card.success { border-left-color: #28a745; }
-.metric-card.info { border-left-color: #17a2b8; }
-.metric-card.warning { border-left-color: #ffc107; }
-
-.metric-value {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #2c3e50;
-  line-height: 1.2;
-}
-
-.metric-label {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #495057;
-  margin: 0.5rem 0;
-}
-
-.metric-description {
-  font-size: 0.9rem;
-  color: #6c757d;
-  line-height: 1.4;
-}
-
-.cta-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 3rem 2rem;
-  border-radius: 12px;
-  text-align: center;
-  margin: 3rem 0;
-}
-
-.cta-section h3 {
-  color: white;
-  margin-bottom: 1rem;
-  font-size: 2rem;
-}
-
-.cta-buttons {
-  margin-top: 2rem;
-}
-
-.cta-button {
-  display: inline-block;
-  padding: 14px 28px;
-  margin: 0 0.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.cta-button.primary {
-  background: white;
-  color: #667eea;
-}
-
-.cta-button.primary:hover {
-  background: #f8f9fa;
-  color: #667eea;
-  transform: translateY(-2px);
-}
-
-.cta-button.secondary {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-}
-
-.cta-button.secondary:hover {
-  background: white;
-  color: #667eea;
-  transform: translateY(-2px);
-}
-
-blockquote {
-  background: #f8f9fa;
-  border-left: 4px solid #28a745;
-  padding: 1.5rem;
-  margin: 2rem 0;
-  font-style: italic;
-}
-
-blockquote p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-blockquote strong {
-  display: block;
-  margin-top: 1rem;
-  font-style: normal;
-  color: #495057;
-  font-size: 0.9rem;
-}
-
-.highlight-box {
-  background: #e8f4fd;
-  border: 1px solid #bee5eb;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-}
-
-.highlight-box h4 {
-  color: #0c5460;
-  margin-top: 0;
-}
-
-code {
-  background: #f8f9fa;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-family: 'Monaco', 'Consolas', monospace;
-  font-size: 0.9rem;
-}
-
-pre code {
-  display: block;
-  padding: 1rem;
-  background: #2d3748;
-  color: #e2e8f0;
-  border-radius: 8px;
-  overflow-x: auto;
-  margin: 1rem 0;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  background: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-th {
-  background: #495057;
-  color: white;
-  padding: 1rem;
-  text-align: left;
-  font-weight: 600;
-}
-
-td {
-  padding: 1rem;
-  border-bottom: 1px solid #e9ecef;
-}
-
-tr:hover {
-  background: #f8f9fa;
-}
-
-.business-flow {
-  background: linear-gradient(45deg, #f8f9fa, #e9ecef);
-  padding: 2rem;
-  border-radius: 12px;
-  margin: 2rem 0;
-}
-
-.business-flow h3 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 1.5rem;
-}
-
-.flow-steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.flow-step {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  text-align: center;
-  position: relative;
-}
-
-.flow-step h4 {
-  color: #495057;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-}
-
-.flow-step p {
-  font-size: 0.9rem;
-  color: #6c757d;
-  line-height: 1.4;
-}
-
-@media (max-width: 768px) {
-  .value-metrics {
-    grid-template-columns: 1fr;
-  }
-  
-  .metric-value {
-    font-size: 2rem;
-  }
-  
-  .cta-button {
-    display: block;
-    margin: 0.5rem 0;
-  }
-}
-</style>
 
 ---
 
