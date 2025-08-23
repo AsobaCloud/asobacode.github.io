@@ -31,7 +31,7 @@ toc:
 
 # Production settings
 baseurl: ""
-url: "https://docs.asoba.co"
+url: "https://code.asoba.co"
 
 # Jekyll plugins for GitHub Pages
 plugins:
