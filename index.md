@@ -18,25 +18,25 @@ Transform reactive operations into proactive intelligence with industry-specific
     <div class="path-icon">🛠️</div>
     <div class="path-content">
       <h3>Developer</h3>
-      <p>You directly interface with assets on a daily basis</p>
-      <a href="quick-launch.html" class="path-link">5-minute setup →</a>
+      <p>Get started with CLI tools and API integration</p>
+      <a href="getting-started.html" class="path-link">Quick Start →</a>
     </div>
   </div>
   
   <div class="path-button">
-    <div class="path-icon">💼</div>
+    <div class="path-icon">🔧</div>
     <div class="path-content">
-      <h3>Business User</h3>
-      <p>You make business decisions about assets</p>
-      <a href="business-users.html" class="path-link">Learn the value →</a>
+      <h3>System Administrator</h3>
+      <p>Deploy and manage infrastructure automation</p>
+      <a href="deployment.html" class="path-link">Deployment Guide →</a>
     </div>
   </div>
 </div>
 
 <div class="paradigm-card">
   <div class="paradigm-text">
-    <h2>A new paradigm for energy asset management</h2>
-    <p>Automated, smart business workflows paired with highly efficient compute</p>
+    <h2>AI-powered infrastructure automation</h2>
+    <p>Transform reactive operations into proactive intelligence with industry-specific AI models</p>
   </div>
   <div class="paradigm-media">
     <img src="{{ site.baseurl }}/assets/images/onaterminal-terminal.svg" alt="Ona Terminal Interface" class="demo-gif">
@@ -241,45 +241,49 @@ Learn how to use Ona Terminal effectively:
   <div class="exploration-card">
     <div class="exploration-icon">📝</div>
     <div class="exploration-content">
-      <h3><a href="using-commands.html">Using `/` Commands</a></h3>
-      <p>Interactive CLI commands with examples</p>
+      <h3><a href="cli-tools.html">CLI Tools</a></h3>
+      <p>Command-line interface with interactive commands</p>
     </div>
   </div>
   
   <div class="exploration-card">
-    <div class="exploration-icon">🔄</div>
+    <div class="exploration-icon">🔌</div>
     <div class="exploration-content">
-      <h3><a href="agentic-workflow.html">Agentic Workflow Overview</a></h3>
-      <p>OODA loop: Observe → Orient → Decide → Act</p>
+      <h3><a href="api-reference.html">API Reference</a></h3>
+      <p>Programmatic access to automation capabilities</p>
     </div>
   </div>
   
   <div class="exploration-card">
-    <div class="exploration-icon">🤖</div>
+    <div class="exploration-icon">🔗</div>
     <div class="exploration-content">
-      <h3><a href="loading-models.html">Loading Bedrock & Custom Models</a></h3>
-      <p>AWS Bedrock configuration and custom fine-tuned models</p>
+      <h3><a href="integration.html">Integration Guide</a></h3>
+      <p>SDK integration and webhook configuration</p>
     </div>
   </div>
 </div>
 
 ---
 
-## Example Use Case
+## Key Features
 
-### ⚡ [O&M Operations](om-use-case.html)
-**Real-world solar operations & maintenance**  
-See how Ona Terminal transforms reactive maintenance into proactive intelligence
+### 🚀 [PoC Deployment](poc-deployment.html)
+**Proof of concept implementation**  
+See how to quickly deploy and validate automation workflows
+
+### 🔧 [Shared Components](shared-components.html)
+**Reusable infrastructure components**  
+Authentication, data processing, and error handling utilities
 
 ---
 
 ## Ready to Get Started?
 
-1. **Technical users**: Start with [5-minute Developer Setup](developers.html)
-2. **Business users**: Learn [Why Ona Terminal](business-users.html) first
-3. **See it in action**: Explore the [O&M Use Case](om-use-case.html)
+1. **New users**: Start with [Getting Started](getting-started.html) guide
+2. **Developers**: Explore [CLI Tools](cli-tools.html) and [API Reference](api-reference.html)
+3. **System admins**: Check [Production Deployment](deployment.html) guide
 
-[Talk to Sales](mailto:sales@asoba.co?subject=Ona%20Terminal%20Enterprise%20Demo){: .btn .btn-outline .fs-5 }
+[Contact Support](mailto:support@asoba.co?subject=Technical%20Support){: .btn .btn-outline .fs-5 }
 
 ---
 
