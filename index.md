@@ -4,44 +4,109 @@ layout: default
 nav_order: 1
 ---
 
-# Ona Terminal
+# Ona Terminal - Technical Documentation
 {: .fs-9 }
 
-**AI-powered infrastructure automation for your terminal.**
+**AI-powered infrastructure automation for developers and technical teams.**
 {: .fs-6 .fw-300 }
 
-Transform reactive operations into proactive intelligence with industry-specific AI models.
+Complete technical documentation for deployment, integration, and development with Ona Terminal.
 {: .fs-5 .fw-300 }
 
 <div class="user-path-buttons">
   <div class="path-button">
-    <div class="path-icon">🛠️</div>
+    <div class="path-icon">🚀</div>
     <div class="path-content">
-      <h3>Developer</h3>
-      <p>You directly interface with assets on a daily basis</p>
-      <a href="quick-launch.html" class="path-link">5-minute setup →</a>
+      <h3>Deployment</h3>
+      <p>Deploy Ona Terminal and related services to your infrastructure</p>
+      <a href="deployment.html" class="path-link">Deploy Now →</a>
     </div>
   </div>
   
   <div class="path-button">
-    <div class="path-icon">💼</div>
+    <div class="path-icon">🔧</div>
     <div class="path-content">
-      <h3>Business User</h3>
-      <p>You make business decisions about assets</p>
-      <a href="business-users.html" class="path-link">Learn the value →</a>
+      <h3>API Reference</h3>
+      <p>Complete API documentation for all core services</p>
+      <a href="api-reference.html" class="path-link">View APIs →</a>
+    </div>
+  </div>
+  
+  <div class="path-button">
+    <div class="path-icon">⚡</div>
+    <div class="path-content">
+      <h3>Quick Start</h3>
+      <p>Get up and running in minutes with our developer guide</p>
+      <a href="getting-started.html" class="path-link">Start Here →</a>
     </div>
   </div>
 </div>
 
 <div class="paradigm-card">
   <div class="paradigm-text">
-    <h2>A new paradigm for energy asset management</h2>
-    <p>Automated, smart business workflows paired with highly efficient compute</p>
+    <h2>Technical Overview</h2>
+    <p>Ona Terminal provides a comprehensive suite of tools for energy asset management, forecasting, and automation. Built for developers and technical teams who need to integrate AI-powered energy solutions into their infrastructure.</p>
   </div>
   <div class="paradigm-media">
     <img src="{{ site.baseurl }}/assets/images/onaterminal-terminal.svg" alt="Ona Terminal Interface" class="demo-gif">
   </div>
 </div>
+
+## Current Production State
+
+**Last Verified**: 2025-01-10 (Status: PRODUCTION VERIFIED - Version 1.6.0)
+
+### 🖥️ Ona Terminal CLI
+Interactive command-line interface with AI-powered workflows and OODA loop capabilities.
+
+### 🔌 Deployed APIs (15 Lambda Functions)
+- **ingestHistoricalData** - Historical data processing ✅
+- **ingestNowcastData** - Real-time data ingestion ✅
+- **trainForecaster** - ML model training ✅
+- **dataInterpolation** - Data quality enhancement ✅
+- **returnForecastingResults** - Results delivery ✅
+- **Weather Services** - 4 weather-related functions ✅
+- **Auth0 Integration** - User authentication ✅
+- **PDF Processing** - Document processing ✅
+
+### ⚠️ Critical Issues
+- **SageMaker Endpoints**: 8 endpoints failed - ML inference broken
+- **Security**: 950+ wildcard imports, 14 dependency vulnerabilities
+- **Test Coverage**: Only 23% with critical gaps
+- **generateForecast**: Core module exists but not deployed
+
+### 🏗️ Infrastructure
+- **af-south-1**: Primary production (15 Lambda functions)
+- **us-east-1**: Global services (3 Lambda functions)
+- **PolicyAnalyst**: GPU-based LLM deployment
+- **11 S3 Buckets**: Data storage and hosting
+
+## Critical Development Path
+
+The platform follows a mandatory 3-epic development sequence:
+
+1. **Epic #137: Security Foundation** (Weeks 1-2) - **BLOCKS ALL OTHER WORK**
+2. **Epic #138: Production Infrastructure** (Weeks 3-4) - **BLOCKED BY EPIC #137**
+3. **Epic #139: Customer-Facing Features** (Weeks 5-8) - **BLOCKED BY EPICS #137 & #138**
+
+## Quick Navigation
+
+- **[Getting Started](getting-started.html)** - Installation and setup
+- **[Deployment](deployment.html)** - Ona Terminal CLI deployment
+- **[PoC Deployment](poc-deployment.html)** - Comprehensive PoC implementation
+- **[API Reference](api-reference.html)** - Complete API documentation
+- **[Shared Components](shared-components.html)** - Reusable platform components
+- **[CLI Tools](cli-tools.html)** - Command-line interface documentation
+- **[Integration](integration.html)** - SDK and webhook integration
+- **[Development](development.html)** - Local development and contributing
+- **[Resources](resources.html)** - Examples, tutorials, and community
+- **[Changelog](changelog.html)** - Version history and changes
+
+## Support
+
+- 📧 **Technical Support**: [support@asoba.co](mailto:support@asoba.co)
+- 💬 **Discord Community**: [Join our Discord](https://discord.gg/nNV5evcr)
+- 📖 **Business Documentation**: [docs.asoba.co](https://docs.asoba.co)
 
 <style>
 .user-path-buttons {
@@ -105,225 +170,31 @@ Transform reactive operations into proactive intelligence with industry-specific
 .paradigm-card {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 40px;
   margin: 40px 0;
-  flex-wrap: wrap;
-  border: 2px solid #e1e4e8;
-  border-radius: 8px;
   padding: 30px;
   background: #fff;
-  transition: all 0.3s ease;
-}
-
-.paradigm-card:hover {
-  border-color: #4551bf;
-  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
-  transform: translateY(-2px);
-}
-
-.paradigm-text {
-  flex: 1;
-  min-width: 250px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .paradigm-text h2 {
-  font-size: 1.8em;
-  margin: 0 0 10px 0;
   color: #2c3e50;
+  margin-bottom: 15px;
 }
 
 .paradigm-text p {
   color: #666;
-  font-size: 1.1em;
-  line-height: 1.5;
-  margin: 0;
+  line-height: 1.6;
 }
 
 .paradigm-media {
-  flex: 3;
-  min-width: 400px;
+  flex-shrink: 0;
 }
 
 .demo-gif {
-  width: 100%;
+  max-width: 300px;
   height: auto;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.exploration-cards {
-  display: flex;
-  gap: 20px;
-  margin: 30px 0 40px 0;
-  flex-wrap: wrap;
-}
-
-.exploration-card {
-  flex: 1;
-  min-width: 250px;
-  border: 2px solid #e1e4e8;
-  border-radius: 8px;
-  padding: 25px;
-  text-align: center;
-  transition: all 0.3s ease;
-  background: #fff;
-}
-
-.exploration-card:hover {
-  border-color: #4551bf;
-  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
-  transform: translateY(-2px);
-}
-
-.exploration-icon {
-  font-size: 2.5em;
-  margin-bottom: 15px;
-}
-
-.exploration-content h3 {
-  font-size: 1.2em;
-  margin: 0 0 10px 0;
-  color: #2c3e50;
-}
-
-.exploration-content h3 a {
-  color: #4551bf;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.exploration-content h3 a:hover {
-  color: #3a47a3;
-  text-decoration: underline;
-}
-
-.exploration-content p {
-  color: #666;
-  margin: 0;
-  line-height: 1.4;
-  font-size: 0.95em;
-}
-
-@media (max-width: 768px) {
-  .user-path-buttons {
-    flex-direction: column;
-  }
-  
-  .path-button {
-    min-width: auto;
-  }
-  
-  .paradigm-card {
-    flex-direction: column;
-  }
-  
-  .paradigm-media {
-    min-width: auto;
-  }
-  
-  .exploration-cards {
-    flex-direction: column;
-  }
-  
-  .exploration-card {
-    min-width: auto;
-  }
 }
 </style>
-
----
-
-## Interactive Exploration
-
-Learn how to use Ona Terminal effectively:
-
-<div class="exploration-cards">
-  <div class="exploration-card">
-    <div class="exploration-icon">📝</div>
-    <div class="exploration-content">
-      <h3><a href="using-commands.html">Using `/` Commands</a></h3>
-      <p>Interactive CLI commands with examples</p>
-    </div>
-  </div>
-  
-  <div class="exploration-card">
-    <div class="exploration-icon">🔄</div>
-    <div class="exploration-content">
-      <h3><a href="agentic-workflow.html">Agentic Workflow Overview</a></h3>
-      <p>OODA loop: Observe → Orient → Decide → Act</p>
-    </div>
-  </div>
-  
-  <div class="exploration-card">
-    <div class="exploration-icon">🤖</div>
-    <div class="exploration-content">
-      <h3><a href="loading-models.html">Loading Bedrock & Custom Models</a></h3>
-      <p>AWS Bedrock configuration and custom fine-tuned models</p>
-    </div>
-  </div>
-</div>
-
----
-
-## Example Use Case
-
-### ⚡ [O&M Operations](om-use-case.html)
-**Real-world solar operations & maintenance**  
-See how Ona Terminal transforms reactive maintenance into proactive intelligence
-
----
-
-## Ready to Get Started?
-
-1. **Technical users**: Start with [5-minute Developer Setup](developers.html)
-2. **Business users**: Learn [Why Ona Terminal](business-users.html) first
-3. **See it in action**: Explore the [O&M Use Case](om-use-case.html)
-
-[Talk to Sales](mailto:sales@asoba.co?subject=Ona%20Terminal%20Enterprise%20Demo){: .btn .btn-outline .fs-5 }
-
----
-
-## Get Help & Stay Updated
-
-<div class="page-end-section">
-  <div class="end-column">
-    <div class="support-cta">
-      <h3>Contact Support</h3>
-      <p>For technical assistance, feature requests, or any other questions, please reach out to our dedicated support team.</p>
-      <a href="mailto:support@asoba.co" class="support-button">Email Support</a>
-      <a href="https://discord.gg/nNV5evcr" target="_blank" class="support-button" style="margin-top: 10px; display: inline-block;">
-        <svg width="16" height="16" style="margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-        </svg>
-        Join Our Discord
-      </a>
-    </div>
-  </div>
-  
-  <div class="end-column">
-    <div id="mc_embed_shell">
-      <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-      <style type="text/css">
-        #mc_embed_signup{background:#fff; false;clear:left; font:14px Helvetica,Arial,sans-serif; width: 100%;}
-      </style>
-      <div id="mc_embed_signup">
-        <form action="https://asoba.us10.list-manage.com/subscribe/post?u=459ea321d7831d7b9f5fac70f&amp;id=e03a70f492&amp;f_id=000a9ae3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-          <div id="mc_embed_signup_scroll">
-            <h3>Subscribe to Updates</h3>
-            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-            <div class="mc-field-group"><label for="mce-FNAME">First Name </label><input type="text" name="FNAME" class=" text" id="mce-FNAME" value=""></div>
-            <div class="mc-field-group"><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" value="" required=""></div>
-            <div id="mce-responses" class="clear">
-              <div class="response" id="mce-error-response" style="display: none;"></div>
-              <div class="response" id="mce-success-response" style="display: none;"></div>
-            </div>
-            <div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_459ea321d7831d7b9f5fac70f_e03a70f492" tabindex="-1" value=""></div>
-            <div class="clear"><input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe"></div>
-          </div>
-        </form>
-      </div>
-      <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-      <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';fnames[7]='MMERGE7';ftypes[7]='url';fnames[8]='MMERGE8';ftypes[8]='text';fnames[9]='MMERGE9';ftypes[9]='text';fnames[10]='MMERGE10';ftypes[10]='text';fnames[11]='MMERGE11';ftypes[11]='url';fnames[12]='MMERGE12';ftypes[12]='text';fnames[13]='MMERGE13';ftypes[13]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-    </div>
-  </div>
-</div>
