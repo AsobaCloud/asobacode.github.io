@@ -2,54 +2,107 @@ document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
   
-  // Define static search data for basic functionality with h2 and h3 headers
+  // Define search data for the AsobaCloud business site
   const searchData = [
     {
-      title: "Introduction",
+      title: "Home",
       url: "/index.html",
-      content: "Welcome to the Ona API Platform! Here's how you can get started with onboarding and integrating our powerful API into your systems. You have the option of accessing Ona's capabilities via our On-Demand web app, or by embedding the API directly within your own technology stack.",
+      content: "AsobaCloud provides AI-powered solutions for solar asset management, including Ona Terminal for energy asset management, PolicyAnalyst for regulatory compliance, and Distributed Compute for edge computing services.",
       sections: [
+        { title: "Products", id: "products" },
+        { title: "Use Cases", id: "use-cases" },
+        { title: "Business Users", id: "business-users" },
+        { title: "Support", id: "support" }
+      ]
+    },
+    {
+      title: "Ona Terminal",
+      url: "/products/terminal.html",
+      content: "AI-powered command-line interface for energy asset management with OODA workflow capabilities. Features include real-time monitoring, predictive maintenance, work order management, and AI assistant chat.",
+      sections: [
+        { title: "Overview", id: "overview" },
+        { title: "Key Features", id: "key-features" },
+        { title: "OODA Workflow Integration", id: "ooda-workflow-integration" },
+        { title: "Energy Asset Management", id: "energy-asset-management" },
+        { title: "Developer-Friendly", id: "developer-friendly" },
+        { title: "Advanced Analytics", id: "advanced-analytics" },
+        { title: "User-Friendly Dashboard Interface", id: "user-friendly-dashboard-interface" },
+        { title: "Getting Started", id: "getting-started" }
+      ]
+    },
+    {
+      title: "PolicyAnalyst",
+      url: "/products/analyst.html",
+      content: "AI-powered regulatory compliance analysis for energy policies. Uses fine-tuned Mistral-7B-v0.3 model to analyze complex regulatory documents and provide compliance guidance.",
+      sections: [
+        { title: "Overview", id: "overview" },
+        { title: "Key Features", id: "key-features" },
         { title: "Getting Started", id: "getting-started" },
-        { title: "Onboarding: On-Demand Web App", id: "onboarding-web-app" },
-        { title: "Onboarding: API Integration", id: "onboarding-api-integration" },
-        { title: "Data Preparation", id: "data-preparation" },
-        { title: "API Configuration and Integration", id: "api-configuration" },
-        { title: "Testing and Validation", id: "testing-validation" }
+        { title: "Q&A Example", id: "qa-example" }
       ]
     },
     {
-      title: "API Endpoints",
-      url: "/endpoints.html",
-      content: "This guide details the APIs available in the Ona ecosystem, including their base URLs, endpoints, request parameters, and response structures. The API system dynamically routes requests to the appropriate regional endpoint based on a region query parameter, processed via CloudFront and Lambda@Edge.",
+      title: "Distributed Compute",
+      url: "/products/distributed-compute.html",
+      content: "Edge computing services for solar asset owners. Provides on-site cloud infrastructure for real-time data processing and local AI inference.",
       sections: [
-        { title: "ingestHistoricalLoadData API", id: "ingestHistoricalLoadData" },
-        { title: "ingestNowcastLoadData API", id: "ingestNowcastLoadData" },
-        { title: "trainForecaster API", id: "trainForecaster" },
-        { title: "returnForecastingResults API", id: "returnForecastingResults" },
-        { title: "interpolateData API", id: "interpolateData" }
+        { title: "Overview", id: "overview" },
+        { title: "How It Works", id: "how-it-works" },
+        { title: "Benefits for Solar Asset Owners", id: "benefits" },
+        { title: "Technical Requirements", id: "technical-requirements" },
+        { title: "Revenue Model", id: "revenue-model" },
+        { title: "Getting Started", id: "getting-started" }
       ]
     },
     {
-      title: "Ona SDK",
-      url: "/sdk.html",
-      content: "This reference documents every object and method available in Ona's SDK for seamless integration with the Ona API Platform. Use our SDK to upload large historical datasets, retrieve pre-signed URLs for secure file uploads, and interact programmatically with Ona's APIs for energy forecasting, dispatching, and analysis.",
+      title: "Business Users",
+      url: "/business-users.html",
+      content: "Solutions designed for solar asset owners, O&M teams, and energy managers who need to optimize performance and maximize returns.",
       sections: [
-        { title: "Getting Started with the Ona SDK", id: "getting-started" },
-        { title: "Installation", id: "installation" },
-        { title: "Usage Examples", id: "usage-examples" },
-        { title: "API Reference", id: "api-reference" },
-        { title: "Troubleshooting", id: "troubleshooting" }
+        { title: "Asset Performance Monitoring", id: "asset-performance-monitoring" },
+        { title: "Predictive Maintenance", id: "predictive-maintenance" },
+        { title: "Financial Impact Analysis", id: "financial-impact-analysis" },
+        { title: "Getting Started for Business Users", id: "getting-started-for-business-users" },
+        { title: "Success Stories", id: "success-stories" }
       ]
     },
     {
-      title: "Ona On-Demand",
-      url: "/analyst.html",
-      content: "Welcome to Ona On-Demand—your comprehensive web app for navigating complex energy policies and managing grid operations with ease. This guide will help you get started quickly, understand best practices for interacting with the app, and explore key features.",
+      title: "Operations & Maintenance",
+      url: "/use-cases/oam.html",
+      content: "Comprehensive O&M solutions using the OODA (Observe-Orient-Decide-Act) loop methodology for solar asset management that maximizes uptime, minimizes costs, and protects revenue.",
       sections: [
-        { title: "Getting Started with Ona On-Demand", id: "getting-started-with-ona-on-demand" },
-        { title: "Ona Policy Analyst", id: "ona-policy-analyst" },
-        { title: "Grid Operations", id: "grid-operations" },
-        { title: "On-Demand Model Training", id: "on-demand-model-training" }
+        { title: "Overview", id: "overview" },
+        { title: "Key Benefits", id: "key-benefits" },
+        { title: "Implementation", id: "implementation" },
+        { title: "Success Stories", id: "success-stories" }
+      ]
+    },
+    {
+      title: "Insurance & Risk Management",
+      url: "/use-cases/insurance.html",
+      content: "AI-powered insurance and risk management solutions for energy assets. Features automated claims processing, parametric triggers, and compliance monitoring.",
+      sections: [
+        { title: "Overview", id: "overview" },
+        { title: "System Architecture", id: "system-architecture" },
+        { title: "Document Processing", id: "document-processing" },
+        { title: "Agent Workflow Orchestration", id: "agent-workflow-orchestration" },
+        { title: "Forecasting Agents", id: "forecasting-agents" },
+        { title: "Compliance Agents", id: "compliance-agents" },
+        { title: "Parametric Trigger Agents", id: "parametric-trigger-agents" },
+        { title: "Continuous OODA Loop", id: "continuous-ooda-loop" },
+        { title: "Automated Claims Processing", id: "automated-claims-processing" },
+        { title: "Ona Power Tools Integration", id: "ona-power-tools-integration" }
+      ]
+    },
+    {
+      title: "FAQ",
+      url: "/faq.html",
+      content: "Frequently asked questions about AsobaCloud products and services, including technical requirements, pricing, and support information.",
+      sections: [
+        { title: "General Questions", id: "general-questions" },
+        { title: "Technical Requirements", id: "technical-requirements" },
+        { title: "Pricing & Plans", id: "pricing-plans" },
+        { title: "Support & Documentation", id: "support-documentation" }
       ]
     }
   ];
