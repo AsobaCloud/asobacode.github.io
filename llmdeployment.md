@@ -4,7 +4,7 @@ title: Deploy EnergyAnalyst on AWS
 permalink: /llmdeployment.html
 ---
 
-### EnergyAnalyst-v0.1 — AWS deployment and simple chat UI
+# EnergyAnalyst-v0.1 — AWS deployment and simple chat UI
 
 This guide shows how to deploy `asoba/EnergyAnalyst-v0.1` on AWS and wire up a minimal chat interface that inherits this documentation site's styling.
 
