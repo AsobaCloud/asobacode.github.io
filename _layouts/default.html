@@ -16,6 +16,8 @@ layout: default
   <meta name="theme-color" content="#4551bf">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
   <script src="{{ site.baseurl }}/assets/js/search.js"></script>
+  <!-- Mermaid for diagram rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 </head>
 <body>
   <header class="header-bar">
@@ -396,6 +398,52 @@ layout: default
         padding-left: 5px;
       }
     }
+
+    /* Mermaid diagram styling */
+    .mermaid {
+      text-align: center;
+      margin: 20px 0;
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .mermaid svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Ensure code blocks with mermaid are properly styled */
+    pre code.language-mermaid {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
   </style>
+
+  <!-- Initialize Mermaid -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Mermaid with configuration
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'default',
+        themeVariables: {
+          primaryColor: '#4551bf',
+          primaryTextColor: '#2c3e50',
+          primaryBorderColor: '#4551bf',
+          lineColor: '#666',
+          secondaryColor: '#f8f9fa',
+          tertiaryColor: '#fff'
+        },
+        flowchart: {
+          useMaxWidth: true,
+          htmlLabels: true
+        },
+        securityLevel: 'loose'
+      });
+    });
+  </script>
 </body>
 </html>
