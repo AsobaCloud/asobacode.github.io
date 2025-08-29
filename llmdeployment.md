@@ -17,9 +17,9 @@ This guide shows how to deploy `asoba/EnergyAnalyst-v0.1` on AWS and wire up a m
 
 ```mermaid
 flowchart LR
-  A[Docs site (this repo)] -- HTTPS --> B[API Gateway/ALB]
-  B -- private HTTPS --> C[TGI/vLLM container on EC2 GPU]
-  C -->|Hugging Face Hub| D(HF model: asoba/EnergyAnalyst-v0.1)
+    A["Docs site (this repo)"] -->|HTTPS| B["API Gateway/ALB"]
+    B -->|private HTTPS| C["TGI/vLLM container on EC2 GPU"]
+    C -->|Hugging Face Hub| D["HF model: asoba/EnergyAnalyst-v0.1"]
 ```
 
 - Keep this site static (GitHub Pages or S3). 
