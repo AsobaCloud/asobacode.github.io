@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Deploy EnergyAnalyst on AWS
-permalink: /llm-instructions.html
+permalink: /llmdeployment.html
 ---
 
 ### EnergyAnalyst-v0.1 — AWS deployment and simple chat UI
