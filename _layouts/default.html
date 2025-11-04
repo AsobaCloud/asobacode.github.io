@@ -16,36 +16,6 @@ layout: default
   <meta name="theme-color" content="#4551bf">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
   <script src="{{ site.baseurl }}/assets/js/search.js"></script>
-  <!-- Mermaid.js for diagram rendering -->
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ 
-      startOnLoad: true,
-      theme: 'default',
-      securityLevel: 'loose',
-      flowchart: {
-        useMaxWidth: true,
-        htmlLabels: true,
-        curve: 'basis'
-      },
-      sequence: {
-        diagramMarginX: 50,
-        diagramMarginY: 10,
-        actorMargin: 50,
-        width: 150,
-        height: 65,
-        boxMargin: 10,
-        boxTextMargin: 5,
-        noteMargin: 10,
-        messageMargin: 35,
-        mirrorActors: true,
-        bottomMarginAdj: 1,
-        useMaxWidth: true,
-        rightAngles: false,
-        showSequenceNumbers: false
-      }
-    });
-  </script>
 </head>
 <body>
   <header class="header-bar">
@@ -136,6 +106,68 @@ layout: default
   <div class="content">
     {{ content }}
   </div>
+
+  <!-- Mermaid.js post-processing: Convert code blocks to mermaid divs -->
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    function convertMermaidBlocks() {
+      // Find all code blocks with language 'mermaid'
+      const mermaidCodeBlocks = document.querySelectorAll('code.language-mermaid, code.lang-mermaid');
+      
+      mermaidCodeBlocks.forEach((codeBlock) => {
+        // Get the mermaid code
+        const mermaidCode = codeBlock.textContent.trim();
+        
+        // Create a new div with class 'mermaid'
+        const mermaidDiv = document.createElement('div');
+        mermaidDiv.className = 'mermaid';
+        mermaidDiv.textContent = mermaidCode;
+        
+        // Replace the parent <pre> element with the mermaid div
+        const preElement = codeBlock.parentElement;
+        if (preElement && preElement.tagName === 'PRE') {
+          preElement.parentNode.replaceChild(mermaidDiv, preElement);
+        }
+      });
+      
+      // Initialize mermaid after converting code blocks
+      mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'default',
+        securityLevel: 'loose',
+        flowchart: {
+          useMaxWidth: true,
+          htmlLabels: true,
+          curve: 'basis'
+        },
+        sequence: {
+          diagramMarginX: 50,
+          diagramMarginY: 10,
+          actorMargin: 50,
+          width: 150,
+          height: 65,
+          boxMargin: 10,
+          boxTextMargin: 5,
+          noteMargin: 10,
+          messageMargin: 35,
+          mirrorActors: true,
+          bottomMarginAdj: 1,
+          useMaxWidth: true,
+          rightAngles: false,
+          showSequenceNumbers: false
+        }
+      });
+    }
+    
+    // Run immediately if DOM is ready, otherwise wait for DOMContentLoaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', convertMermaidBlocks);
+    } else {
+      // DOM is already loaded
+      convertMermaidBlocks();
+    }
+  </script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
