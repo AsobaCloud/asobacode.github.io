@@ -17,9 +17,9 @@ Transform reactive operations into proactive intelligence with industry-specific
   <div class="path-button">
     <div class="path-icon">🛠️</div>
     <div class="path-content">
-      <h3>Developer</h3>
-      <p>Get started with CLI tools and API integration</p>
-      <a href="getting-started.html" class="path-link">Quick Start →</a>
+      <h3>User Guide</h3>
+      <p>Get started with Ona Platform</p>
+      <a href="user-guide.html#prerequisites-checklist" class="path-link">Get Started →</a>
     </div>
   </div>
   
@@ -27,8 +27,8 @@ Transform reactive operations into proactive intelligence with industry-specific
     <div class="path-icon">🔧</div>
     <div class="path-content">
       <h3>System Administrator</h3>
-      <p>Deploy and manage infrastructure automation</p>
-      <a href="deployment.html" class="path-link">Deployment Guide →</a>
+      <p>Technical administration guide</p>
+      <a href="system-admin.html" class="path-link">System Admin Guide →</a>
     </div>
   </div>
 </div>
