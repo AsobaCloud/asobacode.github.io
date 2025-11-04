@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ---
 title: "Changelog"
 layout: default
@@ -433,8 +432,8 @@ We use [Semantic Versioning](http://semver.org/) for versioning. For the version
 
 ## Support
 
-- 📧 **Technical Support**: [support@asoba.co](mailto:support@asoba.co)
-- 💬 **Discord Community**: [Join our Discord](https://discord.gg/nNV5evcr)
-- 📖 **API Reference**: [Complete API documentation](api-reference.md)
-- 🔗 **Integration Guide**: [SDK and webhook integration](integration.md)
+- ?? **Technical Support**: [support@asoba.co](mailto:support@asoba.co)
+- ?? **Discord Community**: [Join our Discord](https://discord.gg/nNV5evcr)
+- ?? **API Reference**: [Complete API documentation](api-reference.md)
+- ?? **Integration Guide**: [SDK and webhook integration](integration.md)
 >>>>>>> c5c5964585382e05b87c6f6f17f1d1e945d4e1d7
