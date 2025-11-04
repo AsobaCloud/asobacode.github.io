@@ -6,7 +6,204 @@ nav_order: 3
 
 # Command Reference
 
-Complete guide to all AsobaCode CLI commands.
+Complete guide to all AsobaCode CLI commands and interactive mode features.
+
+---
+
+## Interactive Mode & Slash Commands {#interactive-mode}
+
+AsobaCode provides an interactive terminal mode with slash commands for quick access to features.
+
+### Entering Interactive Mode
+```bash
+# Launch interactive mode
+asoba-code
+
+# You'll see the welcome screen:
+┌─────────────────────────────────────────────────────────────────────┐
+│ 🤖 AsobaCode AI Assistant                                           │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│ 🚀 Welcome to AsobaCode Interactive Mode!                          │
+│                                                                     │
+│ Type your questions or commands naturally:                          │
+│ • 'generate a python hello world function'                         │
+│ • '/help' for slash commands                                       │
+│ • '/commands' to see all available commands                        │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+🤖 |
+```
+
+### Discovering Slash Commands {#slash-command-discovery}
+
+```bash
+# Show all available slash commands
+🤖 | /commands
+
+# Get help for specific command
+🤖 | /help models
+
+# Get help by category  
+🤖 | /help system
+```
+
+### Core Slash Commands {#core-slash-commands}
+
+#### **`/help [command|category]`** {#help-command}
+Get help information for commands or categories.
+
+```bash
+🤖 | /help                    # Show all commands
+🤖 | /help models             # Help for models command  
+🤖 | /help system             # All system commands
+```
+
+#### **`/commands`** {#commands-command}
+List all available slash commands organized by category.
+
+```bash
+🤖 | /commands
+
+📁 System:
+  /status - Show system health and configuration
+  /servers - List MCP server status
+  /exit - Exit interactive mode
+
+📁 AI:
+  /models - Manage AI models and configurations
+  /ask - Natural language AI queries
+
+📁 Config:
+  /configure - Interactive configuration setup
+```
+
+#### **`/status`** {#status-slash-command}
+Show comprehensive system status.
+
+```bash
+🤖 | /status
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ 📊 AsobaCode System Status                                          │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│ ✅ AWS Bedrock: Connected (us-east-1)                              │
+│    • claude-3-5-sonnet-20240620-v1:0                              │
+│    • claude-3-haiku-20240307-v1:0                                  │
+│    • amazon.nova-pro-v1:0                                          │
+│                                                                     │
+│ ✅ GitHub Integration: Ready                                        │
+│ ✅ Code Analysis: 47 rules loaded                                   │
+│ ⚠️  Custom Models: Not configured (optional 96% savings)           │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+#### **`/models [subcommand]`** {#models-slash-command}
+Manage AI models and configurations with unified view.
+
+```bash
+# Show all available models (Bedrock + custom)
+🤖 | /models list
+
+# Show only Bedrock models
+🤖 | /models bedrock list
+
+# Configure Bedrock settings
+🤖 | /models bedrock set --region us-west-2 --model-id anthropic.claude-3-haiku-20240307-v1:0
+
+# Test Bedrock connectivity
+🤖 | /models bedrock test
+
+# Show Bedrock configuration
+🤖 | /models bedrock config
+
+# Manage custom models
+🤖 | /models custom list
+🤖 | /models custom add local-mistral http://localhost:8000 --api-key sk-123
+🤖 | /models custom remove local-mistral
+```
+
+**Example Output:**
+```
+🤖 Available AI Models
+
+📋 AWS Bedrock Models (3)
+┌─────────────────────────────────┬──────────────┬────────────┬──────────────┐
+│ Model ID                        │ Provider     │ Region     │ Status       │
+├─────────────────────────────────┼──────────────┼────────────┼──────────────┤
+│ anthropic.claude-3-5-sonnet-... │ Anthropic    │ us-east-1  │ ✅ Available │
+│ anthropic.claude-3-haiku-...    │ Anthropic    │ us-east-1  │ ✅ Available │
+│ amazon.nova-pro-v1:0            │ Amazon       │ us-east-1  │ ✅ Available │
+└─────────────────────────────────┴──────────────┴────────────┴──────────────┘
+
+🔧 Custom Models (1)
+┌─────────────────────────────────┬──────────────┬────────────┬──────────────┐
+│ Name                            │ Provider     │ Endpoint   │ Status       │
+├─────────────────────────────────┼──────────────┼────────────┼──────────────┤
+│ local-mistral-7b                │ Custom       │ localhost  │ ✅ Healthy   │
+└─────────────────────────────────┴──────────────┴────────────┴──────────────┘
+
+⚙️ Current Configuration:
+• Default Region: us-east-1
+• Default Bedrock Model: anthropic.claude-3-5-sonnet-20240620-v1:0
+• Routing Strategy: cost_optimized
+```
+
+#### **`/servers`** {#servers-slash-command}
+Show status of all MCP servers.
+
+```bash
+🤖 | /servers
+
+📊 MCP Servers Status:
+• AI Models Server: ✅ Running (cost_optimized)
+• GitHub Integration: ✅ Connected
+• Code Analysis: ✅ Ready (47 rules)
+• Terminal Interface: ✅ Active
+```
+
+#### **`/configure`** {#configure-slash-command}
+Interactive configuration setup.
+
+```bash
+🤖 | /configure
+
+🔧 AsobaCode Configuration Setup
+
+1. AWS Bedrock Region: [us-east-1]
+2. Default AI Model: [anthropic.claude-3-5-sonnet-20240620-v1:0]
+3. Cost Optimization: [Enabled]
+4. GitHub Integration: [Connected]
+
+Type number to change, or 'done' to finish:
+```
+
+#### **`/exit`** {#exit-slash-command}
+Exit interactive mode.
+
+```bash
+🤖 | /exit
+
+👋 Thanks for using AsobaCode! 
+   Your session has been saved.
+```
+
+---
+
+## Natural Language Queries {#natural-language-queries}
+
+In interactive mode, you can also use natural language alongside slash commands:
+
+```bash
+# Mix slash commands with natural language
+🤖 | /models list
+🤖 | generate terraform for web app
+🤖 | /status
+🤖 | analyze this code for security issues
+```
 
 ---
 

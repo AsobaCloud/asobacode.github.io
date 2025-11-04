@@ -239,33 +239,33 @@ Try these in the interactive mode:
 🤖 |
 ```
 
-### Get Help
+### Get Help & Discover Slash Commands
 ```
-🤖 | help
+🤖 | /help
 
 ┌─────────────────────────────────────────────────────────────────────┐
-│ 🚀 AsobaCode Commands                                               │
+│ 🤖 Available Slash Commands                                         │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
-│ Infrastructure:                                                     │
+│ Quick Commands:                                                     │
+│ • /commands - List all slash commands                              │
+│ • /models list - Show available AI models                          │
+│ • /status - System health check                                    │
+│ • /configure - Interactive setup                                   │
+│                                                                     │
+│ Natural Language:                                                   │
 │ • 'create terraform for web app'                                   │
-│ • 'generate kubernetes deployment'                                  │
-│ • 'docker configuration for python app'                            │
-│                                                                     │
-│ Code Analysis:                                                      │
-│ • 'analyze this code for bugs'                                     │
 │ • 'scan for security vulnerabilities'                              │
-│ • 'check code quality'                                             │
-│                                                                     │
-│ GitHub:                                                             │
-│ • 'create issues for problems found'                               │
 │ • 'analyze latest pull request'                                    │
-│ • 'review repository structure'                                    │
+│                                                                     │
+│ Model Management:                                                   │
+│ • /models bedrock config - Bedrock settings                        │
+│ • /models custom add - Add custom model                            │
+│ • /models test - Test connectivity                                 │
 │                                                                     │
 │ System:                                                             │
-│ • 'show status' - system health                                    │
-│ • 'list servers' - MCP server status                              │
-│ • 'exit' - quit AsobaCode                                          │
+│ • /servers - MCP server status                                     │
+│ • /exit - quit AsobaCode                                           │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 
@@ -306,10 +306,8 @@ asoba-code
 
 ## Next Steps {#next-steps}
 
-- **[Learn Core Concepts](sdk.html)** - Understand how AsobaCode works
-- **[Command Reference](endpoints.html)** - See all available commands
-- **[Custom Models Setup](custom-model-integration.html)** - Maximum cost savings (advanced)
-- **[Team Integration](mcp-server-development.html)** - Scale across your team
+- **[User Guide](user-guide.html)** - Get started with Ona Platform
+- **[System Administrator](system-admin.html)** - Technical administration guide
 
 ---
 

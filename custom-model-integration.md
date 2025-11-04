@@ -104,22 +104,38 @@ export MISTRAL_FALLBACK_IP="your-server-ip"
 
 3. **Verify integration:**
 ```bash
-asoba-code status
+# View all models including your custom ones
+asobacode models list
+
+# Check custom model status  
+curl http://your-server:8000/status
 ```
 
-### Expected Status Output {#load-balancing}
+### Expected Models List Output {#load-balancing}
 ```
-✅ AsobaCode CLI Status
-   Version: 1.0.0
-   
-✅ AI Providers
-   AWS Bedrock: Connected
-   Custom Models: Connected (cost_optimized)
-   
-✅ Cost Optimization
-   Strategy: cost_optimized
-   Custom Model: http://your-server:8000 (healthy)
-   Estimated savings: 96%
+🤖 Available AI Models
+
+📋 AWS Bedrock Models (3)
+┌─────────────────────────────────┬──────────────┬────────────┬──────────────┐
+│ Model ID                        │ Provider     │ Region     │ Status       │
+├─────────────────────────────────┼──────────────┼────────────┼──────────────┤
+│ anthropic.claude-3-5-sonnet-... │ Anthropic    │ us-east-1  │ ✅ Available │
+│ anthropic.claude-3-haiku-...    │ Anthropic    │ us-east-1  │ ✅ Available │
+│ amazon.nova-pro-v1:0            │ Amazon       │ us-east-1  │ ✅ Available │
+└─────────────────────────────────┴──────────────┴────────────┴──────────────┘
+
+🔧 Custom Models (1)
+┌─────────────────────────────────┬──────────────┬────────────┬──────────────┐
+│ Name                            │ Provider     │ Endpoint   │ Status       │
+├─────────────────────────────────┼──────────────┼────────────┼──────────────┤
+│ mistral-7b-iac                  │ Custom       │ your-serve │ ✅ Healthy   │
+└─────────────────────────────────┴──────────────┴────────────┴──────────────┘
+
+⚙️ Current Configuration:
+• Default Region: us-east-1
+• Default Bedrock Model: anthropic.claude-3-5-sonnet-20240620-v1:0
+• Routing Strategy: cost_optimized
+• Custom Model Savings: 96%
 ```
 
 ---

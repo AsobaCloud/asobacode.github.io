@@ -39,6 +39,12 @@
   box-sizing: border-box;
 }
 
+/* Smooth scrolling with proper anchor offset for fixed header. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px; /* Header height + padding */
+}
+
 body {
   font-family: 'DM Sans', Helvetica, Arial, sans-serif;
   color: var(--text-dark);
