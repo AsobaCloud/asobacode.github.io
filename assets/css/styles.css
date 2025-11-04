@@ -157,16 +157,37 @@ strong {
 
 /* Sidebar Navigation */
 .sidebar {
-  height: 100%;
+  height: calc(100vh - 70px);
   width: 250px;
   position: fixed;
   z-index: 1;
   top: 70px; /* Match the header height */
   left: 0;
   background-color: var(--white);
+  overflow-y: auto;
   overflow-x: hidden;
-  padding: 30px 0 20px 0;
+  padding: 20px 0 20px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-blue) #f0f0f0;
+}
+
+/* Custom scrollbar for webkit browsers */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--primary-blue);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-blue);
 }
 
 .side-nav a {

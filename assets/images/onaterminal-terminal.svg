@@ -1,0 +1,55 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .terminal-bg { fill: #2d1b69; }
+      .terminal-border { stroke: #00bcd4; stroke-width: 2; fill: none; }
+      .terminal-text { font-family: 'Monaco', 'Consolas', monospace; font-size: 12px; }
+      .header-text { fill: #00bcd4; font-weight: bold; }
+      .prompt-text { fill: #ffffff; }
+      .command-text { fill: #ffd700; }
+      .success-text { fill: #4caf50; }
+      .info-text { fill: #00bcd4; }
+      .ai-text { fill: #bb86fc; }
+      .subtle-text { fill: #9e9e9e; }
+      .response-bg { fill: #3d2a5e; stroke: #00bcd4; stroke-width: 1; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#1a0d3d"/>
+  
+  <!-- Terminal window -->
+  <rect x="40" y="30" width="720" height="540" rx="8" class="terminal-bg"/>
+  <rect x="40" y="30" width="720" height="540" rx="8" class="terminal-border"/>
+  
+  <!-- Header -->
+  <text x="400" y="60" text-anchor="middle" class="terminal-text header-text" font-size="16">Ona Terminal</text>
+  
+  <!-- Content lines -->
+  <text x="60" y="100" class="terminal-text header-text" font-size="13">Type your questions or requests naturally:</text>
+  <text x="80" y="125" class="terminal-text subtle-text">• 'generate a python hello world function'</text>
+  <text x="80" y="145" class="terminal-text subtle-text">• 'summarize the pdf located in C:\users\admin\Documents\Tech'</text>
+  
+  <text x="60" y="180" class="terminal-text header-text" font-size="13">Use "/" commands to drive the work you need:</text>
+  <text x="80" y="205" class="terminal-text subtle-text">• /help - show help menu</text>
+  <text x="80" y="225" class="terminal-text subtle-text">• /commands - list all commands</text>
+  
+  <text x="60" y="260" class="terminal-text prompt-text">Current working directory: /home/shingai</text>
+  
+  <text x="60" y="285" class="terminal-text subtle-text">Use 'exit' or Ctrl+C to quit</text>
+  
+  <!-- Interactive example -->
+  <text x="60" y="320" class="terminal-text info-text">🤖 please provide a summary of the assetmgmt.pdf document</text>
+  <text x="60" y="345" class="terminal-text ai-text">🧠 🧠 Analyzing request with file system context...</text>
+  <text x="60" y="370" class="terminal-text success-text">✅ 🧠 Analyzing request with file system context... - Complete (0.0s)</text>
+  <text x="60" y="395" class="terminal-text subtle-text">📊 156 input + 28 output = 184 total tokens | 💰 $0.0002</text>
+  
+  <!-- Response box -->
+  <rect x="60" y="415" width="680" height="120" rx="6" class="response-bg"/>
+  <text x="70" y="435" class="terminal-text ai-text" font-size="11">🤖 AI Assistant Response</text>
+  <text x="70" y="450" class="terminal-text subtle-text" font-size="9">Provider: bedrock | Model: amazon.nova-pro-v1:0 | Cost: $0.0002</text>
+  
+  <!-- Response content -->
+  <text x="70" y="470" class="terminal-text prompt-text" font-size="11">Solar Farm Delta-7 shows 94.2% capacity factor with 847 MWh generated this month.</text>
+  <text x="70" y="490" class="terminal-text info-text" font-size="11">Performance exceeds forecast by 12%, with optimal inverter efficiency at 98.1%.</text>
+</svg>

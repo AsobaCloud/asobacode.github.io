@@ -7,7 +7,7 @@ heading_anchors: true
 
 # Kramdown configuration to prevent anchor conflicts
 kramdown:
-  auto_ids: false          # Disable automatic ID generation to use our explicit {#anchor-id} syntax
+  auto_ids: true          # Enable automatic ID generation for anchor links
   input: GFM              # Use GitHub Flavored Markdown
   hard_wrap: false
   syntax_highlighter: rouge
@@ -31,7 +31,7 @@ toc:
 
 # Production settings
 baseurl: ""
-url: "https://docs.asoba.co"
+url: "https://code.asoba.co"
 
 # Jekyll plugins for GitHub Pages
 plugins:

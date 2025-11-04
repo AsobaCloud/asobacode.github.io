@@ -1,141 +1,293 @@
 ---
-title: "AsobaCode CLI"
+title: "Home"
 layout: default
-nav_order: 0
+nav_order: 1
 ---
 
-# AsobaCode CLI
+# Ona Terminal
+{: .fs-9 }
 
 **AI-powered infrastructure automation for your terminal.**
+{: .fs-6 .fw-300 }
 
-Cut infrastructure costs by 96% while automating DevOps tasks with natural language commands.
+Transform reactive operations into proactive intelligence with industry-specific AI models.
+{: .fs-5 .fw-300 }
+
+<div class="user-path-buttons">
+  <div class="path-button">
+    <div class="path-icon">🛠️</div>
+    <div class="path-content">
+      <h3>Developer</h3>
+      <p>Get started with CLI tools and API integration</p>
+      <a href="getting-started.html" class="path-link">Quick Start →</a>
+    </div>
+  </div>
+  
+  <div class="path-button">
+    <div class="path-icon">🔧</div>
+    <div class="path-content">
+      <h3>System Administrator</h3>
+      <p>Deploy and manage infrastructure automation</p>
+      <a href="deployment.html" class="path-link">Deployment Guide →</a>
+    </div>
+  </div>
+</div>
+
+<div class="paradigm-card">
+  <div class="paradigm-text">
+    <h2>AI-powered infrastructure automation</h2>
+    <p>Transform reactive operations into proactive intelligence with industry-specific AI models</p>
+  </div>
+  <div class="paradigm-media">
+    <img src="{{ site.baseurl }}/assets/images/onaterminal-terminal.svg" alt="Ona Terminal Interface" class="demo-gif">
+  </div>
+</div>
+
+<style>
+.user-path-buttons {
+  display: flex;
+  gap: 20px;
+  margin: 30px 0 40px 0;
+  flex-wrap: wrap;
+}
+
+.path-button {
+  flex: 1;
+  min-width: 300px;
+  border: 2px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.path-button:hover {
+  border-color: #4551bf;
+  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
+  transform: translateY(-2px);
+}
+
+.path-icon {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.path-content h3 {
+  font-size: 1.4em;
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+}
+
+.path-content p {
+  color: #666;
+  margin: 0 0 15px 0;
+  line-height: 1.4;
+}
+
+.path-link {
+  display: inline-block;
+  background: #4551bf;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.path-link:hover {
+  background: #3a47a3;
+  text-decoration: none;
+  color: white;
+}
+
+.paradigm-card {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+  border: 2px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 30px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.paradigm-card:hover {
+  border-color: #4551bf;
+  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
+  transform: translateY(-2px);
+}
+
+.paradigm-text {
+  flex: 1;
+  min-width: 250px;
+}
+
+.paradigm-text h2 {
+  font-size: 1.8em;
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+}
+
+.paradigm-text p {
+  color: #666;
+  font-size: 1.1em;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.paradigm-media {
+  flex: 3;
+  min-width: 400px;
+}
+
+.demo-gif {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.exploration-cards {
+  display: flex;
+  gap: 20px;
+  margin: 30px 0 40px 0;
+  flex-wrap: wrap;
+}
+
+.exploration-card {
+  flex: 1;
+  min-width: 250px;
+  border: 2px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.exploration-card:hover {
+  border-color: #4551bf;
+  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
+  transform: translateY(-2px);
+}
+
+.exploration-icon {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.exploration-content h3 {
+  font-size: 1.2em;
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+}
+
+.exploration-content h3 a {
+  color: #4551bf;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.exploration-content h3 a:hover {
+  color: #3a47a3;
+  text-decoration: underline;
+}
+
+.exploration-content p {
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+  font-size: 0.95em;
+}
+
+@media (max-width: 768px) {
+  .user-path-buttons {
+    flex-direction: column;
+  }
+  
+  .path-button {
+    min-width: auto;
+  }
+  
+  .paradigm-card {
+    flex-direction: column;
+  }
+  
+  .paradigm-media {
+    min-width: auto;
+  }
+  
+  .exploration-cards {
+    flex-direction: column;
+  }
+  
+  .exploration-card {
+    min-width: auto;
+  }
+}
+</style>
 
 ---
 
-## Quick Start {#quick-start}
+## Interactive Exploration
 
-Get up and running in 3 steps:
+Learn how to use Ona Terminal effectively:
 
-```bash
-# 1. Clone and install
-git clone https://github.com/AsobaCloud/asoba-code.git
-cd asoba-code
-pip install -e .
-
-# 2. Configure AWS
-aws configure
-
-# 3. Launch interactive mode
-asoba-code
-```
-
-**Actual AsobaCode startup:**
-
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│ 🤖 AsobaCode AI Assistant                                           │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ 🚀 Welcome to AsobaCode Interactive Mode!                          │
-│                                                                     │
-│ Type your questions or commands naturally:                          │
-│ • 'generate a python hello world function'                         │
-│ • 'show status' or 'list servers'                                  │
-│ • 'help' for assistance                                             │
-│                                                                     │
-│ Use 'exit' or Ctrl+C to quit                                       │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-
-🤖 |
-```
+<div class="exploration-cards">
+  <div class="exploration-card">
+    <div class="exploration-icon">📝</div>
+    <div class="exploration-content">
+      <h3><a href="cli-tools.html">CLI Tools</a></h3>
+      <p>Command-line interface with interactive commands</p>
+    </div>
+  </div>
+  
+  <div class="exploration-card">
+    <div class="exploration-icon">🔌</div>
+    <div class="exploration-content">
+      <h3><a href="api-reference.html">API Reference</a></h3>
+      <p>Programmatic access to automation capabilities</p>
+    </div>
+  </div>
+  
+  <div class="exploration-card">
+    <div class="exploration-icon">🔗</div>
+    <div class="exploration-content">
+      <h3><a href="integration.html">Integration Guide</a></h3>
+      <p>SDK integration and webhook configuration</p>
+    </div>
+  </div>
+</div>
 
 ---
 
-## What AsobaCode Does {#what-is-asobacode}
+## Key Features
 
-🤖 **Generate Infrastructure Code** - Terraform, Kubernetes, Docker configs through natural language  
-🔍 **Analyze Code Quality** - Find security issues, technical debt, and optimization opportunities  
-🐙 **Manage GitHub Workflows** - Create issues, analyze PRs, automate project management  
-💰 **Cost Optimization** - Uses custom AI models to reduce infrastructure automation costs by 96%
+### 🚀 [PoC Deployment](poc-deployment.html)
+**Proof of concept implementation**  
+See how to quickly deploy and validate automation workflows
 
----
-
-## Real-World Examples {#core-capabilities}
-
-### Infrastructure Generation
-```
-🤖 | create terraform for web app with database
-
-┌─────────────────────────────────────────────────────────────────────┐
-│ 🤖 AI Models Server                                                 │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ 🔄 Routing to cost-optimized Mistral provider...                   │
-│ 🏗️  Generating Terraform configuration...                          │
-│                                                                     │
-│ ✅ Generated: main.tf (247 lines)                                   │
-│ ✅ Generated: variables.tf (18 lines)                               │
-│ ✅ Generated: outputs.tf (12 lines)                                 │
-│                                                                     │
-│ 💰 Cost: $0.03 (vs $1.20 with Claude-4)                           │
-│ ⏱️  Time: 3.2 seconds                                               │
-│                                                                     │
-│ Files saved to ./terraform/                                         │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-
-🤖 |
-```
-
-### Security Analysis  
-```
-🤖 | scan this codebase for security vulnerabilities
-
-┌─────────────────────────────────────────────────────────────────────┐
-│ 🔍 Code Analysis Server                                             │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ 📁 Scanning 47 Python files, 12 JS files...                        │
-│                                                                     │
-│ ⚠️  Found 8 security issues:                                       │
-│   ├── SQL Injection risk in auth/login.py:45                       │
-│   ├── Hardcoded API key in config/settings.py:12                   │
-│   ├── XSS vulnerability in templates/user.html:23                  │
-│   └── ... 5 more issues                                            │
-│                                                                     │
-│ 📊 Security Score: 6.2/10 (Medium Risk)                            │
-│ 💰 Cost: $0.75 (analysis) vs $3.20 (premium AI)                   │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-
-🤖 |
-```
-
-### GitHub Integration
-```
-🤖 | create GitHub issues for security problems found
-
-┌─────────────────────────────────────────────────────────────────────┐
-│ 🐙 GitHub Integration Server                                        │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│ 🔄 Creating prioritized issues...                                   │
-│                                                                     │
-│ ✅ Created issue #156: [Security] SQL Injection in authentication   │
-│ ✅ Created issue #157: [Security] Hardcoded secrets in config       │
-│ ✅ Created issue #158: [Security] XSS prevention needed             │
-│                                                                     │
-│ 🏷️  Tagged with: security, high-priority, technical-debt           │
-│ 💰 Cost: $0.15 vs $0.85 (premium AI)                              │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-
-🤖 |
-```
+### 🔧 [Shared Components](shared-components.html)
+**Reusable infrastructure components**  
+Authentication, data processing, and error handling utilities
 
 ---
 
+## Ready to Get Started?
+
+1. **New users**: Start with [Getting Started](getting-started.html) guide
+2. **Developers**: Explore [CLI Tools](cli-tools.html) and [API Reference](api-reference.html)
+3. **System admins**: Check [Production Deployment](deployment.html) guide
+
+[Contact Support](mailto:support@asoba.co?subject=Technical%20Support){: .btn .btn-outline .fs-5 }
+
+---
+
+<<<<<<< HEAD
 ## Why DevOps Teams Choose AsobaCode {#key-use-cases}
 
 ### **Massive Cost Savings**
@@ -312,18 +464,21 @@ asoba-code
 ---
 
 ## Get Help
+=======
+## Get Help & Stay Updated
+>>>>>>> c5c5964585382e05b87c6f6f17f1d1e945d4e1d7
 
 <div class="page-end-section">
   <div class="end-column">
     <div class="support-cta">
       <h3>Contact Support</h3>
-      <p>Questions? We're here to help.</p>
+      <p>For technical assistance, feature requests, or any other questions, please reach out to our dedicated support team.</p>
       <a href="mailto:support@asoba.co" class="support-button">Email Support</a>
       <a href="https://discord.gg/nNV5evcr" target="_blank" class="support-button" style="margin-top: 10px; display: inline-block;">
         <svg width="16" height="16" style="margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="currentColor">
           <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
         </svg>
-        Join Discord
+        Join Our Discord
       </a>
     </div>
   </div>
