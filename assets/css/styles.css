@@ -195,7 +195,7 @@ strong {
   text-decoration: none;
   display: block;
   padding: 5px 0;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .side-nav a:hover {
@@ -637,7 +637,7 @@ pre.terminal::after {
 
 .sub-menu a {
   color: #555;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 /* Fix for bullet points not displaying properly */
