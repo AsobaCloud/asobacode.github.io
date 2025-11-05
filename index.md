@@ -242,38 +242,6 @@ Transform reactive operations into proactive intelligence with industry-specific
 
 ---
 
-## Interactive Exploration
-
-Learn how to use Ona Terminal effectively:
-
-<div class="exploration-cards">
-  <div class="exploration-card">
-    <div class="exploration-icon">📝</div>
-    <div class="exploration-content">
-      <h3><a href="cli-tools.html">CLI Tools</a></h3>
-      <p>Command-line interface with interactive commands</p>
-    </div>
-  </div>
-  
-  <div class="exploration-card">
-    <div class="exploration-icon">🔌</div>
-    <div class="exploration-content">
-      <h3><a href="api-reference.html">API Reference</a></h3>
-      <p>Programmatic access to automation capabilities</p>
-    </div>
-  </div>
-  
-  <div class="exploration-card">
-    <div class="exploration-icon">🔗</div>
-    <div class="exploration-content">
-      <h3><a href="integration.html">Integration Guide</a></h3>
-      <p>SDK integration and webhook configuration</p>
-    </div>
-  </div>
-</div>
-
----
-
 ## Ready to Get Started?
 
 1. **New users**: Start with [Getting Started](getting-started.html) guide
