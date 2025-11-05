@@ -2,108 +2,87 @@ document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
   
-  // Define search data for the AsobaCloud business site
+  // Search data based on actual documentation pages
   const searchData = [
     {
       title: "Home",
-      url: "/index.html",
-      content: "AsobaCloud provides AI-powered solutions for solar asset management, including Ona Terminal for energy asset management, PolicyAnalyst for regulatory compliance, and Distributed Compute for edge computing services.",
-      sections: [
-        { title: "Products", id: "products" },
-        { title: "Use Cases", id: "use-cases" },
-        { title: "Business Users", id: "business-users" },
-        { title: "Support", id: "support" }
-      ]
+      url: "/",
+      content: "Ona Energy Management Platform - AI-powered infrastructure automation for your terminal. Transform reactive operations into proactive intelligence with industry-specific AI models."
     },
     {
-      title: "Ona Terminal",
-      url: "/products/terminal.html",
-      content: "AI-powered command-line interface for energy asset management with OODA workflow capabilities. Features include real-time monitoring, predictive maintenance, work order management, and AI assistant chat.",
-      sections: [
-        { title: "Overview", id: "overview" },
-        { title: "Key Features", id: "key-features" },
-        { title: "OODA Workflow Integration", id: "ooda-workflow-integration" },
-        { title: "Energy Asset Management", id: "energy-asset-management" },
-        { title: "Developer-Friendly", id: "developer-friendly" },
-        { title: "Advanced Analytics", id: "advanced-analytics" },
-        { title: "User-Friendly Dashboard Interface", id: "user-friendly-dashboard-interface" },
-        { title: "Getting Started", id: "getting-started" }
-      ]
+      title: "Introduction",
+      url: "/introduction.html",
+      content: "Ona Platform: AI-Driven Solar Asset Management. Comprehensive end-to-end solution for energy analytics and forecasting that transforms raw data into actionable insights, enabling predictive maintenance, optimized energy dispatch, and enhanced operational efficiency."
     },
     {
-      title: "PolicyAnalyst",
-      url: "/products/analyst.html",
-      content: "AI-powered regulatory compliance analysis for energy policies. Uses fine-tuned Mistral-7B-v0.3 model to analyze complex regulatory documents and provide compliance guidance.",
-      sections: [
-        { title: "Overview", id: "overview" },
-        { title: "Key Features", id: "key-features" },
-        { title: "Getting Started", id: "getting-started" },
-        { title: "Q&A Example", id: "qa-example" }
-      ]
+      title: "Getting Started",
+      url: "/getting-started.html",
+      content: "Quick start guide for developers to get up and running with Ona Terminal CLI. Install, configure, and start using the Ona Terminal CLI for energy asset management and forecasting. Includes prerequisites, installation steps, and first steps."
     },
     {
-      title: "Distributed Compute",
-      url: "/products/distributed-compute.html",
-      content: "Edge computing services for solar asset owners. Provides on-site cloud infrastructure for real-time data processing and local AI inference.",
-      sections: [
-        { title: "Overview", id: "overview" },
-        { title: "How It Works", id: "how-it-works" },
-        { title: "Benefits for Solar Asset Owners", id: "benefits" },
-        { title: "Technical Requirements", id: "technical-requirements" },
-        { title: "Revenue Model", id: "revenue-model" },
-        { title: "Getting Started", id: "getting-started" }
-      ]
+      title: "User Guide",
+      url: "/user-guide.html",
+      content: "Customer Onboarding Guide: Ona Platform. Step-by-step guide to get your Ona Platform up and running with minimum viable usage. Configure all necessary components and start generating insights from your solar assets."
     },
     {
-      title: "Business Users",
-      url: "/business-users.html",
-      content: "Solutions designed for solar asset owners, O&M teams, and energy managers who need to optimize performance and maximize returns.",
-      sections: [
-        { title: "Asset Performance Monitoring", id: "asset-performance-monitoring" },
-        { title: "Predictive Maintenance", id: "predictive-maintenance" },
-        { title: "Financial Impact Analysis", id: "financial-impact-analysis" },
-        { title: "Getting Started for Business Users", id: "getting-started-for-business-users" },
-        { title: "Success Stories", id: "success-stories" }
-      ]
+      title: "Use Cases",
+      url: "/archive/om-use-case.html",
+      content: "Example O&M Use Case - Real-world solar operations & maintenance transformation with Ona Terminal. The business problem, Ona Terminal solution, MCP framework advantage, business impact analysis, technical implementation, and implementation roadmap."
     },
     {
-      title: "Operations & Maintenance",
-      url: "/use-cases/oam.html",
-      content: "Comprehensive O&M solutions using the OODA (Observe-Orient-Decide-Act) loop methodology for solar asset management that maximizes uptime, minimizes costs, and protects revenue.",
-      sections: [
-        { title: "Overview", id: "overview" },
-        { title: "Key Benefits", id: "key-benefits" },
-        { title: "Implementation", id: "implementation" },
-        { title: "Success Stories", id: "success-stories" }
-      ]
+      title: "Deployment",
+      url: "/deployment.html",
+      content: "Ona Terminal CLI Deployment - Complete deployment guide for the Ona Terminal CLI tool and related services. Includes Docker deployment, systemd service deployment, monitoring and logging, security considerations, and troubleshooting."
     },
     {
-      title: "Insurance & Risk Management",
-      url: "/use-cases/insurance.html",
-      content: "AI-powered insurance and risk management solutions for energy assets. Features automated claims processing, parametric triggers, and compliance monitoring.",
-      sections: [
-        { title: "Overview", id: "overview" },
-        { title: "System Architecture", id: "system-architecture" },
-        { title: "Document Processing", id: "document-processing" },
-        { title: "Agent Workflow Orchestration", id: "agent-workflow-orchestration" },
-        { title: "Forecasting Agents", id: "forecasting-agents" },
-        { title: "Compliance Agents", id: "compliance-agents" },
-        { title: "Parametric Trigger Agents", id: "parametric-trigger-agents" },
-        { title: "Continuous OODA Loop", id: "continuous-ooda-loop" },
-        { title: "Automated Claims Processing", id: "automated-claims-processing" },
-        { title: "Ona Power Tools Integration", id: "ona-power-tools-integration" }
-      ]
+      title: "PoC Deployment",
+      url: "/poc-deployment.html",
+      content: "PoC Deployment Guide - Comprehensive guide for deploying Proof-of-Concept implementations of the Ona platform. Step-by-step instructions for MVP/PoC setup, testing, validation, and demo preparation."
+    },
+    {
+      title: "API Reference",
+      url: "/api-reference.html",
+      content: "Complete documentation for all Ona API endpoints and services. Data ingestion APIs, data processing APIs, machine learning APIs, energy management APIs, weather integration APIs, and management APIs. Includes authentication, request/response formats, and SDK integration."
+    },
+    {
+      title: "Shared Components",
+      url: "/shared-components.html",
+      content: "Documentation for shared components and utilities used across the Ona API platform. Authentication and authorization, data processing, error handling, logging and monitoring, database operations, configuration management, and utility functions."
+    },
+    {
+      title: "CLI Tools",
+      url: "/cli-tools.html",
+      content: "Complete documentation for the Ona Terminal CLI commands and utilities. Command-line interface for energy asset management, forecasting, and automation. Includes data management, model management, forecasting, system commands, and configuration."
+    },
+    {
+      title: "Integration",
+      url: "/integration.html",
+      content: "Comprehensive guide for integrating with the Ona API ecosystem. Python SDK, JavaScript SDK, webhooks, authentication, integration patterns, batch processing, real-time data streaming, error handling, and testing."
+    },
+    {
+      title: "Development",
+      url: "/development.html",
+      content: "Development Guide - Guide for contributing to the Ona platform development. Development setup, codebase structure, development workflow, API development, CLI development, database development, Docker development, testing strategy, and documentation."
+    },
+    {
+      title: "Resources",
+      url: "/resources.html",
+      content: "Additional resources, examples, and community support for the Ona platform. Documentation links, code examples, tutorials, community support channels, tools and utilities, API status monitoring, security resources, training and certification."
+    },
+    {
+      title: "Changelog",
+      url: "/changelog.html",
+      content: "All notable changes to the Ona Platform. Version history, new features, improvements, bug fixes, and performance enhancements. Follows Keep a Changelog format and Semantic Versioning."
     },
     {
       title: "FAQ",
       url: "/faq.html",
-      content: "Frequently asked questions about AsobaCloud products and services, including technical requirements, pricing, and support information.",
-      sections: [
-        { title: "General Questions", id: "general-questions" },
-        { title: "Technical Requirements", id: "technical-requirements" },
-        { title: "Pricing & Plans", id: "pricing-plans" },
-        { title: "Support & Documentation", id: "support-documentation" }
-      ]
+      content: "Frequently Asked Questions about Ona's energy management platform. Technical questions, business questions, distributed compute questions, and support information. Includes system requirements, scalability, integration, pricing, ROI, and deployment options."
+    },
+    {
+      title: "Legal",
+      url: "/legal.html",
+      content: "Legal Documentation - Terms of Service, End User License Agreement (EULA), and Privacy Policy. Access to Asoba's legal documentation including service description, user accounts, API usage, intellectual property rights, and privacy information."
     }
   ];
 
@@ -125,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (results.length > 0) {
       let resultsHtml = '<ul>';
       results.forEach(result => {
-        resultsHtml += `<li><a href="${result.url}">${result.title}</a>: ${result.preview}</li>`;
+        resultsHtml += `<li><a href="${result.url}"><strong>${result.title}</strong><br><span style="font-size: 0.9em; color: #666;">${result.preview}</span></a></li>`;
       });
       resultsHtml += '</ul>';
       searchResults.innerHTML = resultsHtml;
@@ -136,67 +115,89 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Enhanced search function that includes sections
+  // Enhanced search function
   function performSearch(query, data) {
     const results = [];
+    const queryWords = query.split(/\s+/).filter(word => word.length > 0);
     
-    // Search through each page and its sections
+    // Score each page
     data.forEach(page => {
       const title = page.title.toLowerCase();
       const content = page.content.toLowerCase();
-      const pageMatch = title.includes(query) || content.includes(query);
-      let sectionMatch = false;
-      let matchedSection = null;
       
-      // Check if any section titles match the query
-      if (page.sections) {
-        for (const section of page.sections) {
-          if (section.title.toLowerCase().includes(query)) {
-            sectionMatch = true;
-            matchedSection = section;
+      let score = 0;
+      let matches = [];
+      
+      // Check title matches (higher weight)
+      queryWords.forEach(word => {
+        if (title.includes(word)) {
+          score += 10;
+          matches.push('title');
+        }
+      });
+      
+      // Check content matches
+      queryWords.forEach(word => {
+        if (content.includes(word)) {
+          score += 2;
+          if (!matches.includes('content')) {
+            matches.push('content');
+          }
+        }
+      });
+      
+      // If we have matches, add to results
+      if (score > 0) {
+        // Generate preview
+        let preview = '';
+        const contentLower = content.toLowerCase();
+        
+        // Try to find a relevant snippet
+        for (const word of queryWords) {
+          const index = contentLower.indexOf(word);
+          if (index !== -1) {
+            const start = Math.max(0, index - 60);
+            const end = Math.min(content.length, index + word.length + 60);
+            preview = content.substring(start, end).trim();
+            if (start > 0) preview = '...' + preview;
+            if (end < content.length) preview = preview + '...';
             break;
           }
         }
-      }
-      
-      if (pageMatch || sectionMatch) {
-        let preview = '...';
-        let url = page.url;
         
-        if (sectionMatch && matchedSection) {
-          // If a section matched, use its title and link to the section
-          preview = `Found in section: ${matchedSection.title}`;
-          url = `${page.url}#${matchedSection.id}`;
-        } else if (pageMatch) {
-          // If main content matched, find the relevant snippet
-          let previewIndex = content.indexOf(query);
-          
-          if (previewIndex !== -1) {
-            // Get a snippet around the query
-            const start = Math.max(0, previewIndex - 40);
-            const end = Math.min(content.length, previewIndex + query.length + 40);
-            preview += content.substring(start, end) + '...';
-          } else {
-            // If query is not found in content but title matched, use the beginning
-            preview += content.substring(0, 80) + '...';
-          }
+        // If no snippet found, use beginning of content
+        if (!preview) {
+          preview = content.substring(0, 120) + '...';
         }
         
         results.push({
-          title: page.title + (sectionMatch ? ` > ${matchedSection.title}` : ''),
-          url: url,
-          preview: preview
+          title: page.title,
+          url: page.url,
+          preview: preview,
+          score: score
         });
       }
     });
     
-    return results;
+    // Sort by score (highest first)
+    results.sort((a, b) => b.score - a.score);
+    
+    // Limit to top 10 results
+    return results.slice(0, 10);
   }
 
   // Close search results when clicking elsewhere
   document.addEventListener('click', function(event) {
-    if (!searchResults.contains(event.target) && event.target !== searchInput) {
+    if (!searchResults.contains(event.target) && event.target !== searchInput && !searchInput.contains(event.target)) {
       searchResults.style.display = 'none';
     }
   });
-}); 
+
+  // Handle keyboard navigation
+  searchInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      searchResults.style.display = 'none';
+      searchInput.blur();
+    }
+  });
+});
