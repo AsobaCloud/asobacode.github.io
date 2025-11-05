@@ -16,34 +16,20 @@ The Ona API provides comprehensive energy management, forecasting, and analysis 
 
 **Last Updated**: 2025-01-10 (Status: PRODUCTION VERIFIED - Version 1.6.0)
 
-### Critical Path Development
+### Platform Architecture
 
-The platform follows a mandatory 3-epic development sequence:
+The Ona Platform follows a layered architecture:
 
-1. **Epic #137: Security Foundation** (Weeks 1-2) - **BLOCKS ALL OTHER WORK**
-   - Remove hardcoded credentials (CRITICAL)
-   - Fix 14 dependency vulnerabilities
-   - Reduce 950+ wildcard imports to <50
-   - Implement AWS safety protocols
+1. **Data Ingestion Layer**: Historical and real-time data collection
+2. **Processing Layer**: Data enrichment, interpolation, and ML training
+3. **API Layer**: RESTful endpoints for forecasting and analysis
+4. **Application Layer**: OODA workflow for operational decisions
 
-2. **Epic #138: Production Infrastructure** (Weeks 3-4) - **BLOCKED BY EPIC #137**
-   - Production logging framework
-   - Comprehensive testing framework (23% → 70% coverage)
-   - CI/CD automated testing
-   - TDD workflow implementation
+### Service Capabilities
 
-3. **Epic #139: Customer-Facing Features** (Weeks 5-8) - **BLOCKED BY EPICS #137 & #138**
-   - Deploy generateForecast Lambda (REVENUE CRITICAL)
-   - Automated training pipeline
-   - Customer model registry
-   - Global customer discovery
-   - LSTM migration for premium features
-
-### Service Deployment Status
-
-- ✅ **Fully Deployed** (95% coverage): Data ingestion, processing, training
-- ⚠️ **Partially Deployed** (40-60% coverage): ML inference, forecast generation
-- ❌ **Missing Services** (0-20% coverage): Dispatch optimization, market forecasting
+- ✅ **Data Operations**: Data ingestion, processing, and training
+- ✅ **ML Services**: Model training and forecasting capabilities
+- ✅ **API Services**: RESTful API endpoints for integration
 
 ## Authentication
 
@@ -51,27 +37,26 @@ All API requests require authentication using API keys:
 
 ```bash
 # Set your API key in headers
-curl -H "x-api-key: YOUR_API_KEY" https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod/ingestHistorical
+curl -H "x-api-key: YOUR_API_KEY" https://api.asoba.co/ingestHistorical
 ```
 
 ## Base URLs
 
-The Ona API uses multiple API Gateway endpoints for different services:
+The Ona API uses a unified API Gateway endpoint:
 
-### Regional Endpoints (af-south-1)
-- **TrainForecaster**: `https://x0o7xd1uq7.execute-api.af-south-1.amazonaws.com/prod`
-- **ingestHistoricalLoadData**: `https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod`
-- **onDemandActions**: `https://lxil9blih0.execute-api.af-south-1.amazonaws.com/prod`
+### Production Endpoint
+- **Base URL**: `https://api.asoba.co`
+- **API Version**: v1
 
-### Edge Endpoints (Global)
-- **ingestNowcastLoadData**: `https://xkg3s0npv0.execute-api.af-south-1.amazonaws.com/prod`
-- **dataInterpolation**: `https://ul4rjb4twc.execute-api.af-south-1.amazonaws.com/prod`
-- **LogsProxyApi**: `https://rgkv5lgoll.execute-api.af-south-1.amazonaws.com/prod`
+### Regional Deployment
+- The API is deployed in the `af-south-1` AWS region
+- All endpoints are accessible through the unified base URL
 
-### ⚠️ Current Limitations
-- **generateForecast**: Core module exists but no API Gateway deployed
-- **SageMaker Endpoints**: 8 endpoints failed - ML inference broken
-- **Test Coverage**: Only 23% coverage with critical gaps
+### Service Endpoints
+- **Data Ingestion**: `/ingestHistorical`, `/ingestNowcast`
+- **Data Processing**: `/dataInterpolation`
+- **ML Services**: `/train`, `/forecast`
+- **Terminal Operations**: `/terminal/*`
 
 ## Core APIs
 
@@ -81,7 +66,7 @@ The Ona API uses multiple API Gateway endpoints for different services:
 
 **Endpoint:** `/ingestHistorical`
 
-**Base URL:** `https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod`
+**Base URL:** `https://api.asoba.co`
 
 Upload and process historical energy usage data for model training and analysis.
 
@@ -111,7 +96,7 @@ curl -X POST "https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod/inges
 
 **Endpoint:** `/ingestNowcast`
 
-**Base URL:** `https://xkg3s0npv0.execute-api.af-south-1.amazonaws.com/prod`
+**Base URL:** `https://api.asoba.co`
 
 Upload real-time energy data for immediate processing and analysis.
 
@@ -177,7 +162,7 @@ curl -X POST "https://ul4rjb4twc.execute-api.af-south-1.amazonaws.com/prod/dataI
 
 **Endpoint:** `/`
 
-**Base URL:** `https://x0o7xd1uq7.execute-api.af-south-1.amazonaws.com/prod`
+**Base URL:** `https://api.asoba.co`
 
 Train machine learning models on historical data for energy forecasting.
 
@@ -241,7 +226,7 @@ Retrieve forecast outputs and analysis results.
 
 **Example:**
 ```bash
-curl -X GET "https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod/returnForecastingResults" \
+curl -X GET "https://api.asoba.co/returnForecastingResults" \
   -H "x-api-key: YOUR_API_KEY" \
   -G \
   -d "customer_id=your-customer-id" \
@@ -297,7 +282,7 @@ Predict electricity market prices for trading and optimization.
 
 **Example:**
 ```bash
-curl -X POST "https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod/marketPriceForecast" \
+curl -X POST "https://api.asoba.co/marketPriceForecast" \
   -H "x-api-key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -380,7 +365,7 @@ Regulatory compliance checking and policy analysis.
 
 **Example:**
 ```bash
-curl -X POST "https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod/policyCompliance" \
+curl -X POST "https://api.asoba.co/policyCompliance" \
   -H "x-api-key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -484,10 +469,10 @@ Use our test endpoints for development and testing:
 
 ```bash
 # Test API connection
-curl -H "x-api-key: YOUR_API_KEY" https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod/health
+curl -H "x-api-key: YOUR_API_KEY" https://api.asoba.co/health
 
 # Test with sample data
-curl -X POST "https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod/test/forecast" \
+curl -X POST "https://api.asoba.co/test/forecast" \
   -H "x-api-key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"test": true}'

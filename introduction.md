@@ -244,7 +244,6 @@ sequenceDiagram
 For more detailed information, please refer to:
 
 - **[User Guide](user-guide.html)** - Step-by-step onboarding guide
-- **[System Administration](system-admin.html)** - Technical administration details
 - **[Changelog](changelog.html)** - Version history and release notes
 
 ---
@@ -252,5 +251,4 @@ For more detailed information, please refer to:
 ## Next Steps {#next-steps}
 
 1. **Get Started**: Follow the [User Guide](user-guide.html) to deploy and configure your platform
-2. **Learn More**: Explore the [System Administration](system-admin.html) guide for technical details
-3. **Stay Updated**: Check the [Changelog](changelog.html) for latest features and improvements
+2. **Stay Updated**: Check the [Changelog](changelog.html) for latest features and improvements

@@ -23,14 +23,6 @@ Transform reactive operations into proactive intelligence with industry-specific
     </div>
   </div>
   
-  <div class="path-button">
-    <div class="path-icon">🔧</div>
-    <div class="path-content">
-      <h3>System Administrator</h3>
-      <p>Technical administration guide</p>
-      <a href="system-admin.html" class="path-link">System Admin Guide →</a>
-    </div>
-  </div>
 </div>
 
 <div class="paradigm-card">
@@ -290,7 +282,6 @@ Authentication, data processing, and error handling utilities
 ## Next Steps {#next-steps}
 
 - **[User Guide](user-guide.html)** - Get started with Ona Platform
-- **[System Administrator](system-admin.html)** - Technical administration guide
 
 ---
 

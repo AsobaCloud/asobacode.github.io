@@ -85,13 +85,13 @@ This guide provides step-by-step instructions for deploying a complete PoC envir
 
 | API Gateway ID | API Name | Endpoints | Lambda Function |
 |----------------|----------|-----------|-----------------|
-| yn058ezh38 | ingestHistoricalLoadData | POST /upload_train<br/>POST /upload_historical | ingestHistoricalData |
-| xkg3s0npv0 | ingestNowcastLoadData | POST / | ingestNowcastData |
-| x0o7xd1uq7 | TrainForecaster | POST / | trainForecaster |
-| ul4rjb4twc | dataInterpolation | POST / | dataInterpolation |
-| xcik92yqcg | generateForecast | POST / | generateForecast |
-| lxil9blih0 | onDemandActions | POST / | onDemandActions |
-| rgkv5lgoll | LogsProxyApi | POST / | LogsProxyApi |
+| `api.asoba.co` | ingestHistoricalLoadData | POST /upload_train<br/>POST /upload_historical | ingestHistoricalData |
+| `api.asoba.co` | ingestNowcastLoadData | POST / | ingestNowcastData |
+| `api.asoba.co` | TrainForecaster | POST / | trainForecaster |
+| `api.asoba.co` | dataInterpolation | POST / | dataInterpolation |
+| `api.asoba.co` | generateForecast | POST / | generateForecast |
+| `api.asoba.co` | onDemandActions | POST / | onDemandActions |
+| `api.asoba.co` | LogsProxyApi | POST / | LogsProxyApi |
 
 ### Implementation Timeline
 

@@ -149,8 +149,8 @@ Choose your integration method:
 ```bash
 # Upload historical data for model training
 # Note: This uploads data directly to S3. The dataIngestion service is currently a placeholder.
-# Data should be uploaded directly to S3 bucket: sa-api-client-input/historical/
-aws s3 cp your_sensor_data.csv s3://sa-api-client-input/historical/customer_id/site_id/
+# Data should be uploaded directly to S3 bucket: your-input-bucket/historical/
+aws s3 cp your_sensor_data.csv s3://your-input-bucket/historical/customer_id/site_id/
 ```
 
 ## Step 4: Upload Historical Data
@@ -171,7 +171,7 @@ timestamp,asset_id,temperature_c,voltage_v,power_kw
 ```bash
 # The dataIngestion service is currently a placeholder with no processing logic.
 # Upload your CSV file directly to S3:
-aws s3 cp your_sensor_data.csv s3://sa-api-client-input/historical/customer_id/site_id/historical_data.csv
+aws s3 cp your_sensor_data.csv s3://your-input-bucket/historical/customer_id/site_id/historical_data.csv
 
 # This will trigger downstream processing via S3 event to interpolationService and globalTrainingService
 ```

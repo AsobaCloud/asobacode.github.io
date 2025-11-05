@@ -23,60 +23,33 @@ This guide covers deploying the Ona Terminal CLI tool and its supporting infrast
 
 ### af-south-1 (Primary Production) - ✅ ACTIVE
 
-#### Lambda Functions (15 Deployed)
-| Function Name | Status | Runtime | Purpose | API Gateway | 
-|---------------|---------|---------|---------|-------------|
-| `ingestHistoricalData` | ✅ Active | Container | Historical data processing | `yn058ezh38` |
-| `ingestHistoricalData-test` | ✅ Active | Container | Test version | - |
-| `ingestNowcastData` | ✅ Active | Container | Real-time ingestion | `xkg3s0npv0` |
-| `trainForecaster` | ✅ Active | Container | ML model training | `x0o7xd1uq7` |
-| `GeneratePresignedUrlLambda` | ✅ Active | Container | S3 upload URLs | - |
-| `returnForecastingResults` | ✅ Active | Unknown | Forecast retrieval | - |
-| `dataInterpolation` | ✅ Active | Unknown | Data cleaning | `ul4rjb4twc` |
-| `daily_weather_fetch` | ✅ Active | Unknown | Daily weather data | - |
-| `historical_weather_fetch` | ✅ Active | Unknown | Historical weather | - |
-| `get_recent_weather` | ✅ Active | Unknown | Recent weather API | - |
-| `get_lastest_weather_file_for_city` | ✅ Active | Unknown | Weather file lookup | - |
-| `auth0ManagementBackend` | ✅ Active | Unknown | Auth0 integration | - |
-| `MasterLambdaFunction` | ✅ Active | Unknown | Orchestration | - |
-| `PDFProcessor` | ✅ Active | Unknown | Document processing | - |
-| `LogsProxyFunction` | ✅ Active | Unknown | Logging proxy | `rgkv5lgoll` |
+#### Lambda Functions
+The platform uses containerized Lambda functions for various services including:
+- Data ingestion (historical and real-time)
+- ML model training
+- Data processing and interpolation
+- Weather data collection
+- Authentication and authorization
+- Logging and monitoring
 
-#### API Gateway REST APIs (7 Deployed)
-| API ID | Name | Endpoints | Status |
-|--------|------|-----------|---------|
-| `yn058ezh38` | ingestHistoricalLoadData | `/upload_train`, `/upload_historical` | ✅ Active |
-| `xkg3s0npv0` | ingestNowcastLoadData | `/` | ✅ Active |   
-| `x0o7xd1uq7` | TrainForecaster | `/` | ✅ Active |
-| `ul4rjb4twc` | dataInterpolation | `/` | ✅ Active |       
-| `baq4wrqcf2` | AfricaAPIRouter | `/ingestHistorical`, `/ingestNowcast`, `/dataInterpolation` | ✅ Active |
-| `lxil9blih0` | onDemandActions | Unknown resources | ✅ Active |
-| `rgkv5lgoll` | LogsProxyApi | Unknown resources | ✅ Active |
+#### API Gateway REST APIs
+The platform uses AWS API Gateway to expose RESTful endpoints:
+- Unified API endpoint: `https://api.asoba.co`
+- All services accessible through the unified base URL
+- Regional deployment in `af-south-1`
 
-#### S3 Buckets (11 Production)
-| Bucket Name | Purpose | Status | Region |
-|-------------|---------|--------|--------|
-| `sa-api-client-input` | Regional input data | ✅ Active | af-south-1 |
-| `sa-api-client-output` | Regional output data | ✅ Active | af-south-1 |
-| `sa-api-client-facing` | Client outputs | ✅ Active | af-south-1 |
-| `api-client-input` | Legacy input | ✅ Active | af-south-1 |
-| `api-client-output` | Legacy output | ✅ Active | af-south-1 |
-| `api-policy-repo` | Policy documents | ✅ Active | af-south-1 |
-| `asoba-api-webhost` | Web hosting | ✅ Active | af-south-1 |
-| `ona-cloudfront-logs` | CloudFront logs | ✅ Active | af-south-1 |
-| `utilityapi-static-site` | Static hosting | ✅ Active | af-south-1 |
-| `utilityapi.inboldprint.co` | Domain hosting | ✅ Active | af-south-1 |
-| `stackset-ona-front-end-*` | CloudFormation | ✅ Active | af-south-1 |
+#### S3 Buckets
+The platform uses S3 buckets for data storage:
+- Input data bucket for historical and real-time data
+- Output data bucket for processed results and models
+- Client-facing bucket for user-accessible outputs
+- Logs bucket for CloudFront logs
 
 #### DynamoDB Tables
-| Table Name | Purpose | Status |
-|------------|---------|--------|
-| `api_keys` | API key management | ✅ Active |
-
-#### SageMaker Endpoints - ⚠️ CRITICAL ISSUE
-| Endpoint Type | Count | Status | Impact |
-|---------------|-------|--------|---------|
-| `huggingface-pytorch-inference-*` | 8 endpoints | ❌ ALL FAILED | ML inference broken |
+The platform uses DynamoDB for metadata storage:
+- API key management table
+- User and session data tables
+- Configuration and metadata tables
 
 ### us-east-1 (Global Services) - ✅ ACTIVE
 
@@ -87,35 +60,24 @@ This guide covers deploying the Ona Terminal CLI tool and its supporting infrast
 | `ona-front-end-prod-api-reques-RulePriorityFunction-*` | ALB rules | ✅ Active |
 | `ona-front-end-prod-api-reque-EnvControllerFunction-*` | Environment control | ✅ Active |
 
-## ⚠️ Critical Security Issues (MUST ADDRESS FIRST)
+## Security Considerations
 
-### Immediate Security Risks (P0)
-1. **Hardcoded Credentials** - CRITICAL
-   ```
-   Files: RAG/ETL/.env, RAG/indicators/.env
-   Risk: AWS Access Keys, GitHub tokens, API keys in plain text
-   Impact: Complete infrastructure compromise possible
-   ```
+### Best Practices
 
-2. **Wildcard Import Vulnerability** - HIGH
-   ```
-   Count: 950+ files using 'import *'
-   Risk: Namespace pollution, accidental malicious code import
-   Impact: Debugging complexity, security attack surface
-   ```
+Before deploying to production, ensure you have:
 
-3. **Dependency Vulnerabilities** - HIGH
-   ```
-   Count: 14 vulnerabilities (1 High, 12 Medium, 1 Low)
-   Components: protobuf, urllib3, requests
-   Impact: DoS attacks, session management exploits
-   ```
+1. **Secrets Management**: Use AWS Secrets Manager or Parameter Store for sensitive configuration
+2. **Security Scanning**: Implement pre-commit security hooks and automated vulnerability scanning
+3. **Access Control**: Follow least-privilege access principles
+4. **Monitoring**: Set up security monitoring and alerting
 
-### Production Security Gaps
-- No secrets management system implemented
-- Debug print statements expose sensitive data (40+ files)
-- No pre-commit security scanning
-- No automated vulnerability monitoring
+### Production Security
+
+- Use HTTPS for all communications
+- Implement rate limiting
+- Set up monitoring and alerting
+- Regular security updates
+- Access logging and audit trails
 
 ## Service Coverage Analysis
 
@@ -342,7 +304,7 @@ curl http://localhost:8000/health
 
 # Check API endpoints
 curl -H "x-api-key: YOUR_API_KEY" \
-  https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod/health
+  https://api.asoba.co/health
 
 # Monitor logs
 sudo journalctl -u ona-terminal -f
@@ -388,7 +350,7 @@ ona configure --list
 
 # Test API connectivity
 curl -H "x-api-key: YOUR_API_KEY" \
-  https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod/health
+  https://api.asoba.co/health
 
 # Check AWS credentials
 aws sts get-caller-identity
@@ -430,7 +392,7 @@ df -h       # Disk usage
 
 # Check API performance
 ab -n 100 -c 10 -H "x-api-key: YOUR_API_KEY" \
-  https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod/health
+  https://api.asoba.co/health
 ```
 
 ## Support

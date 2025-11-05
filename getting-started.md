@@ -226,7 +226,7 @@ sudo apt install python3.10 python3.10-pip python3.10-venv
 ```bash
 # Test API connectivity
 curl -H "x-api-key: YOUR_API_KEY" \
-  https://yn058ezh38.execute-api.af-south-1.amazonaws.com/prod/health
+  https://api.asoba.co/health
 
 # Check AWS credentials
 aws sts get-caller-identity
