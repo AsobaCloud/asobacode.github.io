@@ -4,7 +4,7 @@ layout: default
 nav_order: 1
 ---
 
-# Ona Terminal
+# Ona Energy Management Platform
 {: .fs-9 }
 
 **AI-powered infrastructure automation for your terminal.**
@@ -23,6 +23,14 @@ Transform reactive operations into proactive intelligence with industry-specific
     </div>
   </div>
   
+  <div class="path-button">
+    <div class="path-icon">📊</div>
+    <div class="path-content">
+      <h3>Use Cases</h3>
+      <p>Explore real-world applications</p>
+      <a href="https://docs.asoba.co/use-cases/oam" class="path-link" target="_blank">View Use Cases →</a>
+    </div>
+  </div>
 </div>
 
 <div class="paradigm-card">
