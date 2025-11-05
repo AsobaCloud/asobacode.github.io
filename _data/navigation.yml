@@ -10,6 +10,27 @@
   url: /getting-started
   nav_order: 2
 
+- title: Use Cases
+  url: /archive/om-use-case
+  nav_order: 2.5
+  children:
+    - title: The Business Problem
+      url: /archive/om-use-case#the-business-problem-o-m-is-bleeding-your-returns
+    - title: The Solution
+      url: /archive/om-use-case#the-ona-terminal-solution-predictive-intelligence
+    - title: MCP Framework Advantage
+      url: /archive/om-use-case#the-mcp-framework-advantage
+    - title: Business Impact Analysis
+      url: /archive/om-use-case#detailed-business-impact-analysis
+    - title: Technical Implementation
+      url: /archive/om-use-case#technical-implementation-details
+    - title: Example Scenario
+      url: /archive/om-use-case#illustrative-example-string-performance-issue
+    - title: Implementation Roadmap
+      url: /archive/om-use-case#implementation-roadmap
+    - title: Getting Started
+      url: /archive/om-use-case#getting-started
+
 - title: Deployment
   url: /deployment
   nav_order: 3
