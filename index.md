@@ -24,11 +24,20 @@ Transform reactive operations into proactive intelligence with industry-specific
   </div>
   
   <div class="path-button">
+    <div class="path-icon">🔄</div>
+    <div class="path-content">
+      <h3>AI Workflow</h3>
+      <p>OODA Loop automation</p>
+      <a href="https://docs.asoba.co/use-cases/oam" class="path-link" target="_blank">View AI Workflow →</a>
+    </div>
+  </div>
+  
+  <div class="path-button">
     <div class="path-icon">📊</div>
     <div class="path-content">
       <h3>Use Cases</h3>
       <p>Explore real-world applications</p>
-      <a href="https://docs.asoba.co/use-cases/oam" class="path-link" target="_blank">View Use Cases →</a>
+      <a href="archive/om-use-case.html" class="path-link">View Use Cases →</a>
     </div>
   </div>
 </div>
