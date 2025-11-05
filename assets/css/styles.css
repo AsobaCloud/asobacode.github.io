@@ -637,7 +637,7 @@ pre.terminal::after {
 
 .sub-menu a {
   color: #555;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 /* Fix for bullet points not displaying properly */
