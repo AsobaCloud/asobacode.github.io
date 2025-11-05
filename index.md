@@ -274,18 +274,6 @@ Learn how to use Ona Terminal effectively:
 
 ---
 
-## Key Features
-
-### 🚀 [PoC Deployment](poc-deployment.html)
-**Proof of concept implementation**  
-See how to quickly deploy and validate automation workflows
-
-### 🔧 [Shared Components](shared-components.html)
-**Reusable infrastructure components**  
-Authentication, data processing, and error handling utilities
-
----
-
 ## Ready to Get Started?
 
 1. **New users**: Start with [Getting Started](getting-started.html) guide
