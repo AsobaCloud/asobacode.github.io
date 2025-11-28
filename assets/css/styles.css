@@ -155,6 +155,58 @@ strong {
   color: var(--primary-blue);
 }
 
+/* Quickstart path cards */
+.quickstart-paths {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.path-card {
+  background: var(--white);
+  border: 2px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.path-card:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(69, 91, 241, 0.15);
+}
+
+.path-card h3 {
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+
+.path-card p {
+  color: var(--text-light);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.path-button {
+  display: inline-block;
+  background: var(--primary-blue);
+  color: var(--white) !important;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.path-button:hover {
+  background: var(--accent-blue);
+  color: var(--white) !important;
+}
+
 /* Sidebar Navigation */
 .sidebar {
   height: calc(100vh - 70px);
