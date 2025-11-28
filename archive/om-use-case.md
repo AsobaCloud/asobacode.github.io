@@ -35,7 +35,7 @@ To overcome the limitation of sparse historical data, the engineering team appli
 
 During deployment, only local normalization and fine-tuning were carried out on the Sibaya dataset. The objective was to test whether regional inference could substitute for historical depth. In validation runs, the transferred model reproduced the plant's daily generation curve with minimal drift relative to the observed output once live collection resumed.
 
-![Sibaya Casino Data Visualization](sibaya_graph.png)
+![Sibaya Casino Data Visualization](/assets/images/Screenshot 2025-11-28 151855.png)
 
 ### Results: Structure Over Memory
 {: .fs-6 }
@@ -78,7 +78,7 @@ Rather than discard incomplete sites, Asoba combined classical and modern statis
 
 3. **Ensemble ML Processing:** Processed through a multi-model ensemble—gradient-boosted regressors feeding a shallow neural network—to rebuild missing production intervals
 
-![Cummins Portfolio Data Reconstruction](cummins_graph.png)
+![Cummins Portfolio Data Reconstruction](/assets/images/Screenshot 2025-11-28 151924.png)
 
 ### Results: Robust Decision-Making Through Redundancy
 {: .fs-6 }
