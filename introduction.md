@@ -16,16 +16,19 @@ Ona is the software and hardware environment that runs the Intelligence Layer. I
   <div class="path-card">
     <h3>⚡ Edge Layer</h3>
     <p>Hosts the Predictive AI models; runs on low‑power compute devices attached directly to energy assets; performs short‑term (0–48 hour) forecasts for each node; stores 48 hours of data locally to ensure resilience against connectivity loss.</p>
+    <a href="edge-layer.html" class="path-button">Learn More →</a>
   </div>
   
   <div class="path-card">
     <h3>🎛️ Control Layer</h3>
     <p>Aggregates predictions from all active nodes; executes Decision AI routines for task scheduling and coordination; maintains a unified dashboard for operators; provides secure APIs for integration with maintenance management systems such as SAP PM or Maximo.</p>
+    <a href="control-layer.html" class="path-button">Learn More →</a>
   </div>
   
   <div class="path-card">
     <h3>🖥️ Interface Layer</h3>
     <p>Displays operational status, risk scores, and active work orders; uses deterministic templates rather than generative text to eliminate hallucination; allows users to examine model confidence and trace data sources directly.</p>
+    <a href="interface-layer.html" class="path-button">Learn More →</a>
   </div>
 </div>
 
