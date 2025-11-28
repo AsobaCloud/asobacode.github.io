@@ -7,7 +7,7 @@ set -euo pipefail
 
 # Configuration
 PLATFORM_REPO="${PLATFORM_REPO:-AsobaCloud/platform}"
-PLATFORM_BRANCH="${1:-LTR}"
+PLATFORM_BRANCH="${1:-main}"
 GITHUB_TOKEN="${2:-${GITHUB_TOKEN:-}}"
 CHANGELOG_FILE="changelog.md"
 

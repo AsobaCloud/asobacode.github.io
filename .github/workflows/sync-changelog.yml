@@ -30,7 +30,7 @@ jobs:
       id: fetch-changelog
       env:
         PLATFORM_REPO: ${{ secrets.PLATFORM_REPO || 'AsobaCloud/platform' }}
-        PLATFORM_BRANCH: ${{ secrets.PLATFORM_BRANCH || 'LTR' }}
+        PLATFORM_BRANCH: ${{ secrets.PLATFORM_BRANCH || 'main' }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         # Fetch the CHANGELOG.md from the platform repository using GitHub API

@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2025-11-28
+
 ### [2025-11-28]
 
 ### Added
@@ -34,6 +36,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Dedicated script for building and pushing energyAnalystRag service to ECR
   - Supports both mutable and immutable tags
   - Includes verification and logging
+- **Railway Redeploy Automation** (`scripts/redeploy-railway-energyanalystrag.sh`):
+  - Automated Railway redeployment script
+  - Integrated into ECR build process for automatic redeployment after image push
+  - Includes Railway CLI detection and login validation
 
 ### Changed
 - **EnergyAnalyst RAG Service** (`services/energyAnalystRag/main.py`):
@@ -157,6 +163,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `setup-railway-ecr.sh`: Automated deployment script
   - `test_api.py`: API validation script
   - `.env.example`: Environment variable template
+- **Release Notes** (`docs/RELEASE_NOTES.md`):
+  - Comprehensive release notes for EnergyAnalyst RAG service
+  - Includes features, improvements, bug fixes, and migration notes
 
 ### [2025-11-23]
 
