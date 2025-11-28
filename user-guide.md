@@ -27,333 +27,84 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
 ## 2. Onboarding Workflow
 {: #2-onboarding-workflow }
 
-### Phase 1: Kickoff
-**Owner**: Client  
-**Duration**: Week 1
-
-Initial engagement and project initiation sync covering:
-- Description of O&M AI model capabilities
-- Stakeholder roles and responsibilities
-- PoC objectives and timeline
-- Success criteria definition
-
-**Deliverables**:
-- Signed onboarding agreement
-- Project kickoff deck
-- Stakeholder contact matrix
-
----
-
-### Phase 2: Define PoC KPIs
-**Owner**: Client  
-**Duration**: Week 1
-
-Agreement on measurable success criteria:
-- Uptime improvement targets (%)
-- Fault prediction accuracy thresholds
-- Guaranteed cost savings metrics
-- Revenue optimization goals
-
-**Example KPIs**:
-- Reduce Mean Time To Repair (MTTR) by 30%
-- Achieve >90% anomaly detection accuracy
-- Increase energy availability ratio (EAR) by 5%
-- Reduce O&M costs by 15-25%
-
----
-
-### Phase 3: Data Governance Assessment
-**Owner**: Asoba Sales  
-**Duration**: Week 1-2
-
-Evaluation of client data infrastructure:
-- Data source inventory (SCADA, EMS, OEM portals)
-- Data retrieval protocols and access methods
-- Data sharing governance and security requirements
-- Historical data availability assessment
-
-**Required Information**:
-- SCADA/EMS vendor and version
-- Data polling intervals and granularity
-- Network architecture and firewall rules
-- Data retention policies
-
----
-
-### Phase 4: Data Access Setup
-**Owner**: Client & Asoba Sales  
-**Duration**: Week 2-3
-
-Establishment of secure data authentication and authorization:
-
-#### 4.1 Credentials Provisioning
-- Read-only API keys for inverter clouds
-- Admin panel credentials (where applicable)
-- VPN or secure tunnel setup (if required)
-- IP whitelisting for Asoba infrastructure
-
-#### 4.2 Supported Data Sources
-
-| Provider | Device Type | Integration Method |
-|----------|-------------|-------------------|
-| SolarEdge | Inverter | API, CSV export |
-| Enphase | Inverter | Enlighten API |
-| Lux | Inverter | Cloud API |
-| Solarman | Inverter | Direct integration |
-| Huawei | Inverter | FusionSolar API |
-| SMA | Inverter | Sunny Portal |
-| Fronius | Inverter | Solar.web API |
-| Macrocomm | Smart Meter | Data logger |
-| Switch Energy | Data Logger | CSV export |
-| Utility API | Smart Meter | JSON/CSV |
-
----
-
-### Phase 5: Data Mapping & Inventory
-**Owner**: Asoba Technical  
-**Duration**: Week 3-4
-
-Cataloging of data sources for schema mapping and storage:
-
-#### 5.1 Minimum Data Package
-
-| Data Type | Description | Format | Requirement |
-|-----------|-------------|--------|-------------|
-| **SCADA/Historian Tags** | Four-quadrant data (kWh, kV, kVarch, PF) at max 60-min intervals | CSV, JSON, API | Required |
-| **Inverter Credentials** | Read-only API keys or admin credentials | Secure strings | Required |
-| **Site Layout** | Component bill of materials with locations | CAD, KML, PDF | Required |
-| **Weather Data** | Historical and real-time weather (if >40km from municipal center) | CSV, API | Required |
-| **As-Built Documentation** | Single-line diagram and BOQ | PDF, DWG | Required |
-| **Maintenance Logs** | Incident and downtime records | Excel, CSV | Recommended |
-| **Historical Performance** | Minimum 12 months (36 months preferred) | CSV, JSON | Required |
-
-#### 5.2 Data Quality Requirements
-
-- **Temporal Resolution**: Maximum 60-minute intervals (8,760+ rows per year)
-- **Completeness**: >80% data availability for training period
-- **Time Synchronization**: Timestamps in UTC or consistent timezone
-- **Data Granularity**: Sub-minute processing capability available
-
----
-
-### Phase 6: API Integration
-**Owner**: Asoba Technical  
-**Duration**: Week 4-5
-
-Configuration of API gateway for data ingestion and processing:
-
-#### 6.1 Client Account Setup
-
-```bash
-# Using Ona Power Tools SDK
-from core.manageUsers.create_client import create_client
-from core.manageUsers.create_customer import create_customer
-from core.manageUsers.create_device import create_device
-from core.manageUsers.create_api_key import create_api_key
-
-# Create client organization
-create_client(
-    client_id=your_client_id,
-    name="Your Solar Company",
-    contact_email="admin@yourcompany.com"
-)
-
-# Create customer account
-create_customer(
-    client_id=your_client_id,
-    contact_name="John Smith"
-)
-
-# Register device
-create_device(
-    customer_id="cust0001",
-    device_type="inverter",
-    serial_num="INV-001"
-)
-
-# Generate API key
-api_key = create_api_key(
-    region="af-south-1",
-    environment="production",
-    client_id=your_client_id
-)
-```
-
-#### 6.2 Data Ingestion Setup
-
-**Real-Time Data Feed** (Recommended):
-```bash
-# Configure SCADA to push to Ona ingestion endpoint
-POST https://api.asoba.co/upload_nowcast
-Headers:
-  X-API-Key: {your_api_key}
-  Content-Type: application/json
-
-Body:
-{
-  "site_id": "site-001",
-  "timestamp": "2025-01-15T08:00:00Z",
-  "data": {
-    "power_kw": 18.3,
-    "voltage_v": 800.5,
-    "temperature_c": 45.2
-  }
-}
-```
-
-**Batch Historical Upload**:
-```bash
-# Upload historical CSV data
-aws s3 cp historical_data.csv \
-  s3://ona-input-bucket/historical/{customer_id}/{site_id}/
-
-# Or use API endpoint
-curl -X POST https://api.asoba.co/upload_historical \
-  -H "X-API-Key: {your_api_key}" \
-  -F "file=@historical_data.csv"
-```
-
----
-
-### Phase 7: MVP Infrastructure Setup
-**Owner**: Asoba Technical  
-**Duration**: Week 5-6
-
-Configuration of processed data pipelines for model transmission and dashboard integration:
-
-#### 7.1 Weather Integration
-
-```bash
-# Visual Crossing API setup (handled by Asoba)
-# Weather data automatically cached every 15 minutes
-# No client action required
-```
-
-#### 7.2 Asset Registry
-
-```json
-{
-  "assets": [
-    {
-      "id": "INV-001",
-      "name": "Main Inverter Block A",
-      "type": "Solar Inverter",
-      "capacity_kw": 20.0,
-      "location": {
-        "latitude": -26.2041,
-        "longitude": 28.0473,
-        "site_name": "Your Solar Farm"
-      },
-      "components": [
-        {
-          "oem": "SolarEdge",
-          "model": "SE20K",
-          "serial": "SE123456",
-          "type": "inverter",
-          "installation_date": "2024-01-15T00:00:00Z"
-        }
-      ]
-    }
-  ]
-}
-```
-
----
-
-### Phase 8: Model Activation & Testing
-**Owner**: Asoba Technical  
-**Duration**: Week 6-8
-
-Deployment and validation of O&M AI model:
-
-#### 8.1 Model Training
-
-- Minimum 12 months historical data required
-- 36 months preferred for highest accuracy
-- Training typically completes within 24-48 hours
-- Email notification upon completion
-
-#### 8.2 Model Performance Targets
-
-| Metric | Target | Use Case |
-|--------|--------|----------|
-| **Forecasting SMAPE** | <7% | Generation prediction |
-| **Forecasting R²** | >0.92 | Model reliability |
-| **Interpolation MAPE** | <8% | Gap filling |
-| **Anomaly Detection Time** | <10 minutes | Real-time alerting |
-
-#### 8.3 Testing Procedures
-
-```bash
-# Test forecasting API
-curl "https://api.asoba.co/forecast?customer_id={id}&site_id={site}"
-
-# Test fault detection
-curl -X POST https://api.asoba.co/terminal/detect \
-  -H "X-API-Key: {your_api_key}" \
-  -d '{"action": "run", "asset_id": "INV-001"}'
-
-# Verify data pipeline
-aws logs tail /aws/lambda/ona-interpolationService-prod --follow
-```
-
----
-
-### Phase 9: Performance Monitoring
-**Owner**: Asoba Technical  
-**Duration**: Week 8-12 (Continuous)
-
-Continuous tracking and analysis before full commercial deployment:
-
-#### 9.1 Monitoring Metrics
-
-- Model accuracy, latency, and throughput
-- False positive/negative rates
-- System uptime and API response times
-- Data pipeline health
-
-#### 9.2 Alerting Configuration
-
-```bash
-# Subscribe to anomaly alerts
-aws sns subscribe \
-  --topic-arn arn:aws:sns:af-south-1:ACCOUNT:ona-platform-alerts \
-  --protocol email \
-  --notification-endpoint "ops@yourcompany.com"
-
-# Configure detection thresholds
-aws ssm put-parameter \
-  --name /ona-platform/prod/detection-threshold \
-  --value "0.7" \
-  --type String
-```
-
----
-
-### Phase 10: Performance Calibration
-**Owner**: Asoba Technical  
-**Duration**: Week 8-12
-
-Continuous fine-tuning to reach target performance KPIs:
-
-- Weekly performance reports
-- Threshold adjustments based on false positive rates
-- Model retraining with production data
-- Feature engineering optimization
-
----
-
-### Phase 11: Full Commercial Agreement
-**Owner**: Client  
-**Duration**: Week 13+
-
-Contract finalization and transition to Tier 1 technical support:
-
-- ROI analysis and performance validation
-- Commercial pricing finalization
-- Service Level Agreement (SLA) establishment
-- Training for client operations team
-- Handoff to production support
+<div class="quickstart-paths">
+  <div class="path-card">
+    <h3>🚀 Phase 1: Kickoff</h3>
+    <p><strong>Owner:</strong> Client | <strong>Duration:</strong> Week 1</p>
+    <p>Initial engagement and project initiation sync covering O&M AI model capabilities, stakeholder roles, PoC objectives, and success criteria.</p>
+    <p><strong>Deliverables:</strong> Signed onboarding agreement, project kickoff deck, stakeholder contact matrix</p>
+  </div>
+  
+  <div class="path-card">
+    <h3>📊 Phase 2: Define PoC KPIs</h3>
+    <p><strong>Owner:</strong> Client | <strong>Duration:</strong> Week 1</p>
+    <p>Agreement on measurable success criteria including uptime improvement targets, fault prediction accuracy thresholds, cost savings metrics, and revenue optimization goals.</p>
+    <p><strong>Example KPIs:</strong> Reduce MTTR by 30%, achieve >90% anomaly detection accuracy, increase EAR by 5%, reduce O&M costs by 15-25%</p>
+  </div>
+  
+  <div class="path-card">
+    <h3>🔒 Phase 3: Data Governance Assessment</h3>
+    <p><strong>Owner:</strong> Asoba Sales | <strong>Duration:</strong> Week 1-2</p>
+    <p>Evaluation of client data infrastructure including data source inventory (SCADA, EMS, OEM portals), data retrieval protocols, security requirements, and historical data availability.</p>
+    <p><strong>Required:</strong> SCADA/EMS vendor details, polling intervals, network architecture, firewall rules, data retention policies</p>
+  </div>
+  
+  <div class="path-card">
+    <h3>🔑 Phase 4: Data Access Setup</h3>
+    <p><strong>Owner:</strong> Client & Asoba Sales | <strong>Duration:</strong> Week 2-3</p>
+    <p>Establishment of secure data authentication and authorization including read-only API keys, admin credentials, VPN setup, and IP whitelisting.</p>
+    <p><strong>Supported Sources:</strong> SolarEdge, Enphase, Lux, Solarman, Huawei, SMA, Fronius, Macrocomm, Switch Energy, Utility API</p>
+  </div>
+  
+  <div class="path-card">
+    <h3>📋 Phase 5: Data Mapping & Inventory</h3>
+    <p><strong>Owner:</strong> Asoba Technical | <strong>Duration:</strong> Week 3-4</p>
+    <p>Cataloging of data sources for schema mapping and storage. Minimum data package includes SCADA tags, inverter credentials, site layout, weather data, as-built documentation, and 12+ months historical performance data.</p>
+    <p><strong>Quality Requirements:</strong> 60-minute intervals max, >80% completeness, UTC timestamps, sub-minute processing capability</p>
+  </div>
+  
+  <div class="path-card">
+    <h3>🔌 Phase 6: API Integration</h3>
+    <p><strong>Owner:</strong> Asoba Technical | <strong>Duration:</strong> Week 4-5</p>
+    <p>Configuration of API gateway for data ingestion and processing. Includes client account setup, customer creation, device registration, API key generation, and real-time/batch data feed configuration.</p>
+    <p><strong>Integration Methods:</strong> Real-time POST to /upload_nowcast endpoint or batch S3 uploads for historical data</p>
+  </div>
+  
+  <div class="path-card">
+    <h3>⚙️ Phase 7: MVP Infrastructure Setup</h3>
+    <p><strong>Owner:</strong> Asoba Technical | <strong>Duration:</strong> Week 5-6</p>
+    <p>Configuration of processed data pipelines for model transmission and dashboard integration. Includes automated weather integration (Visual Crossing API, 15-minute cache) and asset registry setup with component details.</p>
+    <p><strong>Components:</strong> Weather cache service, asset registry, data pipeline configuration</p>
+  </div>
+  
+  <div class="path-card">
+    <h3>🤖 Phase 8: Model Activation & Testing</h3>
+    <p><strong>Owner:</strong> Asoba Technical | <strong>Duration:</strong> Week 6-8</p>
+    <p>Deployment and validation of O&M AI model. Training requires 12+ months historical data (36 months preferred), completes in 24-48 hours with email notification.</p>
+    <p><strong>Performance Targets:</strong> Forecasting SMAPE <7%, R² >0.92, Interpolation MAPE <8%, Anomaly detection <10 minutes</p>
+  </div>
+  
+  <div class="path-card">
+    <h3>📈 Phase 9: Performance Monitoring</h3>
+    <p><strong>Owner:</strong> Asoba Technical | <strong>Duration:</strong> Week 8-12 (Continuous)</p>
+    <p>Continuous tracking and analysis before full commercial deployment. Monitors model accuracy, latency, throughput, false positive/negative rates, system uptime, and data pipeline health.</p>
+    <p><strong>Configuration:</strong> SNS alert subscriptions, detection threshold parameters, automated monitoring dashboards</p>
+  </div>
+  
+  <div class="path-card">
+    <h3>🎯 Phase 10: Performance Calibration</h3>
+    <p><strong>Owner:</strong> Asoba Technical | <strong>Duration:</strong> Week 8-12</p>
+    <p>Continuous fine-tuning to reach target performance KPIs through weekly performance reports, threshold adjustments, model retraining with production data, and feature engineering optimization.</p>
+    <p><strong>Activities:</strong> Weekly reports, false positive rate analysis, production data integration, feature optimization</p>
+  </div>
+  
+  <div class="path-card">
+    <h3>✅ Phase 11: Full Commercial Agreement</h3>
+    <p><strong>Owner:</strong> Client | <strong>Duration:</strong> Week 13+</p>
+    <p>Contract finalization and transition to Tier 1 technical support. Includes ROI analysis and performance validation, commercial pricing finalization, SLA establishment, operations team training, and handoff to production support.</p>
+    <p><strong>Outcomes:</strong> Signed commercial agreement, SLA documentation, trained operations team, production support handoff</p>
+  </div>
+</div>
 
 ---
 
