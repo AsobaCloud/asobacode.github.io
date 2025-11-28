@@ -4,7 +4,6 @@ layout: default
 nav_order: 99
 ---
 
-# Changelog
 
 All notable changes to the Ona Platform will be documented in this file.
 
@@ -13,173 +12,218 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [2025-11-28]
+
 ### Added
-- **LSTM Global Forecasting Model Training Pipeline** (Issue #49): Hybrid Lambda + SageMaker architecture for cost-effective GPU training
-  - **Architecture**: Hybrid approach separates data prep (Lambda) from model training (SageMaker GPU)
-    - **Why**: LSTM training requires ~55 minutes on CPU, exceeding Lambda's 15-minute timeout
-    - **Solution**: Lambda prepares data (~5 min, $0.01), SageMaker trains model (~10 min, $0.23)
-    - **Cost**: ~$0.24 per training run, ~$12/year (50 runs)
-  - **Lambda: globalTrainingService** (`services/globalTrainingService/app.py`): Data preparation and SageMaker orchestration
-    - Automatic customer discovery from S3 bucket (scans `total/` prefix for all customer datasets)
-    - Quality filtering: >1000 records, >6 months data, >80% completeness
-    - Weather data integration for feature enrichment
-    - Feature engineering: encoders, lags, rolling stats, cross-manufacturer features
-    - Customer validation split (Option C: Stratified Validation)
-    - LSTM sequence creation (24-hour windows)
-    - Saves prepared data to S3: `training_data/{customer_id}/`
-    - Triggers SageMaker training job via boto3
-    - CloudWatch metrics: CustomersDiscovered, EligibleCustomers, DataPrepCompleted
-    - Removed TensorFlow/Keras dependencies (now in SageMaker container)
-  - **SageMaker Training Job** (`services/globalTrainingService/sagemaker/train.py`): GPU-accelerated LSTM training
-    - Instance: ml.g4dn.2xlarge (NVIDIA T4 GPU, 8 vCPU, 32GB RAM)
-    - Loads prepared sequences from S3
-    - 3-layer LSTM architecture (256?256?128 units with dropout)
-    - Customer validation optimization:
-      - Training set: ALL other customers' data (learns global patterns)
-      - Validation set: Target customer's data (optimization signal)
-      - Early stopping monitors customer validation loss
-    - Saves model artifacts to S3: `customer_tailored/{customer_id}/models/`
-    - Updates model registry (`latest_model.json`) for forecastingApi access
-    - CloudWatch metrics: TrainingLoss, ValidationLoss, EpochsCompleted
-    - Docker container: TensorFlow 2.13 GPU + training script
-  - **forecastingApi** (`services/forecastingApi/app.py`): Inference service (unchanged)
-    - Loads customer-optimized models from S3 registry
-    - Model caching for reduced cold starts
-    - Returns forecasts with model metadata
-  - **Deployment Scripts**:
-    - `scripts/18-create-sagemaker-iam-role.sh`: Creates SageMakerTrainingRole
-    - `scripts/19-build-sagemaker-training-image.sh`: Builds and pushes training container to ECR
-  - **IAM Updates**: Added SageMaker permissions to globalTrainingService Lambda role
-  - **CI/CD**: GitHub Actions workflow updated to build SageMaker training container
-- **Multi-Tenant UI Implementation**: Complete integration of DynamoDB data with admin panel UI
-  - **DataService Enhancements** (`ui/data-service.js`): Added comprehensive OODA data methods
-    - `getDetections()`, `getDiagnostics()`, `getIssues()` methods for OODA workflow data
-    - Client-side caching system for all data types with `fetchAllApiData()`
-    - Proper error handling and fallback to demo data when API unavailable
-    - Multi-tenant data isolation with `customer_id` parameter in all API calls
-  - **OODA Workflow Backend** (`services/terminalApi/app.py`): New API endpoints for OODA data
-    - `/terminal/detect` - Fault detection data retrieval
-    - `/terminal/diagnose` - AI diagnostics data retrieval  
-    - `/terminal/issues` - Component issues management with full CRUD operations
-    - Multi-tenant DynamoDB queries with proper customer isolation
-    - Decimal serialization support for financial data
-  - **DynamoDB OODA Tables**: New multi-tenant tables for OODA workflow
-    - `ona-platform-terminal-detections` - Fault detection data
-    - `ona-platform-terminal-diagnostics` - AI diagnostic results
-    - `ona-platform-terminal-issues` - Component issues with failure probabilities
-    - All tables use `customer_id` as partition key for multi-tenant isolation
-  - **Test Data Population** (`scripts/populate-ooda-data.py`): Sample data for testing
-    - 5 component issues for `demo-customer` with realistic failure probabilities
-    - Proper EAR impact calculations and time window specifications
-    - Multi-tenant data structure following DynamoDB schema
-- **UI Data Integration Fixes**: Resolved critical data display issues
-  - **Property Name Mapping**: Fixed API response property mismatches (`ear_impact` vs `earImpact`)
-  - **Data Type Handling**: Added proper string-to-number conversion for financial data
-  - **Null Safety**: Added comprehensive null checks for optional data fields
-  - **Asynchronous Data Loading**: Fixed Promise handling in UI data refresh cycles
-  - **Caching Logic**: Corrected data caching in `DataService.fetchAllApiData()`
-- **Currency Localization System** (`ui/currency-service.js`): Real-time currency conversion for UI displays
-  - Vanilla JavaScript module matching existing codebase patterns
-  - Real-time USD to ZAR exchange rates via exchangerate-api.com (hourly updates)
-  - Currency selector in admin panel settings
-  - localStorage persistence of user currency preference
-  - Custom events for currency rate updates and currency changes
-  - Fallback to default rates when API unavailable
-  - Comprehensive currency formatting with proper symbols ($ for USD, R for ZAR)
-  - 20+ currency display locations updated in admin-gpu-panel.js:
-    - EAR calculations (material cost, downtime cost, total cost)
-    - Maintenance plan approval dialogs and details
-    - Issue impact displays (totalEAR, earImpact)
-    - BOM review and catalog prices
-    - Export and plan creation summaries
-  - Helper functions for refreshing all currency displays on change
-  - Auto-initialization with DOMContentLoaded event
-- **Terminal Deployment Orchestrator** (`deploy-terminal.sh`): Comprehensive deployment script for terminal infrastructure
-  - Written from scratch following shell scripting best practices with proper error handling
-  - Parallel execution of deployment scripts with PID tracking for 25% faster deployment (~20 min vs ~25 min sequential)
-  - Trap handlers for ERR and EXIT signals to capture all failure scenarios
-  - Explicit error logging at each failure point with line numbers and exit codes
-  - Pre-flight checks for AWS CLI, Docker, credentials, and platform prerequisites
-  - Deploys 26 SSM parameters, 8 DynamoDB tables, 4 ECR repositories, and 7 S3 prefixes
-  - Generates deployment summary with API endpoints and next steps
-- **Developer Guide** (`docs/DEVELOPER_GUIDE.md`): A new comprehensive guide for developers, including development setup, code structure, testing guidelines, contribution process, and coding guidelines.
-- **Coding Guidelines** (integrated into `docs/DEVELOPER_GUIDE.md`): Detailed AI coding guidelines for the Ona Platform, emphasizing core principles, pre-code checklist, human decision gate, code quality standards, deployment protocol, anti-patterns, and success metrics.
-- **Component-Specific READMEs**: New READMEs added for `lib/`, `dns-setup/`, `scripts/`, `tests/`, and `ui/` directories, providing specific documentation for each component.
+- **Document Title Extraction and Citation Support** (`services/energyAnalystRag/`):
+  - Document title extraction from first page of PDFs (first substantial line, 50-200 chars)
+  - Document title extraction from text documents in `/add_documents` endpoint
+  - Citation field added to `QueryResponse` model
+  - Title extraction prioritizes metadata `document_title`, falls back to text extraction
+  - All documents now include `document_title` in metadata for proper citation
+- **Handler Improvements** (`services/energyAnalystRag/handler_fixed.py`):
+  - Handler now extracts only generated text (removes input prompt from response)
+  - Uses token slicing to return only new tokens after input
+  - Prevents full prompt from appearing in response
+- **Manual ECR Build Guide** (`docs/MANUAL_ECR_BUILD.md`):
+  - Complete guide for manually building and pushing ECR images
+  - Instructions for building specific services
+  - Troubleshooting for common ECR build issues
+- **Service-Specific ECR Build Script** (`scripts/build-energyanalystrag-ecr.sh`):
+  - Dedicated script for building and pushing energyAnalystRag service to ECR
+  - Supports both mutable and immutable tags
+  - Includes verification and logging
 
 ### Changed
-- **Admin Panel UI** (`ui/admin-gpu-panel.js`): Complete multi-tenant data integration
-  - **Customer Switching**: Dynamic customer dropdown with real-time data refresh
-  - **Dashboard Metrics**: All cards now display live DynamoDB data instead of hardcoded values
-    - Total Inverters, Active Inverters, Average Utilization, Active Plans
-    - Component Issues metrics (Total, Critical, High Risk, Total EAR)
-  - **Issues Management**: Full OODA workflow integration
-    - Issues table displays live data from DynamoDB with proper formatting
-    - Failure probability percentages with null safety and string conversion
-    - EAR impact calculations with currency formatting
-    - Real-time data refresh on customer switching
-  - **Data Service Integration**: All UI functions now use `DataService` methods
-    - Replaced hardcoded data with `DataService.getIssues()`, `getDetections()`, etc.
-    - Consistent error handling and loading states
-    - Proper async/await patterns for data loading
-- **API Gateway Configuration**: Enhanced for OODA endpoints
-  - Added `/terminal/issues` endpoint with POST and OPTIONS methods
-  - Configured CORS headers for all OODA endpoints
-  - Added Lambda invocation permissions for new endpoints
-  - Deployed API Gateway changes to production
-- **Lambda Function Updates**: Enhanced terminal API with OODA capabilities
-  - Updated Lambda environment variables for OODA table access
-  - Added IAM permissions for DynamoDB queries on OODA tables
-  - Deployed latest container image with OODA endpoint implementations
-- **Documentation** (`docs/SYSTEM ADMIN.md`, `docs/USER GUIDE.md`): Fixed deployment instructions
-  - Removed references to non-existent `local-deploy.sh` script
-  - Clarified two-script deployment architecture (`deploy-all.sh` + `deploy-terminal.sh`)
-  - Updated deployment commands to reference actual validation scripts
-  - Removed references to non-existent `validate.sh` and `rollback.sh`
-  - Corrected manual deployment steps to use `deploy-terminal.sh` instead of individual terminal scripts
-- **Platform Deployment Orchestrator** (`deploy-all.sh`): Refactored following shell scripting best practices
-  - Rewritten from scratch with comprehensive error handling and trap handlers
-  - Parallel execution of infrastructure scripts (02-06) with PID tracking for faster deployment
-  - Trap handlers for ERR and EXIT signals to capture all failure scenarios
-  - Explicit error logging at each failure point with line numbers and exit codes
-  - Analyzed script dependencies to safely parallelize independent infrastructure setup
-  - Pre-flight checks for AWS CLI, jq, Docker, credentials, and environment variables
-  - Improved deployment summary with detailed resource counts and next steps
-- **Terminal Deployment Orchestrator** (`deploy-terminal.sh`): Removed unused DEPLOYMENT_FAILED variable
-  - Cleaned up dead code flagged by shellcheck SC2034
-  - Exit code already provides success/failure indication
-- **Main `README.md`**: Refactored based on the Di?taxis framework to serve as a high-level "Explanation" and central entry point.
-  - Simplified "Getting Started" section with a link to the `User Guide`.
-  - Removed detailed "Core Services", "Deployment Options", and "Troubleshooting" sections.
-  - Updated "Resources & Support" section with links to new documentation and removed redundant content.
-  - Removed "Contributing & Development" section, which was moved to `docs/DEVELOPER_GUIDE.md`.
-- **`USER GUIDE.md`**: Updated to accurately reflect the capabilities of the code, removing misleading "not yet implemented" or "placeholder" statements for OODA workflow and forecasting services.
-  - Corrected descriptions for OODA workflow and forecasting services to reflect their deployed status and current functional state.
-  - Removed strikethrough from "Step 7: Configure Operations & Maintenance" and its sub-sections.
-- **Shell Safety Checker** (`scripts/shell-safety-checker.sh`): Enhanced with multiple improvements
-  - Integrated shellcheck for comprehensive static analysis (warnings and errors)
-  - Detects `set -e` + background jobs pattern that causes silent failures
-  - Recognizes both indexed array (`pids+=($!)`) and associative array (`pids["$key"]=$!`) PID tracking patterns as safe
-  - Expanded parallelization detection to include `bash`, `run_deployment_script`, and deployment functions
-  - Added `source` to non-parallelizable command blocklist
+- **EnergyAnalyst RAG Service** (`services/energyAnalystRag/main.py`):
+  - Updated Inference Endpoint URL to new endpoint: `sfg89dy7nzesdkl7.us-east-1.aws.endpoints.huggingface.cloud`
+  - Improved error handling and logging for Inference Endpoint responses
+  - Added detailed logging for response extraction steps
+  - Simplified citation extraction logic (metadata-first approach)
+  - Enhanced startup validation with better error messages
+- **Query Response Format**:
+  - Added `citation` field to `QueryResponse` model
+  - Citation extracted from `document_title` metadata with fallback chain
+  - Removed complex text extraction logic in favor of metadata-based approach
 
 ### Fixed
-- **UI Data Display Issues**: Resolved critical data presentation problems
-  - **TypeError: allPlans.filter is not a function**: Fixed API response parsing in `DataService.fetchAllApiData()`
-    - Corrected array extraction from API responses (`data.schedules` vs `data`)
-    - Updated caching logic to store arrays instead of response objects
-  - **TypeError: Cannot read properties of undefined (reading '24h')**: Fixed failure probability display
-    - Added null checks for `failureProbability` object
-    - Added `parseFloat()` conversion for string values from API
-    - Provided fallback values for missing properties
-  - **Property Name Mismatches**: Fixed API response property mapping
-    - Changed `earImpact` to `ear_impact` to match API response structure
-    - Updated all UI references to use correct property names
-  - **Data Caching Bug**: Fixed issues data not being cached properly
-    - Corrected `getApiIssues()` promise handling in `fetchAllApiData()`
-    - Removed redundant data extraction that was causing empty arrays
-  - **Asynchronous Data Loading**: Fixed Promise handling in UI functions
-    - Made `loadIssues()` async with proper `await` for `DataService.getIssues()`
-    - Updated `dataRefreshed` event listener to handle async data loading
+- **Inference Endpoint Response Handling**:
+  - Fixed `KeyError('generated_text')` by using `details=True` in `text_generation()` calls
+  - Added proper response object extraction with fallback handling
+  - Improved error messages to identify exact failure points
+- **Handler Response Format**:
+  - Handler now returns only generated text instead of full sequence
+  - Prevents prompt repetition in responses
+
+### Documentation
+- **EnergyAnalyst RAG Troubleshooting Guide** (`docs/ENERGYANALYST_RAG_TROUBLESHOOTING.md`):
+  - Comprehensive troubleshooting guide for HuggingFace Inference Endpoint issues
+  - Railway deployment troubleshooting
+  - Model loading and inference issues
+  - Vector database and authentication solutions
+  - Production deployment checklist
+- **Service Documentation Updates**:
+  - Updated README with two-tier deployment architecture documentation
+  - Added HuggingFace Inference Endpoint setup guide
+  - Documented handler requirements and dependencies
+  - Added production endpoint URLs and configuration examples
+
+### [2025-11-27]
+
+### Changed
+- **HuggingFace API Integration** (`services/energyAnalystRag/`):
+  - Updated to use HuggingFace Inference Endpoints (dedicated endpoints) instead of router API
+  - Migrated from deprecated `api-inference.huggingface.co` endpoint
+  - Updated `huggingface-hub` to `>=0.28.0,<0.32.0` with `[hf_xet]` extra
+  - Updated environment variable handling to prioritize `HUGGING_FACE_HUB_TOKEN` and `HF_TOKEN`
+  - Kept `HUGGINGFACE_API_TOKEN` as fallback for backward compatibility
+- **Railway Deployment**:
+  - Removed `Procfile` to force Railway to use `Dockerfile` for builds
+  - Updated deployment configuration for better compatibility
+
+### Fixed
+- **InferenceClient Configuration**:
+  - Fixed issues with `base_url` and `provider` parameter usage
+  - Corrected InferenceClient initialization for Inference Endpoints
+  - Fixed authentication issues causing 410 errors
+- **Error Handling**:
+  - Added `GatedRepoError` handling for better startup validation
+  - Improved error messages for model access issues
+
+### [2025-11-26]
+
+### Added
+- **EnergyAnalyst RAG LLM Service** (`services/energyAnalystRag/`):
+  - FastAPI-based RAG service using EnergyAnalyst-v0.1 model (Mistral-7B-v0.3 fine-tuned)
+  - ChromaDB vector database for document storage and semantic search
+  - Sentence-transformers for document embeddings
+  - HuggingFace Inference API integration
+  - Endpoints: `/query`, `/add_documents`, `/health`, `/collection/info`, `/collection/clear`
+  - Specialized capabilities:
+    - Regulatory compliance requirement identification
+    - Energy policy gap detection and analysis
+    - Arbitrage opportunity spotting in regulations
+    - Actionable compliance checklist generation
+  - Model training: 3-stage pipeline (SFT on Dolly-15k, pre-training on 50k policy docs, fine-tuning on 7k Q&A pairs)
+  - Containerized with Docker for ECR deployment
+- **Test Script** (`services/energyAnalystRag/test_hf_connection.py`):
+  - Local testing script for HuggingFace Inference Endpoint connection
+  - Rapid troubleshooting tool for endpoint validation
+
+### Fixed
+- **ChromaDB Telemetry**:
+  - Suppressed PostHog telemetry errors causing log spam
+  - Set telemetry logger to CRITICAL level only
+- **Dockerfile**:
+  - Fixed package check to verify `huggingface-hub` instead of `openai`
+  - Corrected dependency validation in build process
+  - Added cache-busting mechanism using requirements.txt hash
+- **InferenceClient Configuration**:
+  - Fixed to use `InferenceClient` for text generation models (not OpenAI SDK)
+  - Corrected endpoint configuration for HuggingFace router API
+  - Added model access validation on startup
+  - Fixed multiple iterations of endpoint configuration (router API, base_url, provider parameters)
+
+### Changed
+- **CI/CD Pipeline** (`.github/workflows/build-and-push.yml`):
+  - Added `ona-energyanalystrag` to ECR repository creation list
+  - New build step for EnergyAnalyst RAG service Docker image
+  - Pushes three image tags: `prod`, `prod-{gitsha}`, `latest`
+  - Platform: linux/amd64
+- **Deployment Script** (`ui/deploy-edge.sh`):
+  - Added `energy-analyst.html` to required files check
+  - Included Energy Analyst in deployment copy operations
+  - Added direct link in deployment output
+
+### Documentation
+- **Railway ECR Deployment Guide** (`services/energyAnalystRag/RAILWAY_ECR_DEPLOYMENT.md`):
+  - Complete guide for deploying RAG service to Railway using ECR images
+  - IAM setup instructions for ECR access
+  - Railway configuration (dashboard and CLI methods)
+  - Automatic deployment with webhooks
+  - Monitoring, troubleshooting, and rollback procedures
+  - Cost optimization strategies
+  - Security best practices
+- **Service Documentation** (`services/energyAnalystRag/README.md`):
+  - Service overview and architecture
+  - API endpoint documentation with examples
+  - Model details and limitations
+  - Deployment options (Railway ECR vs direct)
+  - Local development setup
+  - Environment variables reference
+- **Deployment Tools**:
+  - `railway.json`: Railway service configuration
+  - `setup-railway-ecr.sh`: Automated deployment script
+  - `test_api.py`: API validation script
+  - `.env.example`: Environment variable template
+
+### [2025-11-23]
+
+### Added
+- **Device-Level Training** (`globalTrainingService`):
+  - New device-level training pipeline that trains individual LSTM models per device (serial_number)
+  - Device discovery scans S3 for device datasets under `total/{client_id}/{site_id}/{region}/{location}/{manufacturer}/{device_id}/`
+  - Device quality filtering with lower thresholds (500 records, 3 months, 80% completeness)
+  - Site registry management storing device mappings at `site_registry/{site_id}/devices.json`
+  - Device-specific feature engineering with device/site/manufacturer statistics
+  - Device validation strategy: trains on other devices, validates on target device
+  - Device model artifacts stored at `device_models/{site_id}/{device_id}/models/`
+  - Uses smaller SageMaker instances (ml.g4dn.xlarge) optimized for single-device training
+- **Device-Level Forecasting** (`forecastingApi`):
+  - New endpoint for single device forecasts: `{"site_id": "...", "device_id": "...", "forecast_hours": 24}`
+  - New site aggregate endpoint: `{"site_id": "...", "forecast_hours": 24, "include_device_breakdown": true}`
+  - Site forecasts aggregate device forecasts by summing predictions
+  - Optional device breakdown shows per-device contributions to site total
+- **Backwards Compatibility**: Legacy customer_id (site-level) training and forecasting APIs remain fully supported
+
+### [2025-11-18]
+
+### Fixed
+- **UI & Charting**: Prevented legacy chart rendering when the new Performance module is active.
+
+### [2025-11-17]
+
+### Changed
+- **UI Architecture**: Modularized the UI into a component-based architecture with `components/`, `sections/`, `services/`, and `utils/` directories. This improves code organization, reusability, and maintainability.
+- **Customer Selection**: Switched to using `localStorage` for customer selection instead of hardcoding, allowing user preferences to persist across sessions.
+- **API Calls**: Converted parallel API calls to sequential loading to prevent Lambda throttling issues.
+- **Deployment Scripts**: Added `set -euo pipefail` to all shell scripts to ensure safer and more robust execution.
+
+### Fixed
+- **UI & Charting**:
+  - Fixed an issue where orphaned Chart.js instances were not being destroyed before creating new charts.
+  - Corrected time ranges for the Performance chart and added a missing temperature chart.
+  - Ensured the Performance module correctly uses `DataService` functions and data structures.
+  - Fixed access to forecast comparison series in `Performance.js`.
+  - Enabled interactive time range selection for charts in the Performance section.
+- **Data & API**:
+  - Corrected a syntax error resulting from an async/await conversion.
+  - Fixed incorrect `Issues` module function references in the `handleDataRefresh` logic.
+  - Added missing terminal endpoints to the API Gateway configuration.
+  - Changed the default customer from "Sibaya" to "demo-customer" to align with available API data.
+  - Fixed an issue causing the site listing not to refresh when the customer selector was changed.
+- **Deployment & CI/CD**:
+  - Updated deployment scripts to correctly deploy the new modular JS directories (components, sections, services, utils) to S3.
+  - Updated the Docker cache in the CI/CD workflow.
+- **Tooling & Safety**:
+  - Updated the JavaScript safety checker to correctly recognize callback parameters and browser APIs.
+
+### Documentation
+- **UI README**:
+  - Added a comprehensive module API reference to the UI README.
+  - Updated the UI README structure section to reflect the new modular architecture.
+  - Added a testing quick reference in the `ui/` directory.
+- **System Admin Docs**:
+  - Referenced the `ui/README.md` API documentation in `SYSTEM ADMIN.md` for better discoverability.
+
+### [2025-11-15]
+
+### Added
+- **Test suite for terminalApi**: Added an endpoint test suite for terminalApi validation.
+
+### Changed
+- **Testing**: Moved and renamed the main test script to the `tests/` directory for better organization.
+
 ## [0.2.0] - 2025-10-17
 
 ### Added
@@ -212,14 +256,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global Training Service README with detailed LSTM architecture documentation
 
 ### Changed
-- **Separated terminal configuration** from platform config (config/environment.sh ? config/terminal-environment.sh)
+- **Separated terminal configuration** from platform config (config/environment.sh → config/terminal-environment.sh)
   - Removed terminal tables, services array, and helper functions from main config
   - Updated 5 scripts to source terminal config: 03, 05, 08, 10, 17
   - Clean separation of concerns for maintainability
-- **Optimized IAM role creation** with parallel processing (70% faster: 35-56s ? 10-15s)
-- **Optimized Lambda deployment** with parallel updates (75% faster: 7 minutes ? 1.5 minutes)
-- **Optimized API Gateway** endpoint creation with parallel execution (70% faster: 30-50s ? 8-12s)
-- Reduced redundant Lambda wait operations (6 waits ? 4 waits per function)
+- **Optimized IAM role creation** with parallel processing (70% faster: 35-56s → 10-15s)
+- **Optimized Lambda deployment** with parallel updates (75% faster: 7 minutes → 1.5 minutes)
+- **Optimized API Gateway** endpoint creation with parallel execution (70% faster: 30-50s → 8-12s)
+- Reduced redundant Lambda wait operations (6 waits → 4 waits per function)
 - Updated MLflow to version 3.4.0 (from 2.6.0)
 - Fixed IAM policy variable expansion (removed redundant string substitution in lines 169-175)
 - Improved API Gateway idempotency for nested terminal endpoints
@@ -231,10 +275,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ECR login handling when Docker is not available (graceful fallback)
 
 ### Performance
-- **Total deployment time reduced by 77%** (8-9 minutes ? 1.8-2 minutes)
-  - IAM creation: 35-56s ? 10-15s (70% improvement)
-  - Lambda deployment: 420s (7m) ? 90s (1.5m) (75% improvement)
-  - API Gateway setup: 30-50s ? 8-12s (70% improvement)
+- **Total deployment time reduced by 77%** (8-9 minutes → 1.8-2 minutes)
+  - IAM creation: 35-56s → 10-15s (70% improvement)
+  - Lambda deployment: 420s (7m) → 90s (1.5m) (75% improvement)
+  - API Gateway setup: 30-50s → 8-12s (70% improvement)
 
 ### Security
 - All deployment scripts maintain idempotency for safe re-execution
@@ -276,9 +320,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ACM SSL/TLS certificates
 - ECR Docker registries
 
----
-
-**Version Format**: MAJOR.MINOR.PATCH
-- **MAJOR**: Incompatible API changes
-- **MINOR**: Backwards-compatible functionality additions
-- **PATCH**: Backwards-compatible bug fixes

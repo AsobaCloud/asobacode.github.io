@@ -23,23 +23,36 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
     
+    - name: Setup GitHub CLI
+      uses: cli/setup-github-cli@v2
+    
     - name: Fetch CHANGELOG from platform repository
       id: fetch-changelog
+      env:
+        PLATFORM_REPO: ${{ secrets.PLATFORM_REPO || 'AsobaCloud/platform' }}
+        PLATFORM_BRANCH: ${{ secrets.PLATFORM_BRANCH || 'LTR' }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        # Fetch the CHANGELOG.md from the platform repository
-        CHANGELOG_URL="https://raw.githubusercontent.com/AsobaCloud/platform/LTR/CHANGELOG.md"
+        # Fetch the CHANGELOG.md from the platform repository using GitHub API
+        # This works for both public and private repos (if token has access)
+        echo "📥 Fetching CHANGELOG.md from ${PLATFORM_REPO} (branch: ${PLATFORM_BRANCH})..."
         
-        # Download the changelog
-        curl -s -o /tmp/platform-changelog.md "$CHANGELOG_URL" || {
+        # Use GitHub API to fetch file content (works for private repos)
+        gh api "repos/${PLATFORM_REPO}/contents/CHANGELOG.md?ref=${PLATFORM_BRANCH}" \
+          --jq '.content' | base64 -d > /tmp/platform-changelog.md || {
           echo "❌ Failed to fetch CHANGELOG from platform repository"
+          echo "💡 Ensure GITHUB_TOKEN has access to ${PLATFORM_REPO}"
           exit 1
         }
         
         # Check if file was downloaded successfully
         if [ ! -s /tmp/platform-changelog.md ]; then
           echo "❌ Downloaded changelog is empty"
+          echo "💡 Check that the repository, branch, and file path are correct"
           exit 1
         fi
+        
+        echo "✅ Downloaded $(wc -l < /tmp/platform-changelog.md) lines"
         
         # Extract the content (skip front matter if present)
         if grep -q "^---" /tmp/platform-changelog.md; then
