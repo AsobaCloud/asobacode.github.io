@@ -11,6 +11,7 @@ This guide outlines the onboarding process for implementing Asoba's AI-powered O
 ---
 
 ## 1. Overview
+{: #1-overview }
 
 The Ona AI-Driven O&M platform transforms solar asset operations through real-time anomaly detection, predictive maintenance, and intelligent fault classification. The onboarding process follows a structured workflow from initial engagement through full commercial deployment, with clear roles and responsibilities for each phase.
 
@@ -24,6 +25,7 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
 ---
 
 ## 2. Onboarding Workflow
+{: #2-onboarding-workflow }
 
 ### Phase 1: Kickoff
 **Owner**: Client  
@@ -356,6 +358,7 @@ Contract finalization and transition to Tier 1 technical support:
 ---
 
 ## 3. Site Information Requirements
+{: #3-site-information-requirements }
 
 For each site to be onboarded, provide:
 
@@ -383,6 +386,7 @@ List users and roles connected to this site:
 ---
 
 ## 4. Expected Success Metrics
+{: #4-expected-success-metrics }
 
 Define KPIs to determine value and feasibility for transition to full commercial deployment:
 
@@ -395,6 +399,7 @@ Define KPIs to determine value and feasibility for transition to full commercial
 ---
 
 ## 5. Implementation Timeline Summary
+{: #5-implementation-timeline-summary }
 
 | Phase | Duration | Key Milestones |
 |-------|----------|----------------|
@@ -405,6 +410,7 @@ Define KPIs to determine value and feasibility for transition to full commercial
 ---
 
 ## 6. Technical Support
+{: #6-technical-support }
 
 ### During PoC
 - **Technical Support**: support@asoba.co
@@ -419,6 +425,7 @@ Define KPIs to determine value and feasibility for transition to full commercial
 ---
 
 ## 7. Data Governance & Security
+{: #7-data-governance--security }
 
 ### Data Protection
 - All data transmitted via TLS 1.3

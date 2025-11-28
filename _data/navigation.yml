@@ -10,30 +10,20 @@
   url: /user-guide
   nav_order: 1.5
   children:
-    - title: Prerequisites Checklist
-      url: /user-guide#prerequisites-checklist
-    - title: Step 1: Initial Platform Setup
-      url: /user-guide#step-1-initial-platform-setup
-    - title: Step 2: Configure Your Assets
-      url: /user-guide#step-2-configure-your-assets
-    - title: Step 3: Configure Data Sources
-      url: /user-guide#step-3-configure-data-sources
-    - title: Step 4: Upload Historical Data
-      url: /user-guide#step-4-upload-historical-data
-    - title: Step 5: Configure Monitoring Thresholds
-      url: /user-guide#step-5-configure-monitoring-thresholds
-    - title: Step 6: Test Your Setup
-      url: /user-guide#step-6-test-your-setup
-    - title: Step 7: Configure Operations & Maintenance
-      url: /user-guide#step-7-configure-operations--maintenance
-    - title: Step 8: Go Live Checklist
-      url: /user-guide#step-8-go-live-checklist
-    - title: Step 9: Ongoing Operations
-      url: /user-guide#step-9-ongoing-operations
-    - title: Troubleshooting Common Issues
-      url: /user-guide#troubleshooting-common-issues
-    - title: Support and Resources
-      url: /user-guide#support-and-resources
+    - title: Overview
+      url: /user-guide#1-overview
+    - title: Onboarding Workflow
+      url: /user-guide#2-onboarding-workflow
+    - title: Site Information Requirements
+      url: /user-guide#3-site-information-requirements
+    - title: Expected Success Metrics
+      url: /user-guide#4-expected-success-metrics
+    - title: Implementation Timeline Summary
+      url: /user-guide#5-implementation-timeline-summary
+    - title: Technical Support
+      url: /user-guide#6-technical-support
+    - title: Data Governance & Security
+      url: /user-guide#7-data-governance--security
 
 - title: Getting Started
   url: /getting-started
