@@ -81,7 +81,8 @@ All communication between layers uses encrypted channels (TLS 1.3) and certifica
           </ul>
         </div>
       </div>
-      <div class="pipeline-arrow">→</div>
+    </div>
+    <div class="pipeline-row">
       <div class="pipeline-step roadmap-step">
         <div class="step-number">04</div>
         <div class="step-content">
