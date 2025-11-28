@@ -35,7 +35,9 @@ To overcome the limitation of sparse historical data, the engineering team appli
 
 During deployment, only local normalization and fine-tuning were carried out on the Sibaya dataset. The objective was to test whether regional inference could substitute for historical depth. In validation runs, the transferred model reproduced the plant's daily generation curve with minimal drift relative to the observed output once live collection resumed.
 
-![Sibaya Casino Data Visualization](/assets/images/Screenshot 2025-11-28 151855.png)
+<div class="image-container">
+  <img src="/assets/images/Screenshot 2025-11-28 151855.png" alt="Sibaya Casino Data Visualization" class="responsive-image">
+</div>
 
 ### Results: Structure Over Memory
 {: .fs-6 }
@@ -78,7 +80,9 @@ Rather than discard incomplete sites, Asoba combined classical and modern statis
 
 3. **Ensemble ML Processing:** Processed through a multi-model ensemble—gradient-boosted regressors feeding a shallow neural network—to rebuild missing production intervals
 
-![Cummins Portfolio Data Reconstruction](/assets/images/Screenshot 2025-11-28 151924.png)
+<div class="image-container">
+  <img src="/assets/images/Screenshot 2025-11-28 151924.png" alt="Cummins Portfolio Data Reconstruction" class="responsive-image">
+</div>
 
 ### Results: Robust Decision-Making Through Redundancy
 {: .fs-6 }
@@ -793,6 +797,31 @@ Revenue protection delivers $180K-320K annually. Operational savings through opt
   .getting-started-cards {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+}
+
+/* Responsive image styling */
+.image-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 20px 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .responsive-image {
+    max-width: 100%;
   }
 }
 </style>
