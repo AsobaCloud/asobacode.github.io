@@ -10,23 +10,36 @@ The Ona Platform is a comprehensive, end-to-end solution for energy analytics an
 
 ## What is Ona Platform? {#what-is-ona-platform}
 
-The Ona Platform is an AI-driven solar asset management system built on a modern, scalable, and event-driven architecture. It provides real-time monitoring, predictive analytics, and automated maintenance workflows for solar energy portfolios.
+Ona is the software and hardware environment that runs the Intelligence Layer. It is built on three physical layers: edge, control, and interface.
 
-### Key Value Propositions
+<div class="quickstart-paths">
+  <div class="path-card">
+    <h3>⚡ Edge Layer</h3>
+    <p>Hosts the Predictive AI models; runs on low‑power compute devices attached directly to energy assets; performs short‑term (0–48 hour) forecasts for each node; stores 48 hours of data locally to ensure resilience against connectivity loss.</p>
+  </div>
+  
+  <div class="path-card">
+    <h3>🎛️ Control Layer</h3>
+    <p>Aggregates predictions from all active nodes; executes Decision AI routines for task scheduling and coordination; maintains a unified dashboard for operators; provides secure APIs for integration with maintenance management systems such as SAP PM or Maximo.</p>
+  </div>
+  
+  <div class="path-card">
+    <h3>🖥️ Interface Layer</h3>
+    <p>Displays operational status, risk scores, and active work orders; uses deterministic templates rather than generative text to eliminate hallucination; allows users to examine model confidence and trace data sources directly.</p>
+  </div>
+</div>
 
-- **Predictive Maintenance**: 30+ day forecasting capabilities for proactive maintenance planning
-- **AI-Driven Optimization**: Transform reactive maintenance into AI-driven asset optimization
-- **Real-Time Monitoring**: Sub-5 minute fault detection and diagnosis
-- **Automated Workflows**: End-to-end automated workflows from fault prediction to work order execution
-- **SAWEM Compliance**: Built specifically for South Africa's SAWEM requirements with insurance-grade reporting
+All communication between layers uses encrypted channels (TLS 1.3) and certificate‑based authentication. Data remains within defined geographic boundaries; cloud mirrors are used only for redundancy and cannot execute control commands.
 
-### System Capabilities
+### Data Flow
 
-- **Real-Time Data Processing**: Process SCADA/inverter data with sub-5 minute latency
-- **Weather Integration**: ML-powered insights combining operational and meteorological data
-- **Global Predictive Analytics**: 30+ day forecasting with natural language insights
-- **Extensible Architecture**: Modular services that can be plugged into existing API ecosystem
-- **Multi-Platform Integration**: Works with SolarEdge, Huawei FusionSolar, SMA Sunny Portal, and others
+**Sensor → Edge Device (Predictive Model) → Decision Engine (Control Layer) → Operator Action → Feedback into Model.**
+
+This closed loop ensures that every decision has a measurable outcome and every outcome improves the next prediction.
+
+### Resilience
+
+Each node operates independently if the central connection fails. Forecasting and fault prediction continue at the edge, and queued decisions transmit automatically when communication is restored. This structure allows the system to degrade gracefully rather than fail catastrophically.
 
 ---
 
