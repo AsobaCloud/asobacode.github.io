@@ -39,7 +39,6 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
         <div class="step-content">
           <div class="step-phase">Week 1</div>
           <h4>Phase 1: Kickoff</h4>
-          <p><strong>Owner:</strong> Client</p>
           <ul class="step-list">
             <li>Initial engagement and project initiation</li>
             <li>O&M AI model capabilities overview</li>
@@ -55,7 +54,6 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
         <div class="step-content">
           <div class="step-phase">Week 1</div>
           <h4>Phase 2: Define PoC KPIs</h4>
-          <p><strong>Owner:</strong> Client</p>
           <ul class="step-list">
             <li>Uptime improvement targets</li>
             <li>Fault prediction accuracy thresholds</li>
@@ -70,7 +68,6 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
         <div class="step-content">
           <div class="step-phase">Week 1-2</div>
           <h4>Phase 3: Data Governance Assessment</h4>
-          <p><strong>Owner:</strong> Asoba Sales</p>
           <ul class="step-list">
             <li>Data source inventory (SCADA, EMS, OEM portals)</li>
             <li>Data retrieval protocols and access methods</li>
@@ -87,7 +84,6 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
         <div class="step-content">
           <div class="step-phase">Week 2-3</div>
           <h4>Phase 4: Data Access Setup</h4>
-          <p><strong>Owner:</strong> Client & Asoba Sales</p>
           <ul class="step-list">
             <li>Read-only API keys for inverter clouds</li>
             <li>Admin panel credentials (where applicable)</li>
@@ -102,7 +98,6 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
         <div class="step-content">
           <div class="step-phase">Week 3-4</div>
           <h4>Phase 5: Data Mapping & Inventory</h4>
-          <p><strong>Owner:</strong> Asoba Technical</p>
           <ul class="step-list">
             <li>SCADA tags and inverter credentials</li>
             <li>Site layout and component inventory</li>
@@ -117,7 +112,6 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
         <div class="step-content">
           <div class="step-phase">Week 4-5</div>
           <h4>Phase 6: API Integration</h4>
-          <p><strong>Owner:</strong> Asoba Technical</p>
           <ul class="step-list">
             <li>Client account setup</li>
             <li>Customer and device registration</li>
@@ -134,7 +128,6 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
         <div class="step-content">
           <div class="step-phase">Week 5-6</div>
           <h4>Phase 7: MVP Infrastructure Setup</h4>
-          <p><strong>Owner:</strong> Asoba Technical</p>
           <ul class="step-list">
             <li>Automated weather integration (Visual Crossing API)</li>
             <li>Asset registry setup</li>
@@ -149,7 +142,6 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
         <div class="step-content">
           <div class="step-phase">Week 6-8</div>
           <h4>Phase 8: Model Activation & Testing</h4>
-          <p><strong>Owner:</strong> Asoba Technical</p>
           <ul class="step-list">
             <li>Model training (12+ months data required)</li>
             <li>Performance target validation</li>
@@ -164,7 +156,6 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
         <div class="step-content">
           <div class="step-phase">Week 8-12</div>
           <h4>Phase 9: Performance Monitoring</h4>
-          <p><strong>Owner:</strong> Asoba Technical</p>
           <ul class="step-list">
             <li>Model accuracy and latency tracking</li>
             <li>False positive/negative rate monitoring</li>
@@ -181,7 +172,6 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
         <div class="step-content">
           <div class="step-phase">Week 8-12</div>
           <h4>Phase 10: Performance Calibration</h4>
-          <p><strong>Owner:</strong> Asoba Technical</p>
           <ul class="step-list">
             <li>Weekly performance reports</li>
             <li>Threshold adjustments</li>
@@ -196,7 +186,6 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
         <div class="step-content">
           <div class="step-phase">Week 13+</div>
           <h4>Phase 11: Full Commercial Agreement</h4>
-          <p><strong>Owner:</strong> Client</p>
           <ul class="step-list">
             <li>ROI analysis and performance validation</li>
             <li>Commercial pricing finalization</li>
