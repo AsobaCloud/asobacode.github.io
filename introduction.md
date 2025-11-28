@@ -137,7 +137,7 @@ Ona is the software and hardware environment that runs the Intelligence Layer. I
 
 All communication between layers uses encrypted channels (TLS 1.3) and certificate‑based authentication. Data remains within defined geographic boundaries; cloud mirrors are used only for redundancy and cannot execute control commands.
 
-### Data Flow
+### Data Flow {#data-flow}
 
 <div class="roadmap-container">
   <div class="text-center mb-12">
@@ -217,7 +217,7 @@ All communication between layers uses encrypted channels (TLS 1.3) and certifica
 
 This closed loop ensures that every decision has a measurable outcome and every outcome improves the next prediction.
 
-### Resilience
+### Resilience {#resilience}
 
 Each node operates independently if the central connection fails. Forecasting and fault prediction continue at the edge, and queued decisions transmit automatically when communication is restored. This structure allows the system to degrade gracefully rather than fail catastrophically.
 

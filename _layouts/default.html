@@ -51,8 +51,21 @@ layout: default
           </div>
           
 		  <ul class="sub-menu">
-            <li><a href="{{ site.baseurl }}/introduction.html#what-is-ona-platform">What is Ona Platform?</a></li>
             <li><a href="{{ site.baseurl }}/introduction.html#quick-start">Quick Start</a></li>
+            <li><a href="{{ site.baseurl }}/introduction.html#what-is-ona-platform">What is Ona Platform?</a></li>
+            <li class="sub-category">
+              <div class="sub-nav-header">
+                <span style="margin-left: 10px;">Platform Layers</span>
+                <span class="sub-toggle-icon">+</span>
+              </div>
+              <ul class="sub-sub-menu">
+                <li><a href="{{ site.baseurl }}/edge-layer.html">Edge Layer</a></li>
+                <li><a href="{{ site.baseurl }}/control-layer.html">Control Layer</a></li>
+                <li><a href="{{ site.baseurl }}/interface-layer.html">Interface Layer</a></li>
+              </ul>
+            </li>
+            <li><a href="{{ site.baseurl }}/introduction.html#data-flow">Data Flow</a></li>
+            <li><a href="{{ site.baseurl }}/introduction.html#resilience">Resilience</a></li>
             <li><a href="{{ site.baseurl }}/introduction.html#architecture">Architecture</a></li>
             <li><a href="{{ site.baseurl }}/introduction.html#further-research">Further Research</a></li>
             <li><a href="{{ site.baseurl }}/introduction.html#next-steps">Next Steps</a></li>
@@ -267,6 +280,28 @@ layout: default
           }
         }
       });
+
+      // Expand Platform Layers sub-menu if on a layer page
+      if (currentPath.includes('edge-layer') || currentPath.includes('control-layer') || currentPath.includes('interface-layer')) {
+        const introductionLink = document.querySelector('.nav-header a[href*="introduction"]');
+        if (introductionLink) {
+          const subMenu = introductionLink.parentElement.nextElementSibling;
+          if (subMenu) {
+            subMenu.style.display = 'block';
+            const toggleIcon = introductionLink.nextElementSibling;
+            if (toggleIcon) toggleIcon.textContent = '-';
+            
+            // Expand Platform Layers sub-menu
+            const platformLayersCategory = subMenu.querySelector('.sub-category');
+            if (platformLayersCategory) {
+              const subSubMenu = platformLayersCategory.querySelector('.sub-sub-menu');
+              const subToggleIcon = platformLayersCategory.querySelector('.sub-toggle-icon');
+              if (subSubMenu) subSubMenu.style.display = 'block';
+              if (subToggleIcon) subToggleIcon.textContent = '-';
+            }
+          }
+        }
+      }
     });
   </script>
 
