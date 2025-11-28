@@ -33,7 +33,80 @@ All communication between layers uses encrypted channels (TLS 1.3) and certifica
 
 ### Data Flow
 
-**Sensor → Edge Device (Predictive Model) → Decision Engine (Control Layer) → Operator Action → Feedback into Model.**
+<div class="roadmap-container">
+  <div class="text-center mb-12">
+    <p class="text-gray-600">Closed loop data flow ensuring measurable outcomes and continuous improvement</p>
+  </div>
+
+  <div class="pipeline-container">
+    <div class="pipeline-row">
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">01</div>
+        <div class="step-content">
+          <div class="step-phase">Input</div>
+          <h4>Sensor</h4>
+          <ul class="step-list">
+            <li>Real-time data collection</li>
+            <li>Equipment telemetry</li>
+            <li>Environmental measurements</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">02</div>
+        <div class="step-content">
+          <div class="step-phase">Edge Processing</div>
+          <h4>Edge Device (Predictive Model)</h4>
+          <ul class="step-list">
+            <li>Short-term forecasting (0-48 hours)</li>
+            <li>Local model execution</li>
+            <li>48-hour data buffer</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">03</div>
+        <div class="step-content">
+          <div class="step-phase">Decision</div>
+          <h4>Decision Engine (Control Layer)</h4>
+          <ul class="step-list">
+            <li>Task scheduling</li>
+            <li>Resource coordination</li>
+            <li>Optimization routines</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">04</div>
+        <div class="step-content">
+          <div class="step-phase">Execution</div>
+          <h4>Operator Action</h4>
+          <ul class="step-list">
+            <li>Work order execution</li>
+            <li>Maintenance activities</li>
+            <li>System adjustments</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">05</div>
+        <div class="step-content">
+          <div class="step-phase">Learning</div>
+          <h4>Feedback into Model</h4>
+          <ul class="step-list">
+            <li>Outcome measurement</li>
+            <li>Model refinement</li>
+            <li>Continuous improvement</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 This closed loop ensures that every decision has a measurable outcome and every outcome improves the next prediction.
 
