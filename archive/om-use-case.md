@@ -204,13 +204,12 @@ The Ona Platform enables specialized agents that each handle one specific task t
 <div class="asoba-architecture-diagram">
   <!-- Header -->
   <div class="text-center mb-12">
-    <h1 class="text-slate-900 mb-4">How Asoba's Architecture Enables O&M Transformation</h1>
     <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-slate-200 max-w-4xl mx-auto">
       <div class="flex items-center justify-center gap-3 mb-3">
         <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
         </svg>
-        <h2 class="text-slate-900">Model Context Protocol (MCP)</h2>
+        <h2 class="text-slate-900">Ona Platform</h2>
       </div>
       <p class="text-slate-600">
         Enables specialized agents that each handle one specific task through single-responsibility agent architecture
@@ -878,3 +877,4 @@ Revenue protection delivers $180K-320K annually. Operational savings through opt
   </div>
 
 </div>
+
