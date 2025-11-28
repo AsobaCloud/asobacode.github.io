@@ -1,172 +1,1099 @@
 ---
-title: "Developer Quick Start"
+title: "Developer API Guide"
 layout: default
 parent: "Quick Launch Guide"
 nav_order: 1
 ---
 
-# Developer Quick Start
+# Developer API Guide
 {: .fs-8 }
 
-Get started with the Terminal development environment and start contributing to the project.
+Complete guide for integrating with the Ona Platform API services. Learn how to authenticate, make requests, and use all available endpoints.
 {: .fs-6 .fw-300 }
 
 ---
 
-## Prerequisites
+## Table of Contents
 
-✅ **Python 3.10+** and **Git** installed  
-✅ **Poetry** for dependency management  
-✅ **Pre-commit** for git hooks  
-✅ **Terminal/Command Line** environment
-
-### Get AWS Credentials
-If you don't have AWS Bedrock access:
-1. Go to [AWS Bedrock Console](https://console.aws.amazon.com/bedrock/)
-2. Request access to **Amazon Nova Pro** model
-3. Note your Access Key ID and Secret Key
+1. [Getting Started](#getting-started)
+2. [Authentication](#authentication)
+3. [Data Upload Endpoints](#data-upload-endpoints)
+4. [Forecast Endpoints](#forecast-endpoints)
+5. [Terminal API Endpoints (OODA Workflow)](#terminal-api-endpoints-ooda-workflow)
+6. [ML Integration Endpoints](#ml-integration-endpoints)
+7. [Request/Response Formats](#requestresponse-formats)
+8. [Error Handling](#error-handling)
+9. [Rate Limiting](#rate-limiting)
+10. [Code Examples](#code-examples)
 
 ---
 
-## Installation & Setup
+## Getting Started
 
-### Step 1: Install Ona Terminal (2 minutes)
+### Base URLs
 
-#### Windows
-**Option 1: Windows Installer (Recommended)**
-1. Download `ona-terminal-setup.exe` from [GitHub Releases](https://github.com/AsobaCloud/terminal/releases)
-2. Run installer as administrator 
-3. Follow installation wizard
-4. Verify: Open Command Prompt and run `ona-terminal --version`
+The Ona Platform API is available at:
 
-**Option 2: Manual Installation**  
-```cmd
-git clone https://github.com/AsobaCloud/terminal.git
-cd terminal
-python -m venv venv
-call venv\Scripts\activate.bat
-pip install -e .
-```
+- **Custom Domain**: `https://api.asoba.co` ✅ **LIVE**
+- **Direct API Gateway**: `https://2m5xvm39ef.execute-api.af-south-1.amazonaws.com/prod`
 
-#### Linux/macOS
+### API Version
+
+All endpoints use **v1** of the API. Version information is included in response metadata.
+
+### Content Types
+
+- **Request**: `application/json` or `text/csv` (depending on endpoint)
+- **Response**: `application/json`
+
+---
+
+## Authentication
+
+The Ona Platform supports two authentication methods:
+
+### 1. API Key Authentication
+
+Include your API key in the request header:
+
 ```bash
-# Clone repository
-git clone https://github.com/AsobaCloud/terminal.git
-cd terminal
-
-# Install with automatic PATH setup
-./install.sh
-
-# Reload shell configuration
-source ~/.bashrc  # or ~/.zshrc, or restart terminal
+curl -H "X-API-Key: your-api-key" \
+     -H "Content-Type: application/json" \
+     -X POST https://api.asoba.co/upload_train
 ```
 
-### Step 2: Configure AWS (2 minutes)
+Or as a query parameter:
+
+```bash
+curl "https://api.asoba.co/forecast?customer_id=test&api_key=your-api-key"
+```
+
+### 2. IAM Role Authentication
+
+Use AWS credentials for authentication:
 
 ```bash
 # Configure AWS credentials
 aws configure
-# Enter: Access Key ID, Secret Access Key, Region (us-east-1)
 
-# Test Nova Pro model (recommended for best availability)
-aws bedrock invoke-model \
-  --model-id amazon.nova-pro-v1:0 \
-  --body '{"messages":[{"role":"user","content":[{"text":"test"}]}],"inferenceConfig":{"max_new_tokens":10}}' \
-  --region us-east-1 \
-  --cli-binary-format raw-in-base64-out
+# Use AWS signature in requests
+curl -H "Authorization: AWS4-HMAC-SHA256 ..." \
+     -X POST https://api.asoba.co/upload_train
+```
+
+### Security Headers
+
+- **CORS**: Configured for specific origins
+- **Rate Limiting**: 1000 requests per hour per API key (standard tier)
+- **Request Validation**: JSON schema validation
+- **SSL/TLS**: HTTPS only with TLS 1.2+
+
+---
+
+## Data Upload Endpoints
+
+### POST /upload_train
+
+Upload historical data to S3 for model training.
+
+**Purpose**: Direct upload of historical data to S3 for model training. The dataIngestion service is currently a placeholder with no active processing logic.
+
+**Authentication**: API key or IAM role
+
+**Content-Type**: `text/csv` for data files, or `application/json` for metadata
+
+**S3 Upload**: Data is uploaded directly to S3 bucket `sa-api-client-input/historical/` prefix
+
+**Processing**: Triggers downstream processing via S3 event to `interpolationService` and `globalTrainingService`
+
+**Request Example**:
+
+```bash
+curl -X POST https://api.asoba.co/upload_train \
+  -H "X-API-Key: your-api-key" \
+  -H "Content-Type: text/csv" \
+  --data-binary @historical_data.csv
+```
+
+**CSV Format**:
+```csv
+timestamp,asset_id,temperature_c,voltage_v,power_kw,irradiance_w_m2,wind_speed_m_s
+2025-01-15T08:00:00Z,INV-001,45.2,800.5,18.3,850.2,3.2
+2025-01-15T08:15:00Z,INV-001,46.1,799.8,17.9,845.1,3.5
+```
+
+**Response**:
+```json
+{
+  "success": true,
+  "data": {
+    "upload_id": "upload-123456",
+    "s3_location": "s3://sa-api-client-input/historical/customer-001/2025-01-15/data.csv",
+    "records_uploaded": 1000,
+    "uploaded_at": "2025-01-15T12:00:00Z"
+  },
+  "metadata": {
+    "request_id": "req-uuid",
+    "timestamp": "2025-01-15T12:00:00Z",
+    "version": "v1.0"
+  }
+}
+```
+
+### POST /upload_nowcast
+
+Upload real-time data to S3 for forecasting.
+
+**Purpose**: Direct upload of real-time data to S3 for forecasting. The dataIngestion service is currently a placeholder with no active processing logic.
+
+**Authentication**: API key or IAM role
+
+**Content-Type**: `text/csv` for data files, or `application/json` for metadata
+
+**S3 Upload**: Data is uploaded directly to S3 bucket `sa-api-client-input/nowcast/` prefix
+
+**Processing**: Triggers downstream processing via S3 event to `interpolationService` for forecasting
+
+**Request Example**:
+
+```bash
+curl -X POST https://api.asoba.co/upload_nowcast \
+  -H "X-API-Key: your-api-key" \
+  -H "Content-Type: text/csv" \
+  --data-binary @realtime_data.csv
+```
+
+**Response**:
+```json
+{
+  "success": true,
+  "data": {
+    "upload_id": "upload-789012",
+    "s3_location": "s3://sa-api-client-input/nowcast/customer-001/2025-01-15/data.csv",
+    "records_uploaded": 96,
+    "uploaded_at": "2025-01-15T12:00:00Z"
+  }
+}
 ```
 
 ---
 
-## Immediate CLI Validation (1 minute)
+## Forecast Endpoints
 
-### Launch Interactive Mode
+### GET /forecast
+
+Generate energy production forecast.
+
+**Purpose**: Generate energy production forecast for a customer's assets.
+
+**Authentication**: API key or IAM role
+
+**Query Parameters**:
+- `customer_id` (required): Customer identifier
+- `site_id` (optional): Specific site identifier
+- `horizon_hours` (optional): Forecast horizon in hours (default: 48)
+
+**Request Example**:
+
 ```bash
-ona-terminal
+curl -X GET "https://api.asoba.co/forecast?customer_id=demo-customer&horizon_hours=48" \
+  -H "X-API-Key: your-api-key"
 ```
 
-### Run Validation Commands
-Once in the CLI, test these commands:
+**Response**:
+```json
+{
+  "forecast_id": "fc-demo-12345678",
+  "customer_id": "demo-customer",
+  "site_id": "demo-site-cape-town-01",
+  "generated_at": "2025-01-15T12:00:00Z",
+  "horizon_hours": 48,
+  "forecasts": [
+    {
+      "timestamp": "2025-01-15T13:00:00Z",
+      "predicted_power_kw": 1250.5,
+      "confidence_interval": {
+        "lower": 1180.2,
+        "upper": 1320.8
+      },
+      "weather_conditions": {
+        "temperature_c": 25.3,
+        "irradiance_w_m2": 850.2,
+        "wind_speed_m_s": 3.2
+      }
+    }
+  ],
+  "metadata": {
+    "model_version": "v2.1.0",
+    "training_data_points": 8760,
+    "model_accuracy": 0.94
+  }
+}
+```
+
+---
+
+## Terminal API Endpoints (OODA Workflow)
+
+The Terminal API provides endpoints for the OODA (Observe-Orient-Decide-Act) workflow for asset management.
+
+### POST /terminal/assets
+
+Manage solar assets and components.
+
+**Authentication**: API key or IAM role
+
+**Content-Type**: `application/json`
+
+**Actions**:
+- `add`: Create new asset
+- `list`: List all assets
+- `get`: Retrieve specific asset details
+
+**Request Example (add)**:
 
 ```bash
-# Show available commands
-🤖 | /help
-
-# List all available commands
-🤖 | /commands
-
-# Generate your first function
-🤖 | generate a python function that calculates fibonacci numbers
-
-# Check system status
-🤖 | /status
-
-# Show available models
-🤖 | /models
+curl -X POST https://api.asoba.co/terminal/assets \
+  -H "X-API-Key: your-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "add",
+    "asset_id": "INV-001",
+    "name": "Main Inverter 1",
+    "type": "Solar Inverter",
+    "capacity_kw": 20.0,
+    "location": "Cape Town Solar Farm",
+    "components": [
+      {
+        "oem": "Sungrow",
+        "model": "SG20KTL",
+        "serial": "SN123456"
+      }
+    ]
+  }'
 ```
 
-### Expected Output
-
-✅ **System Status**:
+**Response**:
+```json
+{
+  "message": "Asset created successfully",
+  "asset_id": "INV-001"
+}
 ```
-✅ AWS Bedrock connection: Connected (Nova Pro active)
-✅ Model access: Amazon Nova Pro (primary), Nova Lite (fallback)
-✅ Throttling resistance: Availability cache enabled, circuit breaker ready
+
+### POST /terminal/detect
+
+Run fault detection on assets.
+
+**Authentication**: API key or IAM role
+
+**Actions**:
+- `run`: Execute fault detection
+- `list`: List detection results
+
+**Request Example**:
+
+```bash
+curl -X POST https://api.asoba.co/terminal/detect \
+  -H "X-API-Key: your-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "run",
+    "asset_id": "INV-001"
+  }'
 ```
 
-✅ **Generated Code**:
+**Response**:
+```json
+{
+  "message": "Detection completed",
+  "asset_id": "INV-001",
+  "detections": []
+}
+```
+
+### POST /terminal/diagnose
+
+Run AI diagnostics on detected faults.
+
+**Authentication**: API key or IAM role
+
+**Actions**:
+- `run`: Execute diagnostics
+- `list`: List diagnostics results
+
+**Request Example**:
+
+```bash
+curl -X POST https://api.asoba.co/terminal/diagnose \
+  -H "X-API-Key: your-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "run",
+    "asset_id": "INV-001"
+  }'
+```
+
+**Response**:
+```json
+{
+  "message": "Diagnostics completed",
+  "asset_id": "INV-001",
+  "diagnostics": []
+}
+```
+
+### POST /terminal/schedule
+
+Create maintenance schedules.
+
+**Authentication**: API key or IAM role
+
+**Actions**:
+- `create`: Create new schedule
+- `list`: List all schedules
+
+**Response**:
+```json
+{
+  "message": "Schedule created",
+  "schedule_id": "sched-uuid"
+}
+```
+
+### POST /terminal/bom
+
+Build bill of materials for maintenance.
+
+**Authentication**: API key or IAM role
+
+**Actions**:
+- `build`: Generate BOM
+- `list`: List existing BOMs
+
+**Response**:
+```json
+{
+  "message": "BOM built",
+  "bom_id": "bom-uuid"
+}
+```
+
+### POST /terminal/order
+
+Create work orders.
+
+**Authentication**: API key or IAM role
+
+**Actions**:
+- `create`: Create new work order
+- `list`: List all work orders
+
+**Response**:
+```json
+{
+  "message": "Order created",
+  "order_id": "ord-uuid"
+}
+```
+
+### POST /terminal/track
+
+Track job status and progress.
+
+**Authentication**: API key or IAM role
+
+**Actions**:
+- `subscribe`: Subscribe to job tracking
+- `list`: List tracking subscriptions
+
+**Response**:
+```json
+{
+  "message": "Tracking subscription created",
+  "job_id": "job-uuid"
+}
+```
+
+---
+
+## ML Integration Endpoints
+
+### POST /terminal/forecast
+
+Retrieve stored ML forecast results for a customer.
+
+**Authentication**: API key or IAM role
+
+**Content-Type**: `application/json`
+
+**Request Body**:
+```json
+{
+  "customer_id": "demo-customer"
+}
+```
+
+**Response**:
+```json
+{
+  "success": true,
+  "customer_id": "demo-customer",
+  "forecast_results": [
+    {
+      "forecast_id": "fc-demo-12345678",
+      "site_id": "demo-site-cape-town-01",
+      "generated_at": "2025-11-16T12:00:00Z",
+      "model_name": "global_forecast_lstm",
+      "model_version": "v1.3.2",
+      "horizon_hours": 24,
+      "forecast_points": [
+        {
+          "timestamp": "2025-11-16T13:00:00Z",
+          "hour_ahead": 1,
+          "predicted_power_kw": 816.1,
+          "lower_conf_kw": 786.0,
+          "upper_conf_kw": 846.2
+        }
+      ],
+      "metrics": {
+        "training_rmse": 0.082,
+        "validation_rmse": 0.096,
+        "mape_percent": 5.4,
+        "smape_percent": 6.8
+      },
+      "weather_context": {
+        "avg_temperature_c": 22.5,
+        "avg_irradiance_wm2": 795.0,
+        "avg_wind_speed_ms": 4.2
+      }
+    }
+  ],
+  "count": 1
+}
+```
+
+**DynamoDB Table**: `ona-platform-ml-forecast-results`
+
+**Limit**: Returns up to 10 most recent forecasts per customer
+
+### POST /terminal/interpolation
+
+Retrieve stored interpolation gap-filling results for a customer.
+
+**Authentication**: API key or IAM role
+
+**Content-Type**: `application/json`
+
+**Request Body**:
+```json
+{
+  "customer_id": "demo-customer"
+}
+```
+
+**Response**:
+```json
+{
+  "success": true,
+  "customer_id": "demo-customer",
+  "interpolation_results": [
+    {
+      "result_id": "in-demo-87654321",
+      "site_id": "demo-site-cape-town-01",
+      "processed_at": "2025-11-16T12:00:00Z",
+      "method": "adaptive_multi_output",
+      "asset_ids": ["INV-DEMO-001", "INV-DEMO-002"],
+      "data_window": {
+        "start": "2025-11-16T06:00:00Z",
+        "end": "2025-11-16T12:00:00Z"
+      },
+      "gap_statistics": {
+        "total_gaps": 100,
+        "average_gap_minutes": 15,
+        "largest_gap_minutes": 60,
+        "coverage_improvement_percent": 10.5
+      },
+      "performance_metrics": {
+        "rmse_kw": 6.8,
+        "mae_kw": 4.9,
+        "r2_score": 0.948,
+        "nrmse_percent": 3.4
+      },
+      "weather_features": {
+        "mean_temperature_c": 21.8,
+        "mean_irradiance_wm2": 788.5
+      }
+    }
+  ],
+  "count": 1
+}
+```
+
+**DynamoDB Table**: `ona-platform-ml-interpolation-results`
+
+**Limit**: Returns up to 10 most recent interpolation runs per customer
+
+### POST /terminal/ml-models
+
+Retrieve ML model registry (shared catalog of all available models).
+
+**Authentication**: API key or IAM role
+
+**Content-Type**: `application/json`
+
+**Request Body**: `{}` (no parameters required - registry is shared)
+
+**Response**:
+```json
+{
+  "success": true,
+  "model_metrics": [
+    {
+      "model_name": "global_forecast_lstm",
+      "model_version": "v1.3.2",
+      "model_type": "forecasting",
+      "status": "active",
+      "last_trained_at": "2025-10-22T14:15:00Z",
+      "training_data_window": {
+        "start": "2025-01-01T00:00:00Z",
+        "end": "2025-10-01T00:00:00Z"
+      },
+      "hyperparameters": {
+        "layers": [256, 256, 128],
+        "learning_rate": 0.0005,
+        "dropout": 0.2,
+        "optimizer": "adam"
+      },
+      "training_metrics": {
+        "epochs": 42,
+        "train_loss": 0.072,
+        "validation_loss": 0.089,
+        "early_stop_epoch": 5
+      },
+      "artifact_locations": {
+        "model": "s3://sa-api-client-output/customer_tailored/Sibaya/models/v1.3.2/model.h5",
+        "encoders": "s3://sa-api-client-output/customer_tailored/Sibaya/models/v1.3.2/encoders.pkl",
+        "config": "s3://sa-api-client-output/customer_tailored/Sibaya/models/v1.3.2/config.json"
+      }
+    }
+  ],
+  "count": 1
+}
+```
+
+**DynamoDB Table**: `ona-platform-ml-model-registry`
+
+**Note**: Model registry is a shared catalog, not customer-specific
+
+**Limit**: Returns up to 20 models
+
+### POST /terminal/ooda
+
+Retrieve ML-enhanced OODA summaries (severity, energy-at-risk, recommended actions).
+
+**Authentication**: API key or IAM role
+
+**Content-Type**: `application/json`
+
+**Request Body**:
+```json
+{
+  "customer_id": "demo-customer"
+}
+```
+
+**Response**:
+```json
+{
+  "success": true,
+  "customer_id": "demo-customer",
+  "ml_enhanced_activities": [
+    {
+      "summary_id": "ms-demo-12345678",
+      "asset_id": "INV-DEMO-001",
+      "created_at": "2025-11-16T12:00:00Z",
+      "last_detection_at": "2025-11-16T12:00:00Z",
+      "model_version": "v1.3.2",
+      "fault_family": "performance_loss",
+      "severity_label": "moderate",
+      "confidence": 0.78,
+      "energy_at_risk_kw": 62.5,
+      "root_cause": "Production 8% below expectation under good irradiance",
+      "recommended_actions": [
+        {
+          "priority": "P1",
+          "action": "Inspect DC strings for damage or shading"
+        },
+        {
+          "priority": "P2",
+          "action": "Verify irradiance sensor calibration"
+        }
+      ],
+      "detections": ["det-demo-001"]
+    }
+  ],
+  "count": 1
+}
+```
+
+**DynamoDB Table**: `ona-platform-ml-ooda-summaries`
+
+**Limit**: Returns up to 20 most recent summaries per customer
+
+---
+
+## Request/Response Formats
+
+### Standard Response Format
+
+All successful API responses follow this structure:
+
+```json
+{
+  "success": true,
+  "data": {
+    // Response data
+  },
+  "metadata": {
+    "request_id": "uuid",
+    "timestamp": "2025-01-15T12:00:00Z",
+    "version": "v1.0"
+  },
+  "errors": []
+}
+```
+
+### Error Response Format
+
+Error responses follow this structure:
+
+```json
+{
+  "success": false,
+  "data": null,
+  "metadata": {
+    "request_id": "uuid",
+    "timestamp": "2025-01-15T12:00:00Z",
+    "version": "v1.0"
+  },
+  "errors": [
+    {
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid customer_id format",
+      "field": "customer_id",
+      "details": "Expected format: alphanumeric string"
+    }
+  ]
+}
+```
+
+---
+
+## Error Handling
+
+### Common Error Codes
+
+| Error Code | HTTP Status | Description |
+|------------|-------------|-------------|
+| `VALIDATION_ERROR` | 400 | Request validation failed |
+| `AUTHENTICATION_ERROR` | 401 | Invalid or missing authentication |
+| `AUTHORIZATION_ERROR` | 403 | Insufficient permissions |
+| `NOT_FOUND` | 404 | Resource not found |
+| `RATE_LIMIT_EXCEEDED` | 429 | Rate limit exceeded |
+| `INTERNAL_ERROR` | 500 | Internal server error |
+| `SERVICE_UNAVAILABLE` | 503 | Service temporarily unavailable |
+
+### Error Response Example
+
+```json
+{
+  "success": false,
+  "data": null,
+  "errors": [
+    {
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid customer_id format",
+      "field": "customer_id",
+      "details": "Expected format: alphanumeric string"
+    }
+  ],
+  "metadata": {
+    "request_id": "req-123456",
+    "timestamp": "2025-01-15T12:00:00Z"
+  }
+}
+```
+
+### Handling Errors
+
+Always check the `success` field in the response. If `false`, inspect the `errors` array for details.
+
 ```python
-def fibonacci(n):
-    """Calculate the nth Fibonacci number using iteration."""
-    if n <= 0:
-        return 0
-    elif n == 1:
-        return 1
-    
-    a, b = 0, 1
-    for _ in range(2, n + 1):
-        a, b = b, a + b
-    
-    return b
+import requests
 
-# Usage example
-print(fibonacci(10))  # Output: 55
+response = requests.post(
+    "https://api.asoba.co/forecast",
+    headers={"X-API-Key": "your-api-key"},
+    json={"customer_id": "invalid"}
+)
+
+data = response.json()
+
+if not data.get("success"):
+    for error in data.get("errors", []):
+        print(f"Error {error['code']}: {error['message']}")
+        if "field" in error:
+            print(f"  Field: {error['field']}")
 ```
 
 ---
 
-## Troubleshooting
+## Rate Limiting
 
-**🚨 "AccessDeniedException"**:
-```bash
-# Request model access in AWS Console:
-# 1. Go to AWS Bedrock > Model access
-# 2. Request access to Amazon Nova Pro
-# 3. Wait for approval (usually immediate)
+### Rate Limits by Tier
+
+| Tier | Requests/Hour | Burst Limit |
+|------|---------------|-------------|
+| Standard | 1,000 | 100 |
+| Premium | 10,000 | 1,000 |
+| Enterprise | 100,000 | 10,000 |
+
+### Checking Rate Limit Status
+
+Rate limit information is included in response headers:
+
+```
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 755
+X-RateLimit-Reset: 1642248000
 ```
 
-**🚨 "ThrottlingException"**:
-✅ **No action needed!** Ona Terminal automatically handles throttling with:
-- Availability caching (5-minute TTL)
-- Circuit breaker protection  
-- Exponential backoff
+### Rate Limit Exceeded Response
 
-**🚨 "Command not found"**:
+When rate limit is exceeded:
+
+```json
+{
+  "success": false,
+  "data": null,
+  "errors": [
+    {
+      "code": "QUOTA_EXCEEDED",
+      "message": "Rate limit exceeded. Try again later.",
+      "retry_after": 3600
+    }
+  ]
+}
+```
+
+HTTP Status: `429 Too Many Requests`
+
+### Best Practices
+
+1. **Implement Exponential Backoff**: Retry with increasing delays
+2. **Cache Responses**: Cache forecast results when possible
+3. **Batch Requests**: Combine multiple operations when possible
+4. **Monitor Headers**: Check `X-RateLimit-Remaining` to avoid hitting limits
+
+---
+
+## Code Examples
+
+### Python
+
+```python
+import requests
+import time
+from typing import Dict, Optional
+
+class OnaPlatformClient:
+    def __init__(self, api_key: str, base_url: str = "https://api.asoba.co"):
+        self.api_key = api_key
+        self.base_url = base_url
+        self.session = requests.Session()
+        self.session.headers.update({
+            "X-API-Key": api_key,
+            "Content-Type": "application/json"
+        })
+    
+    def upload_training_data(self, csv_data: str) -> Dict:
+        """Upload historical data for model training"""
+        response = self.session.post(
+            f"{self.base_url}/upload_train",
+            data=csv_data,
+            headers={"Content-Type": "text/csv"}
+        )
+        response.raise_for_status()
+        return response.json()
+    
+    def get_forecast(self, customer_id: str, site_id: Optional[str] = None, 
+                     horizon_hours: int = 48) -> Dict:
+        """Get energy production forecast"""
+        params = {
+            "customer_id": customer_id,
+            "horizon_hours": horizon_hours
+        }
+        if site_id:
+            params["site_id"] = site_id
+        
+        response = self.session.get(f"{self.base_url}/forecast", params=params)
+        response.raise_for_status()
+        return response.json()
+    
+    def manage_asset(self, action: str, asset_data: Dict) -> Dict:
+        """Manage assets (add, list, get)"""
+        payload = {"action": action, **asset_data}
+        response = self.session.post(
+            f"{self.base_url}/terminal/assets",
+            json=payload
+        )
+        response.raise_for_status()
+        return response.json()
+    
+    def get_ml_forecast_results(self, customer_id: str) -> Dict:
+        """Get stored ML forecast results"""
+        response = self.session.post(
+            f"{self.base_url}/terminal/forecast",
+            json={"customer_id": customer_id}
+        )
+        response.raise_for_status()
+        return response.json()
+
+# Usage
+client = OnaPlatformClient(api_key="your-api-key")
+
+# Upload training data
+with open("historical_data.csv", "r") as f:
+    result = client.upload_training_data(f.read())
+    print(f"Uploaded: {result['data']['upload_id']}")
+
+# Get forecast
+forecast = client.get_forecast(customer_id="demo-customer", horizon_hours=48)
+print(f"Forecast generated: {forecast['forecast_id']}")
+
+# Get ML forecast results
+ml_results = client.get_ml_forecast_results("demo-customer")
+print(f"Found {ml_results['count']} forecast results")
+```
+
+### JavaScript/Node.js
+
+```javascript
+const axios = require('axios');
+
+class OnaPlatformClient {
+  constructor(apiKey, baseUrl = 'https://api.asoba.co') {
+    this.apiKey = apiKey;
+    this.baseUrl = baseUrl;
+    this.client = axios.create({
+      baseURL: baseUrl,
+      headers: {
+        'X-API-Key': apiKey,
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+
+  async uploadTrainingData(csvData) {
+    const response = await this.client.post('/upload_train', csvData, {
+      headers: { 'Content-Type': 'text/csv' }
+    });
+    return response.data;
+  }
+
+  async getForecast(customerId, siteId = null, horizonHours = 48) {
+    const params = {
+      customer_id: customerId,
+      horizon_hours: horizonHours
+    };
+    if (siteId) params.site_id = siteId;
+
+    const response = await this.client.get('/forecast', { params });
+    return response.data;
+  }
+
+  async manageAsset(action, assetData) {
+    const response = await this.client.post('/terminal/assets', {
+      action,
+      ...assetData
+    });
+    return response.data;
+  }
+
+  async getMLForecastResults(customerId) {
+    const response = await this.client.post('/terminal/forecast', {
+      customer_id: customerId
+    });
+    return response.data;
+  }
+}
+
+// Usage
+const client = new OnaPlatformClient('your-api-key');
+
+(async () => {
+  try {
+    // Get forecast
+    const forecast = await client.getForecast('demo-customer', null, 48);
+    console.log(`Forecast generated: ${forecast.forecast_id}`);
+
+    // Get ML forecast results
+    const mlResults = await client.getMLForecastResults('demo-customer');
+    console.log(`Found ${mlResults.count} forecast results`);
+  } catch (error) {
+    console.error('Error:', error.response?.data || error.message);
+  }
+})();
+```
+
+### cURL Examples
+
 ```bash
-# Manually add to PATH
-export PATH=$PATH:$HOME/.local/bin
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+# Set API key as variable
+export API_KEY="your-api-key"
+export BASE_URL="https://api.asoba.co"
+
+# Upload training data
+curl -X POST "${BASE_URL}/upload_train" \
+  -H "X-API-Key: ${API_KEY}" \
+  -H "Content-Type: text/csv" \
+  --data-binary @historical_data.csv
+
+# Get forecast
+curl -X GET "${BASE_URL}/forecast?customer_id=demo-customer&horizon_hours=48" \
+  -H "X-API-Key: ${API_KEY}"
+
+# Manage asset
+curl -X POST "${BASE_URL}/terminal/assets" \
+  -H "X-API-Key: ${API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "add",
+    "asset_id": "INV-001",
+    "name": "Main Inverter 1",
+    "type": "Solar Inverter",
+    "capacity_kw": 20.0
+  }'
+
+# Get ML forecast results
+curl -X POST "${BASE_URL}/terminal/forecast" \
+  -H "X-API-Key: ${API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{"customer_id": "demo-customer"}'
 ```
 
 ---
 
-## What's Next?
+## Best Practices
 
-1. **[Learn Interactive Commands](using-commands.html)** - Master the `/` command system
-2. **[Explore Agentic Workflows](agentic-workflow.html)** - Understand the OODA loop
-3. **[Add Custom Models](loading-models.html)** - Configure your own fine-tuned models
+### 1. Error Handling
 
-[Continue to Interactive Commands](using-commands.html){: .btn .btn-primary }
+Always implement proper error handling:
+
+```python
+try:
+    response = client.get_forecast("demo-customer")
+    if not response.get("success"):
+        # Handle API errors
+        for error in response.get("errors", []):
+            logger.error(f"API Error: {error['code']} - {error['message']}")
+except requests.exceptions.RequestException as e:
+    # Handle network errors
+    logger.error(f"Network error: {e}")
+```
+
+### 2. Retry Logic
+
+Implement exponential backoff for retries:
+
+```python
+import time
+from functools import wraps
+
+def retry_with_backoff(max_retries=3, backoff_factor=2):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(max_retries):
+                try:
+                    return func(*args, **kwargs)
+                except requests.exceptions.RequestException as e:
+                    if attempt == max_retries - 1:
+                        raise
+                    wait_time = backoff_factor ** attempt
+                    time.sleep(wait_time)
+            return None
+        return wrapper
+    return decorator
+
+@retry_with_backoff(max_retries=3)
+def get_forecast_with_retry(client, customer_id):
+    return client.get_forecast(customer_id)
+```
+
+### 3. Request Validation
+
+Validate data before sending:
+
+```python
+def validate_forecast_request(customer_id: str, horizon_hours: int):
+    if not customer_id or not isinstance(customer_id, str):
+        raise ValueError("customer_id must be a non-empty string")
+    if not isinstance(horizon_hours, int) or horizon_hours < 1 or horizon_hours > 168:
+        raise ValueError("horizon_hours must be between 1 and 168")
+```
+
+### 4. Response Caching
+
+Cache forecast results to reduce API calls:
+
+```python
+from functools import lru_cache
+from datetime import datetime, timedelta
+
+@lru_cache(maxsize=100)
+def get_cached_forecast(customer_id: str, cache_key: str):
+    # Cache key includes timestamp to expire after 1 hour
+    return client.get_forecast(customer_id)
+```
+
+### 5. Logging
+
+Implement comprehensive logging:
+
+```python
+import logging
+
+logger = logging.getLogger(__name__)
+
+def get_forecast_with_logging(client, customer_id):
+    logger.info(f"Requesting forecast for customer: {customer_id}")
+    try:
+        response = client.get_forecast(customer_id)
+        logger.info(f"Forecast generated: {response.get('forecast_id')}")
+        return response
+    except Exception as e:
+        logger.error(f"Error getting forecast: {e}", exc_info=True)
+        raise
+```
+
+---
+
+## Additional Resources
+
+### Service Documentation
+
+For detailed service-specific documentation, refer to:
+
+- [System Administration Guide](../SYSTEM_ADMIN.md) - Complete platform administration guide
+- [API Reference](../api-reference.md) - Detailed API documentation
+- [Troubleshooting Guide](../troubleshooting.md) - Common issues and solutions
+
+### Support
+
+- **Email**: support@asoba.co
+- **Discord**: [Join our Discord server](https://discord.gg/nNV5evcr)
 
 ---
 
@@ -176,7 +1103,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
   <div class="end-column">
     <div class="support-cta">
       <h3>Contact Support</h3>
-      <p>For technical assistance, feature requests, or any other questions, please reach out to our dedicated support team.</p>
+      <p>For technical assistance, API questions, or integration help, please reach out to our dedicated support team.</p>
       <a href="mailto:support@asoba.co" class="support-button">Email Support</a>
       <a href="https://discord.gg/nNV5evcr" target="_blank" class="support-button" style="margin-top: 10px; display: inline-block;">
         <svg width="16" height="16" style="margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="currentColor">
