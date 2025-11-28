@@ -27,60 +27,186 @@ The Ona AI-Driven O&M platform transforms solar asset operations through real-ti
 ## 2. Onboarding Workflow
 {: #2-onboarding-workflow }
 
-<div class="quickstart-paths">
-  <div class="path-card">
-    <h3>🚀 Phase 1: Kickoff</h3>
-    <p>Initial engagement and project initiation sync covering O&M AI model capabilities, stakeholder roles, PoC objectives, and success criteria. Owner: Client | Duration: Week 1</p>
+<div class="roadmap-container">
+  <div class="text-center mb-12">
+    <p class="text-gray-600">Complete onboarding workflow from kickoff to commercial deployment</p>
   </div>
-  
-  <div class="path-card">
-    <h3>📊 Phase 2: Define PoC KPIs</h3>
-    <p>Agreement on measurable success criteria including uptime improvement targets, fault prediction accuracy thresholds, cost savings metrics, and revenue optimization goals. Owner: Client | Duration: Week 1</p>
-  </div>
-  
-  <div class="path-card">
-    <h3>🔒 Phase 3: Data Governance Assessment</h3>
-    <p>Evaluation of client data infrastructure including data source inventory (SCADA, EMS, OEM portals), data retrieval protocols, security requirements, and historical data availability. Owner: Asoba Sales | Duration: Week 1-2</p>
-  </div>
-  
-  <div class="path-card">
-    <h3>🔑 Phase 4: Data Access Setup</h3>
-    <p>Establishment of secure data authentication and authorization including read-only API keys, admin credentials, VPN setup, and IP whitelisting. Supports SolarEdge, Enphase, Lux, Solarman, Huawei, SMA, Fronius, and more. Owner: Client & Asoba Sales | Duration: Week 2-3</p>
-  </div>
-  
-  <div class="path-card">
-    <h3>📋 Phase 5: Data Mapping & Inventory</h3>
-    <p>Cataloging of data sources for schema mapping and storage. Minimum data package includes SCADA tags, inverter credentials, site layout, weather data, as-built documentation, and 12+ months historical performance data. Owner: Asoba Technical | Duration: Week 3-4</p>
-  </div>
-  
-  <div class="path-card">
-    <h3>🔌 Phase 6: API Integration</h3>
-    <p>Configuration of API gateway for data ingestion and processing. Includes client account setup, customer creation, device registration, API key generation, and real-time/batch data feed configuration. Owner: Asoba Technical | Duration: Week 4-5</p>
-  </div>
-  
-  <div class="path-card">
-    <h3>⚙️ Phase 7: MVP Infrastructure Setup</h3>
-    <p>Configuration of processed data pipelines for model transmission and dashboard integration. Includes automated weather integration (Visual Crossing API, 15-minute cache) and asset registry setup with component details. Owner: Asoba Technical | Duration: Week 5-6</p>
-  </div>
-  
-  <div class="path-card">
-    <h3>🤖 Phase 8: Model Activation & Testing</h3>
-    <p>Deployment and validation of O&M AI model. Training requires 12+ months historical data (36 months preferred), completes in 24-48 hours with email notification. Performance targets: Forecasting SMAPE <7%, R² >0.92, Interpolation MAPE <8%, Anomaly detection <10 minutes. Owner: Asoba Technical | Duration: Week 6-8</p>
-  </div>
-  
-  <div class="path-card">
-    <h3>📈 Phase 9: Performance Monitoring</h3>
-    <p>Continuous tracking and analysis before full commercial deployment. Monitors model accuracy, latency, throughput, false positive/negative rates, system uptime, and data pipeline health. Includes SNS alert subscriptions and automated monitoring dashboards. Owner: Asoba Technical | Duration: Week 8-12 (Continuous)</p>
-  </div>
-  
-  <div class="path-card">
-    <h3>🎯 Phase 10: Performance Calibration</h3>
-    <p>Continuous fine-tuning to reach target performance KPIs through weekly performance reports, threshold adjustments, model retraining with production data, and feature engineering optimization. Owner: Asoba Technical | Duration: Week 8-12</p>
-  </div>
-  
-  <div class="path-card">
-    <h3>✅ Phase 11: Full Commercial Agreement</h3>
-    <p>Contract finalization and transition to Tier 1 technical support. Includes ROI analysis and performance validation, commercial pricing finalization, SLA establishment, operations team training, and handoff to production support. Owner: Client | Duration: Week 13+</p>
+
+  <div class="pipeline-container">
+    <div class="pipeline-row">
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">01</div>
+        <div class="step-content">
+          <div class="step-phase">Week 1</div>
+          <h4>Phase 1: Kickoff</h4>
+          <p><strong>Owner:</strong> Client</p>
+          <ul class="step-list">
+            <li>Initial engagement and project initiation</li>
+            <li>O&M AI model capabilities overview</li>
+            <li>Stakeholder roles and responsibilities</li>
+            <li>PoC objectives and timeline</li>
+            <li>Success criteria definition</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">02</div>
+        <div class="step-content">
+          <div class="step-phase">Week 1</div>
+          <h4>Phase 2: Define PoC KPIs</h4>
+          <p><strong>Owner:</strong> Client</p>
+          <ul class="step-list">
+            <li>Uptime improvement targets</li>
+            <li>Fault prediction accuracy thresholds</li>
+            <li>Cost savings metrics</li>
+            <li>Revenue optimization goals</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">03</div>
+        <div class="step-content">
+          <div class="step-phase">Week 1-2</div>
+          <h4>Phase 3: Data Governance Assessment</h4>
+          <p><strong>Owner:</strong> Asoba Sales</p>
+          <ul class="step-list">
+            <li>Data source inventory (SCADA, EMS, OEM portals)</li>
+            <li>Data retrieval protocols and access methods</li>
+            <li>Security requirements evaluation</li>
+            <li>Historical data availability assessment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipeline-row">
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">04</div>
+        <div class="step-content">
+          <div class="step-phase">Week 2-3</div>
+          <h4>Phase 4: Data Access Setup</h4>
+          <p><strong>Owner:</strong> Client & Asoba Sales</p>
+          <ul class="step-list">
+            <li>Read-only API keys for inverter clouds</li>
+            <li>Admin panel credentials (where applicable)</li>
+            <li>VPN or secure tunnel setup</li>
+            <li>IP whitelisting for Asoba infrastructure</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">05</div>
+        <div class="step-content">
+          <div class="step-phase">Week 3-4</div>
+          <h4>Phase 5: Data Mapping & Inventory</h4>
+          <p><strong>Owner:</strong> Asoba Technical</p>
+          <ul class="step-list">
+            <li>SCADA tags and inverter credentials</li>
+            <li>Site layout and component inventory</li>
+            <li>Weather data integration</li>
+            <li>12+ months historical performance data</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">06</div>
+        <div class="step-content">
+          <div class="step-phase">Week 4-5</div>
+          <h4>Phase 6: API Integration</h4>
+          <p><strong>Owner:</strong> Asoba Technical</p>
+          <ul class="step-list">
+            <li>Client account setup</li>
+            <li>Customer and device registration</li>
+            <li>API key generation</li>
+            <li>Real-time and batch data feed configuration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipeline-row">
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">07</div>
+        <div class="step-content">
+          <div class="step-phase">Week 5-6</div>
+          <h4>Phase 7: MVP Infrastructure Setup</h4>
+          <p><strong>Owner:</strong> Asoba Technical</p>
+          <ul class="step-list">
+            <li>Automated weather integration (Visual Crossing API)</li>
+            <li>Asset registry setup</li>
+            <li>Data pipeline configuration</li>
+            <li>Dashboard integration</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">08</div>
+        <div class="step-content">
+          <div class="step-phase">Week 6-8</div>
+          <h4>Phase 8: Model Activation & Testing</h4>
+          <p><strong>Owner:</strong> Asoba Technical</p>
+          <ul class="step-list">
+            <li>Model training (12+ months data required)</li>
+            <li>Performance target validation</li>
+            <li>Forecasting API testing</li>
+            <li>Fault detection verification</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">09</div>
+        <div class="step-content">
+          <div class="step-phase">Week 8-12</div>
+          <h4>Phase 9: Performance Monitoring</h4>
+          <p><strong>Owner:</strong> Asoba Technical</p>
+          <ul class="step-list">
+            <li>Model accuracy and latency tracking</li>
+            <li>False positive/negative rate monitoring</li>
+            <li>System uptime and API response times</li>
+            <li>SNS alert subscriptions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipeline-row">
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">10</div>
+        <div class="step-content">
+          <div class="step-phase">Week 8-12</div>
+          <h4>Phase 10: Performance Calibration</h4>
+          <p><strong>Owner:</strong> Asoba Technical</p>
+          <ul class="step-list">
+            <li>Weekly performance reports</li>
+            <li>Threshold adjustments</li>
+            <li>Model retraining with production data</li>
+            <li>Feature engineering optimization</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step roadmap-step">
+        <div class="step-number">11</div>
+        <div class="step-content">
+          <div class="step-phase">Week 13+</div>
+          <h4>Phase 11: Full Commercial Agreement</h4>
+          <p><strong>Owner:</strong> Client</p>
+          <ul class="step-list">
+            <li>ROI analysis and performance validation</li>
+            <li>Commercial pricing finalization</li>
+            <li>SLA establishment</li>
+            <li>Operations team training</li>
+            <li>Production support handoff</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
