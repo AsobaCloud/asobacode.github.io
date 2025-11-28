@@ -32,43 +32,104 @@ The Ona Platform is an AI-driven solar asset management system built on a modern
 
 ## Quick Start {#quick-start}
 
-To begin using the Ona Platform, please refer to the [User Guide](user-guide.html) for detailed instructions on deployment, configuration, and initial setup. The User Guide provides a step-by-step walkthrough for onboarding your solar assets and integrating your data sources.
+<div class="user-path-buttons">
+  <div class="path-button">
+    <div class="path-icon">🛠️</div>
+    <div class="path-content">
+      <h3>Get Started</h3>
+      <p>Step-by-step onboarding guide</p>
+      <a href="user-guide.html" class="path-link">Get Started →</a>
+    </div>
+  </div>
+  
+  <div class="path-button">
+    <div class="path-icon">📊</div>
+    <div class="path-content">
+      <h3>Use Cases</h3>
+      <p>Explore real-world applications</p>
+      <a href="archive/om-use-case.html" class="path-link">View Use Cases →</a>
+    </div>
+  </div>
+  
+  <div class="path-button">
+    <div class="path-icon">🔒</div>
+    <div class="path-content">
+      <h3>Data Governance</h3>
+      <p>Learn about data management and compliance</p>
+      <a href="https://docs.asoba.co/business-users.html" class="path-link" target="_blank">View Data Governance →</a>
+    </div>
+  </div>
+</div>
 
-### Prerequisites
+<style>
+.user-path-buttons {
+  display: flex;
+  gap: 20px;
+  margin: 30px 0 40px 0;
+  flex-wrap: wrap;
+}
 
-Before starting, ensure you have:
+.path-button {
+  flex: 1;
+  min-width: 300px;
+  border: 2px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: #fff;
+}
 
-- [ ] **AWS Account** with appropriate permissions
-- [ ] **Domain Control** (e.g., api.yourcompany.com)
-- [ ] **SCADA/Inverter Access** or data export capabilities
-- [ ] **Visual Crossing API Key** for weather data
-- [ ] **Asset Inventory** (inverter models, locations, capacities)
-- [ ] **Historical Data** (at least 30 days of sensor data)
+.path-button:hover {
+  border-color: #4551bf;
+  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
+  transform: translateY(-2px);
+}
 
-### Quick Deployment
+.path-icon {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
 
-```bash
-# 1. Clone the platform repository
-git clone <repository-url>
-cd ona-platform
+.path-content h3 {
+  font-size: 1.4em;
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+}
 
-# 2. Configure your environment
-cp config/environment.sh.example config/environment.sh
-# Edit config/environment.sh with your specific settings
+.path-content p {
+  color: #666;
+  margin: 0 0 15px 0;
+  line-height: 1.4;
+}
 
-# 3. Deploy core platform services
-./deploy-all.sh
+.path-link {
+  display: inline-block;
+  background: #4551bf;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
 
-# 4. Deploy terminal/O&M services
-./deploy-terminal.sh
-```
+.path-link:hover {
+  background: #3a47a3;
+  text-decoration: none;
+  color: white;
+}
 
-**Note on Performance**: Deployment has been optimized with parallel execution:
-- **Platform deployment**: 2-3 minutes (down from 8-9 minutes)
-- **Terminal deployment**: ~20 minutes
-- All deployment scripts are idempotent and can be safely re-run
-
-For detailed setup instructions, see the [User Guide](user-guide.html).
+@media (max-width: 768px) {
+  .user-path-buttons {
+    flex-direction: column;
+  }
+  
+  .path-button {
+    min-width: auto;
+  }
+}
+</style>
 
 ---
 
