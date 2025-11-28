@@ -4,6 +4,7 @@ layout: default
 nav_order: 99
 ---
 
+# Changelog
 
 All notable changes to the Ona Platform will be documented in this file.
 
@@ -320,3 +321,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ACM SSL/TLS certificates
 - ECR Docker registries
 
+---
+
+**Version Format**: MAJOR.MINOR.PATCH
+- **MAJOR**: Incompatible API changes
+- **MINOR**: Backwards-compatible functionality additions
+- **PATCH**: Backwards-compatible bug fixes
