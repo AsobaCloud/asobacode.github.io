@@ -122,7 +122,7 @@ Each node operates independently if the central connection fails. Forecasting an
 ## Quick Start {#quick-start}
 
 <div class="user-path-buttons">
-  <div class="path-button">
+  <div class="quickstart-card">
     <div class="path-icon">🛠️</div>
     <div class="path-content">
       <h3>Get Started</h3>
@@ -131,7 +131,7 @@ Each node operates independently if the central connection fails. Forecasting an
     </div>
   </div>
   
-  <div class="path-button">
+  <div class="quickstart-card">
     <div class="path-icon">📊</div>
     <div class="path-content">
       <h3>Use Cases</h3>
@@ -140,7 +140,7 @@ Each node operates independently if the central connection fails. Forecasting an
     </div>
   </div>
   
-  <div class="path-button">
+  <div class="quickstart-card">
     <div class="path-icon">🔒</div>
     <div class="path-content">
       <h3>Data Governance</h3>
@@ -158,7 +158,7 @@ Each node operates independently if the central connection fails. Forecasting an
   flex-wrap: wrap;
 }
 
-.path-button {
+.quickstart-card {
   flex: 1;
   min-width: 300px;
   border: 2px solid #e1e4e8;
@@ -169,7 +169,7 @@ Each node operates independently if the central connection fails. Forecasting an
   background: #fff;
 }
 
-.path-button:hover {
+.quickstart-card:hover {
   border-color: #4551bf;
   box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
   transform: translateY(-2px);
@@ -214,7 +214,7 @@ Each node operates independently if the central connection fails. Forecasting an
     flex-direction: column;
   }
   
-  .path-button {
+  .quickstart-card {
     min-width: auto;
   }
 }
