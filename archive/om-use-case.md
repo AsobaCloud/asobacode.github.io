@@ -12,37 +12,190 @@ Real-world solar operations & maintenance transformation with Ona Terminal.
 
 ---
 
-## The Business Problem: O&M Is Bleeding Your Returns
-{: #the-business-problem-o-m-is-bleeding-your-returns }
+## Case Study 1: Sibaya Casino - Limited Historical Data
+{: #case-study-sibaya-casino }
 
-Solar asset managers face a fundamental challenge: traditional operations and maintenance approaches are reactive, unpredictable, and destroying portfolio returns. Equipment failures are detected only after performance losses begin, repairs are scheduled reactively, and maintenance costs spiral out of control.
+### The Challenge: Validating Predictive AI in Low-Data Environments
+{: .fs-6 }
 
-**Financial Impact:**
-Delayed fault response costs $45,000-$85,000 annual lost revenue per MW. Poor maintenance scheduling wastes 25-40% of O&M budgets on unnecessary truck rolls and reactive scheduling. Preventable equipment failures cause 2-4% annual generation loss. Limited insurance benefits result from poor maintenance documentation.
+Sibaya Casino served as a pilot site for validating Asoba's Predictive AI in a low-data environment. The site contained only six months of usable telemetry—an interval too short for conventional machine-learning models to generalize long-term behavior. 
 
-**Operational Challenges:**
-Equipment fails unexpectedly, creating emergency response situations with 12-24 hour MTTR. Manual diagnostics delay proper repairs. Warranty claims are often missed due to poor documentation. Reactive scheduling increases travel costs and creates technician utilization gaps.
+**Site Profile:**
+- **Location:** Durban, South Africa
+- **Capacity:** 1.5MW rooftop installation  
+- **Historical Data:** 6 months (insufficient for traditional ML)
+- **Challenge:** Achieve accurate forecasting without extensive training data
+
+### The Solution: Transfer Learning Architecture
+{: .fs-6 }
+
+To overcome the limitation of sparse historical data, the engineering team applied **transfer learning**: a global LSTM architecture originally trained on two reference portfolios in Durban and Johannesburg containing 12–24 months of continuous data. That pretrained model supplied the base temporal features for irradiance, temperature, and production rhythm.
+
+**Technical Approach:**
+
+During deployment, only local normalization and fine-tuning were carried out on the Sibaya dataset. The objective was to test whether regional inference could substitute for historical depth. In validation runs, the transferred model reproduced the plant's daily generation curve with minimal drift relative to the observed output once live collection resumed.
+
+![Sibaya Casino Data Visualization](sibaya_graph.png)
+
+### Results: Structure Over Memory
+{: .fs-6 }
+
+The experiment demonstrated that Predictive AI could **learn structure rather than site-specific memory**—a key condition for scalability across new installations with limited archival data. By the end of the test phase, the system delivered:
+
+- ✅ **Stable day-ahead forecasts** from minimal historical baseline
+- ✅ **Consistent fault-flagging** despite sparse training data  
+- ✅ **Regional model adaptation** proving distributed models could be bootstrapped from other regions instead of being trained from zero on every site
+- ✅ **7% SMAPE accuracy** matching performance of models trained on 24+ months of data
+
+**Key Insight:** Transfer learning enables rapid deployment across new sites without waiting months to accumulate sufficient training data. Regional models trained on similar facilities provide the foundation, requiring only local calibration for accurate operation.
 
 ---
 
-## The Ona Terminal Solution: Predictive Intelligence
+## Case Study 2: Cummins Portfolio - Overcoming Data Gaps
+{: #case-study-cummins-portfolio }
+
+### The Challenge: Maintaining Intelligence Under Severe Data Loss
+{: .fs-6 }
+
+The Cummins evaluation examined the Intelligence Layer's resilience under damaged data conditions. The dataset represented a multi-megawatt portfolio with roughly **65% of operational records missing** because of sensor and telemetry losses.
+
+**Portfolio Profile:**
+- **Capacity:** Multi-MW distributed portfolio
+- **Data Quality:** 65% missing operational records
+- **Root Causes:** Sensor failures, telemetry interruptions, communication losses
+- **Challenge:** Maintain decision-making capability despite severe data gaps
+
+### The Solution: Multi-Method Statistical Reconstruction
+{: .fs-6 }
+
+Rather than discard incomplete sites, Asoba combined classical and modern statistical reconstruction:
+
+**Reconstruction Pipeline:**
+
+1. **ARIMA-Based Interpolation:** Time-series continuity was first restored using ARIMA-based interpolation to re-establish temporal cadence
+
+2. **Meteorological Data Integration:** The interim series was then merged with meteorological data (irradiance, temperature, cloud cover)
+
+3. **Ensemble ML Processing:** Processed through a multi-model ensemble—gradient-boosted regressors feeding a shallow neural network—to rebuild missing production intervals
+
+![Cummins Portfolio Data Reconstruction](cummins_graph.png)
+
+### Results: Robust Decision-Making Through Redundancy
+{: .fs-6 }
+
+This approach re-created full operational days, including **February 8, 2024, which had no original telemetry**. The rebuilt curve aligned with manual inspection logs taken later that week, confirming numerical validity.
+
+**Performance Metrics:**
+
+- ✅ **Complete day reconstruction** from zero original data points
+- ✅ **Validation against manual logs** confirmed accuracy within 8% SMAPE
+- ✅ **Maintained coherent maintenance scheduling** across entire portfolio
+- ✅ **Multi-site optimization** preserved despite fragmented input data
+
+**Key Principle:** The Intelligence Layer demonstrates **robustness through redundancy of method**. If one information channel fails, another statistical path fills the gap until true telemetry returns. Decision AI operated on reconstructed data without functional degradation—even when two-thirds of source data was absent.
+
+---
+
+## Boundary Conditions Established
+{: #boundary-conditions-established }
+
+These two deployments define opposite boundaries of reliability testing:
+
+<div class="boundary-cards">
+  <div class="boundary-card boundary-sibaya">
+    <h3>🎯 Sibaya Casino</h3>
+    <h4>Low-Data Boundary</h4>
+    <p>Validated learning transfer with scarce historical data. Proved that regional models can bootstrap new sites without extensive local training periods.</p>
+    <p><strong>Condition:</strong> Minimal training data (6 months)</p>
+    <p><strong>Outcome:</strong> Transfer learning enables immediate deployment</p>
+  </div>
+  
+  <div class="boundary-card boundary-cummins">
+    <h3>🛡️ Cummins Portfolio</h3>
+    <h4>Degraded-Data Boundary</h4>
+    <p>Validated decision stability amid severe data loss. Proved that multi-method reconstruction maintains operational intelligence under adverse conditions.</p>
+    <p><strong>Condition:</strong> 65% missing operational data</p>
+    <p><strong>Outcome:</strong> Statistical redundancy ensures continuity</p>
+  </div>
+</div>
+
+<style>
+.boundary-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.boundary-card {
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.boundary-sibaya {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-left: 4px solid #1976d2;
+}
+
+.boundary-cummins {
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+  border-left: 4px solid #7b1fa2;
+}
+
+.boundary-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.boundary-card h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #555;
+  font-weight: 600;
+}
+
+.boundary-card p {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.boundary-card p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .boundary-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+</style>
+
+**Empirical Proof:** Together they establish that Asoba's Predictive and Decision AI form a **dependable operating pair across the full range of data availability** encountered in distributed energy networks—from sparse historical records to severely degraded real-time telemetry.
+
+---
+
+## The Ona Platform Solution: Predictive Intelligence
 {: #the-ona-terminal-solution-predictive-intelligence }
 
 Ona Terminal transforms O&M operations from reactive cost centers into **predictive intelligence systems** that prevent faults before they occur and optimize every maintenance decision for maximum ROI. Instead of responding to equipment failures, you anticipate and prevent them.
 
-**How Ona Terminal Transforms O&M:**
+**How Ona Platform Transforms O&M:**
 
 Ona Terminal trains specialized AI models on your complete O&M corpus including maintenance reports, equipment manuals, warranty documents, and years of inverter performance data. Agentic systems pull real-time inverter data, systematically review performance patterns, and spot fault signatures weeks before equipment failure. When fault patterns are detected, the system automatically diagnoses issues, calculates financial impact, and determines optimal intervention timing. Every maintenance action includes real-time Energy-at-Risk (EAR) calculation versus dispatch costs, ensuring maximum ROI.
 
 ---
 
-## The MCP Framework Advantage
+## The Platform Advantage
 {: #the-mcp-framework-advantage }
 
 ### How Asoba's Architecture Enables O&M Transformation
 {: .fs-6 }
 
-The Model Context Protocol (MCP) enables specialized agents that each handle one specific task through single-responsibility agent architecture. 
+The Ona Platform enables specialized agents that each handle one specific task through single-responsibility agent architecture. 
 
 <div class="asoba-architecture-diagram">
   <!-- Header -->
@@ -570,134 +723,10 @@ The Model Context Protocol (MCP) enables specialized agents that each handle one
 ### Expected Performance Improvements
 {: .fs-6 }
 
-Based on the MCP framework's distributed agent capabilities, detection latency improves from 4-8 hours to under 5 minutes. Diagnostic accuracy increases from 45% to 85% fault classification. MTTR reduction shows 25-40% improvement from baseline.
+Based on the platform's distributed agent capabilities, detection latency improves from 4-8 hours to under 5 minutes. Diagnostic accuracy increases from 45% to 85% fault classification. MTTR reduction shows 25-40% improvement from baseline.
 
 **Financial Impact Projections (per 10MW):**
 Revenue protection delivers $180K-320K annually. Operational savings through optimized dispatching provide $85K-140K. Risk mitigation from warranty and insurance optimization contributes $45K-75K.
-
----
-
-## Detailed Business Impact Analysis
-{: #detailed-business-impact-analysis }
-
-### Financial Metrics (500MW Portfolio)
-{: .fs-6 }
-
-| Metric | Before Ona Terminal | After Ona Terminal | Annual Savings |
-|--------|------------------|-----------------|----------------|
-| **Lost Revenue** | $4.5M | $1.2M | **$3.3M** |
-| **Emergency Dispatch** | $480K | $120K | **$360K** |
-| **Diagnostic Labor** | $240K | $60K | **$180K** |
-| **Parts Inventory** | $300K | $180K | **$120K** |
-| **Insurance Claims** | $150K recovered | $450K recovered | **+$300K** |
-| **Total Impact** | - | - | **$4.26M savings** |
-
-**Conservative ROI: 425% in first year**
-
-### Operational Improvements
-{: .fs-6 }
-
-**String Degradation Detection:**
-Traditional monitoring shows 3-week delay in detection with 15% performance loss. Ona Terminal provides 2-day early warning with preventive intervention. This results in $28K annual energy recovery per string.
-
-**Inverter Component Failure:**  
-Traditional reactive approach requires complete inverter replacement costing $15K. Predictive analysis enables targeted component replacement at $3K cost. This delivers $12K cost avoidance plus warranty claim preservation.
-
-**Tracker Alignment Issues:**
-Quarterly manual inspection finds issues after performance loss occurs. Real-time tracking alignment monitoring provides continuous optimization. This generates 2-3% generation improvement from optimal tracking.
-
----
-
-## Technical Implementation Details
-
-### Custom Agent Implementation
-{: .fs-6 }
-
-Ona Terminal enables you to create **custom single-use agents** tailored to your specific O&M workflows through natural language interactions and custom model integration.
-
-**Agent Workflow Pattern:**
-
-**Observe Phase:** Data collection and monitoring agents can be created to gather equipment telemetry, weather data, and performance metrics.
-
-**Orient Phase:** Diagnostic agents apply trained models to analyze patterns, classify faults, and identify anomalies in equipment behavior.
-
-**Decide Phase:** Economic optimization agents calculate financial impact, prioritize maintenance actions, and optimize resource allocation.
-
-**Act Phase:** Execution agents generate work orders, coordinate with existing CMMS systems, and track performance metrics.
-
-### Custom Model Integration
-{: .fs-6 }
-
-**🎯 Solar Equipment Diagnostics Model:**
-- Trained on 10,000+ solar inverter fault patterns
-- 85% accuracy in fault classification vs. 45% for general models
-- Understands manufacturer-specific error codes
-
-**💰 Economic Dispatch Model:**  
-- Optimizes repair scheduling based on revenue impact
-- Factors weather forecasts, grid pricing, equipment criticality
-- $25,000+ average cost savings per optimized dispatch
-
----
-
-## Illustrative Example: String Performance Issue
-{: #illustrative-example-string-performance-issue }
-
-### Example Scenario
-{: .fs-6 }
-**Site:** 1.5MW solar facility  
-**Issue:** String 3 showing 18% underperformance  
-**Traditional Response:** Wait for quarterly inspection, reactive replacement
-
-### How Ona Terminal Would Respond
-{: .fs-6 }
-
-**Day 1 - Observe:**
-Monitor detects String 3 underperforming by 18%. Weather data confirms clear skies (no irradiance issue). Historical analysis shows gradual decline over 3 weeks.
-
-**Day 1 - Orient:**
-AI diagnostics suggest DC combiner failure. Pattern matches manufacturer TSB for this combiner model. Warranty check confirms coverage expires in 45 days.
-
-**Day 2 - Decide:**
-EAR calculation: $2,400/month revenue loss if unrepaired. Repair cost estimate: $1,200 parts + $800 labor. Optimal timing: Schedule within 30 days to preserve warranty.
-
-**Day 5 - Act:**
-Work order generated with specific combiner part number. Technician scheduled with DC combiner replacement experience. Photo requirements included for warranty claim documentation. Repair completed in 2 hours vs. 6-hour reactive response.
-
-**Projected Results:**
-Energy recovery through faster fault resolution. Warranty claim optimization through proper documentation. Reduced repair time vs. traditional reactive response. Planned maintenance vs. emergency downtime.
-
----
-
-## Implementation Roadmap
-{: #implementation-roadmap }
-
-### Phase 1: Foundation (Weeks 1-4)
-{: .fs-6 }
-
-**Week 1-2: Data Integration**
-Connect SCADA systems and weather data. Historical data import and normalization. Baseline performance establishment.
-
-**Week 3-4: Model Training**  
-Deploy custom solar diagnostics models. Train on historical maintenance data. Validate diagnostic accuracy.
-
-### Phase 2: Automation (Weeks 5-8)
-{: .fs-6 }
-
-**Week 5-6: OODA Loop Implementation**
-Automated monitoring and alerting. AI-powered fault detection. Economic optimization integration.
-
-**Week 7-8: CMMS Integration**
-Work order automation. Dispatch optimization. Performance tracking dashboards.
-
-### Phase 3: Optimization (Weeks 9-12)
-{: .fs-6 }
-
-**Week 9-10: Advanced Features**
-Predictive maintenance scheduling. Multi-site optimization. Warranty claim automation.
-
-**Week 11-12: ROI Validation**
-Performance metrics analysis. Cost-benefit validation. Continuous improvement implementation.
 
 ---
 
@@ -818,4 +847,5 @@ Performance metrics analysis. Cost-benefit validation. Continuous improvement im
       <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';fnames[7]='MMERGE7';ftypes[7]='url';fnames[8]='MMERGE8';ftypes[8]='text';fnames[9]='MMERGE9';ftypes[9]='text';fnames[10]='MMERGE10';ftypes[10]='text';fnames[11]='MMERGE11';ftypes[11]='url';fnames[12]='MMERGE12';ftypes[12]='text';fnames[13]='MMERGE13';ftypes[13]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
     </div>
   </div>
+
 </div>
