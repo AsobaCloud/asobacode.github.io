@@ -1,110 +1,252 @@
 ---
-title: "User Guide"
+title: "User Onboarding Guide"
 layout: default
 nav_order: 1
 ---
 
-# Customer Onboarding Guide: Ona Platform
+# Ona AI-Driven O&M Client Onboarding Guide
 
-This guide walks you through the essential steps to get your Ona Platform up and running with minimum viable usage. Follow these steps to configure all necessary components and start generating insights from your solar assets.
+This guide outlines the onboarding process for implementing Asoba's AI-powered Operations & Maintenance (O&M) solution for solar energy assets. The process is structured into parallel workstreams—Client, Sales, and Technical—to ensure alignment throughout Proof of Concept (PoC) activation and readiness for full commercial deployment.
 
-## Prerequisites Checklist
+---
 
-Before starting, ensure you have:
+## 1. Overview
 
-- [ ] **AWS Account** with appropriate permissions
-- [ ] **Domain Control** (e.g., api.yourcompany.com)
-- [ ] **SCADA/Inverter Access** or data export capabilities
-- [ ] **Visual Crossing API Key** for weather data
-- [ ] **Asset Inventory** (inverter models, locations, capacities)
-- [ ] **Historical Data** (at least 30 days of sensor data)
+The Ona AI-Driven O&M platform transforms solar asset operations through real-time anomaly detection, predictive maintenance, and intelligent fault classification. The onboarding process follows a structured workflow from initial engagement through full commercial deployment, with clear roles and responsibilities for each phase.
 
-## Step 1: Initial Platform Setup
+### Value Proposition
 
-### 1.1 Deploy Core Infrastructure
+- **Faster Claims Processing**: Reduce revenue loss through accelerated incident identification and resolution
+- **Proactive Maintenance**: Shift from reactive cost centers to predictive profit optimization
+- **Unified Data Infrastructure**: Eliminate manual ETL and gain cross-asset visibility
+- **AI-Powered Insights**: Achieve 7% SMAPE forecasting accuracy and sub-10-minute anomaly detection
+
+---
+
+## 2. Onboarding Workflow
+
+### Phase 1: Kickoff
+**Owner**: Client  
+**Duration**: Week 1
+
+Initial engagement and project initiation sync covering:
+- Description of O&M AI model capabilities
+- Stakeholder roles and responsibilities
+- PoC objectives and timeline
+- Success criteria definition
+
+**Deliverables**:
+- Signed onboarding agreement
+- Project kickoff deck
+- Stakeholder contact matrix
+
+---
+
+### Phase 2: Define PoC KPIs
+**Owner**: Client  
+**Duration**: Week 1
+
+Agreement on measurable success criteria:
+- Uptime improvement targets (%)
+- Fault prediction accuracy thresholds
+- Guaranteed cost savings metrics
+- Revenue optimization goals
+
+**Example KPIs**:
+- Reduce Mean Time To Repair (MTTR) by 30%
+- Achieve >90% anomaly detection accuracy
+- Increase energy availability ratio (EAR) by 5%
+- Reduce O&M costs by 15-25%
+
+---
+
+### Phase 3: Data Governance Assessment
+**Owner**: Asoba Sales  
+**Duration**: Week 1-2
+
+Evaluation of client data infrastructure:
+- Data source inventory (SCADA, EMS, OEM portals)
+- Data retrieval protocols and access methods
+- Data sharing governance and security requirements
+- Historical data availability assessment
+
+**Required Information**:
+- SCADA/EMS vendor and version
+- Data polling intervals and granularity
+- Network architecture and firewall rules
+- Data retention policies
+
+---
+
+### Phase 4: Data Access Setup
+**Owner**: Client & Asoba Sales  
+**Duration**: Week 2-3
+
+Establishment of secure data authentication and authorization:
+
+#### 4.1 Credentials Provisioning
+- Read-only API keys for inverter clouds
+- Admin panel credentials (where applicable)
+- VPN or secure tunnel setup (if required)
+- IP whitelisting for Asoba infrastructure
+
+#### 4.2 Supported Data Sources
+
+| Provider | Device Type | Integration Method |
+|----------|-------------|-------------------|
+| SolarEdge | Inverter | API, CSV export |
+| Enphase | Inverter | Enlighten API |
+| Lux | Inverter | Cloud API |
+| Solarman | Inverter | Direct integration |
+| Huawei | Inverter | FusionSolar API |
+| SMA | Inverter | Sunny Portal |
+| Fronius | Inverter | Solar.web API |
+| Macrocomm | Smart Meter | Data logger |
+| Switch Energy | Data Logger | CSV export |
+| Utility API | Smart Meter | JSON/CSV |
+
+---
+
+### Phase 5: Data Mapping & Inventory
+**Owner**: Asoba Technical  
+**Duration**: Week 3-4
+
+Cataloging of data sources for schema mapping and storage:
+
+#### 5.1 Minimum Data Package
+
+| Data Type | Description | Format | Requirement |
+|-----------|-------------|--------|-------------|
+| **SCADA/Historian Tags** | Four-quadrant data (kWh, kV, kVarch, PF) at max 60-min intervals | CSV, JSON, API | Required |
+| **Inverter Credentials** | Read-only API keys or admin credentials | Secure strings | Required |
+| **Site Layout** | Component bill of materials with locations | CAD, KML, PDF | Required |
+| **Weather Data** | Historical and real-time weather (if >40km from municipal center) | CSV, API | Required |
+| **As-Built Documentation** | Single-line diagram and BOQ | PDF, DWG | Required |
+| **Maintenance Logs** | Incident and downtime records | Excel, CSV | Recommended |
+| **Historical Performance** | Minimum 12 months (36 months preferred) | CSV, JSON | Required |
+
+#### 5.2 Data Quality Requirements
+
+- **Temporal Resolution**: Maximum 60-minute intervals (8,760+ rows per year)
+- **Completeness**: >80% data availability for training period
+- **Time Synchronization**: Timestamps in UTC or consistent timezone
+- **Data Granularity**: Sub-minute processing capability available
+
+---
+
+### Phase 6: API Integration
+**Owner**: Asoba Technical  
+**Duration**: Week 4-5
+
+Configuration of API gateway for data ingestion and processing:
+
+#### 6.1 Client Account Setup
 
 ```bash
-# Clone the platform repository
-git clone <repository-url>
-cd ona-platform
+# Using Ona Power Tools SDK
+from core.manageUsers.create_client import create_client
+from core.manageUsers.create_customer import create_customer
+from core.manageUsers.create_device import create_device
+from core.manageUsers.create_api_key import create_api_key
 
-# Configure your environment
-cp config/environment.sh.example config/environment.sh
-# Edit config/environment.sh with your specific settings:
-# - AWS_REGION
-# - API_DOMAIN (e.g., api.yourcompany.com)
-# - INPUT_BUCKET and OUTPUT_BUCKET names
+# Create client organization
+create_client(
+    client_id=your_client_id,
+    name="Your Solar Company",
+    contact_email="admin@yourcompany.com"
+)
+
+# Create customer account
+create_customer(
+    client_id=your_client_id,
+    contact_name="John Smith"
+)
+
+# Register device
+create_device(
+    customer_id="cust0001",
+    device_type="inverter",
+    serial_num="INV-001"
+)
+
+# Generate API key
+api_key = create_api_key(
+    region="af-south-1",
+    environment="production",
+    client_id=your_client_id
+)
 ```
 
-### 1.2 Set Up DNS Infrastructure (One-time)
+#### 6.2 Data Ingestion Setup
+
+**Real-Time Data Feed** (Recommended):
+```bash
+# Configure SCADA to push to Ona ingestion endpoint
+POST https://api.asoba.co/upload_nowcast
+Headers:
+  X-API-Key: {your_api_key}
+  Content-Type: application/json
+
+Body:
+{
+  "site_id": "site-001",
+  "timestamp": "2025-01-15T08:00:00Z",
+  "data": {
+    "power_kw": 18.3,
+    "voltage_v": 800.5,
+    "temperature_c": 45.2
+  }
+}
+```
+
+**Batch Historical Upload**:
+```bash
+# Upload historical CSV data
+aws s3 cp historical_data.csv \
+  s3://ona-input-bucket/historical/{customer_id}/{site_id}/
+
+# Or use API endpoint
+curl -X POST https://api.asoba.co/upload_historical \
+  -H "X-API-Key: {your_api_key}" \
+  -F "file=@historical_data.csv"
+```
+
+---
+
+### Phase 7: MVP Infrastructure Setup
+**Owner**: Asoba Technical  
+**Duration**: Week 5-6
+
+Configuration of processed data pipelines for model transmission and dashboard integration:
+
+#### 7.1 Weather Integration
 
 ```bash
-# Run DNS setup (this may take 10-30 minutes)
-cd dns-setup
-./setup-dns-infrastructure.sh
-
-# Verify certificate is ready
-./check-certificate-status.sh
+# Visual Crossing API setup (handled by Asoba)
+# Weather data automatically cached every 15 minutes
+# No client action required
 ```
 
-### 1.3 Manual Deployment
-
-If you prefer to deploy manually:
-
-```bash
-# 1. Deploy core platform services
-./deploy-all.sh
-
-# 2. Deploy terminal/O&M services
-./deploy-terminal.sh
-```
-
-**Note on Configuration**: The platform uses two environment files:
-- `config/environment.sh`: Core platform configuration
-- `config/terminal-environment.sh`: Terminal/O&M services configuration
-
-**Note on Performance**: Deployment has been optimized with parallel execution:
-- **Platform deployment**: 2-3 minutes (down from 8-9 minutes)
-- **Terminal deployment**: ~20 minutes
-- IAM role creation: 10-15 seconds (70% faster)
-- Lambda deployment: 1.5 minutes (75% faster)
-- API Gateway setup: 8-12 seconds (70% faster)
-
-All deployment scripts are idempotent and can be safely re-run.
-
-**Validation**: Both scripts include built-in validation. For manual validation:
-```bash
-# Validate platform deployment
-./scripts/12-validate-deployment.sh
-
-# Validate terminal deployment
-./scripts/23-validate-terminal-deployment.sh
-```
-
-## Step 2: Configure Your Assets
-
-### 2.1 Create Asset Inventory
-
-Create your asset configuration file:
+#### 7.2 Asset Registry
 
 ```json
 {
   "assets": [
     {
       "id": "INV-001",
-      "name": "Main Inverter 1",
+      "name": "Main Inverter Block A",
       "type": "Solar Inverter",
       "capacity_kw": 20.0,
       "location": {
         "latitude": -26.2041,
         "longitude": 28.0473,
-        "address": "Your Solar Farm, City"
+        "site_name": "Your Solar Farm"
       },
       "components": [
         {
-          "oem": "Sungrow",
-          "model": "SG20KTL",
-          "serial": "SN123456",
+          "oem": "SolarEdge",
+          "model": "SE20K",
+          "serial": "SE123456",
           "type": "inverter",
           "installation_date": "2024-01-15T00:00:00Z"
         }
@@ -114,303 +256,184 @@ Create your asset configuration file:
 }
 ```
 
-### 2.2 Upload Asset Configuration
+---
+
+### Phase 8: Model Activation & Testing
+**Owner**: Asoba Technical  
+**Duration**: Week 6-8
+
+Deployment and validation of O&M AI model:
+
+#### 8.1 Model Training
+
+- Minimum 12 months historical data required
+- 36 months preferred for highest accuracy
+- Training typically completes within 24-48 hours
+- Email notification upon completion
+
+#### 8.2 Model Performance Targets
+
+| Metric | Target | Use Case |
+|--------|--------|----------|
+| **Forecasting SMAPE** | <7% | Generation prediction |
+| **Forecasting R²** | >0.92 | Model reliability |
+| **Interpolation MAPE** | <8% | Gap filling |
+| **Anomaly Detection Time** | <10 minutes | Real-time alerting |
+
+#### 8.3 Testing Procedures
 
 ```bash
-# Upload asset configuration
-aws s3 cp assets.json s3://your-input-bucket/assets.json
+# Test forecasting API
+curl "https://api.asoba.co/forecast?customer_id={id}&site_id={site}"
+
+# Test fault detection
+curl -X POST https://api.asoba.co/terminal/detect \
+  -H "X-API-Key: {your_api_key}" \
+  -d '{"action": "run", "asset_id": "INV-001"}'
+
+# Verify data pipeline
+aws logs tail /aws/lambda/ona-interpolationService-prod --follow
 ```
 
-## Step 3: Configure Data Sources
+---
 
-### 3.1 Set Up Weather API
+### Phase 9: Performance Monitoring
+**Owner**: Asoba Technical  
+**Duration**: Week 8-12 (Continuous)
+
+Continuous tracking and analysis before full commercial deployment:
+
+#### 9.1 Monitoring Metrics
+
+- Model accuracy, latency, and throughput
+- False positive/negative rates
+- System uptime and API response times
+- Data pipeline health
+
+#### 9.2 Alerting Configuration
 
 ```bash
-# Configure Visual Crossing API key
-aws ssm put-parameter \
-  --name /ona-platform/prod/visual-crossing-api-key \
-  --value "YOUR_VISUAL_CROSSING_API_KEY" \
-  --type SecureString \
-  --overwrite
-```
-
-### 3.2 Configure Data Integration
-
-Choose your integration method:
-
-**Option A: Direct Data Feed (Recommended)**
-```bash
-# Configure your SCADA system to send data to:
-# POST https://api.asoba.co/upload_nowcast
-# Or use direct API Gateway URL: https://u9xpolnr5m.execute-api.af-south-1.amazonaws.com/prod/upload_nowcast
-```
-
-**Option B: File Upload**
-```bash
-# Upload historical data for model training
-# Note: This uploads data directly to S3. The dataIngestion service is currently a placeholder.
-# Data should be uploaded directly to S3 bucket: your-input-bucket/historical/
-aws s3 cp your_sensor_data.csv s3://your-input-bucket/historical/customer_id/site_id/
-```
-
-## Step 4: Upload Historical Data
-
-### 4.1 Prepare Your Data
-
-Format your sensor data as CSV:
-
-```csv
-timestamp,asset_id,temperature_c,voltage_v,power_kw
-2024-01-01T08:00:00Z,INV-001,45.2,800.5,18.3
-2024-01-01T08:15:00Z,INV-001,46.1,799.8,17.9
-2024-01-01T08:30:00Z,INV-001,47.3,801.2,19.1
-```
-
-### 4.2 Upload Training Data
-
-```bash
-# The dataIngestion service is currently a placeholder with no processing logic.
-# Upload your CSV file directly to S3:
-aws s3 cp your_sensor_data.csv s3://your-input-bucket/historical/customer_id/site_id/historical_data.csv
-
-# This will trigger downstream processing via S3 event to interpolationService and globalTrainingService
-```
-
-## Step 5: Configure Monitoring Thresholds
-
-**Note:** The OODA (Observe-Orient-Decide-Act) workflow components are deployed and can be interacted with using the following commands. These commands allow you to configure and test the initial setup of the OODA workflow.
-
-### 5.1 Set Detection Parameters
-
-```bash
-# Configure detection sensitivity
-aws ssm put-parameter \
-  --name /ona-platform/prod/detection-threshold \
-  --value "0.7" \
-  --type String \
-  --overwrite
-
-# Configure loss function weights
-aws ssm put-parameter \
-  --name /ona-platform/prod/loss-function-weights \
-  --value '{"w_energy": 1.0, "w_cost": 0.3, "w_mttr": 0.2}' \
-  --type String \
-  --overwrite
-```
-
-### 5.2 Set Up Alerting
-
-```bash
-# Configure email notifications
+# Subscribe to anomaly alerts
 aws sns subscribe \
   --topic-arn arn:aws:sns:af-south-1:ACCOUNT:ona-platform-alerts \
   --protocol email \
   --notification-endpoint "ops@yourcompany.com"
+
+# Configure detection thresholds
+aws ssm put-parameter \
+  --name /ona-platform/prod/detection-threshold \
+  --value "0.7" \
+  --type String
 ```
 
-## Step 6: Test Your Setup
+---
 
-### 6.1 Generate Your First Forecast
+### Phase 10: Performance Calibration
+**Owner**: Asoba Technical  
+**Duration**: Week 8-12
 
-**Note:** The `forecastingApi` service is currently a placeholder and will not generate a real forecast.
+Continuous fine-tuning to reach target performance KPIs:
 
-```bash
-# Test forecast generation
-curl "https://api.asoba.co/forecast?customer_id=your-company&site_id=your-site"
-```
+- Weekly performance reports
+- Threshold adjustments based on false positive rates
+- Model retraining with production data
+- Feature engineering optimization
 
-### 6.2 Verify Data Processing
+---
 
-```bash
-# Check if data is being processed
-aws logs tail /aws/lambda/ona-interpolationService-prod --follow
+### Phase 11: Full Commercial Agreement
+**Owner**: Client  
+**Duration**: Week 13+
 
-# Check weather cache updates
-aws logs tail /aws/lambda/ona-weatherCache-prod --follow
-```
+Contract finalization and transition to Tier 1 technical support:
 
-### 6.3 Test Terminal API (O&M Workflows)
+- ROI analysis and performance validation
+- Commercial pricing finalization
+- Service Level Agreement (SLA) establishment
+- Training for client operations team
+- Handoff to production support
 
-**Add an Asset**:
-```bash
-curl -X POST https://api.asoba.co/terminal/assets \
-  -H "Content-Type: application/json" \
-  -d '{
-    "action": "add",
-    "asset_id": "INV-001",
-    "name": "Main Inverter 1",
-    "type": "Solar Inverter",
-    "capacity_kw": 20.0,
-    "location": "Cape Town",
-    "components": [
-      {
-        "oem": "Sungrow",
-        "model": "SG20KTL",
-        "serial": "SN123456"
-      }
-    ]
-  }'
-```
+---
 
-**List All Assets**:
-```bash
-curl -X POST https://api.asoba.co/terminal/assets \
-  -H "Content-Type: application/json" \
-  -d '{"action": "list"}'
-```
+## 3. Site Information Requirements
 
-**Run Fault Detection**:
-```bash
-curl -X POST https://api.asoba.co/terminal/detect \
-  -H "Content-Type: application/json" \
-  -d '{"action": "run", "asset_id": "INV-001"}'
-```
+For each site to be onboarded, provide:
 
-**Create Maintenance Schedule**:
-```bash
-curl -X POST https://api.asoba.co/terminal/schedule \
-  -H "Content-Type: application/json" \
-  -d '{"action": "create", "asset_id": "INV-001"}'
-```
+### General Information
+- **Site Owner/Operator Name**: ___________________
+- **Point of Contact**:
+  - Name: ___________________
+  - Email: ___________________
+  - Phone: ___________________
+- **Site Name**: ___________________
+- **GPS Coordinates/Address**: ___________________
+- **Installed Capacity**: ___________ kW / MW
 
-**Build Bill of Materials**:
-```bash
-curl -X POST https://api.asoba.co/terminal/bom \
-  -H "Content-Type: application/json" \
-  -d '{"action": "build", "asset_id": "INV-001"}'
-```
+### Equipment Information
+- **OEM Name**: □ Huawei □ SolarEdge □ SunGrow □ SMA Solar □ Other: _________
+- **Site Monitoring Setup**: □ SCADA □ EMS □ OEM Portal □ Other: _________
 
-**Create Work Order**:
-```bash
-curl -X POST https://api.asoba.co/terminal/order \
-  -H "Content-Type: application/json" \
-  -d '{"action": "create", "asset_id": "INV-001"}'
-```
+### Data Access Authorization
+List users and roles connected to this site:
 
-**Track Job Status**:
-```bash
-curl -X POST https://api.asoba.co/terminal/track \
-  -H "Content-Type: application/json" \
-  -d '{"action": "subscribe", "job_id": "job-001"}'
-```
+| Name | Email | Role | Permissions |
+|------|-------|------|-------------|
+|      |       |      |             |
 
-## Step 7: Configure Operations & Maintenance
+---
 
-**Note:** This section describes how to configure and interact with the deployed OODA workflow components.
+## 4. Expected Success Metrics
 
-### 7.1 Set Up OODA Workflow
+Define KPIs to determine value and feasibility for transition to full commercial deployment:
 
-```bash
-# Configure fault categories
-# cat > configs/oodalike.yaml << EOF
-# Weather Damage:
-#   - hail_impact
-#   - wind_stress
-# 
-# OEM Fault:
-#   - inverter_overtemp
-#   - dc_bus_fault
-# 
-# Ops Fault:
-#   - wrong_setpoint
-#   - maintenance_overdue
-# EOF
-# 
-# # Configure crew information
-# cat > configs/ooda/loss_function.yaml << EOF
-# weights:
-#   w_energy: 1.0
-#   w_cost: 0.3
-#   w_mttr: 0.2
-# 
-# crew:
-#   crews_available: 2
-#   hours_per_day: 8
-# EOF
-```
+1. ___________________________________________
+2. ___________________________________________
+3. ___________________________________________
 
-### 7.2 Test O&M Workflow
+**Target Completion**: Week 13 (90 days from kickoff)
 
-```bash
-# Test fault detection
-# curl -X POST https://api.yourcompany.com/detect \
-#   -H "Content-Type: application/json" \
-#   -d '{"asset_id": "INV-001", "severity_threshold": 0.7}'
-# 
-# # Test diagnostics
-# curl -X POST https://api.yourcompany.com/diagnose \
-#   -H "Content-Type: application/json" \
-#   -d '{"asset_id": "INV-001"}'
-```
+---
 
-## Step 8: Go Live Checklist
+## 5. Implementation Timeline Summary
 
-Before going live, verify:
+| Phase | Duration | Key Milestones |
+|-------|----------|----------------|
+| **Weeks 1-2: Integration** | 2 weeks | SCADA connections, data pipeline setup, team training |
+| **Weeks 3-12: Optimization** | 10 weeks | Real-time monitoring, AI model training, weekly reporting |
+| **Week 13: Results** | 1 week | ROI validation, scale-up planning |
 
-- [ ] **API Endpoints** responding correctly
-- [ ] **Weather Data** being cached every 15 minutes
-- [ ] **Historical Data** processed
-- [ ] **Real-time Data** flowing from SCADA/inverters
-- [ ] **Alerts** configured and tested
+---
 
-## Step 9: Ongoing Operations
+## 6. Technical Support
 
-### 9.1 Daily Monitoring
-
-```bash
-# Morning health check
-./scripts/daily_health_check.sh
-
-# Performance review
-./scripts/performance_review.sh
-```
-
-### 9.2 Weekly Tasks
-
-```bash
-# Generate weekly reports
-./scripts/weekly_report.sh
-
-# Review and adjust thresholds
-aws ssm get-parameter --name /ona-platform/prod/detection-threshold
-```
-
-## Troubleshooting Common Issues
-
-### Issue: No Forecasts Generated
-**Solution**: While the `forecastingApi` and `globalTrainingService` are deployed, they currently do not generate real forecasts as models are not yet being trained or used. This functionality is under active development.
-```bash
-aws s3 ls s3://your-output-bucket/models/
-```
-
-### Issue: Weather Data Not Updating
-**Solution**: Verify Visual Crossing API key
-```bash
-aws ssm get-parameter --name /ona-platform/prod/visual-crossing-api-key --with-decryption
-```
-
-### Issue: High False Positive Rate
-**Solution**: The detection logic is deployed and can be interacted with. If you are experiencing a high false positive rate, the current implementation may not yet provide refined detection capabilities. This functionality is under active development.
-```bash
-# Adjust detection threshold (for future use)
-# aws ssm put-parameter \
-#   --name /ona-platform/prod/detection-threshold \
-#   --value "0.8" \
-#   --type String \
-#   --overwrite
-```
-
-## Support and Resources
-
+### During PoC
 - **Technical Support**: support@asoba.co
-- **Documentation**: [README.md](README.md) for system overview
-- **Operations Guide**: [O&M.md](O&M.md) for daily operations
-- **System Admin Guide**: [SYSTEM ADMIN.md](SYSTEM%20ADMIN.md) for technical administration
+- **Sales Contact**: Your designated account manager
+- **Documentation**: https://docs.asoba.co
 
-## Next Steps
+### Post-Commercial Deployment
+- **Tier 1 Support**: 24/7 system monitoring
+- **Escalation**: Direct technical engineering support
+- **Regular Reviews**: Quarterly business reviews
 
-Once your platform is deployed, you can continue to integrate your data sources and customize the configuration to meet your specific needs. The data collection happens through direct S3 uploads, with `forecastingApi`, `globalTrainingService`, and OODA workflow components deployed and available for interaction. The `dataIngestion` service is currently a placeholder with no active processing logic.
+---
 
-1. **Integrate** with your data sources.
-2. **Customize** the configuration to meet your specific needs.
-3. **Explore** the capabilities of the `forecastingApi` and OODA workflow components.
+## 7. Data Governance & Security
+
+### Data Protection
+- All data transmitted via TLS 1.3
+- Data at rest encrypted with AES-256
+- Read-only access to client systems
+- SOC 2 Type II compliance (in progress)
+
+### Performance Disclaimers
+Given comprehensive and up-to-date data, Ona AI-Driven O&M identifies anomalies and recommends corrective actions to assist clients in meeting internal plant-availability and performance KPIs. Actual plant performance depends on:
+
+- Client's operational execution
+- Timely provision of required data feeds
+- Prompt response to AI alerts
+- Quality of field technician work
+
+---
+
+© 2025 Asoba Corporation. All rights reserved.
