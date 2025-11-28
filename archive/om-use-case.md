@@ -44,17 +44,528 @@ Ona Terminal trains specialized AI models on your complete O&M corpus including 
 
 The Model Context Protocol (MCP) enables specialized agents that each handle one specific task through single-responsibility agent architecture. 
 
-**Observe Phase Agents:**
-SCADA agents pull inverter telemetry data at configured intervals. Weather agents fetch irradiance and temperature data. Interpolation agents fill data gaps and standardize time series.
+<div class="asoba-architecture-diagram">
+  <!-- Header -->
+  <div class="text-center mb-12">
+    <h1 class="text-slate-900 mb-4">How Asoba's Architecture Enables O&M Transformation</h1>
+    <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-slate-200 max-w-4xl mx-auto">
+      <div class="flex items-center justify-center gap-3 mb-3">
+        <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+        </svg>
+        <h2 class="text-slate-900">Model Context Protocol (MCP)</h2>
+      </div>
+      <p class="text-slate-600">
+        Enables specialized agents that each handle one specific task through single-responsibility agent architecture
+      </p>
+    </div>
+  </div>
 
-**Orient Phase Agents:**
-Baseline agents establish expected performance patterns. Anomaly agents detect deviations from normal behavior. Diagnostic agents classify fault types using trained ML models.
+  <!-- Phases Grid -->
+  <div class="phases-grid">
+    <!-- Observe Phase -->
+    <div class="phase-card-wrapper">
+      <div class="phase-card phase-observe">
+        <div class="phase-header">
+          <h3 class="phase-title phase-observe-title">Observe Phase</h3>
+          <div class="phase-divider phase-observe-divider"></div>
+        </div>
+        <div class="agents-list">
+          <div class="agent-card">
+            <div class="agent-header">
+              <svg class="agent-icon phase-observe-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+              </svg>
+              <h4 class="agent-name">SCADA Agents</h4>
+            </div>
+            <p class="agent-description">Pull inverter telemetry data at configured intervals</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-header">
+              <svg class="agent-icon phase-observe-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+              </svg>
+              <h4 class="agent-name">Weather Agents</h4>
+            </div>
+            <p class="agent-description">Fetch irradiance and temperature data</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-header">
+              <svg class="agent-icon phase-observe-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+              </svg>
+              <h4 class="agent-name">Interpolation Agents</h4>
+            </div>
+            <p class="agent-description">Fill data gaps and standardize time series</p>
+          </div>
+        </div>
+      </div>
+      <div class="phase-arrow phase-arrow-desktop">→</div>
+    </div>
 
-**Decide Phase Agents:**
-EAR calculators compute Energy-at-Risk for each fault. Cost estimators calculate dispatch and repair costs. Optimizer agents determine optimal maintenance timing.
+    <!-- Orient Phase -->
+    <div class="phase-card-wrapper">
+      <div class="phase-card phase-orient">
+        <div class="phase-header">
+          <h3 class="phase-title phase-orient-title">Orient Phase</h3>
+          <div class="phase-divider phase-orient-divider"></div>
+        </div>
+        <div class="agents-list">
+          <div class="agent-card">
+            <div class="agent-header">
+              <svg class="agent-icon phase-orient-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+              <h4 class="agent-name">Baseline Agents</h4>
+            </div>
+            <p class="agent-description">Establish expected performance patterns</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-header">
+              <svg class="agent-icon phase-orient-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <h4 class="agent-name">Anomaly Agents</h4>
+            </div>
+            <p class="agent-description">Detect deviations from normal behavior</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-header">
+              <svg class="agent-icon phase-orient-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+              </svg>
+              <h4 class="agent-name">Diagnostic Agents</h4>
+            </div>
+            <p class="agent-description">Classify fault types using trained ML models</p>
+          </div>
+        </div>
+      </div>
+      <div class="phase-arrow phase-arrow-desktop">→</div>
+    </div>
 
-**Act Phase Agents:**
-Work order agents generate CMMS-compatible work orders. Dispatch agents schedule crews based on availability. Documentation agents capture compliance and warranty data.
+    <!-- Decide Phase -->
+    <div class="phase-card-wrapper">
+      <div class="phase-card phase-decide">
+        <div class="phase-header">
+          <h3 class="phase-title phase-decide-title">Decide Phase</h3>
+          <div class="phase-divider phase-decide-divider"></div>
+        </div>
+        <div class="agents-list">
+          <div class="agent-card">
+            <div class="agent-header">
+              <svg class="agent-icon phase-decide-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+              <h4 class="agent-name">EAR Calculators</h4>
+            </div>
+            <p class="agent-description">Compute Energy-at-Risk for each fault</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-header">
+              <svg class="agent-icon phase-decide-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <h4 class="agent-name">Cost Estimators</h4>
+            </div>
+            <p class="agent-description">Calculate dispatch and repair costs</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-header">
+              <svg class="agent-icon phase-decide-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <h4 class="agent-name">Optimizer Agents</h4>
+            </div>
+            <p class="agent-description">Determine optimal maintenance timing</p>
+          </div>
+        </div>
+      </div>
+      <div class="phase-arrow phase-arrow-desktop">→</div>
+    </div>
+
+    <!-- Act Phase -->
+    <div class="phase-card-wrapper">
+      <div class="phase-card phase-act">
+        <div class="phase-header">
+          <h3 class="phase-title phase-act-title">Act Phase</h3>
+          <div class="phase-divider phase-act-divider"></div>
+        </div>
+        <div class="agents-list">
+          <div class="agent-card">
+            <div class="agent-header">
+              <svg class="agent-icon phase-act-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              </svg>
+              <h4 class="agent-name">Work Order Agents</h4>
+            </div>
+            <p class="agent-description">Generate CMMS-compatible work orders</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-header">
+              <svg class="agent-icon phase-act-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              <h4 class="agent-name">Dispatch Agents</h4>
+            </div>
+            <p class="agent-description">Schedule crews based on availability</p>
+          </div>
+          <div class="agent-card">
+            <div class="agent-header">
+              <svg class="agent-icon phase-act-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <h4 class="agent-name">Documentation Agents</h4>
+            </div>
+            <p class="agent-description">Capture compliance and warranty data</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="architecture-footer">
+    <div class="footer-content">
+      <svg class="footer-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+      <div>
+        <h3 class="footer-title">Continuous OODA Loop</h3>
+        <p class="footer-description">
+          This architecture follows the OODA (Observe, Orient, Decide, Act) loop methodology, enabling continuous monitoring, analysis, decision-making, and automated action execution for optimal operations and maintenance management.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.asoba-architecture-diagram {
+  max-width: 1200px;
+  margin: 32px auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
+.text-slate-900 {
+  color: #0f172a;
+}
+
+.text-slate-600 {
+  color: #475569;
+}
+
+.text-slate-700 {
+  color: #334155;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-slate-200 {
+  border-color: #e2e8f0;
+}
+
+.max-w-4xl {
+  max-width: 56rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+/* Phases Grid */
+.phases-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.phase-card-wrapper {
+  position: relative;
+}
+
+.phase-card {
+  border-radius: 0.5rem;
+  border: 2px solid;
+  padding: 1.5rem;
+  height: 100%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.phase-observe {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.phase-orient {
+  background-color: #faf5ff;
+  border-color: #e9d5ff;
+}
+
+.phase-decide {
+  background-color: #fffbeb;
+  border-color: #fde68a;
+}
+
+.phase-act {
+  background-color: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.phase-header {
+  margin-bottom: 1.5rem;
+}
+
+.phase-title {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.phase-observe-title {
+  color: #1e40af;
+}
+
+.phase-orient-title {
+  color: #6b21a8;
+}
+
+.phase-decide-title {
+  color: #92400e;
+}
+
+.phase-act-title {
+  color: #166534;
+}
+
+.phase-divider {
+  height: 2px;
+  width: 3rem;
+  border-radius: 9999px;
+  margin-bottom: 0.5rem;
+}
+
+.phase-observe-divider {
+  background: linear-gradient(to right, #1e40af, transparent);
+}
+
+.phase-orient-divider {
+  background: linear-gradient(to right, #6b21a8, transparent);
+}
+
+.phase-decide-divider {
+  background: linear-gradient(to right, #92400e, transparent);
+}
+
+.phase-act-divider {
+  background: linear-gradient(to right, #166534, transparent);
+}
+
+.agents-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.agent-card {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s;
+}
+
+.agent-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.agent-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.agent-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.phase-observe-icon {
+  color: #1e40af;
+}
+
+.phase-orient-icon {
+  color: #6b21a8;
+}
+
+.phase-decide-icon {
+  color: #92400e;
+}
+
+.phase-act-icon {
+  color: #166534;
+}
+
+.agent-name {
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.agent-description {
+  color: #475569;
+  font-size: 0.875rem;
+  margin: 0;
+  margin-left: 2rem;
+}
+
+.phase-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #94a3b8;
+  font-weight: bold;
+}
+
+.phase-arrow-desktop {
+  position: absolute;
+  top: 50%;
+  right: -0.75rem;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.architecture-footer {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.footer-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.footer-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  color: #334155;
+}
+
+.footer-title {
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.footer-description {
+  color: #475569;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .phases-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .phase-arrow-desktop {
+    display: none;
+  }
+  
+  .phase-card-wrapper:not(:last-child)::after {
+    content: "↓";
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    color: #94a3b8;
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .phases-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .phase-card-wrapper:not(:last-child)::after {
+    content: "↓";
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    color: #94a3b8;
+  }
+}
+</style>
 
 ### Expected Performance Improvements
 {: .fs-6 }
