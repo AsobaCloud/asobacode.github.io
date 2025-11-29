@@ -262,7 +262,7 @@ strong {
 /* Main Content */
 .content {
   margin-left: 250px; /* Same as sidebar width */
-  margin-top: 40px; /* Reduced from 70px to 40px */
+  margin-top: 70px; /* Space between header and content */
   padding: 40px;
   width: calc(100% - 250px); /* 100% minus sidebar width */
   background-color: var(--white);
@@ -634,7 +634,7 @@ pre.terminal::after {
 .main-container {
   display: flex;
   min-height: calc(100vh - 70px);
-  margin-top: 40px; /* Reduced from 70px to 40px */
+  margin-top: 70px; /* Space between header and content */
   background-color: var(--white);
   position: relative;
 }
