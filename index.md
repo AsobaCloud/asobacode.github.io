@@ -245,8 +245,8 @@ Transform reactive operations into proactive intelligence with industry-specific
 ## Ready to Get Started?
 
 1. **New users**: Start with [Getting Started](getting-started.html) guide
-2. **Developers**: Explore [CLI Tools](cli-tools.html) and [API Reference](api-reference.html)
-3. **System admins**: Check [Production Deployment](deployment.html) guide
+2. **Developers**: Explore [SDK](sdk.html) and [API Reference](api-reference.html)
+3. **System admins**: [Contact Sales](mailto:sales@asoba.co?subject=Production%20Deployment%20Inquiry){: .btn .btn-outline .fs-5 }
 
 [Contact Support](mailto:support@asoba.co?subject=Technical%20Support){: .btn .btn-outline .fs-5 }
 
