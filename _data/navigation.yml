@@ -50,6 +50,27 @@
     - title: Data Governance & Security
       url: /user-guide#7-data-governance--security
 
+- title: SDK
+  url: /sdk
+  nav_order: 1.75
+  children:
+    - title: Overview
+      url: /sdk#overview
+    - title: Changes
+      url: /sdk#changes
+    - title: Improvements
+      url: /sdk#improvements
+    - title: Breaking Changes
+      url: /sdk#breaking-changes
+    - title: Migration Guide
+      url: /sdk#migration-guide
+    - title: Files Changed
+      url: /sdk#files-changed
+    - title: Next Steps
+      url: /sdk#next-steps
+    - title: Support
+      url: /sdk#support
+
 - title: Getting Started
   url: /getting-started
   nav_order: 2
