@@ -327,66 +327,6 @@ The Ona Platform follows a layered architecture that transforms raw operational 
 }
 </style>
 
-### Data Flow and Service Interactions
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant API as API Gateway
-    participant DI as dataIngestion
-    participant S3 as S3 Input
-    participant IS as interpolationService
-    participant WC as weatherCache
-    participant GT as globalTraining
-    participant FA as forecastingApi
-    participant S3O as S3 Output
-
-    %% Historical Upload Flow
-    rect rgb(200, 230, 255)
-        Note over User,S3O: Historical Data Upload & Training
-        User->>API: POST /upload_train
-        API->>S3: Direct upload to historical/
-        S3->>IS: S3 Event Trigger
-        IS->>S3: Load weather cache
-        IS->>IS: Enrich & Interpolate
-        IS->>S3: Save to training/
-        S3->>GT: S3 Event Trigger
-        GT->>GT: Train LSTM Model
-        GT->>S3O: Save model
-    end
-
-    %% Nowcast Flow
-    rect rgb(255, 230, 200)
-        Note over User,S3: Real-time Data Upload
-        User->>API: POST /upload_nowcast
-        API->>S3: Direct upload to nowcast/
-        S3->>IS: S3 Event Trigger
-        IS->>S3: Load cached weather
-        IS->>IS: Calculate metrics
-        IS->>S3: Save processed data
-    end
-
-    %% Weather Cache Update
-    rect rgb(230, 255, 200)
-        Note over WC,S3: Weather Cache Update (Every 15 min)
-        WC->>WC: Get all locations
-        WC->>External API: Fetch weather
-        WC->>S3: Update cache
-    end
-
-    %% Forecast Generation
-    rect rgb(255, 200, 255)
-        Note over User,FA: Forecast Generation
-        User->>API: GET /forecast
-        API->>FA: Invoke
-        FA->>S3O: Load model
-        FA->>S3: Load nowcast data
-        FA->>S3: Load forecast weather
-        FA->>FA: Generate forecast
-        FA->>User: Return forecast
-    end
-```
-
 ### Core Components Overview
 
 **API Gateway Layer**
