@@ -1,10 +1,10 @@
 ---
-title: "User Onboarding Guide"
+title: "Onboarding"
 layout: default
 nav_order: 1
 ---
 
-# Ona AI-Driven O&M Client Onboarding Guide
+# Onboarding
 
 This guide outlines the onboarding process for implementing Asoba's AI-powered Operations & Maintenance (O&M) solution for solar energy assets. The process is structured into parallel workstreams—Client, Sales, and Technical—to ensure alignment throughout Proof of Concept (PoC) activation and readiness for full commercial deployment.
 
