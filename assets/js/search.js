@@ -35,6 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
       content: "Frequently Asked Questions about Ona's energy management platform. Technical questions, business questions, distributed compute questions, and support information. Includes system requirements, scalability, integration, pricing, ROI, and deployment options."
     },
     {
+      title: "SDK",
+      url: "/sdk.html",
+      content: "Ona SDK - Seamless integration with the Ona Energy AI Platform. JavaScript and Python SDKs for rapid integration into existing applications. Solar Energy Forecasting, OODA Workflow, Energy Policy Analysis, Edge Device Management, Data Collection, ML Operations."
+    },
+    {
       title: "Legal",
       url: "/legal.html",
       content: "Legal Documentation - Terms of Service, End User License Agreement (EULA), and Privacy Policy. Access to Asoba's legal documentation including service description, user accounts, API usage, intellectual property rights, and privacy information."
