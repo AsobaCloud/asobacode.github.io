@@ -25,9 +25,7 @@ This modular architecture enables the platform to handle complex energy manageme
 ### Data Ingestion Service
 {: #data-ingestion-service }
 
-AWS Lambda function that serves as the secure entry point for incoming data, providing pre-signed URLs for direct S3 uploads.
-
-**Location**: `/home/shingai/platform/services/dataIngestion/`
+AI agent that serves as the secure entry point for incoming data, providing pre-signed URLs for direct S3 uploads.
 
 **Key Features**:
 - Secure entry point for data uploads
@@ -41,9 +39,7 @@ AWS Lambda function that serves as the secure entry point for incoming data, pro
 ### Huawei Historical Service
 {: #huawei-historical-service }
 
-Collects historical data from Huawei FusionSolar inverters, transforms it to ONA platform format, and uploads to S3.
-
-**Location**: `/home/shingai/platform/services/huaweiHistorical/`
+AI agent that collects historical data from Huawei FusionSolar inverters, transforms it to ONA platform format, and uploads to S3.
 
 **Key Features**:
 - Huawei FusionSolar API integration
@@ -58,9 +54,7 @@ Collects historical data from Huawei FusionSolar inverters, transforms it to ONA
 ### Weather Data Updater Service
 {: #weather-data-updater-service }
 
-Automatically updates weather data for South African cities by fetching missing data from Visual Crossing API.
-
-**Location**: `/home/shingai/platform/services/weatherDataUpdater/`
+AI agent that automatically updates weather data for South African cities by fetching missing data from Visual Crossing API.
 
 **Key Features**:
 - Dynamic date range calculation
@@ -78,9 +72,7 @@ Automatically updates weather data for South African cities by fetching missing 
 ### Data Standardization Service
 {: #data-standardization-service }
 
-Processes files from the `historical/` S3 prefix, detects OEM type, standardizes schema, and saves to `total/` prefix.
-
-**Location**: `/home/shingai/platform/services/dataStandardizationService/`
+AI agent that processes files from the `historical/` S3 prefix, detects OEM type, standardizes schema, and saves to `total/` prefix.
 
 **Key Features**:
 - OEM type detection (Huawei, Enphase, Solarman, Telkom/Huawei)
@@ -95,9 +87,7 @@ Processes files from the `historical/` S3 prefix, detects OEM type, standardizes
 ### Interpolation Service
 {: #interpolation-service }
 
-ML-based solar data interpolation with comprehensive gap analysis and configuration-driven architecture.
-
-**Location**: `/home/shingai/platform/services/interpolationService/`
+AI agent that performs ML-based solar data interpolation with comprehensive gap analysis and configuration-driven architecture.
 
 **Key Features**:
 - Configuration-driven interpolation architecture
@@ -113,9 +103,7 @@ ML-based solar data interpolation with comprehensive gap analysis and configurat
 ### Weather Cache Service
 {: #weather-cache-service }
 
-Scheduled AWS Lambda function that fetches weather data for all active locations and caches results in S3.
-
-**Location**: `/home/shingai/platform/services/weatherCache/`
+AI agent that fetches weather data for all active locations and caches results in S3.
 
 **Key Features**:
 - Asynchronous concurrent API calls
@@ -133,9 +121,7 @@ Scheduled AWS Lambda function that fetches weather data for all active locations
 ### Global Training Service
 {: #global-training-service }
 
-Hybrid Lambda + SageMaker architecture for training LSTM forecasting models using customer validation optimization.
-
-**Location**: `/home/shingai/platform/services/globalTrainingService/`
+AI agent that trains LSTM forecasting models using customer validation optimization through a hybrid architecture.
 
 **Key Features**:
 - Site-level and device-level training
