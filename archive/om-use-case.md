@@ -741,14 +741,14 @@ Revenue protection delivers $180K-320K annually. Operational savings through opt
     <h3>For Asset Managers</h3>
     <p><strong><a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3-n_SUGacXWO0GDVkR9J1LCNwoUEUPH_kTw-_yeDaVuFaMysg0rIiZLUy9cKeZlcziEYgFG8Kx">Schedule Portfolio Assessment</a></strong> - Custom ROI analysis based on your facilities, equipment mix, and current O&M costs.</p>
     <p><strong><a href="mailto:sales@asoba.co?subject=Pilot%20Site%20Implementation">Pilot Site Selection</a></strong> - Start with highest-impact facility to prove value before portfolio-wide deployment.</p>
-    <p><strong><a href="developers.html">Technical Integration</a></strong> - Connect with your engineering team for seamless deployment.</p>
+    <p><strong><a href="user-guide.html">Onboarding</a></strong> - Connect with your engineering team for seamless deployment.</p>
   </div>
   
   <div class="start-card">
     <h3>For Technical Teams</h3>
-    <p><strong><a href="developers.html">5-Minute Setup</a></strong> - Get hands-on experience with core capabilities on sample data.</p>
-    <p><strong><a href="loading-models.html">Configure Custom Models</a></strong> - Deploy your fine-tuned models specific to your equipment and operating environment.</p>
-    <p><strong><a href="using-commands.html">Master CLI Commands</a></strong> - Learn the OODA workflow tools for daily operations.</p>
+    <p><strong><a href="sdk.html">SDK</a></strong> - Get hands-on experience with core capabilities on sample data.</p>
+    <p><strong><a href="archive/developers.html">Services</a></strong> - Explore the modular AI agents that power the Ona Intelligence Layer.</p>
+    <p><strong><a href="changelog.html">Changelog</a></strong> - Stay updated with the latest platform updates and improvements.</p>
   </div>
 </div>
 
