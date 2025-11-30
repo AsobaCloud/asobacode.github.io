@@ -263,30 +263,6 @@ Want to explore onboarding further? <a href="mailto:sales@asoba.co?subject=Onboa
 
 ---
 
-## 4. Expected Success Metrics
-{: #4-expected-success-metrics }
-
-Define KPIs to determine value and feasibility for transition to full commercial deployment:
-
-1. ___________________________________________
-2. ___________________________________________
-3. ___________________________________________
-
-**Target Completion**: Week 13 (90 days from kickoff)
-
----
-
-## 5. Implementation Timeline Summary
-{: #5-implementation-timeline-summary }
-
-| Phase | Duration | Key Milestones |
-|-------|----------|----------------|
-| **Weeks 1-2: Integration** | 2 weeks | SCADA connections, data pipeline setup, team training |
-| **Weeks 3-12: Optimization** | 10 weeks | Real-time monitoring, AI model training, weekly reporting |
-| **Week 13: Results** | 1 week | ROI validation, scale-up planning |
-
----
-
 ## 6. Technical Support
 {: #6-technical-support }
 
