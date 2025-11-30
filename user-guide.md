@@ -218,6 +218,40 @@ Want to explore onboarding further? <a href="mailto:sales@asoba.co?subject=Onboa
 
 ---
 
+## 4. Technical Support
+{: #4-technical-support }
+
+### During PoC
+- **Technical Support**: support@asoba.co
+- **Sales Contact**: Your designated account manager
+- **Documentation**: https://docs.asoba.co
+
+### Post-Commercial Deployment
+- **Tier 1 Support**: 24/7 system monitoring
+- **Escalation**: Direct technical engineering support
+- **Regular Reviews**: Quarterly business reviews
+
+---
+
+## 5. Data Governance & Security
+{: #5-data-governance--security }
+
+### Data Protection
+- All data transmitted via TLS 1.3
+- Data at rest encrypted with AES-256
+- Read-only access to client systems
+- SOC 2 Type II compliance (in progress)
+
+### Performance Disclaimers
+Given comprehensive and up-to-date data, Ona AI-Driven O&M identifies anomalies and recommends corrective actions to assist clients in meeting internal plant-availability and performance KPIs. Actual plant performance depends on:
+
+- Client's operational execution
+- Timely provision of required data feeds
+- Prompt response to AI alerts
+- Quality of field technician work
+
+---
+
 <div class="page-end-section">
   <div class="end-column">
     <div class="support-cta">
@@ -260,41 +294,5 @@ Want to explore onboarding further? <a href="mailto:sales@asoba.co?subject=Onboa
     </div>
   </div>
 </div>
-
----
-
-## 6. Technical Support
-{: #6-technical-support }
-
-### During PoC
-- **Technical Support**: support@asoba.co
-- **Sales Contact**: Your designated account manager
-- **Documentation**: https://docs.asoba.co
-
-### Post-Commercial Deployment
-- **Tier 1 Support**: 24/7 system monitoring
-- **Escalation**: Direct technical engineering support
-- **Regular Reviews**: Quarterly business reviews
-
----
-
-## 7. Data Governance & Security
-{: #7-data-governance--security }
-
-### Data Protection
-- All data transmitted via TLS 1.3
-- Data at rest encrypted with AES-256
-- Read-only access to client systems
-- SOC 2 Type II compliance (in progress)
-
-### Performance Disclaimers
-Given comprehensive and up-to-date data, Ona AI-Driven O&M identifies anomalies and recommends corrective actions to assist clients in meeting internal plant-availability and performance KPIs. Actual plant performance depends on:
-
-- Client's operational execution
-- Timely provision of required data feeds
-- Prompt response to AI alerts
-- Quality of field technician work
-
----
 
 © 2025 Asoba Corporation. All rights reserved.
