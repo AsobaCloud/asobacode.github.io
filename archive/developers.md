@@ -6,7 +6,16 @@ nav_order: 1.6
 
 # Services
 
-Complete reference to all services in the Ona Platform. Each service is a microservice that handles a specific aspect of the energy management pipeline.
+The Ona Platform is built on a distributed architecture of modular agents, each specializing in a particular task within the Ona Intelligence Layer. These services work together to transform raw operational data into actionable business intelligence through a coordinated, event-driven pipeline.
+
+Each service operates as an independent, specialized agent that:
+- **Focuses on a single responsibility**: From data collection to ML model training, each agent excels at its specific domain
+- **Communicates through events**: Services interact via S3 events, API calls, and message queues, enabling loose coupling and scalability
+- **Maintains state independently**: Each agent manages its own data, configuration, and operational state
+- **Scales autonomously**: Services can scale independently based on their specific workload patterns
+- **Contributes to the intelligence layer**: Together, these agents form the Ona Intelligence Layer that powers the OODA (Observe, Orient, Decide, Act) workflow
+
+This modular architecture enables the platform to handle complex energy management tasks—from real-time anomaly detection to 30+ day predictive forecasting—by orchestrating specialized agents that each bring deep expertise to their domain. Whether collecting data from solar inverters, standardizing multi-OEM formats, training customer-tailored ML models, or generating automated work orders, each service agent plays a critical role in delivering intelligent energy management capabilities.
 
 ---
 
