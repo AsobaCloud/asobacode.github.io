@@ -265,7 +265,7 @@ strong {
 /* Main Content */
 .content {
   margin-left: 250px; /* Same as sidebar width */
-  margin-top: 100px; /* Header height (70px) + 30px spacing */
+  margin-top: 70px; /* Header height */
   padding: 40px;
   width: calc(100% - 250px); /* 100% minus sidebar width */
   background-color: var(--white);
