@@ -29,8 +29,8 @@ AI agent that serves as the secure entry point for incoming data, providing pre-
 
 **Key Features**:
 - Secure entry point for data uploads
-- Pre-signed URL generation for S3
-- AWS Lambda Powertools for logging and metrics
+- Pre-signed URL generation for secure uploads
+- Structured logging and metrics
 
 **Documentation**: See `services/dataIngestion/README.md` in the platform repository.
 
@@ -39,13 +39,13 @@ AI agent that serves as the secure entry point for incoming data, providing pre-
 ### Huawei Historical Service
 {: #huawei-historical-service }
 
-AI agent that collects historical data from Huawei FusionSolar inverters, transforms it to ONA platform format, and uploads to S3.
+AI agent that collects historical data from Huawei FusionSolar inverters, transforms it to ONA platform format, and uploads to storage.
 
 **Key Features**:
 - Huawei FusionSolar API integration
 - Device discovery and data collection
 - Weather data enrichment
-- Direct S3 upload to historical prefix
+- Direct upload to historical data storage
 
 **Documentation**: See `services/huaweiHistorical/README.md` and `services/huaweiHistorical/HUAWEI_API_DOCS.md` in the platform repository.
 
@@ -72,7 +72,7 @@ AI agent that automatically updates weather data for South African cities by fet
 ### Data Standardization Service
 {: #data-standardization-service }
 
-AI agent that processes files from the `historical/` S3 prefix, detects OEM type, standardizes schema, and saves to `total/` prefix.
+AI agent that processes files from historical storage, detects OEM type, standardizes schema, and saves to standardized storage.
 
 **Key Features**:
 - OEM type detection (Huawei, Enphase, Solarman, Telkom/Huawei)
@@ -103,13 +103,13 @@ AI agent that performs ML-based solar data interpolation with comprehensive gap 
 ### Weather Cache Service
 {: #weather-cache-service }
 
-AI agent that fetches weather data for all active locations and caches results in S3.
+AI agent that fetches weather data for all active locations and caches results.
 
 **Key Features**:
 - Asynchronous concurrent API calls
 - Rate limiting for external APIs
-- Centralized S3 cache
-- DynamoDB integration for location management
+- Centralized cache storage
+- Database integration for location management
 
 **Documentation**: See `services/weatherCache/README.md` in the platform repository.
 
@@ -126,9 +126,9 @@ AI agent that trains LSTM forecasting models using customer validation optimizat
 **Key Features**:
 - Site-level and device-level training
 - Customer validation optimization strategy
-- GPU training on SageMaker (ml.g4dn.2xlarge)
+- GPU-accelerated model training
 - Automatic customer discovery and quality filtering
-- Model registry for forecastingApi
+- Model registry for forecasting API
 
 **Documentation**: See `services/globalTrainingService/README.md` in the platform repository.
 
@@ -137,9 +137,7 @@ AI agent that trains LSTM forecasting models using customer validation optimizat
 ### Forecasting API Service
 {: #forecasting-api-service }
 
-AWS Lambda function that provides solar energy forecasting via API endpoint, loading ML models and generating predictions.
-
-**Location**: `/home/shingai/platform/services/forecastingApi/`
+AI agent that provides solar energy forecasting via API endpoint, loading ML models and generating predictions.
 
 **Key Features**:
 - TensorFlow and Prophet integration
@@ -157,16 +155,14 @@ AWS Lambda function that provides solar energy forecasting via API endpoint, loa
 ### Terminal API Service
 {: #terminal-api-service }
 
-Central API handler for the entire O&M OODA workflow, routing requests to appropriate sub-handlers.
-
-**Location**: `/home/shingai/platform/services/terminalApi/`
+AI agent that serves as the central API handler for the entire O&M OODA workflow, routing requests to appropriate sub-handlers.
 
 **Key Features**:
 - Unified entry point for OODA workflow
 - Asset management (Create, Read, List)
 - Fault detection and AI diagnostics
 - Maintenance scheduling and work orders
-- DynamoDB integration for state management
+- Database integration for state management
 
 **Documentation**: See `services/terminalApi/README.md` in the platform repository.
 
@@ -175,9 +171,7 @@ Central API handler for the entire O&M OODA workflow, routing requests to approp
 ### Edge Device Registry Service
 {: #edge-device-registry-service }
 
-Manages device discovery, registration, and capability detection for distributed edge devices.
-
-**Location**: `/home/shingai/platform/services/edge-device-registry/`
+AI agent that manages device discovery, registration, and capability detection for distributed edge devices.
 
 **Key Features**:
 - Device discovery and registration
@@ -192,9 +186,7 @@ Manages device discovery, registration, and capability detection for distributed
 ### Energy Analyst RAG Service
 {: #energy-analyst-rag-service }
 
-RAG-powered service for energy policy and regulatory compliance analysis.
-
-**Location**: `/home/shingai/platform/services/energyAnalystRag/`
+AI agent that provides RAG-powered energy policy and regulatory compliance analysis.
 
 **Key Features**:
 - Regulatory compliance queries
@@ -211,12 +203,12 @@ RAG-powered service for energy policy and regulatory compliance analysis.
 All services follow a consistent architecture pattern:
 
 - **Container-based**: Built as Docker containers
-- **AWS Lambda**: Deployed as serverless functions
+- **Serverless**: Deployed as serverless functions
 - **Base Image**: Most services inherit from `ona-base` image
-- **Logging**: AWS Lambda Powertools for structured logging
-- **Metrics**: CloudWatch metrics integration
-- **S3 Integration**: Standardized S3 bucket structure
-- **Event-Driven**: S3 events trigger downstream processing
+- **Logging**: Structured logging and metrics
+- **Metrics**: Metrics integration and monitoring
+- **Storage Integration**: Standardized storage structure
+- **Event-Driven**: Events trigger downstream processing
 
 ---
 
