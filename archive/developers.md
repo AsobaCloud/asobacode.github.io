@@ -121,7 +121,7 @@ AI agent that fetches weather data for all active locations and caches results.
 ### Global Training Service
 {: #global-training-service }
 
-AI agent that trains LSTM forecasting models using customer validation optimization through a hybrid architecture.
+AI agent that trains forecasting models using customer validation optimization through a hybrid architecture.
 
 **Key Features**:
 - Site-level and device-level training
