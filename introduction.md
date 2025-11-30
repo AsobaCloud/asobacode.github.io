@@ -308,15 +308,15 @@ The Ona Platform follows a layered architecture that transforms raw operational 
 }
 
 .data-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-blue);
 }
 
 .intelligence-card {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: var(--accent-blue);
 }
 
 .results-card {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: var(--dark-blue);
 }
 
 @media (max-width: 768px) {
