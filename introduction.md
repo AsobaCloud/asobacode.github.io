@@ -227,68 +227,105 @@ Each node operates independently if the central connection fails. Forecasting an
 
 The Ona Platform follows a layered architecture that transforms raw operational data into actionable business intelligence:
 
-```mermaid
-flowchart TD
- subgraph sources["Data Sources"]
-        A1["SCADA Systems"]
-        A2["Solar Assets"]
-        A3["Current Monitoring"]
-        A4["Weather Data"]
-  end
- subgraph gateway["API Gateway Layer"]
-        B1["API Gateway<br/>api.yourcompany.com"]
-        B2["Authentication &<br/>Rate Limiting"]
-  end
- subgraph core["Core Platform Services"]
-        C1["dataIngestion<br/>Real-time ingestion"]
-        C2["weatherCache<br/>ML-powered insights"]
-        C3["interpolationService<br/>Data enrichment"]
-        C4["globalTrainingService<br/>LSTM model training"]
-        C5["forecastingApi<br/>30+ day predictions"]
-  end
- subgraph ona["Ona Application Layer"]
-        D1["Observe<br/>Anomaly Detection<br/>< 5 min"]
-        D2["Orient<br/>AI Diagnostics<br/>< 10 min"]
-        D3["Decide<br/>Energy-at-Risk<br/>< 15 min"]
-        D4["Act<br/>Automated Dispatch<br/>Continuous"]
-  end
- subgraph extensible["Extensible Services"]
-        E1["Insurance<br/>Automation"]
-        E2["Fleet<br/>Analytics"]
-        E3["Soiling<br/>Calculations"]
-        E4["Energy Market<br/>Integration"]
-        E5["Electricity<br/>Dispatch"]
-  end
- subgraph outcomes["Business Intelligence"]
-        F1["Predictive Alerts<br/>30+ days"]
-        F2["Automated<br>Work Orders"]
-        F3["SAWEM<br>Compliance"]
-        F4["ROI Analytics"]
-  end
-    sources --> B1
-    B1 --> B2
-    B2 --> C1
-    C1 --> C3
-    C2 --> C3 & C5
-    C3 --> C4 & C5 & D1
-    C4 --> C5
-    C5 --> D1
-    D1 --> D2
-    D2 --> D3
-    D3 --> D4
-    D4 --> outcomes
-    
-    %% Extensible services integration
-    core --> extensible
-    extensible --> outcomes
+<div class="architecture-cards">
+  <div class="arch-card data-card">
+    <h3>YOUR DATA</h3>
+    <ul class="arch-features">
+      <li>SCADA Systems</li>
+      <li>Solar Assets</li>
+      <li>Weather Feeds</li>
+      <li>Current Monitoring</li>
+    </ul>
+  </div>
+  
+  <div class="arch-card intelligence-card">
+    <h3>ONA INTELLIGENCE</h3>
+    <ul class="arch-features">
+      <li>→ Observe (&lt; 5 min): Anomaly Detection</li>
+      <li>→ Orient (&lt; 10 min): AI Diagnostics</li>
+      <li>→ Decide (&lt; 15 min): Energy-at-Risk</li>
+      <li>→ Act (Continuous): Automated Dispatch</li>
+    </ul>
+  </div>
+  
+  <div class="arch-card results-card">
+    <h3>YOUR RESULTS</h3>
+    <ul class="arch-features">
+      <li>30+ Day Predictive Alerts</li>
+      <li>Automated Work Orders</li>
+      <li>SAWEM Compliance</li>
+      <li>ROI Analytics</li>
+    </ul>
+  </div>
+</div>
 
-    style gateway fill:#1e40af,color:#fff
-    style core fill:#3b82f6,color:#fff
-    style ona fill:#6366f1,color:#fff
-    style extensible fill:#8b5cf6,color:#fff
-    style sources fill:#AA00FF,stroke:#cbd5e1,color:#fff
-    style outcomes fill:#10b981,stroke:#059669,color:#fff
-```
+<style>
+.architecture-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.arch-card {
+  border-radius: 12px;
+  padding: 24px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.arch-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.arch-card h3 {
+  font-size: 1.5em;
+  margin: 0 0 20px 0;
+  font-weight: 700;
+  color: #fff;
+}
+
+.arch-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.arch-features li {
+  padding: 8px 0;
+  color: #fff;
+  font-size: 1em;
+  line-height: 1.6;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.arch-features li:last-child {
+  border-bottom: none;
+}
+
+.data-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.intelligence-card {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.results-card {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+@media (max-width: 768px) {
+  .architecture-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+</style>
 
 ### Data Flow and Service Interactions
 
