@@ -329,33 +329,102 @@ The Ona Platform follows a layered architecture that transforms raw operational 
 
 ### Core Components Overview
 
-**API Gateway Layer**
-- Secure entry point with authentication and rate limiting
-- Custom domain support (api.yourcompany.com)
-- Request routing and load balancing
+<div class="core-components-cards">
+  <div class="component-card">
+    <h4>API Gateway Layer</h4>
+    <ul>
+      <li>Secure entry point with authentication and rate limiting</li>
+      <li>Custom domain support (api.yourcompany.com)</li>
+      <li>Request routing and load balancing</li>
+    </ul>
+  </div>
 
-**Data Collection Services**
-- **huaweiHistorical**: Historical data collection from Huawei FusionSolar inverters  
-- **weatherDataUpdater**: Automated weather data collection and caching
+  <div class="component-card">
+    <h4>Data Collection Services</h4>
+    <ul>
+      <li><strong>huaweiHistorical</strong>: Historical data collection from Huawei FusionSolar inverters</li>
+      <li><strong>weatherDataUpdater</strong>: Automated weather data collection and caching</li>
+    </ul>
+  </div>
 
-**Core Platform Services**
-- **weatherCache**: Weather data integration with ML-powered insights
-- **interpolationService**: Data enrichment and ML interpolation
-- **globalTrainingService**: LSTM model training and management
-- **forecastingApi**: 30+ day forecasting capabilities
+  <div class="component-card">
+    <h4>Core Platform Services</h4>
+    <ul>
+      <li><strong>weatherCache</strong>: Weather data integration with ML-powered insights</li>
+      <li><strong>interpolationService</strong>: Data enrichment and ML interpolation</li>
+      <li><strong>globalTrainingService</strong>: LSTM model training and management</li>
+      <li><strong>forecastingApi</strong>: 30+ day forecasting capabilities</li>
+    </ul>
+  </div>
 
-**Ona Application Layer (OODA Loop)**
-- **Observe**: Anomaly detection in < 5 minutes
-- **Orient**: AI diagnostics in < 10 minutes
-- **Decide**: Energy-at-Risk calculation in < 15 minutes
-- **Act**: Automated dispatch and continuous monitoring
+  <div class="component-card">
+    <h4>Ona Application Layer (OODA Loop)</h4>
+    <ul>
+      <li><strong>Observe</strong>: Anomaly detection in &lt; 5 minutes</li>
+      <li><strong>Orient</strong>: AI diagnostics in &lt; 10 minutes</li>
+      <li><strong>Decide</strong>: Energy-at-Risk calculation in &lt; 15 minutes</li>
+      <li><strong>Act</strong>: Automated dispatch and continuous monitoring</li>
+    </ul>
+  </div>
 
-**Extensible Services**
-- Insurance automation
-- Fleet analytics
-- Soiling calculations
-- Energy market integration
-- Electricity dispatch optimization
+  <div class="component-card">
+    <h4>Extensible Services</h4>
+    <ul>
+      <li>Insurance automation</li>
+      <li>Fleet analytics</li>
+      <li>Soiling calculations</li>
+      <li>Energy market integration</li>
+      <li>Electricity dispatch optimization</li>
+    </ul>
+  </div>
+</div>
+
+<style>
+.core-components-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.component-card {
+  background: var(--white);
+  border: 2px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.component-card:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
+  transform: translateY(-2px);
+}
+
+.component-card h4 {
+  margin: 0 0 12px 0;
+  color: var(--text-dark);
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.component-card ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.component-card li {
+  margin: 8px 0;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.component-card li strong {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+</style>
 
 ---
 
