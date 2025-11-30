@@ -10,7 +10,7 @@ The Ona Platform is built on a distributed architecture of modular agents, each 
 
 Each service operates as an independent, specialized agent that:
 - **Focuses on a single responsibility**: From data collection to ML model training, each agent excels at its specific domain
-- **Communicates through events**: Services interact via S3 events, API calls, and message queues, enabling loose coupling and scalability
+- **Communicates through events**: Services interact via events, API calls, and message queues, enabling loose coupling and scalability
 - **Maintains state independently**: Each agent manages its own data, configuration, and operational state
 - **Scales autonomously**: Services can scale independently based on their specific workload patterns
 - **Contributes to the intelligence layer**: Together, these agents form the Ona Intelligence Layer that powers the OODA (Observe, Orient, Decide, Act) workflow
@@ -25,7 +25,7 @@ This modular architecture enables the platform to handle complex energy manageme
 ### Data Ingestion Service
 {: #data-ingestion-service }
 
-AI agent that serves as the secure entry point for incoming data, providing pre-signed URLs for direct S3 uploads.
+AI agent that serves as the secure entry point for incoming data, providing pre-signed URLs for direct uploads.
 
 **Key Features**:
 - Secure entry point for data uploads
@@ -215,12 +215,11 @@ All services follow a consistent architecture pattern:
 ## Service Dependencies
 
 ### Base Image (`ona-base`)
-**Location**: `/home/shingai/platform/services/base/`
 
 Common dependencies and utilities shared across services:
-- `boto3` for AWS services
+- Cloud service SDKs for infrastructure integration
 - `pandas` for data processing
-- `aws-lambda-powertools` for logging and metrics
+- Structured logging and metrics tools
 - Common utilities in `utils/common.py`
 
 **Documentation**: See `services/base/README.md` in the platform repository.
