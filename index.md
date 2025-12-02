@@ -17,9 +17,9 @@ Transform reactive operations into proactive intelligence with industry-specific
   <div class="path-button">
     <div class="path-icon">🛠️</div>
     <div class="path-content">
-      <h3>User Guide</h3>
+      <h3>Get Started</h3>
       <p>Get started with Ona Platform</p>
-      <a href="user-guide.html#prerequisites-checklist" class="path-link">Get Started →</a>
+      <a href="introduction.html" class="path-link">Get Started →</a>
     </div>
   </div>
   
@@ -254,7 +254,7 @@ Transform reactive operations into proactive intelligence with industry-specific
 
 ## Next Steps {#next-steps}
 
-- **[User Guide](user-guide.html)** - Get started with Ona Platform
+- **[Get Started](introduction.html)** - Get started with Ona Platform
 
 ---
 
