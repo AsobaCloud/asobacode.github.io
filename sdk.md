@@ -41,7 +41,7 @@ This repository contains two SDK implementations:
 ### JavaScript SDK
 Official JavaScript/TypeScript SDK for Node.js and browser environments.
 
-📖 View JavaScript SDK Documentation →
+📖 [View JavaScript SDK Documentation](https://github.com/AsobaCloud/sdk/blob/prod/javascript/README.md) →
 
 **Quick Start:**
 
@@ -66,7 +66,7 @@ const forecast = await sdk.forecasting.getSiteForecast({
 ### Python SDK
 Official Python SDK for server-side and data science applications.
 
-📖 View Python SDK Documentation →
+📖 [View Python SDK Documentation](https://github.com/AsobaCloud/sdk/blob/prod/python/README.md) →
 
 **Quick Start:**
 
@@ -97,7 +97,7 @@ detection = client.terminal.run_detection(
 npm install @asoba/ona-sdk
 ```
 
-For detailed installation and setup instructions, see the JavaScript SDK Documentation.
+For detailed installation and setup instructions, see the [JavaScript SDK Documentation](https://github.com/AsobaCloud/sdk/blob/prod/javascript/README.md).
 
 ### Python SDK
 
@@ -112,7 +112,7 @@ cd python
 pip install -e .
 ```
 
-For detailed installation and setup instructions, see the Python SDK Documentation.
+For detailed installation and setup instructions, see the [Python SDK Documentation](https://github.com/AsobaCloud/sdk/blob/prod/python/README.md).
 
 ---
 
@@ -136,8 +136,8 @@ export ONA_TERMINAL_ENDPOINT=https://terminal.api.asoba.co
 
 See the individual SDK documentation for complete configuration options:
 
-- JavaScript SDK Configuration
-- Python SDK Configuration
+- [JavaScript SDK Configuration](https://github.com/AsobaCloud/sdk/blob/prod/javascript/README.md#configuration)
+- [Python SDK Configuration](https://github.com/AsobaCloud/sdk/blob/prod/python/README.md#configuration)
 
 ---
 
@@ -172,8 +172,8 @@ Model training, interpolation, and data standardization services.
 
 For detailed API documentation, see:
 
-- JavaScript SDK API Reference
-- Python SDK API Reference
+- [JavaScript SDK API Reference](https://github.com/AsobaCloud/sdk/blob/prod/javascript/README.md#api-reference)
+- [Python SDK API Reference](https://github.com/AsobaCloud/sdk/blob/prod/python/README.md#api-reference)
 
 ---
 
