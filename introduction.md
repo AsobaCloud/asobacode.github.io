@@ -231,23 +231,6 @@ The Ona Platform follows a layered architecture that transforms raw operational 
 
 ---
 
-## Further Research {#further-research}
-
-### Case Studies and Research Papers
-
-| Resource | Description | Link |
-|----------|-------------|------|
-| Case Study | Real-world implementation and results | [View on Zenodo](https://zenodo.org/records/17495951) |
-
-### Additional Resources
-
-For more detailed information, please refer to:
-
-- **[User Guide](user-guide.html)** - Step-by-step onboarding guide
-- **[Changelog](changelog.html)** - Version history and release notes
-
----
-
 ## Next Steps {#next-steps}
 
 1. **Get Started**: Follow the [User Guide](user-guide.html) to deploy and configure your platform
