@@ -13,6 +13,12 @@ Generate code with Codestral specialist model.
 
 Zorora includes dedicated code generation capabilities using the Codestral specialist model. This allows you to generate code, refactor existing code, and implement algorithms with high-quality output.
 
+<div style="width: 100%; max-width: 800px; margin: 24px auto;">
+  <div style="width: 100%; height: 300px; background: var(--background-light); border: 2px dashed var(--border-grey); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--text-light);">
+    <span>Code Generation Example Screenshot<br/><small>(Placeholder - Add screenshot showing code generation in action)</small></span>
+  </div>
+</div>
+
 ## Using Code Generation
 
 ### Terminal Interface

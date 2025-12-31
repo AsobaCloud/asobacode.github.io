@@ -8,6 +8,16 @@ nav_order: 0
 
 Zorora is a local-deployment deep research engine that searches across academic databases, web sources, and newsroom articles, then synthesizes findings with credibility scoring and citation graphs. Built for macOS (Apple Silicon) with minimal RAM footprint, meant to be run directly from your computer, with all content, outputs, and chats stored locally and not in the cloud, giving you complete control and privacy.
 
+<div style="width: 100%; max-width: 1000px; margin: 32px auto;">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+    <img src="{{ site.baseurl }}/assets/images/ui.png" alt="Zorora Web UI" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-grey);">
+    <img src="{{ site.baseurl }}/assets/images/screenshot.png" alt="Zorora Terminal REPL" style="width: 100%; border-radius: 8px; border: 1px solid var(--border-grey);">
+  </div>
+  <p style="text-align: center; color: var(--text-light); margin-top: 12px; font-size: 0.875rem;">
+    <em>Zorora offers both Web UI and Terminal REPL interfaces</em>
+  </p>
+</div>
+
 ---
 
 ## What is Zorora? {#what-is-zorora}

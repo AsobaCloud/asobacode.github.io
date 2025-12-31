@@ -13,6 +13,9 @@ Browser-based research interface for non-engineers.
 
 The Web UI provides a user-friendly browser-based interface for Zorora, designed for users who prefer a graphical interface over the command line. It offers the same deep research capabilities as the Terminal REPL with an intuitive visual interface.
 
+![Zorora Web UI]({{ site.baseurl }}/assets/images/ui.png)
+*Zorora Web UI - Browser-based research interface*
+
 ## Starting the Web UI
 
 ### Method 1: Using zorora Command

@@ -22,18 +22,27 @@ This section provides practical use cases demonstrating how Zorora can be used i
 <div class="overview-cards-grid">
   <div class="overview-card">
     <h3>Academic Research</h3>
+    <div style="width: 100%; height: 200px; background: var(--background-light); border: 2px dashed var(--border-grey); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; color: var(--text-light);">
+      <span>Academic Research Example<br/><small>(Placeholder)</small></span>
+    </div>
     <p>Use Zorora's deep research capabilities to conduct comprehensive literature reviews, explore citation trails, and synthesize findings from academic databases.</p>
     <a href="/use-cases/academic-research" class="card-link">Learn More →</a>
   </div>
   
   <div class="overview-card">
     <h3>Code Development</h3>
+    <div style="width: 100%; height: 200px; background: var(--background-light); border: 2px dashed var(--border-grey); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; color: var(--text-light);">
+      <span>Code Development Example<br/><small>(Placeholder)</small></span>
+    </div>
     <p>Leverage the `/develop` workflow to add features, refactor codebases, and implement complex functionality with multi-step planning and execution.</p>
     <a href="/use-cases/code-development" class="card-link">Learn More →</a>
   </div>
   
   <div class="overview-card">
     <h3>Multi-Source Analysis</h3>
+    <div style="width: 100%; height: 200px; background: var(--background-light); border: 2px dashed var(--border-grey); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; color: var(--text-light);">
+      <span>Multi-Source Analysis Example<br/><small>(Placeholder)</small></span>
+    </div>
     <p>Cross-reference claims across academic papers, web sources, and newsroom articles to verify information and identify consensus or disagreement.</p>
     <a href="/use-cases/multi-source-analysis" class="card-link">Learn More →</a>
   </div>

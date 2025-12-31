@@ -18,6 +18,12 @@ You have a Flask application and want to add user authentication with JWT tokens
 - Execute the changes
 - Validate the results
 
+<div style="width: 100%; max-width: 800px; margin: 24px auto;">
+  <div style="width: 100%; height: 300px; background: var(--background-light); border: 2px dashed var(--border-grey); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--text-light);">
+    <span>Code Development Example Screenshot<br/><small>(Placeholder - Add screenshot showing /develop workflow for code development)</small></span>
+  </div>
+</div>
+
 ## Step-by-Step Guide
 
 ### Step 1: Start Development Workflow

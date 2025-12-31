@@ -132,6 +132,9 @@ zorora
 zorora
 ```
 
+![Zorora Terminal REPL]({{ site.baseurl }}/assets/images/screenshot.png)
+*Terminal REPL interface*
+
 **Run your first research query:**
 ```bash
 [1] ⚙ > What are the latest developments in large language model architectures?
@@ -157,6 +160,10 @@ zorora web
 
 **Access the interface:**
 1. Open `http://localhost:5000` in your browser
+
+![Zorora Web UI]({{ site.baseurl }}/assets/images/ui.png)
+*Web UI interface*
+
 2. Enter research question in the search box
 3. Select depth level:
    - **Quick** - Initial sources only (depth=1, ~25-35s)

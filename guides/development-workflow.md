@@ -13,6 +13,12 @@ Multi-step code development workflow with `/develop` command.
 
 The `/develop` command executes a comprehensive multi-step workflow for code development. It explores your codebase, plans changes, gets your approval, executes with Codestral, and validates the results.
 
+<div style="width: 100%; max-width: 800px; margin: 24px auto;">
+  <div style="width: 100%; height: 300px; background: var(--background-light); border: 2px dashed var(--border-grey); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--text-light);">
+    <span>/develop Workflow Screenshot<br/><small>(Placeholder - Add screenshot showing /develop workflow in action with plan display and execution)</small></span>
+  </div>
+</div>
+
 ## Workflow Phases
 
 ### Phase 0: Pre-flight Checks

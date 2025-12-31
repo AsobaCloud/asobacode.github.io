@@ -34,6 +34,7 @@ layout: default
       <h3>Web UI</h3>
       <code class="sdk-install">zorora web</code>
       <p>Browser-based research interface</p>
+      <img src="{{ site.baseurl }}/assets/images/ui.png" alt="Zorora Web UI" style="width: 100%; margin-top: 16px; border-radius: 4px; border: 1px solid var(--border-grey);">
     </a>
     
     <a href="/guides/terminal-repl" class="sdk-link-card">
@@ -41,6 +42,7 @@ layout: default
       <h3>Terminal REPL</h3>
       <code class="sdk-install">zorora</code>
       <p>Command-line interface</p>
+      <img src="{{ site.baseurl }}/assets/images/screenshot.png" alt="Zorora Terminal REPL" style="width: 100%; margin-top: 16px; border-radius: 4px; border: 1px solid var(--border-grey);">
     </a>
     
     <a href="/api-reference/overview" class="sdk-link-card">

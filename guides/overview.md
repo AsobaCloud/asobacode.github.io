@@ -36,24 +36,32 @@ If you're new to Zorora, start here:
 <div class="overview-cards-grid">
   <div class="overview-card">
     <h3>Terminal REPL</h3>
+    <img src="{{ site.baseurl }}/assets/images/screenshot.png" alt="Terminal REPL" style="width: 100%; margin-bottom: 12px; border-radius: 4px; border: 1px solid var(--border-grey);">
     <p>Interactive command-line interface for engineers. Learn slash commands, workflows, and advanced features.</p>
     <a href="/guides/terminal-repl" class="card-link">Learn More →</a>
   </div>
   
   <div class="overview-card">
     <h3>Research Workflow</h3>
+    <div style="width: 100%; height: 200px; background: var(--background-light); border: 2px dashed var(--border-grey); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; color: var(--text-light);">
+      <span>Research Results Screenshot<br/><small>(Placeholder)</small></span>
+    </div>
     <p>Deep dive into Zorora's 6-phase research pipeline. Learn how to use depth levels, citation following, and credibility scoring.</p>
     <a href="/guides/research-workflow" class="card-link">Learn More →</a>
   </div>
   
   <div class="overview-card">
     <h3>Slash Commands</h3>
+    <div style="width: 100%; height: 200px; background: var(--background-light); border: 2px dashed var(--border-grey); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; color: var(--text-light);">
+      <span>Command Examples Screenshot<br/><small>(Placeholder)</small></span>
+    </div>
     <p>Complete reference for all slash commands: /search, /ask, /code, /develop, /image, /vision, and more.</p>
     <a href="/guides/slash-commands" class="card-link">Learn More →</a>
   </div>
   
   <div class="overview-card">
     <h3>Web UI</h3>
+    <img src="{{ site.baseurl }}/assets/images/ui.png" alt="Web UI" style="width: 100%; margin-bottom: 12px; border-radius: 4px; border: 1px solid var(--border-grey);">
     <p>Browser-based research interface for non-engineers. Learn how to use the settings modal, configure models, and view research results.</p>
     <a href="/guides/web-ui" class="card-link">Learn More →</a>
   </div>

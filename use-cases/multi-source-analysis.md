@@ -17,6 +17,12 @@ You're researching "renewable energy policy developments in 2025" and need to:
 - Find conflicting viewpoints
 - Evaluate source credibility
 
+<div style="width: 100%; max-width: 800px; margin: 24px auto;">
+  <div style="width: 100%; height: 300px; background: var(--background-light); border: 2px dashed var(--border-grey); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--text-light);">
+    <span>Multi-Source Analysis Example Screenshot<br/><small>(Placeholder - Add screenshot showing cross-referenced claims and credibility scores)</small></span>
+  </div>
+</div>
+
 ## Step-by-Step Guide
 
 ### Step 1: Start Research Query

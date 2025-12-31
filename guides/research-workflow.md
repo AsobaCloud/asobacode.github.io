@@ -13,6 +13,12 @@ Deep dive into Zorora's 6-phase research pipeline and deep research capabilities
 
 Zorora's deep research workflow searches across academic databases, web sources, and newsroom articles, then synthesizes findings with credibility scoring and citation graphs. The workflow is designed to provide comprehensive, well-sourced answers to research questions.
 
+<div style="width: 100%; max-width: 800px; margin: 24px auto;">
+  <div style="width: 100%; height: 400px; background: var(--background-light); border: 2px dashed var(--border-grey); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--text-light);">
+    <span>Research Results with Citations Screenshot<br/><small>(Placeholder - Add screenshot showing research results with citations, credibility scores, and citation graph)</small></span>
+  </div>
+</div>
+
 ## 6-Phase Research Pipeline
 
 ### Phase 1: Parallel Source Aggregation
