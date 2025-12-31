@@ -13,8 +13,8 @@ Browser-based research interface for non-engineers.
 
 The Web UI provides a user-friendly browser-based interface for Zorora, designed for users who prefer a graphical interface over the command line. It offers the same deep research capabilities as the Terminal REPL with an intuitive visual interface.
 
-<div style="width: 100%; max-width: 100%; margin: 24px 0;">
-  <img src="{{ site.baseurl }}/assets/images/ui.png" alt="Zorora Web UI" style="width: 100%; max-width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border-grey); display: block;">
+<div style="width: 100%; max-width: 100%; margin: 24px 0; overflow: hidden; box-sizing: border-box;">
+  <img src="{{ site.baseurl }}/assets/images/ui.png" alt="Zorora Web UI" style="width: 100%; max-width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border-grey); display: block; box-sizing: border-box;">
 </div>
 <p style="text-align: center; color: var(--text-light); margin-top: 8px; font-size: 0.875rem; font-style: italic;">
   Zorora Web UI - Browser-based research interface
