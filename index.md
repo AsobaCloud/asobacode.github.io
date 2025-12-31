@@ -52,57 +52,45 @@ layout: default
   </div>
 </div>
 
-<!-- D. Popular Quick Links Grid (Above Fold) -->
-<div class="quick-links-section">
-  <h2>Popular Guides</h2>
-  <div class="quick-links-grid">
-    <a href="/getting-started" class="quick-link-card">
-      <div class="quick-link-icon">🚀</div>
-      <h4>Getting Started</h4>
-      <p>Installation & first query</p>
-    </a>
+<!-- D. Documentation Sections Overview -->
+<div class="sections-overview">
+  <h2>Documentation Sections</h2>
+  <div class="section-cards">
+    <div class="section-card">
+      <h3>Getting Started</h3>
+      <p>Quick tutorials to get you up and running</p>
+      <a href="/getting-started" class="section-link">View Getting Started →</a>
+    </div>
     
-    <a href="/guides/terminal-repl" class="quick-link-card">
-      <div class="quick-link-icon">📚</div>
-      <h4>Terminal REPL</h4>
-      <p>Command-line interface</p>
-    </a>
+    <div class="section-card">
+      <h3>Guides</h3>
+      <p>Step-by-step guides for common tasks</p>
+      <a href="/guides/overview" class="section-link">Browse Guides →</a>
+    </div>
     
-    <a href="/guides/web-ui" class="quick-link-card">
-      <div class="quick-link-icon">🌐</div>
-      <h4>Web UI</h4>
-      <p>Browser-based interface</p>
-    </a>
+    <div class="section-card">
+      <h3>API Reference</h3>
+      <p>Complete API documentation</p>
+      <a href="/api-reference/overview" class="section-link">View API Docs →</a>
+    </div>
     
-    <a href="/guides/research-workflow" class="quick-link-card">
-      <div class="quick-link-icon">🔍</div>
-      <h4>Research Workflow</h4>
-      <p>Deep research capabilities</p>
-    </a>
+    <div class="section-card">
+      <h3>Technical Concepts</h3>
+      <p>Deep dives into how things work</p>
+      <a href="/technical-concepts/overview" class="section-link">Learn More →</a>
+    </div>
     
-    <a href="/guides/code-generation" class="quick-link-card">
-      <div class="quick-link-icon">💻</div>
-      <h4>Code Generation</h4>
-      <p>Generate code with Codestral</p>
-    </a>
+    <div class="section-card">
+      <h3>Use Cases</h3>
+      <p>Real-world examples and case studies</p>
+      <a href="/use-cases/overview" class="section-link">See Use Cases →</a>
+    </div>
     
-    <a href="/guides/development-workflow" class="quick-link-card">
-      <div class="quick-link-icon">⚡</div>
-      <h4>Development Workflow</h4>
-      <p>Multi-step code development</p>
-    </a>
-    
-    <a href="/guides/slash-commands" class="quick-link-card">
-      <div class="quick-link-icon">🔧</div>
-      <h4>Slash Commands</h4>
-      <p>Command reference</p>
-    </a>
-    
-    <a href="/use-cases/overview" class="quick-link-card">
-      <div class="quick-link-icon">💡</div>
-      <h4>Use Cases</h4>
-      <p>Real-world examples</p>
-    </a>
+    <div class="section-card">
+      <h3>FAQ</h3>
+      <p>Frequently asked questions</p>
+      <a href="/faq" class="section-link">View FAQ →</a>
+    </div>
   </div>
 </div>
 
@@ -325,47 +313,6 @@ for r in results:
   </div>
 </div>
 
-<!-- J. Documentation Sections Overview -->
-<div class="sections-overview">
-  <h2>Documentation Sections</h2>
-  <div class="section-cards">
-    <div class="section-card">
-      <h3>Getting Started</h3>
-      <p>Quick tutorials to get you up and running</p>
-      <a href="/getting-started" class="section-link">View Getting Started →</a>
-    </div>
-    
-    <div class="section-card">
-      <h3>Guides</h3>
-      <p>Step-by-step guides for common tasks</p>
-      <a href="/guides/overview" class="section-link">Browse Guides →</a>
-    </div>
-    
-    <div class="section-card">
-      <h3>API Reference</h3>
-      <p>Complete API documentation</p>
-      <a href="/api-reference/overview" class="section-link">View API Docs →</a>
-    </div>
-    
-    <div class="section-card">
-      <h3>Technical Concepts</h3>
-      <p>Deep dives into how things work</p>
-      <a href="/technical-concepts/overview" class="section-link">Learn More →</a>
-    </div>
-    
-    <div class="section-card">
-      <h3>Use Cases</h3>
-      <p>Real-world examples and case studies</p>
-      <a href="/use-cases/overview" class="section-link">See Use Cases →</a>
-    </div>
-    
-    <div class="section-card">
-      <h3>FAQ</h3>
-      <p>Frequently asked questions</p>
-      <a href="/faq" class="section-link">View FAQ →</a>
-    </div>
-  </div>
-</div>
 
 ## Get Help & Stay Updated
 
