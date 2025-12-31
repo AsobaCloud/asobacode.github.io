@@ -1533,3 +1533,295 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
     grid-template-columns: 1fr;
   }
 }
+
+/* E. Code Examples Section */
+.code-examples-section {
+  margin: 60px 0;
+}
+
+.code-examples-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.section-intro {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 24px;
+}
+
+.code-examples-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.code-tab {
+  padding: 8px 16px;
+  border: 2px solid var(--border-grey);
+  background: var(--white);
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-dark);
+}
+
+.code-tab:hover {
+  border-color: var(--primary-blue);
+}
+
+.code-tab.active {
+  background: var(--primary-blue);
+  color: var(--white);
+  border-color: var(--primary-blue);
+}
+
+.code-examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+}
+
+.code-example-card {
+  background: var(--white);
+  border: 1px solid var(--border-grey);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.code-example-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.code-example-card pre {
+  background: var(--code-bg);
+  padding: 16px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+.code-example-card code {
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: var(--code-text);
+}
+
+.code-example-link {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.code-example-link:hover {
+  color: var(--accent-blue);
+}
+
+.code-examples-footer {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.view-all-examples {
+  display: inline-block;
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.view-all-examples:hover {
+  color: var(--accent-blue);
+}
+
+/* F. Product/Service Categories */
+.product-categories-section {
+  margin: 60px 0;
+}
+
+.product-categories-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 32px;
+}
+
+.product-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.product-category-card {
+  background: var(--white);
+  border: 1px solid var(--border-grey);
+  border-radius: 8px;
+  padding: 24px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.product-category-card:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(69, 91, 241, 0.1);
+}
+
+.product-category-card h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.product-category-card p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* G. Role-Based Entry Points */
+.wayfinding-section {
+  margin: 60px 0;
+}
+
+.wayfinding-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.role-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin: 40px 0;
+}
+
+.role-card {
+  background: var(--white);
+  border: 2px solid var(--border-grey);
+  border-radius: 12px;
+  padding: 32px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.role-card:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(69, 91, 241, 0.15);
+}
+
+.role-icon {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.role-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.role-card p {
+  color: var(--text-light);
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.role-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  flex-grow: 1;
+}
+
+.role-features li {
+  padding: 8px 0;
+  color: var(--text-dark);
+  position: relative;
+  padding-left: 24px;
+  font-size: 0.95rem;
+}
+
+.role-features li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--primary-blue);
+  font-weight: bold;
+}
+
+.role-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.role-button {
+  flex: 1;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.role-button.primary {
+  background: var(--primary-blue);
+  color: var(--white);
+}
+
+.role-button.primary:hover {
+  background: var(--accent-blue);
+  color: var(--white);
+}
+
+.role-button.secondary {
+  background: transparent;
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
+}
+
+.role-button.secondary:hover {
+  background: var(--primary-blue);
+  color: var(--white);
+}
+
+/* Responsive adjustments for code examples and role cards */
+@media (max-width: 768px) {
+  .code-examples-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-categories-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .role-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .role-actions {
+    flex-direction: column;
+  }
+}

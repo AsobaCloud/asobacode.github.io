@@ -418,17 +418,34 @@ document.addEventListener('DOMContentLoaded', function() {
   const tabs = document.querySelectorAll('.code-tab');
   const cards = document.querySelectorAll('.code-example-card');
   
+  // Only run if elements exist
+  if (tabs.length === 0 || cards.length === 0) {
+    return;
+  }
+  
   tabs.forEach(tab => {
     tab.addEventListener('click', function() {
       const targetLang = this.getAttribute('data-tab');
       
+      if (!targetLang) {
+        return;
+      }
+      
       // Update active tab
-      tabs.forEach(t => t.classList.remove('active'));
+      tabs.forEach(t => {
+        if (t) {
+          t.classList.remove('active');
+        }
+      });
       this.classList.add('active');
       
       // Show/hide cards
       cards.forEach(card => {
-        if (card.getAttribute('data-language') === targetLang) {
+        if (!card) {
+          return;
+        }
+        const cardLang = card.getAttribute('data-language');
+        if (cardLang === targetLang) {
           card.style.display = 'block';
         } else {
           card.style.display = 'none';
