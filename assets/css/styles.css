@@ -10,6 +10,9 @@
   --text-light: #4D4D4D;
   --background-light: #f5f5f5;
   --white: #fff;
+  --border-grey: #e0e0e0;
+  --code-bg: #f5f5f5;
+  --code-text: #333;
   
   /* Ubuntu Terminal Color Scheme */
   --ubuntu-bg: #2E3436;
@@ -1534,6 +1537,72 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   }
 }
 
+/* C. SDK Links Section */
+.sdk-links-section {
+  margin: 40px 0;
+}
+
+.sdk-links-section h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 24px;
+}
+
+.sdk-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sdk-link-card {
+  background: var(--white);
+  border: 2px solid var(--border-grey);
+  border-radius: 8px;
+  padding: 24px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.sdk-link-card:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(69, 91, 241, 0.1);
+}
+
+.sdk-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.sdk-link-card h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.sdk-install {
+  display: block;
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.875rem;
+  margin: 12px 0;
+}
+
+.sdk-link-card p {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
 /* E. Code Examples Section */
 .code-examples-section {
   margin: 60px 0;
@@ -1809,6 +1878,7 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
 
 /* Responsive adjustments for code examples and role cards */
 @media (max-width: 768px) {
+  .sdk-links-grid,
   .code-examples-grid {
     grid-template-columns: 1fr;
   }
@@ -1823,5 +1893,9 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   
   .role-actions {
     flex-direction: column;
+  }
+  
+  .version-updates-section {
+    grid-template-columns: 1fr;
   }
 }
