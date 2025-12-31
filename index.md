@@ -1,19 +1,11 @@
 ---
-title: "Home"
+title: "Documentation Home"
 layout: default
-nav_order: 1
 ---
 
-# Zorora
-{: .fs-9 }
-
-**A local-deployment deep research engine that searches across academic databases, web sources, and newsroom articles, then synthesizes findings with credibility scoring and citation graphs.**
-{: .fs-6 .fw-300 }
-
-Built for macOS (Apple Silicon) with minimal RAM footprint, meant to be run directly from your computer, with all content, outputs, and chats stored locally and not in the cloud, giving you complete control and privacy.
-{: .fs-5 .fw-300 }
-
+<!-- A. Compact Title + Version Indicator -->
 <div class="page-header">
+  <h1>Zorora Documentation</h1>
   <div class="version-badge">
     <span class="version-label">Version</span>
     <span class="version-value">2.1.0</span>
@@ -23,208 +15,277 @@ Built for macOS (Apple Silicon) with minimal RAM footprint, meant to be run dire
   </div>
 </div>
 
-## Quick Start
-
+<!-- B. Quick Start CTA (Prominent) -->
 <div class="quick-start-section">
-  <a href="https://github.com/AsobaCloud/zorora/releases/tag/v2-prod" class="quick-start-button">Download v2-prod</a>
+  <a href="https://github.com/AsobaCloud/zorora/releases/tag/v2-prod" class="quick-start-button">
+    Download v2-prod
+  </a>
   <p class="quick-start-subtext">
     Or install from GitHub: <code>pip install git+https://github.com/AsobaCloud/zorora.git</code>
   </p>
 </div>
 
-### Prerequisites
-
-- **Python 3.8+**
-- **LM Studio** running on `http://localhost:1234`
-  - Download: [lmstudio.ai](https://lmstudio.ai)
-  - Load a 4B model (e.g., Qwen3-VL-4B, Qwen3-4B)
-- **HuggingFace token** (optional) - For remote Codestral endpoint
-- **Brave Search API key** (optional) - For enhanced web search
-
-### Run
-
-**Terminal Interface (for engineers):**
-```bash
-zorora
-```
-
-**Web Interface (for non-engineers):**
-```bash
-zorora web
-# Opens at http://localhost:5000
-```
-
-## What You Can Find Here
-
-<div class="overview-cards-grid">
-  <div class="overview-card">
-    <h3>Getting Started</h3>
-    <p>Installation, configuration, and your first research query. Get up and running in minutes.</p>
-    <a href="/getting-started" class="card-link">Get Started →</a>
-  </div>
-  
-  <div class="overview-card">
-    <h3>Guides</h3>
-    <p>Step-by-step guides for terminal REPL, web UI, research workflows, code generation, and slash commands.</p>
-    <a href="/guides/overview" class="card-link">View Guides →</a>
-  </div>
-  
-  <div class="overview-card">
-    <h3>API Reference</h3>
-    <p>Complete API documentation for research endpoints, settings management, and Python SDK integration.</p>
-    <a href="/api-reference/overview" class="card-link">View API Docs →</a>
-  </div>
-  
-  <div class="overview-card">
-    <h3>Technical Concepts</h3>
-    <p>Architecture, research pipeline, storage design, and routing mechanisms. Deep dive into how Zorora works.</p>
-    <a href="/technical-concepts/overview" class="card-link">Learn More →</a>
-  </div>
-  
-  <div class="overview-card">
-    <h3>Use Cases</h3>
-    <p>Real-world examples: academic research, code development, multi-source analysis, and more.</p>
-    <a href="/use-cases/overview" class="card-link">View Use Cases →</a>
+<!-- C. Web App & Access Methods (Horizontal Row) -->
+<div class="sdk-links-section">
+  <h2>Get Started with Zorora</h2>
+  <div class="sdk-links-grid">
+    <a href="/guides/web-ui" class="sdk-link-card">
+      <div class="sdk-icon">🌐</div>
+      <h3>Web UI</h3>
+      <code class="sdk-install">zorora web</code>
+      <p>Browser-based research interface</p>
+    </a>
+    
+    <a href="/guides/terminal-repl" class="sdk-link-card">
+      <div class="sdk-icon">💻</div>
+      <h3>Terminal REPL</h3>
+      <code class="sdk-install">zorora</code>
+      <p>Command-line interface</p>
+    </a>
+    
+    <a href="/api-reference/overview" class="sdk-link-card">
+      <div class="sdk-icon">🔧</div>
+      <h3>Python API</h3>
+      <code class="sdk-install">ResearchEngine()</code>
+      <p>Programmatic access</p>
+    </a>
   </div>
 </div>
 
-## Core Features
-
-Zorora transforms from a basic research tool into a **deep research engine** that:
-
-1. **Searches EVERYTHING** - Academic databases (7 sources) + web search + Asoba newsroom
-2. **Follows citation trails** - Multi-hop research that explores cited papers
-3. **Cross-references claims** - Groups similar claims and counts agreement across sources
-4. **Scores credibility** - Transparent rules-based scoring of source authority
-5. **Builds citation graphs** - Visualizes relationships between sources
-6. **Synthesizes with confidence** - Generates comprehensive answers with citation levels
-
-### Deep Research Capabilities
-
-- **6-Phase Research Pipeline:**
-  1. **Parallel Source Aggregation** - Searches academic (7 sources), web (Brave + DDG), and newsroom simultaneously
-  2. **Citation Following** - Multi-hop exploration of cited papers (configurable depth: 1-3)
-  3. **Cross-Referencing** - Groups claims by similarity and counts agreement
-  4. **Credibility Scoring** - Rules-based scoring of source authority (academic journals, predatory publishers, retractions)
-  5. **Citation Graph Building** - Constructs directed graphs showing source relationships
-  6. **Synthesis** - Generates comprehensive answers with confidence levels and citations
-
-- **Research Depth Levels:**
-  - **Quick** - Initial sources only (skips citation following)
-  - **Balanced** - Adds citation following (1 hop)
-  - **Thorough** - Multi-hop citation exploration (up to 3 levels deep)
-
-### Additional Features
-
-- **Research persistence** - Save/load findings with metadata
-- **Code generation** - Dedicated Codestral model for coding tasks
-- **Multi-step development** - `/develop` workflow: explore → plan → approve → execute → lint
-- **Slash commands** - Force workflows: `/search`, `/ask`, `/code`, `/develop`, `/image`, `/vision`
-- **Deterministic routing** - Pattern-based decision tree (no LLM routing failures)
-- **Hybrid deployment** - Local 4B orchestrator + remote 32B specialists
-- **RAM-efficient** - Runs on MacBook Air M3 with 4B model
-- **Dual interfaces** - Terminal REPL for engineers, Web UI for non-engineers
-- **Multi-provider support** - Configure models from HuggingFace, OpenAI, and Anthropic APIs
-- **Visual settings management** - Web UI settings modal for easy configuration
-- **Vision and image generation** - Dedicated models for image analysis and text-to-image generation
-
-## Popular Quick Links
-
-<div class="quick-links-grid">
-  <div class="quick-link-card">
-    <div class="quick-link-icon">🚀</div>
-    <h4>Quick Start</h4>
-    <p>Get started in 5 minutes</p>
-    <a href="/getting-started"></a>
-  </div>
-  
-  <div class="quick-link-card">
-    <div class="quick-link-icon">📚</div>
-    <h4>Terminal REPL</h4>
-    <p>Interactive command-line interface</p>
-    <a href="/guides/terminal-repl"></a>
-  </div>
-  
-  <div class="quick-link-card">
-    <div class="quick-link-icon">🌐</div>
-    <h4>Web UI</h4>
-    <p>Browser-based research interface</p>
-    <a href="/guides/web-ui"></a>
-  </div>
-  
-  <div class="quick-link-card">
-    <div class="quick-link-icon">🔍</div>
-    <h4>Research Workflow</h4>
-    <p>Deep research capabilities</p>
-    <a href="/guides/research-workflow"></a>
-  </div>
-  
-  <div class="quick-link-card">
-    <div class="quick-link-icon">💻</div>
-    <h4>Code Generation</h4>
-    <p>Generate code with Codestral</p>
-    <a href="/guides/code-generation"></a>
-  </div>
-  
-  <div class="quick-link-card">
-    <div class="quick-link-icon">⚡</div>
-    <h4>Slash Commands</h4>
-    <p>Command reference</p>
-    <a href="/guides/slash-commands"></a>
+<!-- D. Popular Quick Links Grid (Above Fold) -->
+<div class="quick-links-section">
+  <h2>Popular Guides</h2>
+  <div class="quick-links-grid">
+    <a href="/getting-started" class="quick-link-card">
+      <div class="quick-link-icon">🚀</div>
+      <h4>Getting Started</h4>
+      <p>Installation & first query</p>
+    </a>
+    
+    <a href="/guides/terminal-repl" class="quick-link-card">
+      <div class="quick-link-icon">📚</div>
+      <h4>Terminal REPL</h4>
+      <p>Command-line interface</p>
+    </a>
+    
+    <a href="/guides/web-ui" class="quick-link-card">
+      <div class="quick-link-icon">🌐</div>
+      <h4>Web UI</h4>
+      <p>Browser-based interface</p>
+    </a>
+    
+    <a href="/guides/research-workflow" class="quick-link-card">
+      <div class="quick-link-icon">🔍</div>
+      <h4>Research Workflow</h4>
+      <p>Deep research capabilities</p>
+    </a>
+    
+    <a href="/guides/code-generation" class="quick-link-card">
+      <div class="quick-link-icon">💻</div>
+      <h4>Code Generation</h4>
+      <p>Generate code with Codestral</p>
+    </a>
+    
+    <a href="/guides/development-workflow" class="quick-link-card">
+      <div class="quick-link-icon">⚡</div>
+      <h4>Development Workflow</h4>
+      <p>Multi-step code development</p>
+    </a>
+    
+    <a href="/guides/slash-commands" class="quick-link-card">
+      <div class="quick-link-icon">🔧</div>
+      <h4>Slash Commands</h4>
+      <p>Command reference</p>
+    </a>
+    
+    <a href="/use-cases/overview" class="quick-link-card">
+      <div class="quick-link-icon">💡</div>
+      <h4>Use Cases</h4>
+      <p>Real-world examples</p>
+    </a>
   </div>
 </div>
 
-## Code Examples
-
-### Deep Research Query
-
-**Terminal (via REPL):**
-```bash
-[1] ⚙ > What are the latest developments in large language model architectures?
-```
-
-The system automatically detects research intent and executes the deep research workflow.
-
-**Web UI:**
-1. Open `http://localhost:5000` in your browser
-2. Enter research question in the search box
-3. Select depth level (Quick/Balanced/Thorough)
-4. Click "Start Research"
-5. View synthesis, sources, and credibility scores
-
-**API (Programmatic Access):**
-```python
-from engine.research_engine import ResearchEngine
+<!-- E. Code Examples Section -->
+<div class="code-examples-section">
+  <h2>Code Examples</h2>
+  <p class="section-intro">Get started quickly with copy-paste examples</p>
+  
+  <div class="code-examples-tabs">
+    <button class="code-tab active" data-tab="terminal">Terminal</button>
+    <button class="code-tab" data-tab="web">Web UI</button>
+    <button class="code-tab" data-tab="api">Python API</button>
+  </div>
+  
+  <div class="code-examples-grid">
+    <!-- Terminal Examples -->
+    <div class="code-example-card" data-language="terminal">
+      <h4>Deep Research Query</h4>
+      <pre><code>zorora
+[1] ⚙ > What are the latest developments in large language model architectures?</code></pre>
+      <a href="/guides/research-workflow" class="code-example-link">View Full Guide →</a>
+    </div>
+    
+    <div class="code-example-card" data-language="terminal">
+      <h4>Code Generation</h4>
+      <pre><code>[2] ⚙ > Write a Python function to validate email addresses</code></pre>
+      <a href="/guides/code-generation" class="code-example-link">View Full Guide →</a>
+    </div>
+    
+    <!-- Web UI Examples -->
+    <div class="code-example-card" data-language="web" style="display: none;">
+      <h4>Start Research</h4>
+      <pre><code>1. Open http://localhost:5000
+2. Enter research question
+3. Select depth (Quick/Balanced/Thorough)
+4. Click "Start Research"</code></pre>
+      <a href="/guides/web-ui" class="code-example-link">View Full Guide →</a>
+    </div>
+    
+    <div class="code-example-card" data-language="web" style="display: none;">
+      <h4>Configure Settings</h4>
+      <pre><code>1. Click ⚙️ gear icon
+2. Select models and endpoints
+3. Configure API keys
+4. Click "Save"</code></pre>
+      <a href="/guides/configuration" class="code-example-link">View Full Guide →</a>
+    </div>
+    
+    <!-- Python API Examples -->
+    <div class="code-example-card" data-language="api" style="display: none;">
+      <h4>Deep Research</h4>
+      <pre><code>from engine.research_engine import ResearchEngine
 
 engine = ResearchEngine()
-state = engine.deep_research("Your research question", depth=1)
-print(state.synthesis)
-```
+state = engine.deep_research(
+    "Your research question",
+    depth=1
+)
+print(state.synthesis)</code></pre>
+      <a href="/api-reference/python-sdk" class="code-example-link">View Full API Docs →</a>
+    </div>
+    
+    <div class="code-example-card" data-language="api" style="display: none;">
+      <h4>Search Past Research</h4>
+      <pre><code>results = engine.search_research(
+    query="LLM architectures",
+    limit=10
+)
+for r in results:
+    print(r['query'])</code></pre>
+      <a href="/api-reference/python-sdk" class="code-example-link">View Full API Docs →</a>
+    </div>
+  </div>
+  
+  <div class="code-examples-footer">
+    <a href="/guides/overview" class="view-all-examples">View All Guides →</a>
+  </div>
+</div>
 
-### Code Generation
+<!-- F. Product/Service Categories -->
+<div class="product-categories-section">
+  <h2>Core Features</h2>
+  <div class="product-categories-grid">
+    <a href="/guides/research-workflow" class="product-category-card">
+      <h4>Deep Research</h4>
+      <p>6-phase research pipeline</p>
+    </a>
+    
+    <a href="/guides/code-generation" class="product-category-card">
+      <h4>Code Generation</h4>
+      <p>Codestral specialist model</p>
+    </a>
+    
+    <a href="/guides/development-workflow" class="product-category-card">
+      <h4>Development Workflow</h4>
+      <p>Multi-step code development</p>
+    </a>
+    
+    <a href="/technical-concepts/architecture" class="product-category-card">
+      <h4>Local-First</h4>
+      <p>Complete privacy & control</p>
+    </a>
+    
+    <a href="/guides/web-ui" class="product-category-card">
+      <h4>Web Interface</h4>
+      <p>Browser-based research UI</p>
+    </a>
+    
+    <a href="/guides/terminal-repl" class="product-category-card">
+      <h4>Terminal REPL</h4>
+      <p>Command-line interface</p>
+    </a>
+  </div>
+</div>
 
-```bash
-[2] ⚙ > Write a Python function to validate email addresses
-```
+<!-- G. Role-Based Entry Points (Compact) -->
+<div class="wayfinding-section">
+  <h2>Choose Your Path</h2>
+  <p class="section-intro">
+    Get started based on your role and goals
+  </p>
+  
+  <div class="role-cards">
+    <!-- Engineer Path -->
+    <div class="role-card developer">
+      <div class="role-icon">👨‍💻</div>
+      <h3>I'm an Engineer</h3>
+      <p>Use terminal REPL and programmatic APIs</p>
+      <ul class="role-features">
+        <li>Terminal REPL</li>
+        <li>Python API</li>
+        <li>Code Generation</li>
+        <li>Development Workflow</li>
+      </ul>
+      <div class="role-actions">
+        <a href="/getting-started" class="role-button primary">Get Started</a>
+        <a href="/guides/terminal-repl" class="role-button secondary">Terminal Guide</a>
+      </div>
+    </div>
+    
+    <!-- Researcher Path -->
+    <div class="role-card business">
+      <div class="role-icon">🔬</div>
+      <h3>I'm a Researcher</h3>
+      <p>Conduct deep research with multi-source synthesis</p>
+      <ul class="role-features">
+        <li>Web UI</li>
+        <li>Research Workflow</li>
+        <li>Citation Following</li>
+        <li>Credibility Scoring</li>
+      </ul>
+      <div class="role-actions">
+        <a href="/guides/web-ui" class="role-button primary">Use Web UI</a>
+        <a href="/guides/research-workflow" class="role-button secondary">Research Guide</a>
+      </div>
+    </div>
+    
+    <!-- Developer Path -->
+    <div class="role-card decision">
+      <div class="role-icon">💻</div>
+      <h3>I'm a Developer</h3>
+      <p>Build integrations and automate workflows</p>
+      <ul class="role-features">
+        <li>Python SDK</li>
+        <li>API Reference</li>
+        <li>Code Examples</li>
+        <li>Use Cases</li>
+      </ul>
+      <div class="role-actions">
+        <a href="/api-reference/overview" class="role-button primary">View API Docs</a>
+        <a href="/use-cases/overview" class="role-button secondary">See Use Cases</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-Routes to Codestral specialist model for code generation.
-
-### Development Workflow
-
-```bash
-[3] ⚙ > /develop Add user authentication to my Flask app
-```
-
-Executes multi-step workflow: explore → plan → approve → execute → lint.
-
-## Version & Updates
-
+<!-- H. Version & Updates Section -->
 <div class="version-updates-section">
   <div class="version-info">
     <h3>Current Version</h3>
-    <div class="version-number">2.1.0</div>
-    <div class="version-date">Settings Modal & Multi-Provider Support</div>
-    <a href="/changelog" class="changelog-link">View Full Changelog →</a>
+    <p class="version-number">v2.1.0</p>
+    <p class="version-date">Settings Modal & Multi-Provider Support</p>
+    <a href="/changelog" class="changelog-link">View Changelog →</a>
   </div>
   
   <div class="whats-new">
@@ -236,101 +297,89 @@ Executes multi-step workflow: explore → plan → approve → execute → lint.
       <li>Vision and image generation model configuration</li>
       <li>Endpoint CRUD operations via Web UI</li>
     </ul>
-    <a href="/changelog" class="whats-new-link">See All Changes →</a>
+    <a href="/changelog" class="whats-new-link">Read Release Notes →</a>
   </div>
 </div>
 
-## Community & Support
-
+<!-- I. Community & Support Section -->
 <div class="community-section">
+  <h2>Community & Support</h2>
   <div class="community-links-grid">
-    <div class="community-link-card">
+    <a href="https://discord.gg/nNV5evcr" target="_blank" class="community-link-card">
       <div class="community-icon">💬</div>
       <h4>Discord</h4>
       <p>Join our community</p>
-      <a href="https://discord.gg/nNV5evcr" target="_blank"></a>
-    </div>
+    </a>
     
-    <div class="community-link-card">
+    <a href="https://github.com/AsobaCloud/zorora" target="_blank" class="community-link-card">
+      <div class="community-icon">🐙</div>
+      <h4>GitHub</h4>
+      <p>View source code</p>
+    </a>
+    
+    <a href="mailto:support@asoba.co" class="community-link-card">
       <div class="community-icon">📧</div>
       <h4>Email Support</h4>
       <p>Get help from our team</p>
-      <a href="mailto:support@asoba.co"></a>
-    </div>
-    
-    <div class="community-link-card">
-      <div class="community-icon">🐛</div>
-      <h4>Report Issues</h4>
-      <p>GitHub Issues</p>
-      <a href="https://github.com/AsobaCloud/zorora/issues" target="_blank"></a>
-    </div>
-    
-    <div class="community-link-card">
-      <div class="community-icon">📖</div>
-      <h4>Documentation</h4>
-      <p>Full documentation</p>
-      <a href="/getting-started"></a>
-    </div>
+    </a>
   </div>
 </div>
 
-## Documentation Sections Overview
-
+<!-- J. Documentation Sections Overview -->
 <div class="sections-overview">
+  <h2>Documentation Sections</h2>
   <div class="section-cards">
     <div class="section-card">
       <h3>Getting Started</h3>
-      <p>Installation, configuration, and your first research query. Everything you need to get started with Zorora.</p>
-      <a href="/getting-started" class="section-link">Get Started →</a>
+      <p>Quick tutorials to get you up and running</p>
+      <a href="/getting-started" class="section-link">View Getting Started →</a>
     </div>
     
     <div class="section-card">
       <h3>Guides</h3>
-      <p>Comprehensive guides covering terminal REPL, web UI, research workflows, code generation, and all slash commands.</p>
-      <a href="/guides/overview" class="section-link">View Guides →</a>
+      <p>Step-by-step guides for common tasks</p>
+      <a href="/guides/overview" class="section-link">Browse Guides →</a>
     </div>
     
     <div class="section-card">
       <h3>API Reference</h3>
-      <p>Complete API documentation for research endpoints, settings management, and Python SDK integration.</p>
+      <p>Complete API documentation</p>
       <a href="/api-reference/overview" class="section-link">View API Docs →</a>
     </div>
     
     <div class="section-card">
       <h3>Technical Concepts</h3>
-      <p>Deep dive into Zorora's architecture, research pipeline, storage design, and routing mechanisms.</p>
+      <p>Deep dives into how things work</p>
       <a href="/technical-concepts/overview" class="section-link">Learn More →</a>
     </div>
     
     <div class="section-card">
       <h3>Use Cases</h3>
-      <p>Real-world examples and use cases: academic research, code development, multi-source analysis.</p>
-      <a href="/use-cases/overview" class="section-link">View Use Cases →</a>
+      <p>Real-world examples and case studies</p>
+      <a href="/use-cases/overview" class="section-link">See Use Cases →</a>
     </div>
     
     <div class="section-card">
       <h3>FAQ</h3>
-      <p>Frequently asked questions and troubleshooting guide for common issues.</p>
+      <p>Frequently asked questions</p>
       <a href="/faq" class="section-link">View FAQ →</a>
     </div>
   </div>
 </div>
 
----
-
-## Get Help
+## Get Help & Stay Updated
 
 <div class="page-end-section">
   <div class="end-column">
     <div class="support-cta">
       <h3>Contact Support</h3>
-      <p>For technical assistance, feature requests, or any other questions, please reach out to our dedicated support team.</p>
+      <p>We're constantly improving and want you to be a part of shaping the future of deep research. If you encounter issues or have suggestions, please reach out to our dedicated support team.</p>
       <a href="mailto:support@asoba.co" class="support-button">Email Support</a>
       <a href="https://discord.gg/nNV5evcr" target="_blank" class="support-button" style="margin-top: 10px; display: inline-block;">
         <svg width="16" height="16" style="margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="currentColor">
           <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
         </svg>
-        Join Our Discord
+        Join Discord
       </a>
     </div>
   </div>
@@ -362,3 +411,32 @@ Executes multi-step workflow: explore → plan → approve → execute → lint.
     </div>
   </div>
 </div>
+
+<script>
+// Code examples tab switching
+document.addEventListener('DOMContentLoaded', function() {
+  const tabs = document.querySelectorAll('.code-tab');
+  const cards = document.querySelectorAll('.code-example-card');
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const targetLang = this.getAttribute('data-tab');
+      
+      // Update active tab
+      tabs.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Show/hide cards
+      cards.forEach(card => {
+        if (card.getAttribute('data-language') === targetLang) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+});
+</script>
+
+© 2025 Asoba Corporation. All rights reserved.
