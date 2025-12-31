@@ -266,7 +266,7 @@ for r in results:
       <h3>I'm a Developer</h3>
       <p>Build integrations and automate workflows</p>
       <ul class="role-features">
-        <li>Python SDK</li>
+        <li>Python API</li>
         <li>API Reference</li>
         <li>Code Examples</li>
         <li>Use Cases</li>

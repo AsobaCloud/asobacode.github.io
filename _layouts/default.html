@@ -23,7 +23,7 @@ layout: default
       <a href="{{ site.baseurl }}/">
         <img src="{{ site.baseurl }}/assets/images/logo.png" alt="Asoba">
       </a>
-      <span class="site-title">Intelligence Layer Documentation</span>
+      <span class="site-title">Zorora Documentation</span>
     </div>
     <div class="search-container-top">
       <input type="text" id="search-input" placeholder="Search the Docs">
@@ -36,312 +36,213 @@ layout: default
     </div>
   </header>
 
+  <!-- NAV START -->
   <div class="sidebar">
     <nav class="side-nav">
       <ul class="nav-list">
+        <!-- Home -->
         <li class="nav-item">
           <div class="nav-header">
             <a href="{{ site.baseurl }}/">Home</a>
           </div>
         </li>
+        
+        <!-- Introduction -->
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/introduction.html">Introduction</a>
-            <span class="toggle-icon">+</span>
-          </div>
-          
-		  <ul class="sub-menu">
-            <li><a href="{{ site.baseurl }}/introduction.html#quick-start">Quick Start</a></li>
-            <li><a href="{{ site.baseurl }}/introduction.html#what-is-ona-platform">What is Ona Platform?</a></li>
-            <li class="sub-category">
-              <div class="sub-nav-header">
-                <span style="margin-left: 10px;">Platform Layers</span>
-                <span class="sub-toggle-icon">+</span>
-              </div>
-              <ul class="sub-sub-menu">
-                <li><a href="{{ site.baseurl }}/edge-layer.html">Edge Layer</a></li>
-                <li><a href="{{ site.baseurl }}/control-layer.html">Control Layer</a></li>
-                <li><a href="{{ site.baseurl }}/interface-layer.html">Interface Layer</a></li>
-              </ul>
-            </li>
-            <li><a href="{{ site.baseurl }}/introduction.html#data-flow">Data Flow</a></li>
-            <li><a href="{{ site.baseurl }}/introduction.html#resilience">Resilience</a></li>
-            <li><a href="{{ site.baseurl }}/introduction.html#architecture">Architecture</a></li>
-            <li><a href="{{ site.baseurl }}/introduction.html#further-research">Further Research</a></li>
-            <li><a href="{{ site.baseurl }}/introduction.html#next-steps">Next Steps</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <div class="nav-header">
-            <a href="{{ site.baseurl }}/user-guide.html">Onboarding</a>
+            <a href="{{ site.baseurl }}/introduction">Introduction</a>
             <span class="toggle-icon">+</span>
           </div>
           <ul class="sub-menu">
-            <li><a href="{{ site.baseurl }}/user-guide.html#1-overview">Overview</a></li>
-            <li><a href="{{ site.baseurl }}/user-guide.html#2-onboarding-workflow">Onboarding Workflow</a></li>
-            <li><a href="{{ site.baseurl }}/user-guide.html#3-onboarding-setup">Onboarding Setup</a></li>
-            <li><a href="{{ site.baseurl }}/user-guide.html#4-technical-support">Technical Support</a></li>
-            <li><a href="{{ site.baseurl }}/user-guide.html#5-data-governance--security">Data Governance & Security</a></li>
+            <li><a href="{{ site.baseurl }}/introduction#what-is-zorora">What is Zorora?</a></li>
+            <li><a href="{{ site.baseurl }}/introduction#core-features">Core Features</a></li>
+            <li><a href="{{ site.baseurl }}/introduction#architecture">Architecture</a></li>
+            <li><a href="{{ site.baseurl }}/introduction#local-first-design">Local-First Design</a></li>
+            <li><a href="{{ site.baseurl }}/introduction#quick-start">Quick Start</a></li>
           </ul>
         </li>
+        
+        <!-- Getting Started -->
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/archive/developers.html">Services</a>
+            <a href="{{ site.baseurl }}/getting-started">Getting Started</a>
+          </div>
+        </li>
+        
+        <!-- Guides -->
+        <li class="nav-item">
+          <div class="nav-header">
+            <a href="{{ site.baseurl }}/guides/overview">Guides</a>
             <span class="toggle-icon">+</span>
           </div>
           <ul class="sub-menu">
-            <li><a href="{{ site.baseurl }}/archive/developers.html#data-collection-services">Data Collection Services</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#data-ingestion-service">Data Ingestion Service</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#huawei-historical-service">Huawei Historical Service</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#weather-data-updater-service">Weather Data Updater Service</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#data-processing-services">Data Processing Services</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#data-standardization-service">Data Standardization Service</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#interpolation-service">Interpolation Service</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#weather-cache-service">Weather Cache Service</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#machine-learning-services">Machine Learning Services</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#global-training-service">Global Training Service</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#forecasting-api-service">Forecasting API Service</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#application-services">Application Services</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#terminal-api-service">Terminal API Service</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#edge-device-registry-service">Edge Device Registry Service</a></li>
-            <li><a href="{{ site.baseurl }}/archive/developers.html#energy-analyst-rag-service">Energy Analyst RAG Service</a></li>
+            <li><a href="{{ site.baseurl }}/guides/overview">Overview</a></li>
+            <li><a href="{{ site.baseurl }}/guides/installation">Installation</a></li>
+            <li><a href="{{ site.baseurl }}/guides/configuration">Configuration</a></li>
+            <li><a href="{{ site.baseurl }}/guides/terminal-repl">Terminal REPL</a></li>
+            <li><a href="{{ site.baseurl }}/guides/web-ui">Web UI</a></li>
+            <li><a href="{{ site.baseurl }}/guides/research-workflow">Research Workflow</a></li>
+            <li><a href="{{ site.baseurl }}/guides/code-generation">Code Generation</a></li>
+            <li><a href="{{ site.baseurl }}/guides/development-workflow">Development Workflow</a></li>
+            <li><a href="{{ site.baseurl }}/guides/slash-commands">Slash Commands</a></li>
           </ul>
         </li>
+        
+        <!-- API Reference -->
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/sdk.html">SDK</a>
+            <a href="{{ site.baseurl }}/api-reference/overview">API Reference</a>
             <span class="toggle-icon">+</span>
           </div>
           <ul class="sub-menu">
-            <li><a href="{{ site.baseurl }}/sdk.html#introduction">Introduction</a></li>
-            <li><a href="{{ site.baseurl }}/sdk.html#key-features">Key Features</a></li>
-            <li><a href="{{ site.baseurl }}/sdk.html#sdks">SDKs</a></li>
-            <li><a href="{{ site.baseurl }}/sdk.html#installation">Installation</a></li>
-            <li><a href="{{ site.baseurl }}/sdk.html#configuration">Configuration</a></li>
-            <li><a href="{{ site.baseurl }}/sdk.html#services">Services</a></li>
-            <li><a href="{{ site.baseurl }}/sdk.html#examples">Examples</a></li>
-            <li><a href="{{ site.baseurl }}/sdk.html#error-handling">Error Handling</a></li>
-            <li><a href="{{ site.baseurl }}/sdk.html#troubleshooting">Troubleshooting</a></li>
+            <li><a href="{{ site.baseurl }}/api-reference/overview">Overview</a></li>
+            <li><a href="{{ site.baseurl }}/api-reference/research-api">Research API</a></li>
+            <li><a href="{{ site.baseurl }}/api-reference/settings-api">Settings API</a></li>
+            <li><a href="{{ site.baseurl }}/api-reference/python-sdk">Python SDK</a></li>
           </ul>
         </li>
+        
+        <!-- Technical Concepts -->
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/archive/om-use-case.html">Use Cases</a>
+            <a href="{{ site.baseurl }}/technical-concepts/overview">Technical Concepts</a>
             <span class="toggle-icon">+</span>
           </div>
           <ul class="sub-menu">
-            <li><a href="{{ site.baseurl }}/archive/om-use-case.html#the-business-problem-o-m-is-bleeding-your-returns">The Business Problem</a></li>
-            <li><a href="{{ site.baseurl }}/archive/om-use-case.html#the-ona-terminal-solution-predictive-intelligence">The Solution</a></li>
-            <li><a href="{{ site.baseurl }}/archive/om-use-case.html#the-mcp-framework-advantage">MCP Framework Advantage</a></li>
-            <li><a href="{{ site.baseurl }}/archive/om-use-case.html#detailed-business-impact-analysis">Business Impact Analysis</a></li>
-            <li><a href="{{ site.baseurl }}/archive/om-use-case.html#technical-implementation-details">Technical Implementation</a></li>
-            <li><a href="{{ site.baseurl }}/archive/om-use-case.html#illustrative-example-string-performance-issue">Example Scenario</a></li>
-            <li><a href="{{ site.baseurl }}/archive/om-use-case.html#implementation-roadmap">Implementation Roadmap</a></li>
-            <li><a href="{{ site.baseurl }}/archive/om-use-case.html#getting-started">Getting Started</a></li>
+            <li><a href="{{ site.baseurl }}/technical-concepts/overview">Overview</a></li>
+            <li><a href="{{ site.baseurl }}/technical-concepts/architecture">Architecture</a></li>
+            <li><a href="{{ site.baseurl }}/technical-concepts/research-pipeline">Research Pipeline</a></li>
+            <li><a href="{{ site.baseurl }}/technical-concepts/storage">Storage</a></li>
+            <li><a href="{{ site.baseurl }}/technical-concepts/routing">Routing</a></li>
           </ul>
         </li>
+        
+        <!-- Use Cases -->
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/changelog.html">Changelog</a>
+            <a href="{{ site.baseurl }}/use-cases/overview">Use Cases</a>
             <span class="toggle-icon">+</span>
           </div>
           <ul class="sub-menu">
-            <li><a href="{{ site.baseurl }}/changelog.html#unreleased">Unreleased</a></li>
-            <li><a href="{{ site.baseurl }}/changelog.html#100---2025-11-28">1.0.0</a></li>
-            <li><a href="{{ site.baseurl }}/changelog.html#020---2025-10-17">0.2.0</a></li>
-            <li><a href="{{ site.baseurl }}/changelog.html#010---2025-10-13">0.1.0</a></li>
+            <li><a href="{{ site.baseurl }}/use-cases/overview">Overview</a></li>
+            <li><a href="{{ site.baseurl }}/use-cases/academic-research">Academic Research</a></li>
+            <li><a href="{{ site.baseurl }}/use-cases/code-development">Code Development</a></li>
+            <li><a href="{{ site.baseurl }}/use-cases/multi-source-analysis">Multi-Source Analysis</a></li>
           </ul>
         </li>
+        
+        <!-- Resources -->
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/faq.html">FAQ</a>
-            <span class="toggle-icon">+</span>
+            <a href="{{ site.baseurl }}/resources">Resources</a>
           </div>
-          <ul class="sub-menu">
-            <li><a href="{{ site.baseurl }}/faq.html#technical-questions">Technical Questions</a></li>
-            <li><a href="{{ site.baseurl }}/faq.html#business-questions">Business Questions</a></li>
-            <li><a href="{{ site.baseurl }}/faq.html#distributed-compute-questions">Distributed Compute Questions</a></li>
-            <li><a href="{{ site.baseurl }}/faq.html#support-information">Support Information</a></li>
-            <li><a href="{{ site.baseurl }}/faq.html#get-help--stay-updated">Get Help & Stay Updated</a></li>
-          </ul>
         </li>
+        
+        <!-- FAQ -->
         <li class="nav-item">
           <div class="nav-header">
-            <a href="{{ site.baseurl }}/legal.html">Legal</a>
-            <span class="toggle-icon">+</span>
+            <a href="{{ site.baseurl }}/faq">FAQ</a>
           </div>
-          <ul class="sub-menu">
-            <li><a href="{{ site.baseurl }}/legal.html#legal-documentation">Legal Documentation</a></li>
-            <li><a href="{{ site.baseurl }}/legal.html#terms-of-service">Terms of Service</a></li>
-            <li><a href="{{ site.baseurl }}/legal.html#end-user-license-agreement-eula">End User License Agreement (EULA)</a></li>
-            <li><a href="{{ site.baseurl }}/legal.html#privacy-policy">Privacy Policy</a></li>
-            <li><a href="{{ site.baseurl }}/legal.html#get-help--stay-updated">Get Help & Stay Updated</a></li>
-          </ul>
+        </li>
+        
+        <!-- Changelog -->
+        <li class="nav-item">
+          <div class="nav-header">
+            <a href="{{ site.baseurl }}/changelog">Changelog</a>
+          </div>
         </li>
       </ul>
     </nav>
   </div>
+  <!-- NAV END -->
 
   <div class="content">
     {{ content }}
   </div>
 
-  <!-- Mermaid.js post-processing: Convert code blocks to mermaid divs -->
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    
-    function convertMermaidBlocks() {
-      // Find all code blocks with language 'mermaid'
-      const mermaidCodeBlocks = document.querySelectorAll('code.language-mermaid, code.lang-mermaid');
-      
-      mermaidCodeBlocks.forEach((codeBlock) => {
-        // Get the mermaid code
-        const mermaidCode = codeBlock.textContent.trim();
-        
-        // Create a new div with class 'mermaid'
-        const mermaidDiv = document.createElement('div');
-        mermaidDiv.className = 'mermaid';
-        mermaidDiv.textContent = mermaidCode;
-        
-        // Replace the parent <pre> element with the mermaid div
-        const preElement = codeBlock.parentElement;
-        if (preElement && preElement.tagName === 'PRE') {
-          preElement.parentNode.replaceChild(mermaidDiv, preElement);
-        }
-      });
-      
-      // Initialize mermaid after converting code blocks
-      mermaid.initialize({ 
-        startOnLoad: true,
-        theme: 'default',
-        securityLevel: 'loose',
-        flowchart: {
-          useMaxWidth: true,
-          htmlLabels: true,
-          curve: 'basis'
-        },
-        sequence: {
-          diagramMarginX: 50,
-          diagramMarginY: 10,
-          actorMargin: 50,
-          width: 150,
-          height: 65,
-          boxMargin: 10,
-          boxTextMargin: 5,
-          noteMargin: 10,
-          messageMargin: 35,
-          mirrorActors: true,
-          bottomMarginAdj: 1,
-          useMaxWidth: true,
-          rightAngles: false,
-          showSequenceNumbers: false
-        }
-      });
-    }
-    
-    // Run immediately if DOM is ready, otherwise wait for DOMContentLoaded
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', convertMermaidBlocks);
-    } else {
-      // DOM is already loaded
-      convertMermaidBlocks();
-    }
-  </script>
-
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      const currentPath = window.location.pathname;
+      
       // Handle main navigation toggles
       const toggleIcons = document.querySelectorAll('.toggle-icon');
       
       toggleIcons.forEach(icon => {
-        icon.addEventListener('click', function() {
-          const subMenu = this.parentElement.nextElementSibling;
+        icon.addEventListener('click', function(e) {
+          e.preventDefault();
+          const navItem = this.closest('.nav-item');
+          const subMenu = navItem.querySelector('.sub-menu');
           
-          // Toggle submenu visibility
-          if(subMenu.style.display === 'none' || subMenu.style.display === '') {
-            subMenu.style.display = 'block';
-            this.textContent = '-';
-          } else {
-            subMenu.style.display = 'none';
-            this.textContent = '+';
-          }
-        });
-      });
-
-      // Handle sub-category toggles
-      const subToggleIcons = document.querySelectorAll('.sub-toggle-icon');
-      
-      subToggleIcons.forEach(icon => {
-        icon.addEventListener('click', function() {
-          const subSubMenu = this.parentElement.nextElementSibling;
-          
-          // Toggle sub-submenu visibility
-          if(subSubMenu.style.display === 'none' || subSubMenu.style.display === '') {
-            subSubMenu.style.display = 'block';
-            this.textContent = '-';
-          } else {
-            subSubMenu.style.display = 'none';
-            this.textContent = '+';
-          }
-        });
-      });
-
-      // Get current page path
-      const currentPath = window.location.pathname;
-      
-      // Expand the current section
-      document.querySelectorAll('.nav-header a').forEach(link => {
-        if(currentPath.includes(link.getAttribute('href').split('#')[0])) {
-          const subMenu = link.parentElement.nextElementSibling;
-          const toggleIcon = link.nextElementSibling;
-          subMenu.style.display = 'block';
-          toggleIcon.textContent = '-';
-          
-          // Also expand relevant sub-categories for API Endpoints and SDK
-          if (link.getAttribute('href').includes('endpoints.html')) {
-            // Expand all API endpoint categories by default
-            subMenu.querySelectorAll('.sub-sub-menu').forEach(subSubMenu => {
-              subSubMenu.style.display = 'block';
-            });
-            subMenu.querySelectorAll('.sub-toggle-icon').forEach(subIcon => {
-              subIcon.textContent = '-';
-            });
-          }
-          
-          if (link.getAttribute('href').includes('sdk.html')) {
-            // Expand SDK categories by default
-            subMenu.querySelectorAll('.sub-sub-menu').forEach(subSubMenu => {
-              subSubMenu.style.display = 'block';
-            });
-            subMenu.querySelectorAll('.sub-toggle-icon').forEach(subIcon => {
-              subIcon.textContent = '-';
-            });
-          }
-        }
-      });
-
-      // Expand Platform Layers sub-menu if on a layer page
-      if (currentPath.includes('edge-layer') || currentPath.includes('control-layer') || currentPath.includes('interface-layer')) {
-        const introductionLink = document.querySelector('.nav-header a[href*="introduction"]');
-        if (introductionLink) {
-          const subMenu = introductionLink.parentElement.nextElementSibling;
           if (subMenu) {
-            subMenu.style.display = 'block';
-            const toggleIcon = introductionLink.nextElementSibling;
-            if (toggleIcon) toggleIcon.textContent = '-';
+            const isActive = subMenu.classList.contains('active');
+            subMenu.classList.toggle('active');
+            subMenu.style.display = isActive ? 'none' : 'block';
+            this.classList.toggle('active');
+            this.textContent = isActive ? '+' : '−';
+          }
+        });
+      });
+
+      // Auto-expand current section
+      document.querySelectorAll('.nav-header a').forEach(link => {
+        const href = link.getAttribute('href');
+        const linkPath = href.split('#')[0].replace(/\/$/, '') || '/';
+        const currentPathClean = currentPath.replace(/\/$/, '') || '/';
+        
+        if (currentPathClean === linkPath || currentPathClean.startsWith(linkPath + '/')) {
+          // Mark as active
+          link.classList.add('active');
+          
+          // Expand parent menus
+          let parent = link.closest('.nav-item');
+          while (parent) {
+            const subMenu = parent.querySelector('.sub-menu');
+            const toggleIcon = parent.querySelector('.toggle-icon');
             
-            // Expand Platform Layers sub-menu
-            const platformLayersCategory = subMenu.querySelector('.sub-category');
-            if (platformLayersCategory) {
-              const subSubMenu = platformLayersCategory.querySelector('.sub-sub-menu');
-              const subToggleIcon = platformLayersCategory.querySelector('.sub-toggle-icon');
-              if (subSubMenu) subSubMenu.style.display = 'block';
-              if (subToggleIcon) subToggleIcon.textContent = '-';
+            if (subMenu) {
+              subMenu.classList.add('active');
+              subMenu.style.display = 'block';
             }
+            
+            if (toggleIcon) {
+              toggleIcon.classList.add('active');
+              toggleIcon.textContent = '−';
+            }
+            
+            parent = parent.parentElement.closest('.nav-item');
           }
         }
-      }
+      });
+    });
+  </script>
 
+  <!-- Initialize Mermaid and convert fenced code blocks to renderable containers -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Turn fenced code blocks with class language-mermaid into <div class="mermaid"> blocks
+      const candidates = document.querySelectorAll('pre code.language-mermaid, pre code.lang-mermaid, code.mermaid');
+      candidates.forEach(function (code) {
+        const mermaidText = code.textContent;
+        const container = document.createElement('div');
+        const isTimeline = /^\s*timeline\b/.test(mermaidText || '');
+        container.className = 'mermaid' + (isTimeline ? ' timeline-diagram' : '');
+        container.textContent = mermaidText;
+        const pre = code.closest('pre');
+        if (pre && pre.parentNode) {
+          pre.parentNode.replaceChild(container, pre);
+        } else if (code.parentNode) {
+          code.parentNode.replaceChild(container, code);
+        }
+      });
+
+      // If markup is already <div class="mermaid"><code>...</code></div>, unwrap the <code>
+      document.querySelectorAll('div.mermaid > code').forEach(function (inner) {
+        inner.parentElement.textContent = inner.textContent;
+      });
+
+      if (window.mermaid && typeof window.mermaid.initialize === 'function') {
+        window.mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'loose' });
+      }
     });
   </script>
 
@@ -359,7 +260,7 @@ layout: default
       align-items: center;
       padding: 8px 0;
       font-weight: 600;
-      font-size: 12px;
+      font-size: 0.9em;
       color: #4551bf;
       cursor: pointer;
     }
@@ -387,7 +288,7 @@ layout: default
     
     .sub-sub-menu a {
       font-size: 12px;
-      color: #555;
+      color: #666;
       text-decoration: none;
       display: block;
       padding: 4px 0;
@@ -400,7 +301,7 @@ layout: default
     
     /* Make main navigation more prominent */
     .nav-header a {
-      font-weight: bold;
+      font-weight: 700;
       font-size: 14px;
     }
     
@@ -416,7 +317,11 @@ layout: default
         padding-left: 5px;
       }
     }
+
+    /* Mermaid timeline: remove arrowheads so the line does not point past boxes */
+    .timeline-diagram svg [marker-end] {
+      marker-end: none !important;
+    }
   </style>
 </body>
 </html>
-
