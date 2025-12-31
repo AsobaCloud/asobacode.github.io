@@ -4,241 +4,317 @@ layout: default
 nav_order: 1
 ---
 
-# Ona Energy Management Platform
+# Zorora
 {: .fs-9 }
 
-**AI-powered infrastructure automation for your terminal.**
+**A local-deployment deep research engine that searches across academic databases, web sources, and newsroom articles, then synthesizes findings with credibility scoring and citation graphs.**
 {: .fs-6 .fw-300 }
 
-Transform reactive operations into proactive intelligence with industry-specific AI models.
+Built for macOS (Apple Silicon) with minimal RAM footprint, meant to be run directly from your computer, with all content, outputs, and chats stored locally and not in the cloud, giving you complete control and privacy.
 {: .fs-5 .fw-300 }
 
-<div class="user-path-buttons">
-  <div class="path-button">
-    <div class="path-icon">🛠️</div>
-    <div class="path-content">
-      <h3>Get Started</h3>
-      <p>Get started with Ona Platform</p>
-      <a href="introduction.html" class="path-link">Get Started →</a>
-    </div>
+<div class="page-header">
+  <div class="version-badge">
+    <span class="version-label">Version</span>
+    <span class="version-value">2.1.0</span>
+    <span class="version-separator">|</span>
+    <span class="version-label">Latest Release</span>
+    <a href="https://github.com/AsobaCloud/zorora/releases/tag/v2-prod" class="version-value">v2-prod</a>
+  </div>
+</div>
+
+## Quick Start
+
+<div class="quick-start-section">
+  <a href="https://github.com/AsobaCloud/zorora/releases/tag/v2-prod" class="quick-start-button">Download v2-prod</a>
+  <p class="quick-start-subtext">
+    Or install from GitHub: <code>pip install git+https://github.com/AsobaCloud/zorora.git</code>
+  </p>
+</div>
+
+### Prerequisites
+
+- **Python 3.8+**
+- **LM Studio** running on `http://localhost:1234`
+  - Download: [lmstudio.ai](https://lmstudio.ai)
+  - Load a 4B model (e.g., Qwen3-VL-4B, Qwen3-4B)
+- **HuggingFace token** (optional) - For remote Codestral endpoint
+- **Brave Search API key** (optional) - For enhanced web search
+
+### Run
+
+**Terminal Interface (for engineers):**
+```bash
+zorora
+```
+
+**Web Interface (for non-engineers):**
+```bash
+zorora web
+# Opens at http://localhost:5000
+```
+
+## What You Can Find Here
+
+<div class="overview-cards-grid">
+  <div class="overview-card">
+    <h3>Getting Started</h3>
+    <p>Installation, configuration, and your first research query. Get up and running in minutes.</p>
+    <a href="/getting-started" class="card-link">Get Started →</a>
   </div>
   
-  <div class="path-button">
-    <div class="path-icon">📦</div>
-    <div class="path-content">
-      <h3>SDK</h3>
-      <p>Rapid integration into your applications</p>
-      <a href="sdk.html" class="path-link">View SDK →</a>
-    </div>
+  <div class="overview-card">
+    <h3>Guides</h3>
+    <p>Step-by-step guides for terminal REPL, web UI, research workflows, code generation, and slash commands.</p>
+    <a href="/guides/overview" class="card-link">View Guides →</a>
   </div>
   
-  <div class="path-button">
-    <div class="path-icon">📊</div>
-    <div class="path-content">
+  <div class="overview-card">
+    <h3>API Reference</h3>
+    <p>Complete API documentation for research endpoints, settings management, and Python SDK integration.</p>
+    <a href="/api-reference/overview" class="card-link">View API Docs →</a>
+  </div>
+  
+  <div class="overview-card">
+    <h3>Technical Concepts</h3>
+    <p>Architecture, research pipeline, storage design, and routing mechanisms. Deep dive into how Zorora works.</p>
+    <a href="/technical-concepts/overview" class="card-link">Learn More →</a>
+  </div>
+  
+  <div class="overview-card">
+    <h3>Use Cases</h3>
+    <p>Real-world examples: academic research, code development, multi-source analysis, and more.</p>
+    <a href="/use-cases/overview" class="card-link">View Use Cases →</a>
+  </div>
+</div>
+
+## Core Features
+
+Zorora transforms from a basic research tool into a **deep research engine** that:
+
+1. **Searches EVERYTHING** - Academic databases (7 sources) + web search + Asoba newsroom
+2. **Follows citation trails** - Multi-hop research that explores cited papers
+3. **Cross-references claims** - Groups similar claims and counts agreement across sources
+4. **Scores credibility** - Transparent rules-based scoring of source authority
+5. **Builds citation graphs** - Visualizes relationships between sources
+6. **Synthesizes with confidence** - Generates comprehensive answers with citation levels
+
+### Deep Research Capabilities
+
+- **6-Phase Research Pipeline:**
+  1. **Parallel Source Aggregation** - Searches academic (7 sources), web (Brave + DDG), and newsroom simultaneously
+  2. **Citation Following** - Multi-hop exploration of cited papers (configurable depth: 1-3)
+  3. **Cross-Referencing** - Groups claims by similarity and counts agreement
+  4. **Credibility Scoring** - Rules-based scoring of source authority (academic journals, predatory publishers, retractions)
+  5. **Citation Graph Building** - Constructs directed graphs showing source relationships
+  6. **Synthesis** - Generates comprehensive answers with confidence levels and citations
+
+- **Research Depth Levels:**
+  - **Quick** - Initial sources only (skips citation following)
+  - **Balanced** - Adds citation following (1 hop)
+  - **Thorough** - Multi-hop citation exploration (up to 3 levels deep)
+
+### Additional Features
+
+- **Research persistence** - Save/load findings with metadata
+- **Code generation** - Dedicated Codestral model for coding tasks
+- **Multi-step development** - `/develop` workflow: explore → plan → approve → execute → lint
+- **Slash commands** - Force workflows: `/search`, `/ask`, `/code`, `/develop`, `/image`, `/vision`
+- **Deterministic routing** - Pattern-based decision tree (no LLM routing failures)
+- **Hybrid deployment** - Local 4B orchestrator + remote 32B specialists
+- **RAM-efficient** - Runs on MacBook Air M3 with 4B model
+- **Dual interfaces** - Terminal REPL for engineers, Web UI for non-engineers
+- **Multi-provider support** - Configure models from HuggingFace, OpenAI, and Anthropic APIs
+- **Visual settings management** - Web UI settings modal for easy configuration
+- **Vision and image generation** - Dedicated models for image analysis and text-to-image generation
+
+## Popular Quick Links
+
+<div class="quick-links-grid">
+  <div class="quick-link-card">
+    <div class="quick-link-icon">🚀</div>
+    <h4>Quick Start</h4>
+    <p>Get started in 5 minutes</p>
+    <a href="/getting-started"></a>
+  </div>
+  
+  <div class="quick-link-card">
+    <div class="quick-link-icon">📚</div>
+    <h4>Terminal REPL</h4>
+    <p>Interactive command-line interface</p>
+    <a href="/guides/terminal-repl"></a>
+  </div>
+  
+  <div class="quick-link-card">
+    <div class="quick-link-icon">🌐</div>
+    <h4>Web UI</h4>
+    <p>Browser-based research interface</p>
+    <a href="/guides/web-ui"></a>
+  </div>
+  
+  <div class="quick-link-card">
+    <div class="quick-link-icon">🔍</div>
+    <h4>Research Workflow</h4>
+    <p>Deep research capabilities</p>
+    <a href="/guides/research-workflow"></a>
+  </div>
+  
+  <div class="quick-link-card">
+    <div class="quick-link-icon">💻</div>
+    <h4>Code Generation</h4>
+    <p>Generate code with Codestral</p>
+    <a href="/guides/code-generation"></a>
+  </div>
+  
+  <div class="quick-link-card">
+    <div class="quick-link-icon">⚡</div>
+    <h4>Slash Commands</h4>
+    <p>Command reference</p>
+    <a href="/guides/slash-commands"></a>
+  </div>
+</div>
+
+## Code Examples
+
+### Deep Research Query
+
+**Terminal (via REPL):**
+```bash
+[1] ⚙ > What are the latest developments in large language model architectures?
+```
+
+The system automatically detects research intent and executes the deep research workflow.
+
+**Web UI:**
+1. Open `http://localhost:5000` in your browser
+2. Enter research question in the search box
+3. Select depth level (Quick/Balanced/Thorough)
+4. Click "Start Research"
+5. View synthesis, sources, and credibility scores
+
+**API (Programmatic Access):**
+```python
+from engine.research_engine import ResearchEngine
+
+engine = ResearchEngine()
+state = engine.deep_research("Your research question", depth=1)
+print(state.synthesis)
+```
+
+### Code Generation
+
+```bash
+[2] ⚙ > Write a Python function to validate email addresses
+```
+
+Routes to Codestral specialist model for code generation.
+
+### Development Workflow
+
+```bash
+[3] ⚙ > /develop Add user authentication to my Flask app
+```
+
+Executes multi-step workflow: explore → plan → approve → execute → lint.
+
+## Version & Updates
+
+<div class="version-updates-section">
+  <div class="version-info">
+    <h3>Current Version</h3>
+    <div class="version-number">2.1.0</div>
+    <div class="version-date">Settings Modal & Multi-Provider Support</div>
+    <a href="/changelog" class="changelog-link">View Full Changelog →</a>
+  </div>
+  
+  <div class="whats-new">
+    <h3>What's New</h3>
+    <ul class="whats-new-list">
+      <li>Web UI Settings Modal - Visual configuration interface</li>
+      <li>Multi-provider endpoint support (HuggingFace, OpenAI, Anthropic)</li>
+      <li>API key management for all providers</li>
+      <li>Vision and image generation model configuration</li>
+      <li>Endpoint CRUD operations via Web UI</li>
+    </ul>
+    <a href="/changelog" class="whats-new-link">See All Changes →</a>
+  </div>
+</div>
+
+## Community & Support
+
+<div class="community-section">
+  <div class="community-links-grid">
+    <div class="community-link-card">
+      <div class="community-icon">💬</div>
+      <h4>Discord</h4>
+      <p>Join our community</p>
+      <a href="https://discord.gg/nNV5evcr" target="_blank"></a>
+    </div>
+    
+    <div class="community-link-card">
+      <div class="community-icon">📧</div>
+      <h4>Email Support</h4>
+      <p>Get help from our team</p>
+      <a href="mailto:support@asoba.co"></a>
+    </div>
+    
+    <div class="community-link-card">
+      <div class="community-icon">🐛</div>
+      <h4>Report Issues</h4>
+      <p>GitHub Issues</p>
+      <a href="https://github.com/AsobaCloud/zorora/issues" target="_blank"></a>
+    </div>
+    
+    <div class="community-link-card">
+      <div class="community-icon">📖</div>
+      <h4>Documentation</h4>
+      <p>Full documentation</p>
+      <a href="/getting-started"></a>
+    </div>
+  </div>
+</div>
+
+## Documentation Sections Overview
+
+<div class="sections-overview">
+  <div class="section-cards">
+    <div class="section-card">
+      <h3>Getting Started</h3>
+      <p>Installation, configuration, and your first research query. Everything you need to get started with Zorora.</p>
+      <a href="/getting-started" class="section-link">Get Started →</a>
+    </div>
+    
+    <div class="section-card">
+      <h3>Guides</h3>
+      <p>Comprehensive guides covering terminal REPL, web UI, research workflows, code generation, and all slash commands.</p>
+      <a href="/guides/overview" class="section-link">View Guides →</a>
+    </div>
+    
+    <div class="section-card">
+      <h3>API Reference</h3>
+      <p>Complete API documentation for research endpoints, settings management, and Python SDK integration.</p>
+      <a href="/api-reference/overview" class="section-link">View API Docs →</a>
+    </div>
+    
+    <div class="section-card">
+      <h3>Technical Concepts</h3>
+      <p>Deep dive into Zorora's architecture, research pipeline, storage design, and routing mechanisms.</p>
+      <a href="/technical-concepts/overview" class="section-link">Learn More →</a>
+    </div>
+    
+    <div class="section-card">
       <h3>Use Cases</h3>
-      <p>Explore real-world applications</p>
-      <a href="archive/om-use-case.html" class="path-link">View Use Cases →</a>
+      <p>Real-world examples and use cases: academic research, code development, multi-source analysis.</p>
+      <a href="/use-cases/overview" class="section-link">View Use Cases →</a>
+    </div>
+    
+    <div class="section-card">
+      <h3>FAQ</h3>
+      <p>Frequently asked questions and troubleshooting guide for common issues.</p>
+      <a href="/faq" class="section-link">View FAQ →</a>
     </div>
   </div>
 </div>
-
-<div class="paradigm-card">
-  <div class="paradigm-text">
-    <h2>AI-powered infrastructure automation</h2>
-    <p>Transform reactive operations into proactive intelligence with industry-specific AI models</p>
-  </div>
-  <div class="paradigm-media">
-    <img src="{{ site.baseurl }}/assets/images/screenshot2.png" alt="Ona Terminal Interface" class="demo-gif">
-  </div>
-</div>
-
-<style>
-.user-path-buttons {
-  display: flex;
-  gap: 20px;
-  margin: 30px 0 40px 0;
-  flex-wrap: wrap;
-}
-
-.path-button {
-  flex: 1;
-  min-width: 300px;
-  border: 2px solid #e1e4e8;
-  border-radius: 8px;
-  padding: 25px;
-  text-align: center;
-  transition: all 0.3s ease;
-  background: #fff;
-}
-
-.path-button:hover {
-  border-color: #4551bf;
-  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
-  transform: translateY(-2px);
-}
-
-.path-icon {
-  font-size: 2.5em;
-  margin-bottom: 15px;
-}
-
-.path-content h3 {
-  font-size: 1.4em;
-  margin: 0 0 10px 0;
-  color: #2c3e50;
-}
-
-.path-content p {
-  color: #666;
-  margin: 0 0 15px 0;
-  line-height: 1.4;
-}
-
-.path-link {
-  display: inline-block;
-  background: #4551bf;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background 0.3s ease;
-}
-
-.path-link:hover {
-  background: #3a47a3;
-  text-decoration: none;
-  color: white;
-}
-
-.paradigm-card {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  margin: 40px 0;
-  flex-wrap: wrap;
-  border: 2px solid #e1e4e8;
-  border-radius: 8px;
-  padding: 30px;
-  background: #fff;
-  transition: all 0.3s ease;
-}
-
-.paradigm-card:hover {
-  border-color: #4551bf;
-  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
-  transform: translateY(-2px);
-}
-
-.paradigm-text {
-  flex: 1;
-  min-width: 250px;
-}
-
-.paradigm-text h2 {
-  font-size: 1.8em;
-  margin: 0 0 10px 0;
-  color: #2c3e50;
-}
-
-.paradigm-text p {
-  color: #666;
-  font-size: 1.1em;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.paradigm-media {
-  flex: 3;
-  min-width: 400px;
-}
-
-.demo-gif {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.exploration-cards {
-  display: flex;
-  gap: 20px;
-  margin: 30px 0 40px 0;
-  flex-wrap: wrap;
-}
-
-.exploration-card {
-  flex: 1;
-  min-width: 250px;
-  border: 2px solid #e1e4e8;
-  border-radius: 8px;
-  padding: 25px;
-  text-align: center;
-  transition: all 0.3s ease;
-  background: #fff;
-}
-
-.exploration-card:hover {
-  border-color: #4551bf;
-  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
-  transform: translateY(-2px);
-}
-
-.exploration-icon {
-  font-size: 2.5em;
-  margin-bottom: 15px;
-}
-
-.exploration-content h3 {
-  font-size: 1.2em;
-  margin: 0 0 10px 0;
-  color: #2c3e50;
-}
-
-.exploration-content h3 a {
-  color: #4551bf;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.exploration-content h3 a:hover {
-  color: #3a47a3;
-  text-decoration: underline;
-}
-
-.exploration-content p {
-  color: #666;
-  margin: 0;
-  line-height: 1.4;
-  font-size: 0.95em;
-}
-
-@media (max-width: 768px) {
-  .user-path-buttons {
-    flex-direction: column;
-  }
-  
-  .path-button {
-    min-width: auto;
-  }
-  
-  .paradigm-card {
-    flex-direction: column;
-  }
-  
-  .paradigm-media {
-    min-width: auto;
-  }
-  
-  .exploration-cards {
-    flex-direction: column;
-  }
-  
-  .exploration-card {
-    min-width: auto;
-  }
-}
-</style>
 
 ---
 

@@ -1,181 +1,272 @@
 ---
 title: "FAQ"
 layout: default
-nav_order: 6
+nav_order: 8
 ---
 
 # Frequently Asked Questions
 
-Find answers to the most common questions about Ona's energy management platform.
+Common questions and troubleshooting for Zorora.
 
----
+## Installation & Setup
 
-## Technical Questions
+### Q: How do I install Zorora?
 
-### What are the system requirements?
-**Minimum Requirements:**
-- Python 3.10+ (for Ona Terminal)
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- Stable internet connection
-- 4GB GPU RAM (for local installations)
-- AWS Credentials with Bedrock Access (for AI features)
+**A:** Download from [GitHub Release v2-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2-prod) or install from GitHub:
 
-**Recommended:**
-- Python 3.10+ (for Ona Terminal)
-- High-speed internet connection
-- 8GB GPU RAM (for local installations)
-- Latest browser versions
+```bash
+pip install git+https://github.com/AsobaCloud/zorora.git
+```
 
-**Operating Systems:**
-- Windows 11, macOS 18+, or Ubuntu 22.04+
+See [Installation Guide](/guides/installation) for detailed instructions.
 
-### How scalable is the AI module?
-The system scales effectively for 50MW+ portfolios and operates across multiple regions with proven results.
+### Q: What are the system requirements?
 
-### Can this system integrate with third-party monitoring platforms?
-Yes, the AI module can operate as a standalone solution or integrate via API with existing monitoring platforms, regardless of whether you're using eSUMS.
+**A:** 
+- Python 3.8+
+- macOS (Apple Silicon) - Optimized for M1/M2/M3 Macs
+- LM Studio running on `http://localhost:1234`
+- Minimum 4GB RAM (runs efficiently on MacBook Air M3)
 
-### How is data secured and where is it stored?
-Data security is handled through enterprise-grade encryption and secure protocols. Data can be stored regionally or on-premises based on your requirements.
+### Q: Do I need an API key?
 
-### What is the OODA workflow?
-The OODA (Observe-Orient-Decide-Act) workflow is our proprietary decision-making framework that enables:
-- **Observe**: Real-time data collection and monitoring
-- **Orient**: AI-powered analysis and pattern recognition
-- **Decide**: Automated decision recommendations
-- **Act**: Immediate action execution and optimization
+**A:** No API key required for basic usage. Optional API keys:
+- **HuggingFace token** - For remote Codestral endpoint
+- **Brave Search API key** - For enhanced web search (free tier: 2000 queries/month)
+- **OpenAI API key** - For OpenAI endpoints
+- **Anthropic API key** - For Anthropic endpoints
 
----
+## Usage
 
-## Business Questions
+### Q: How do I start using Zorora?
 
-### What is the pricing structure?
-**Proof of Concept:**
-- 3-Month Proof of Concept: R 13 130 / $700 ex VAT (credited toward annual contract)
-- Success metrics: Detection latency < 10 min, MTTR reduction > 25%, False positive rate < 10%
-- Auto-conversion: When 2/4 success metrics hit during 90 day PoC period → 12-month contract activates
+**A:** 
 
-**Annual Pricing:**
-- SaaS: R 218 945 / $11,700 annual
-- On-Prem: R 126 072 / $6,750 annual, R 43 770 / $2,350 with one time hardware install fee
+**Terminal:**
+```bash
+zorora
+```
 
-### What ROI can I expect?
-**10MW Portfolio Example:**
-- 25% MTTR reduction
-- R 82K / $4,400 annual savings per MW
-- 60% ROI
+**Web UI:**
+```bash
+zorora web
+# Opens at http://localhost:5000
+```
 
-**Customer Validation:**
-"The 4-hour detection improvement alone paid for Ona in the first month" - O&M Director, 25MW Portfolio
+### Q: How do I run a research query?
 
-### What is the implementation timeline?
-- 13-week implementation process
-- Revenue generation begins immediately
-- First revenue generated within 30 days
+**A:** Simply ask a question:
 
-### What happens post-PoC?
-Once clients move to an annual contract, the system includes ongoing support, updates, and improvements as part of the standard service.
+```bash
+[1] ⚙ > What are the latest developments in large language model architectures?
+```
 
-### Who is the Solar O&M AI tool for?
-The tool is designed for solar asset owners, O&M teams, energy asset managers, and business decision makers looking to optimize solar performance and reduce operational costs.
+The system automatically detects research intent and executes the deep research workflow.
 
-### How is our Solar O&M AI tool not subject to erosion by competition?
-Our competitive advantages include:
-- **Proprietary AI Models**: Advanced machine learning algorithms trained on real solar data
-- **OODA Workflow**: Unique decision-making framework for energy optimization
-- **Distributed Compute**: Zero-carbon edge computing powered by renewable energy
-- **Real-Time Processing**: Live data analysis and immediate action capabilities
-- **Proven Results**: Demonstrated ROI improvements across diverse portfolios
-- **Continuous Innovation**: Ongoing R&D and model refinement
+### Q: What's the difference between Quick, Balanced, and Thorough depth levels?
 
-### What's the definition of value for the Solar O&M AI tool?
-Value is measured through:
-- **Cost Reduction**: 25% MTTR reduction, R82K+ annual savings per MW
-- **Revenue Generation**: R1.8M+ compute revenue potential per 2.5MW system
-- **Risk Mitigation**: Proactive issue detection and prevention
-- **Operational Efficiency**: Automated monitoring and decision support
-- **Asset Protection**: Enhanced system reliability and longevity
+**A:**
+- **Quick (depth=1):** Initial sources only, skips citation following (~25-35s)
+- **Balanced (depth=2):** Adds citation following, 1-hop exploration (~35-50s) - *Coming soon*
+- **Thorough (depth=3):** Multi-hop citation exploration, up to 3 levels deep (~50-70s) - *Coming soon*
 
----
+## Troubleshooting
 
-## Distributed Compute Questions
+### Q: LM Studio connection failed. What should I do?
 
-### What is the customer demand?
-- R2.3M / $123,000 in signed LOIs globally
-- 60+ companies in pipeline
-- Growing 30% annually
+**A:**
+1. Start LM Studio
+2. Load a 4B model (e.g., Qwen3-VL-4B, Qwen3-4B)
+3. Ensure the model is running on port 1234
+4. Verify connection: `curl http://localhost:1234/v1/models`
 
-### What deployment options are available?
-We offer multiple deployment options to meet your specific needs:
-- **Cloud Deployment**: Fully managed cloud-based solution with automatic scaling
-- **Distributed Compute**: Zero-carbon edge computing powered by renewable energy ([Learn More](/products/distributed-compute))
-- **Hybrid Deployment**: Combination of cloud and distributed compute for optimal performance
-- **Air-Gapped Deployment**: Fully isolated deployment for high-security environments
-- **Regional Deployment**: Data sovereignty compliance with local data centers
+### Q: Research workflow not triggering. Why?
 
----
+**A:** Include research keywords: "What", "Why", "How", "Tell me", or use `/search` command to force research workflow.
 
-## Support Information
+### Q: Can't save research. What's wrong?
 
-### How do I get started?
-1. Contact us for a property assessment
-2. We conduct financial analysis of your solar assets
-3. Customer matching and contract terms are established
-4. Integration and testing are completed
-5. First revenue is generated within 30 days
+**A:** Check `~/.zorora/research/` directory exists and is writable:
 
-### What support is available?
-- Technical support for implementation and ongoing operations
-- Customer success management
-- Training and documentation
-- Regular updates and improvements
+```bash
+mkdir -p ~/.zorora/research/findings
+chmod 755 ~/.zorora/research
+```
 
----
+### Q: Endpoint errors (HF/OpenAI/Anthropic). How do I fix them?
 
-## Get Help & Stay Updated
+**A:**
+- Check endpoint URL (for HF endpoints)
+- Verify API keys are configured (use Web UI settings modal)
+- Ensure endpoints are enabled in config
+- Check API rate limits (OpenAI/Anthropic)
+- Verify model names match provider requirements
 
-<div class="page-end-section">
-  <div class="end-column">
-    <div class="support-cta">
-      <h3>Contact Support</h3>
-      <p>For technical assistance, feature requests, or any other questions, please reach out to our dedicated support team.</p>
-      <a href="mailto:support@asoba.co" class="support-button">Email Support</a>
-      <a href="https://discord.gg/nNV5evcr" target="_blank" class="support-button" style="margin-top: 10px; display: inline-block;">
-        <svg width="16" height="16" style="margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-        </svg>
-        Join Discord
-      </a>
-    </div>
-  </div>
-  
-  <div class="end-column">
-    <div id="mc_embed_shell">
-      <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-      <style type="text/css">
-        #mc_embed_signup{background:#fff; false;clear:left; font:14px Helvetica,Arial,sans-serif; width: 100%;}
-      </style>
-      <div id="mc_embed_signup">
-        <form action="https://asoba.us10.list-manage.com/subscribe/post?u=459ea321d7831d7b9f5fac70f&amp;id=e03a70f492&amp;f_id=000a9ae3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-          <div id="mc_embed_signup_scroll">
-            <h3>Subscribe to Updates</h3>
-            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-            <div class="mc-field-group"><label for="mce-FNAME">First Name </label><input type="text" name="FNAME" class=" text" id="mce-FNAME" value=""></div>
-            <div class="mc-field-group"><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" value="" required=""></div>
-            <div id="mce-responses" class="clear">
-              <div class="response" id="mce-error-response" style="display: none;"></div>
-              <div class="response" id="mce-success-response" style="display: none;"></div>
-            </div>
-            <div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_459ea321d7831d7b9f5fac70f_e03a70f492" tabindex="-1" value=""></div>
-            <div class="clear"><input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe"></div>
-          </div>
-        </form>
-      </div>
-      <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-      <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';fnames[7]='MMERGE7';ftypes[7]='url';fnames[8]='MMERGE8';ftypes[8]='text';fnames[9]='MMERGE9';ftypes[9]='text';fnames[10]='MMERGE10';ftypes[10]='text';fnames[11]='MMERGE11';ftypes[11]='url';fnames[12]='MMERGE12';ftypes[12]='text';fnames[13]='MMERGE13';ftypes[13]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-    </div>
-  </div>
-</div>
+### Q: Web UI not starting. What's the issue?
 
-© 2025 Asoba Corporation. All rights reserved.
+**A:**
+- Ensure Flask is installed: `pip install flask`
+- Run: `python web_main.py` (or `zorora web` if installed via pip)
+- Check port 5000 is available: `lsof -i :5000`
 
+### Q: Deep research not working. How do I debug?
+
+**A:**
+- Check that research tools are accessible: `from tools.research.academic_search import academic_search`
+- Verify storage directory exists: `~/.zorora/` (created automatically)
+- Check logs for API errors (Brave Search, Newsroom API)
+
+## Configuration
+
+### Q: How do I configure models and endpoints?
+
+**A:** Use the Web UI settings modal (recommended):
+
+1. Start Web UI: `zorora web`
+2. Click ⚙️ gear icon
+3. Configure models, endpoints, and API keys
+4. Click "Save"
+
+Or use terminal: `/models` command for interactive configuration.
+
+### Q: How do I add a HuggingFace endpoint?
+
+**A:** 
+
+**Web UI:**
+1. Open settings modal
+2. Click "Add New Endpoint"
+3. Select "HuggingFace"
+4. Enter URL and model name
+5. Click "Save"
+
+**Manual:**
+Edit `config.py`:
+```python
+HF_ENDPOINTS = {
+    "codestral-hf": {
+        "url": "https://api-inference.huggingface.co/models/Qwen/Qwen2.5-Coder-32B-Instruct",
+        "model_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "timeout": 120,
+    }
+}
+```
+
+### Q: How do I configure OpenAI or Anthropic endpoints?
+
+**A:** Similar to HuggingFace, but requires model name and API key:
+
+**OpenAI:**
+```python
+OPENAI_ENDPOINTS = {
+    "gpt-4": {
+        "model": "gpt-4",
+        "max_tokens": 4096,
+        "timeout": 60,
+    }
+}
+OPENAI_API_KEY = "your-api-key"
+```
+
+**Anthropic:**
+```python
+ANTHROPIC_ENDPOINTS = {
+    "claude-opus": {
+        "model": "claude-3-opus-20240229",
+        "max_tokens": 4096,
+        "timeout": 60,
+    }
+}
+ANTHROPIC_API_KEY = "your-api-key"
+```
+
+## Features
+
+### Q: What slash commands are available?
+
+**A:** See [Slash Commands Reference](/guides/slash-commands) for complete list:
+
+- `/search` - Force deep research workflow
+- `/ask` - Force conversational mode
+- `/code` - Force code generation
+- `/develop` - Multi-step development workflow
+- `/image` - Generate image with FLUX
+- `/vision` - Analyze image with vision model
+- `/models` - Interactive model selector
+- `/config` - Show routing configuration
+- `/history` - Browse saved sessions
+- `/help` - Show available commands
+
+### Q: How does the research workflow work?
+
+**A:** Zorora executes a 6-phase pipeline:
+
+1. Parallel Source Aggregation (academic + web + newsroom)
+2. Citation Following (if depth > 1)
+3. Cross-Referencing (groups claims by similarity)
+4. Credibility Scoring (rules-based)
+5. Citation Graph Building
+6. Synthesis (reasoning model)
+
+See [Research Pipeline](/technical-concepts/research-pipeline) for details.
+
+### Q: How is credibility scored?
+
+**A:** Rules-based scoring considers:
+
+- Domain reputation (Nature=0.85, arXiv=0.50, etc.)
+- Citation count
+- Cross-reference agreement
+- Publisher type (academic journals vs predatory publishers)
+- Retraction status
+
+See [Research Pipeline](/technical-concepts/research-pipeline) for details.
+
+## Storage & Privacy
+
+### Q: Where is research data stored?
+
+**A:** All data is stored locally:
+
+- **SQLite database:** `~/.zorora/zorora.db`
+- **JSON files:** `~/.zorora/research/findings/<id>.json`
+
+### Q: Is my research data private?
+
+**A:** Yes. All processing and storage happens on your machine. Research data never leaves your computer (except source fetching from academic databases, web search, and newsroom API).
+
+### Q: Can I backup my research?
+
+**A:** Yes. Research is stored locally and can be backed up:
+
+```bash
+# Backup SQLite database
+cp ~/.zorora/zorora.db ~/.zorora/zorora.db.backup
+
+# Backup JSON files
+cp -r ~/.zorora/research ~/.zorora/research.backup
+```
+
+## Performance
+
+### Q: How fast is research?
+
+**A:** Varies by depth:
+- **Quick (depth=1):** ~25-35 seconds
+- **Balanced (depth=2):** ~35-50 seconds - *Coming soon*
+- **Thorough (depth=3):** ~50-70 seconds - *Coming soon*
+
+### Q: How much RAM does Zorora use?
+
+**A:** 4-6 GB with 4B orchestrator model. Runs efficiently on MacBook Air M3.
+
+### Q: How fast is routing?
+
+**A:** 0ms - Pattern matching is instant (no LLM call).
+
+## See Also
+
+- [Getting Started](/getting-started) - Installation and setup
+- [Guides](/guides/overview) - Comprehensive guides
+- [Troubleshooting](/getting-started#troubleshooting) - Troubleshooting guide
+- [Technical Concepts](/technical-concepts/overview) - Architecture documentation

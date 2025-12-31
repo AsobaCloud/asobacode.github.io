@@ -6,326 +6,279 @@ nav_order: 2
 
 # Getting Started
 
-Quick start guide for developers to get up and running with Ona Terminal CLI.
-
-## Overview
-
-This guide will help you install, configure, and start using the Ona Terminal CLI for energy asset management and forecasting.
+Quick start guide to get up and running with Zorora in minutes.
 
 ## Prerequisites
 
 ### System Requirements
 
-- **Python 3.10+**: CRITICAL - Use python3.10, not python3 (system version is 3.9)
-- **AWS CLI**: Configured with appropriate credentials and permissions
-- **Internet Access**: Required for AWS Bedrock API calls and package installation
-- **Storage**: Local storage for upload tracking (`~/.asoba/uploads/`)
-- **Memory**: Minimum 4GB RAM for local development
-- **Network**: Access to AWS services in target regions
+- **Python 3.8+**
+- **macOS (Apple Silicon)** - Optimized for M1/M2/M3 Macs
+- **LM Studio** running on `http://localhost:1234`
+  - Download: [lmstudio.ai](https://lmstudio.ai)
+  - Load a 4B model (e.g., Qwen3-VL-4B, Qwen3-4B)
+- **RAM**: Minimum 4GB (runs efficiently on MacBook Air M3)
+- **Storage**: Local storage for research data (`~/.zorora/`)
 
-### AWS Requirements
+### Optional Prerequisites
 
-- **AWS Account**: Access to AWS services in target regions
-- **IAM Permissions**: EC2, Lambda, API Gateway, S3, DynamoDB, CloudWatch
-- **API Key**: Valid Ona API key for authentication
+- **HuggingFace token** (optional) - For remote Codestral endpoint
+- **Brave Search API key** (optional) - For enhanced web search
+  - Get free API key at: https://brave.com/search/api/
+  - Free tier: 2000 queries/month (~66/day)
+- **Flask** (for Web UI) - Installed automatically with package
 
-## Quick Installation
+## Installation
 
-### Step 1: Install Ona Terminal CLI
+### Step 1: Download Latest Release
 
+**Recommended: Download from GitHub Release**
+
+[Download v2-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2-prod)
+
+### Step 2: Install Zorora
+
+**From GitHub Release (recommended):**
 ```bash
-# Install the CLI tool
-pip3.10 install ona-terminal
-
-# Verify installation
-ona --version
+# Download and extract the release package
+# Then install:
+pip install -e .
 ```
 
-### Step 2: Configure API Key
-
+**From GitHub (development):**
 ```bash
-# Configure your API key
-ona configure --api-key YOUR_API_KEY
-
-# Verify configuration
-ona configure --list
+pip install git+https://github.com/AsobaCloud/zorora.git
 ```
 
-### Step 3: Test Connection
-
+**From source:**
 ```bash
-# Test API connectivity
-ona status
-
-# Check available commands
-ona --help
+git clone https://github.com/AsobaCloud/zorora.git
+cd zorora
+pip install -e .
 ```
 
-## First Steps
-
-### 1. Upload Historical Data
+### Step 3: Verify Installation
 
 ```bash
-# Upload your first dataset
-ona upload historical \
-  --file your_data.csv \
-  --customer-id your-customer-id \
-  --manufacturer SolarEdge \
-  --location CapeTown
-```
+# Check if zorora command is available
+zorora --help
 
-### 2. Train a Model
-
-```bash
-# Train a forecasting model
-ona train \
-  --customer-id your-customer-id \
-  --location CapeTown \
-  --manufacturer SolarEdge \
-  --serial-number SE123456
-```
-
-### 3. Generate Forecast
-
-```bash
-# Generate a 24-hour forecast
-ona forecast \
-  --customer-id your-customer-id \
-  --horizon 24 \
-  --model-type lstm
+# Or check version
+python -c "import zorora; print(zorora.__version__)"
 ```
 
 ## Configuration
 
-### Environment Variables
+### Basic Configuration
 
+Zorora works out of the box with LM Studio running locally. No configuration required for basic usage.
+
+### Advanced Configuration
+
+**Web UI Settings Modal (Recommended):**
+
+1. Start the Web UI: `python web_main.py` (or `zorora web`)
+2. Click the ⚙️ gear icon in the top-right corner
+3. Configure LLM models and endpoints:
+   - **Model Selection**: Choose models for each tool (orchestrator, codestral, reasoning, search, intent_detector, vision, image_generation)
+   - **Endpoint Selection**: Select from Local (LM Studio), HuggingFace, OpenAI, or Anthropic
+   - **API Keys**: Configure API keys for HuggingFace, OpenAI, and Anthropic
+   - **Add/Edit Endpoints**: Click "Add New Endpoint" to configure custom endpoints
+4. Click "Save" - changes take effect after server restart
+
+**Terminal Configuration:**
+
+Use the interactive `/models` command:
 ```bash
-# Required environment variables
-export ONA_API_KEY="your-api-key"
-export ONA_REGION="af-south-1"
-export ONA_ENVIRONMENT="production"
-
-# Optional environment variables
-export ONA_LOG_LEVEL="INFO"
-export ONA_TIMEOUT="30"
-export ONA_RETRY_ATTEMPTS="3"
+zorora
+[1] ⚙ > /models
 ```
 
-### Configuration File
+**Manual Configuration:**
 
-Create `~/.asoba/config.yaml`:
+1. Copy `config.example.py` to `config.py`
+2. Edit `config.py` with your settings:
+   - LM Studio model name
+   - HuggingFace token (optional)
+   - OpenAI API key (optional)
+   - Anthropic API key (optional)
+   - Brave Search API key (optional)
+   - Specialist model configurations
+   - Endpoint mappings
 
-```yaml
-api:
-  key: your-api-key
-  region: af-south-1
-  environment: production
-  timeout: 30
-  retry_attempts: 3
+### Web Search Setup
 
-logging:
-  level: INFO
-  file: ~/.asoba/logs/ona.log
+**Brave Search API** (recommended):
+- Get free API key at: https://brave.com/search/api/
+- Free tier: 2000 queries/month (~66/day)
+- Configure in `config.py`:
+  ```python
+  BRAVE_SEARCH = {
+      "api_key": "YOUR_API_KEY",
+      "enabled": True,
+  }
+  ```
 
-storage:
-  upload_dir: ~/.asoba/uploads/
-  cache_dir: ~/.asoba/cache/
+**DuckDuckGo Fallback:**
+- Automatically used if Brave Search unavailable
+- No API key required
+
+## First Research Query
+
+### Terminal Interface
+
+**Start the REPL:**
+```bash
+zorora
 ```
 
-## Development Setup
-
-### Local Development Installation
-
+**Run your first research query:**
 ```bash
-# Clone the repository
-git clone https://github.com/asobacloud/terminal.git
-cd terminal
-
-# Create virtual environment
-python3.10 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install in development mode
-pip install -e .
-
-# Install development dependencies
-pip install -r requirements-dev.txt
+[1] ⚙ > What are the latest developments in large language model architectures?
 ```
 
-### Testing Your Installation
+The system automatically detects research intent and executes the deep research workflow.
 
+**What happens automatically:**
+- ✅ Aggregates sources from academic databases (7 sources), web (Brave + DDG), and newsroom (parallel)
+- ✅ Scores credibility of each source (multi-factor: domain, citations, cross-references)
+- ✅ Cross-references claims across sources
+- ✅ Synthesizes findings with citations and confidence levels
+- ✅ Saves results to local storage (`~/.zorora/zorora.db` + JSON files)
+
+### Web Interface
+
+**Start the Web UI:**
 ```bash
-# Run the test suite
-python -m pytest tests/
-
-# Run specific tests
-python -m pytest tests/unit/test_cli.py
-
-# Run with coverage
-python -m pytest --cov=src/ona_terminal
+python web_main.py
+# Or if installed via pip:
+zorora web
 ```
 
-## Common Commands
+**Access the interface:**
+1. Open `http://localhost:5000` in your browser
+2. Enter research question in the search box
+3. Select depth level:
+   - **Quick** - Initial sources only (depth=1, ~25-35s)
+   - **Balanced** - + Citation following (depth=2, ~35-50s) - *Coming soon*
+   - **Thorough** - + Multi-hop citations (depth=3, ~50-70s) - *Coming soon*
+4. Click "Start Research"
+5. View synthesis, sources, and credibility scores
 
-### Data Management
+### API (Programmatic Access)
 
-```bash
-# List uploaded datasets
-ona data list --customer-id your-customer-id
+```python
+from engine.research_engine import ResearchEngine
 
-# Get dataset details
-ona data info --dataset-id dataset-123
-
-# Delete dataset
-ona data delete --dataset-id dataset-123
+engine = ResearchEngine()
+state = engine.deep_research("Your research question", depth=1)
+print(state.synthesis)
 ```
 
-### Model Management
+## Verify Results
+
+### Check Research Storage
+
+Research is automatically saved to local storage. Verify it exists:
 
 ```bash
-# List trained models
-ona models list --customer-id your-customer-id
+# Check SQLite database
+ls -la ~/.zorora/zorora.db
 
-# Get model details
-ona models info --model-id model-123
-
-# Delete model
-ona models delete --model-id model-123
+# Check JSON files
+ls -la ~/.zorora/research/findings/
 ```
 
-### Forecast Management
+### Test Different Workflows
 
+**Code Generation:**
 ```bash
-# List forecasts
-ona forecasts list --customer-id your-customer-id
+[2] ⚙ > Write a Python function to validate email addresses
+```
 
-# Get forecast results
-ona forecasts get --forecast-id forecast-123
+**Development Workflow:**
+```bash
+[3] ⚙ > /develop Add user authentication to my Flask app
+```
 
-# Export forecast data
-ona forecasts export --forecast-id forecast-123 --format csv
+**Image Generation:**
+```bash
+[4] ⚙ > /image a futuristic solar farm at sunset
+```
+
+**Image Analysis:**
+```bash
+[5] ⚙ > /vision screenshot.png
 ```
 
 ## Troubleshooting
 
-### Common Issues
+### LM Studio Not Connected
 
-#### Python Version Issues
+**Problem:** Error connecting to LM Studio
 
+**Solution:**
+1. Start LM Studio
+2. Load a model on port 1234
+3. Verify connection: `curl http://localhost:1234/v1/models`
+
+### Research Workflow Not Triggered
+
+**Problem:** Query doesn't trigger deep research
+
+**Solution:** Include research keywords: "What", "Why", "How", "Tell me", or use `/search` command
+
+### Can't Save Research
+
+**Problem:** Research not saving to disk
+
+**Solution:** Check `~/.zorora/research/` directory exists and is writable:
 ```bash
-# Check Python version
-python3.10 --version
-
-# If system Python is 3.9, install 3.10
-sudo apt update
-sudo apt install python3.10 python3.10-pip python3.10-venv
+mkdir -p ~/.zorora/research/findings
+chmod 755 ~/.zorora/research
 ```
 
-#### API Connection Issues
+### Endpoint Errors (HF/OpenAI/Anthropic)
 
-```bash
-# Test API connectivity
-curl -H "x-api-key: YOUR_API_KEY" \
-  https://api.asoba.co/health
+**Problem:** API endpoint errors
 
-# Check AWS credentials
-aws sts get-caller-identity
-```
+**Solution:**
+- Check endpoint URL (for HF endpoints)
+- Verify API keys are configured (use Web UI settings modal)
+- Ensure endpoints are enabled in config
+- Check API rate limits (OpenAI/Anthropic)
+- Verify model names match provider requirements
 
-#### Permission Issues
+### Web UI Not Starting
 
-```bash
-# Check file permissions
-ls -la ~/.asoba/
+**Problem:** Web UI fails to start
 
-# Fix permissions if needed
-chmod 700 ~/.asoba/
-chmod 600 ~/.asoba/config.yaml
-```
+**Solution:**
+- Ensure Flask is installed: `pip install flask`
+- Run: `python web_main.py` (or `zorora web` if installed via pip)
+- Check port 5000 is available
 
-### Getting Help
+### Deep Research Not Working
 
-```bash
-# Get help for any command
-ona --help
-ona upload --help
-ona train --help
+**Problem:** Deep research workflow fails
 
-# Enable debug logging
-export ONA_LOG_LEVEL="DEBUG"
-ona status
-```
+**Solution:**
+- Check that research tools are accessible: `from tools.research.academic_search import academic_search`
+- Verify storage directory exists: `~/.zorora/` (created automatically)
+- Check logs for API errors (Brave Search, Newsroom API)
 
 ## Next Steps
 
-### 1. Explore the API Reference
+- **[Guides](/guides/overview)** - Comprehensive guides for all features
+- **[Terminal REPL](/guides/terminal-repl)** - Learn the command-line interface
+- **[Web UI](/guides/web-ui)** - Master the browser-based interface
+- **[Research Workflow](/guides/research-workflow)** - Deep dive into research capabilities
+- **[Slash Commands](/guides/slash-commands)** - Complete command reference
+- **[API Reference](/api-reference/overview)** - Programmatic access documentation
 
-- [Complete API Documentation](api-reference.md)
-- [Integration Guide](integration.md)
-- [SDK Documentation](resources.md)
+## See Also
 
-### 2. Deploy to Production
-
-- [Deployment Guide](deployment.md)
-- [PoC Deployment](poc-deployment.html)
-- [Production Infrastructure](production-deployment.html)
-
-### 3. Join the Community
-
-- [Discord Community](https://discord.gg/nNV5evcr)
-- [GitHub Issues](https://github.com/asobacloud/terminal/issues)
-- [Technical Support](mailto:support@asoba.co)
-
-## Support
-
-- 📧 **Technical Support**: [support@asoba.co](mailto:support@asoba.co)
-- 💬 **Discord Community**: [Join our Discord](https://discord.gg/nNV5evcr)
-- 📖 **API Reference**: [Complete API documentation](api-reference.md)
-- 🔗 **Integration Guide**: [SDK and webhook integration](integration.md)
-
----
-
-## Get Help & Stay Updated
-
-<div class="page-end-section">
-  <div class="end-column">
-    <div class="support-cta">
-      <h3>Contact Support</h3>
-      <p>For technical assistance, feature requests, or any other questions, please reach out to our dedicated support team.</p>
-      <a href="mailto:support@asoba.co" class="support-button">Email Support</a>
-      <a href="https://discord.gg/nNV5evcr" target="_blank" class="support-button" style="margin-top: 10px; display: inline-block;">
-        <svg width="16" height="16" style="margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-        </svg>
-        Join Our Discord
-      </a>
-    </div>
-  </div>
-  
-  <div class="end-column">
-    <div id="mc_embed_shell">
-      <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
-      <style type="text/css">
-        #mc_embed_signup{background:#fff; false;clear:left; font:14px Helvetica,Arial,sans-serif; width: 100%;}
-      </style>
-      <div id="mc_embed_signup">
-        <form action="https://asoba.us10.list-manage.com/subscribe/post?u=459ea321d7831d7b9f5fac70f&amp;id=e03a70f492&amp;f_id=000a9ae3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-          <div id="mc_embed_signup_scroll">
-            <h3>Subscribe to Updates</h3>
-            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-            <div class="mc-field-group"><label for="mce-FNAME">First Name </label><input type="text" name="FNAME" class=" text" id="mce-FNAME" value=""></div>
-            <div class="mc-field-group"><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" value="" required=""></div>
-            <div id="mce-responses" class="clear">
-              <div class="response" id="mce-error-response" style="display: none;"></div>
-              <div class="response" id="mce-success-response" style="display: none;"></div>
-            </div>
-            <div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_459ea321d7831d7b9f5fac70f_e03a70f492" tabindex="-1" value=""></div>
-            <div class="clear"><input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe"></div>
-          </div>
-        </form>
-      </div>
-      <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-      <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[0]='EMAIL';ftypes[0]='email';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';fnames[7]='MMERGE7';ftypes[7]='url';fnames[8]='MMERGE8';ftypes[8]='text';fnames[9]='MMERGE9';ftypes[9]='text';fnames[10]='MMERGE10';ftypes[10]='text';fnames[11]='MMERGE11';ftypes[11]='url';fnames[12]='MMERGE12';ftypes[12]='text';fnames[13]='MMERGE13';ftypes[13]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-    </div>
-  </div>
-</div>
+- [Introduction](/introduction) - Overview of Zorora architecture and features
+- [FAQ](/faq) - Frequently asked questions
+- [Technical Concepts](/technical-concepts/overview) - Deep dive into how Zorora works
+- [Use Cases](/use-cases/overview) - Real-world examples

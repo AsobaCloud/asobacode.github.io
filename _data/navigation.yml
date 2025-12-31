@@ -10,124 +10,102 @@
   url: /introduction
   nav_order: 0.5
   children:
-    - title: Quick Start
-      url: /introduction#quick-start
-    - title: What is Ona Platform?
-      url: /introduction#what-is-ona-platform
-    - title: Edge Layer
-      url: /edge-layer
-    - title: Control Layer
-      url: /control-layer
-    - title: Interface Layer
-      url: /interface-layer
-    - title: Data Flow
-      url: /introduction#data-flow
-    - title: Resilience
-      url: /introduction#resilience
+    - title: What is Zorora?
+      url: /introduction#what-is-zorora
+    - title: Core Features
+      url: /introduction#core-features
     - title: Architecture
       url: /introduction#architecture
-    - title: Further Research
-      url: /introduction#further-research
-    - title: Next Steps
-      url: /introduction#next-steps
-
-- title: User Guide
-  url: /user-guide
-  nav_order: 1.5
-  children:
-    - title: Overview
-      url: /user-guide#1-overview
-    - title: Onboarding Workflow
-      url: /user-guide#2-onboarding-workflow
-    - title: Site Information Requirements
-      url: /user-guide#3-site-information-requirements
-    - title: Expected Success Metrics
-      url: /user-guide#4-expected-success-metrics
-    - title: Implementation Timeline Summary
-      url: /user-guide#5-implementation-timeline-summary
-    - title: Technical Support
-      url: /user-guide#6-technical-support
-    - title: Data Governance & Security
-      url: /user-guide#7-data-governance--security
-
-- title: SDK
-  url: /sdk
-  nav_order: 1.75
-  children:
-    - title: Overview
-      url: /sdk#overview
-    - title: Changes
-      url: /sdk#changes
-    - title: Improvements
-      url: /sdk#improvements
-    - title: Breaking Changes
-      url: /sdk#breaking-changes
-    - title: Migration Guide
-      url: /sdk#migration-guide
-    - title: Files Changed
-      url: /sdk#files-changed
-    - title: Next Steps
-      url: /sdk#next-steps
-    - title: Support
-      url: /sdk#support
+    - title: Local-First Design
+      url: /introduction#local-first-design
+    - title: Quick Start
+      url: /introduction#quick-start
 
 - title: Getting Started
   url: /getting-started
   nav_order: 2
-
-- title: Use Cases
-  url: /archive/om-use-case
-  nav_order: 2.5
   children:
-    - title: The Business Problem
-      url: /archive/om-use-case#the-business-problem-o-m-is-bleeding-your-returns
-    - title: The Solution
-      url: /archive/om-use-case#the-ona-terminal-solution-predictive-intelligence
-    - title: MCP Framework Advantage
-      url: /archive/om-use-case#the-mcp-framework-advantage
-    - title: Business Impact Analysis
-      url: /archive/om-use-case#detailed-business-impact-analysis
-    - title: Technical Implementation
-      url: /archive/om-use-case#technical-implementation-details
-    - title: Example Scenario
-      url: /archive/om-use-case#illustrative-example-string-performance-issue
-    - title: Implementation Roadmap
-      url: /archive/om-use-case#implementation-roadmap
-    - title: Getting Started
-      url: /archive/om-use-case#getting-started
+    - title: Prerequisites
+      url: /getting-started#prerequisites
+    - title: Installation
+      url: /getting-started#installation
+    - title: Configuration
+      url: /getting-started#configuration
+    - title: First Research Query
+      url: /getting-started#first-research-query
 
-- title: Deployment
-  url: /deployment
+- title: Guides
+  url: /guides/overview
   nav_order: 3
-
-- title: PoC Deployment
-  url: /poc-deployment
-  nav_order: 4
+  children:
+    - title: Overview
+      url: /guides/overview
+    - title: Installation
+      url: /guides/installation
+    - title: Configuration
+      url: /guides/configuration
+    - title: Terminal REPL
+      url: /guides/terminal-repl
+    - title: Web UI
+      url: /guides/web-ui
+    - title: Research Workflow
+      url: /guides/research-workflow
+    - title: Code Generation
+      url: /guides/code-generation
+    - title: Development Workflow
+      url: /guides/development-workflow
+    - title: Slash Commands
+      url: /guides/slash-commands
 
 - title: API Reference
-  url: /api-reference
+  url: /api-reference/overview
+  nav_order: 4
+  children:
+    - title: Overview
+      url: /api-reference/overview
+    - title: Research API
+      url: /api-reference/research-api
+    - title: Settings API
+      url: /api-reference/settings-api
+    - title: Python SDK
+      url: /api-reference/python-sdk
+
+- title: Technical Concepts
+  url: /technical-concepts/overview
   nav_order: 5
+  children:
+    - title: Overview
+      url: /technical-concepts/overview
+    - title: Architecture
+      url: /technical-concepts/architecture
+    - title: Research Pipeline
+      url: /technical-concepts/research-pipeline
+    - title: Storage
+      url: /technical-concepts/storage
+    - title: Routing
+      url: /technical-concepts/routing
 
-- title: Shared Components
-  url: /shared-components
+- title: Use Cases
+  url: /use-cases/overview
   nav_order: 6
-
-- title: CLI Tools
-  url: /cli-tools
-  nav_order: 7
-
-- title: Integration
-  url: /integration
-  nav_order: 8
-
-- title: Development
-  url: /development
-  nav_order: 9
+  children:
+    - title: Overview
+      url: /use-cases/overview
+    - title: Academic Research
+      url: /use-cases/academic-research
+    - title: Code Development
+      url: /use-cases/code-development
+    - title: Multi-Source Analysis
+      url: /use-cases/multi-source-analysis
 
 - title: Resources
   url: /resources
-  nav_order: 10
+  nav_order: 7
+
+- title: FAQ
+  url: /faq
+  nav_order: 8
 
 - title: Changelog
   url: /changelog
-  nav_order: 11
+  nav_order: 9

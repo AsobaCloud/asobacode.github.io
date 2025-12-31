@@ -4,234 +4,281 @@ layout: default
 nav_order: 0
 ---
 
-# Ona Platform: AI-Driven Solar Asset Management
+# Zorora: Deep Research Engine
 
-The Ona Platform is a comprehensive, end-to-end solution for energy analytics and forecasting that transforms raw data from various sources into actionable insights, enabling predictive maintenance, optimized energy dispatch, and enhanced operational efficiency.
+Zorora is a local-deployment deep research engine that searches across academic databases, web sources, and newsroom articles, then synthesizes findings with credibility scoring and citation graphs. Built for macOS (Apple Silicon) with minimal RAM footprint, meant to be run directly from your computer, with all content, outputs, and chats stored locally and not in the cloud, giving you complete control and privacy.
 
 ---
 
-## What is Ona Platform? {#what-is-ona-platform}
+## What is Zorora? {#what-is-zorora}
 
-Ona is the software and hardware environment that runs the Intelligence Layer. It is built on three physical layers: edge, control, and interface.
+Zorora transforms from a basic research tool into a **deep research engine** that:
 
-<div class="quickstart-paths">
-  <div class="path-card">
-    <h3>⚡ Edge Layer</h3>
-    <p>Hosts the Predictive AI models; runs on low‑power compute devices attached directly to energy assets; performs short‑term (0–48 hour) forecasts for each node; stores 48 hours of data locally to ensure resilience against connectivity loss.</p>
-    <a href="edge-layer.html" class="path-button">Learn More →</a>
-  </div>
-  
-  <div class="path-card">
-    <h3>🎛️ Control Layer</h3>
-    <p>Aggregates predictions from all active nodes; executes Decision AI routines for task scheduling and coordination; maintains a unified dashboard for operators; provides secure APIs for integration with maintenance management systems such as SAP PM or Maximo.</p>
-    <a href="control-layer.html" class="path-button">Learn More →</a>
-  </div>
-  
-  <div class="path-card">
-    <h3>🖥️ Interface Layer</h3>
-    <p>Displays operational status, risk scores, and active work orders; uses deterministic templates rather than generative text to eliminate hallucination; allows users to examine model confidence and trace data sources directly.</p>
-    <a href="interface-layer.html" class="path-button">Learn More →</a>
-  </div>
-</div>
+1. **Searches EVERYTHING** - Academic databases (7 sources) + web search + Asoba newsroom
+2. **Follows citation trails** - Multi-hop research that explores cited papers
+3. **Cross-references claims** - Groups similar claims and counts agreement across sources
+4. **Scores credibility** - Transparent rules-based scoring of source authority
+5. **Builds citation graphs** - Visualizes relationships between sources
+6. **Synthesizes with confidence** - Generates comprehensive answers with citation levels
 
-All communication between layers uses encrypted channels (TLS 1.3) and certificate‑based authentication. Data remains within defined geographic boundaries; cloud mirrors are used only for redundancy and cannot execute control commands.
+### Core Value Proposition
 
-### Data Flow {#data-flow}
+Zorora provides:
 
-<div class="roadmap-container">
-  <div class="text-center mb-12">
-    <p class="text-gray-600">Closed loop data flow ensuring measurable outcomes and continuous improvement</p>
-  </div>
+- **Complete Privacy** - All processing and storage on your machine
+- **Local-First Architecture** - Zero cloud dependencies (except source fetching)
+- **RAM Efficiency** - Runs on MacBook Air M3 with 4B model (4-6 GB RAM)
+- **Dual Interfaces** - Terminal REPL for engineers, Web UI for non-engineers
+- **Deterministic Reliability** - Pattern-based routing (no LLM orchestration failures)
+- **Multi-Provider Support** - Configure models from HuggingFace, OpenAI, and Anthropic APIs
 
-  <div class="pipeline-container">
-    <div class="pipeline-row">
-      <div class="pipeline-step roadmap-step">
-        <div class="step-number">01</div>
-        <div class="step-content">
-          <div class="step-phase">Input</div>
-          <h4>Sensor</h4>
-          <ul class="step-list">
-            <li>Real-time data collection</li>
-            <li>Equipment telemetry</li>
-            <li>Environmental measurements</li>
-          </ul>
-        </div>
-      </div>
-      <div class="pipeline-arrow">→</div>
-      <div class="pipeline-step roadmap-step">
-        <div class="step-number">02</div>
-        <div class="step-content">
-          <div class="step-phase">Edge Processing</div>
-          <h4>Edge Device (Predictive Model)</h4>
-          <ul class="step-list">
-            <li>Short-term forecasting (0-48 hours)</li>
-            <li>Local model execution</li>
-            <li>48-hour data buffer</li>
-          </ul>
-        </div>
-      </div>
-      <div class="pipeline-arrow">→</div>
-      <div class="pipeline-step roadmap-step">
-        <div class="step-number">03</div>
-        <div class="step-content">
-          <div class="step-phase">Decision</div>
-          <h4>Decision Engine (Control Layer)</h4>
-          <ul class="step-list">
-            <li>Task scheduling</li>
-            <li>Resource coordination</li>
-            <li>Optimization routines</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="pipeline-row">
-      <div class="pipeline-step roadmap-step">
-        <div class="step-number">04</div>
-        <div class="step-content">
-          <div class="step-phase">Execution</div>
-          <h4>Operator Action</h4>
-          <ul class="step-list">
-            <li>Work order execution</li>
-            <li>Maintenance activities</li>
-            <li>System adjustments</li>
-          </ul>
-        </div>
-      </div>
-      <div class="pipeline-arrow">→</div>
-      <div class="pipeline-step roadmap-step">
-        <div class="step-number">05</div>
-        <div class="step-content">
-          <div class="step-phase">Learning</div>
-          <h4>Feedback into Model</h4>
-          <ul class="step-list">
-            <li>Outcome measurement</li>
-            <li>Model refinement</li>
-            <li>Continuous improvement</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+---
 
-This closed loop ensures that every decision has a measurable outcome and every outcome improves the next prediction.
+## Core Features {#core-features}
 
-### Resilience {#resilience}
+### Deep Research Capabilities
 
-Each node operates independently if the central connection fails. Forecasting and fault prediction continue at the edge, and queued decisions transmit automatically when communication is restored. This structure allows the system to degrade gracefully rather than fail catastrophically.
+**6-Phase Research Pipeline:**
+
+1. **Parallel Source Aggregation** - Searches academic (7 sources), web (Brave + DDG), and newsroom simultaneously
+2. **Citation Following** - Multi-hop exploration of cited papers (configurable depth: 1-3)
+3. **Cross-Referencing** - Groups claims by similarity and counts agreement
+4. **Credibility Scoring** - Rules-based scoring of source authority (academic journals, predatory publishers, retractions)
+5. **Citation Graph Building** - Constructs directed graphs showing source relationships
+6. **Synthesis** - Generates comprehensive answers with confidence levels and citations
+
+**Research Depth Levels:**
+
+- **Quick** - Initial sources only (skips citation following, depth=1, ~25-35s)
+- **Balanced** - Adds citation following (1 hop, depth=2, ~35-50s) - *Coming soon*
+- **Thorough** - Multi-hop citation exploration (up to 3 levels deep, depth=3, ~50-70s) - *Coming soon*
+
+### Additional Features
+
+- **Research persistence** - Save/load findings with metadata
+- **Code generation** - Dedicated Codestral model for coding tasks
+- **Multi-step development** - `/develop` workflow: explore → plan → approve → execute → lint
+- **Slash commands** - Force workflows: `/search`, `/ask`, `/code`, `/develop`, `/image`, `/vision`
+- **Deterministic routing** - Pattern-based decision tree (no LLM routing failures)
+- **Hybrid deployment** - Local 4B orchestrator + remote 32B specialists
+- **RAM-efficient** - Runs on MacBook Air M3 with 4B model
+- **Dual interfaces** - Terminal REPL for engineers, Web UI for non-engineers
+- **Multi-provider support** - Configure models from HuggingFace, OpenAI, and Anthropic APIs
+- **Visual settings management** - Web UI settings modal for easy configuration
+- **Vision and image generation** - Dedicated models for image analysis and text-to-image generation
 
 ---
 
 ## Architecture {#architecture}
 
-The Ona Platform follows a layered architecture that transforms raw operational data into actionable business intelligence:
+Zorora uses **deterministic routing** with pattern matching instead of LLM-based orchestration. This design choice enables reliable operation with small 4B models while maintaining RAM efficiency.
 
-<div class="image-container">
-  <img src="/assets/images/diagram.png" alt="Ona Platform Architecture Diagram" class="responsive-image">
-</div>
+### Design Philosophy
 
-### Core Components Overview
+- **Deterministic over clever** - Code-controlled workflows, not LLM orchestration
+- **Research-first** - Optimized for multi-source synthesis and citation management
+- **RAM-efficient** - Runs on MacBook Air with 4B orchestrator model
+- **Persistent knowledge** - Save and retrieve research findings locally
+- **Simple and reliable** - Hardcoded pipelines that just work
 
-<div class="core-components-cards">
-  <div class="component-card">
-    <h4>API Gateway Layer</h4>
-    <ul>
-      <li>Secure entry point with authentication and rate limiting</li>
-      <li>Custom domain support (api.yourcompany.com)</li>
-      <li>Request routing and load balancing</li>
-    </ul>
-  </div>
+### Architecture Diagram
 
-  <div class="component-card">
-    <h4>Data Collection Services</h4>
-    <ul>
-      <li><strong>huaweiHistorical</strong>: Historical data collection from Huawei FusionSolar inverters</li>
-      <li><strong>weatherDataUpdater</strong>: Automated weather data collection and caching</li>
-    </ul>
-  </div>
+```
+User Query / Slash Command / Web UI Request
+    ↓
+Pattern Matching (simplified_router.py) / Flask Routes (ui/web/app.py)
+    ↓
+    ├─→ DEEP RESEARCH WORKFLOW (6-phase pipeline)
+    │   ├─► Phase 1: Parallel Source Aggregation
+    │   │   ├─► Academic (7 sources: Scholar, PubMed, CORE, arXiv, bioRxiv, medRxiv, PMC)
+    │   │   ├─► Web (Brave Search + DuckDuckGo)
+    │   │   └─► Newsroom (Asoba API)
+    │   ├─► Phase 2: Citation Following (configurable depth: 1-3)
+    │   ├─► Phase 3: Cross-Referencing (groups claims by similarity)
+    │   ├─► Phase 4: Credibility Scoring (rules-based)
+    │   ├─► Phase 5: Citation Graph Building
+    │   └─► Phase 6: Synthesis (Reasoning Model)
+    ├─→ CODE WORKFLOW (Codestral specialist)
+    ├─→ DEVELOPMENT WORKFLOW (/develop - multi-step)
+    ├─→ FILE OPERATIONS (save/load/list)
+    ├─→ IMAGE WORKFLOWS (generate/analyze)
+    └─→ SIMPLE Q&A (/ask - direct model)
+```
 
-  <div class="component-card">
-    <h4>Core Platform Services</h4>
-    <ul>
-      <li><strong>weatherCache</strong>: Weather data integration with ML-powered insights</li>
-      <li><strong>interpolationService</strong>: Data enrichment and ML interpolation</li>
-      <li><strong>globalTrainingService</strong>: LSTM model training and management</li>
-      <li><strong>forecastingApi</strong>: 30+ day forecasting capabilities</li>
-    </ul>
-  </div>
+### Key Principles
 
-  <div class="component-card">
-    <h4>Ona Application Layer (OODA Loop)</h4>
-    <ul>
-      <li><strong>Observe</strong>: Anomaly detection in &lt; 5 minutes</li>
-      <li><strong>Orient</strong>: AI diagnostics in &lt; 10 minutes</li>
-      <li><strong>Decide</strong>: Energy-at-Risk calculation in &lt; 15 minutes</li>
-      <li><strong>Act</strong>: Automated dispatch and continuous monitoring</li>
-    </ul>
-  </div>
+- **No LLM-based orchestration** - Patterns determine routing, code controls execution
+- **Hardcoded workflows** - Fixed pipelines for predictable results
+- **Persistent research** - Everything saved to `~/.zorora/research/` with metadata
+- **Specialist models** - Codestral for code, reasoning model for synthesis, vision for images
+- **Multi-provider support** - Configure models from LM Studio (local), HuggingFace, OpenAI, and Anthropic APIs
+- **Visual configuration** - Web UI settings modal for easy model/endpoint management
+- **Hybrid inference** - Mix local models (4B orchestrator) with remote HuggingFace endpoints (32B Codestral)
 
-  <div class="component-card">
-    <h4>Extensible Services</h4>
-    <ul>
-      <li>Insurance automation</li>
-      <li>Fleet analytics</li>
-      <li>Soiling calculations</li>
-      <li>Energy market integration</li>
-      <li>Electricity dispatch optimization</li>
-    </ul>
-  </div>
-</div>
+### Core Components
 
-<style>
-.core-components-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin: 24px 0;
-}
+**1. Simplified Router (`simplified_router.py`)**
 
-.component-card {
-  background: var(--white);
-  border: 2px solid #e1e4e8;
-  border-radius: 8px;
-  padding: 20px;
-  transition: all 0.3s ease;
-}
+Uses pattern matching to route queries to workflows. No LLM involved - pure pattern matching ensures consistent, fast routing (0ms decision time).
 
-.component-card:hover {
-  border-color: var(--primary-blue);
-  box-shadow: 0 4px 12px rgba(69, 81, 191, 0.15);
-  transform: translateY(-2px);
-}
+**2. Research Engine (`engine/research_engine.py`)**
 
-.component-card h4 {
-  margin: 0 0 12px 0;
-  color: var(--text-dark);
-  font-size: 1.2em;
-  font-weight: 700;
-}
+High-level interface for deep research:
+- Starting research
+- Loading past research
+- Searching research history
+- Executing deep research workflow
 
-.component-card ul {
-  margin: 0;
-  padding-left: 20px;
-  list-style-type: disc;
-}
+**3. Deep Research Workflow (`workflows/deep_research/`)**
 
-.component-card li {
-  margin: 8px 0;
-  color: var(--text-light);
-  line-height: 1.6;
-}
+Hardcoded pipeline for multi-source research:
+- `aggregator.py` - Source aggregation
+- `credibility.py` - Credibility scoring
+- `synthesizer.py` - Synthesis generation
+- `workflow.py` - Workflow orchestrator
 
-.component-card li strong {
-  color: var(--text-dark);
-  font-weight: 600;
-}
-</style>
+**4. Storage Layer (`engine/storage.py`)**
+
+Local-first storage:
+- SQLite database (`~/.zorora/zorora.db`) for fast indexed queries
+- JSON files (`~/.zorora/research/findings/`) for full research state
+
+**5. Web UI (`ui/web/app.py`)**
+
+Flask-based web interface:
+- Research query interface with depth selection
+- Settings modal for configuration
+- Research results display with synthesis, sources, and credibility scores
+
+---
+
+## Local-First Design {#local-first-design}
+
+### Storage Architecture
+
+```
+Research Request
+    ↓
+ResearchEngine.deep_research()
+    ↓
+DeepResearchWorkflow.execute()
+    ↓
+LocalStorage.save_research()
+    ├─► SQLite Index (~/.zorora/zorora.db)
+    │   ├─► research_findings (metadata)
+    │   ├─► sources (indexed)
+    │   └─► citations (graph)
+    └─► JSON Files (~/.zorora/research/findings/<id>.json)
+        └─► Full research state (sources, findings, synthesis)
+```
+
+### Privacy & Control
+
+- **All processing on your machine** - No cloud computation
+- **Local storage only** - Research data never leaves your machine
+- **Zero cloud dependencies** - Except source fetching (academic databases, web search)
+- **Complete control** - You own all data, all outputs, all chats
+
+### Performance
+
+- **Routing decision:** 0ms (pattern matching, no LLM)
+- **Research workflow:** Varies by depth
+  - **Quick (depth=1):** ~25-35s
+  - **Balanced (depth=2):** ~35-50s - *Coming soon*
+  - **Thorough (depth=3):** ~50-70s - *Coming soon*
+- **Storage queries:** <100ms (SQLite indexed)
+- **Code generation:** 10-90 seconds (local: 10-30s, HF 32B: 60-90s)
+- **RAM usage:** 4-6 GB (4B orchestrator model)
+
+---
+
+## Why This Architecture? {#why-this-architecture}
+
+### Problem: 4B Models Can't Orchestrate
+
+Traditional multi-model orchestration requires the LLM to:
+- Generate valid JSON plans
+- Make routing decisions
+- Handle multi-step iteration
+- Recover from tool failures
+
+**4B models fail at all of these.** They can't reliably generate JSON, struggle with function calling, and get stuck in loops.
+
+### Solution: Code Handles Complexity
+
+Instead of asking the 4B model to be smart, we made the **code smart**:
+- Pattern matching routes queries (no LLM decision)
+- Hardcoded workflows execute pipelines (no LLM planning)
+- Fixed iteration count (no LLM loop detection)
+- Deterministic error handling (no LLM recovery)
+
+**Result:** 100% reliability with 4B models, 1/3 the RAM usage of 8B orchestrators, complete privacy with local storage.
+
+### Trade-offs
+
+**What we lost:**
+- Flexibility for complex multi-tool queries
+- LLM creativity in tool selection
+- Adaptive workflows based on results
+
+**What we gained:**
+- 100% routing reliability (pattern matching never fails)
+- Predictable behavior (same query = same workflow)
+- RAM efficiency (4B model = 4-6 GB vs 8B = 12-16 GB)
+- Simple debugging (no "why did it choose that tool?")
+- Fast responses (no LLM routing overhead)
+
+---
+
+## Quick Start {#quick-start}
+
+### Installation
+
+[Download v2-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2-prod)
+
+Or install from GitHub:
+```bash
+pip install git+https://github.com/AsobaCloud/zorora.git
+```
+
+### Run Your First Query
+
+**Terminal:**
+```bash
+zorora
+[1] ⚙ > What are the latest developments in large language model architectures?
+```
+
+**Web UI:**
+```bash
+zorora web
+# Opens at http://localhost:5000
+```
+
+**API:**
+```python
+from engine.research_engine import ResearchEngine
+
+engine = ResearchEngine()
+state = engine.deep_research("Your research question", depth=1)
+print(state.synthesis)
+```
 
 ---
 
 ## Next Steps {#next-steps}
 
-1. **Get Started**: Follow the [User Guide](user-guide.html) to deploy and configure your platform
-2. **Stay Updated**: Check the [Changelog](changelog.html) for latest features and improvements
+- **[Getting Started](/getting-started)** - Installation and configuration guide
+- **[Guides](/guides/overview)** - Comprehensive guides for all features
+- **[API Reference](/api-reference/overview)** - Programmatic access documentation
+- **[Technical Concepts](/technical-concepts/overview)** - Deep dive into architecture
+- **[Use Cases](/use-cases/overview)** - Real-world examples
+
+---
+
+## See Also
+
+- [Architecture Documentation](/technical-concepts/architecture) - Detailed architecture explanation
+- [Research Pipeline](/technical-concepts/research-pipeline) - How the 6-phase pipeline works
+- [Storage Design](/technical-concepts/storage) - Local-first storage architecture
+- [Routing Mechanism](/technical-concepts/routing) - Deterministic pattern matching

@@ -1149,3 +1149,387 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
 .text-gray-600 {
   color: #718096;
 }
+
+/* ============================================
+   Overview Card Grids (from DOCUMENTATION_IA_GUIDE.md)
+   ============================================ */
+
+.overview-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.overview-card {
+  background: var(--white);
+  border: 1px solid var(--border-grey);
+  border-radius: 8px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.overview-card:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 4px 12px rgba(69, 91, 241, 0.1);
+  transform: translateY(-2px);
+}
+
+.overview-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.overview-card p {
+  color: var(--text-light);
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.card-link {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.card-link:hover {
+  color: var(--accent-blue);
+}
+
+/* ============================================
+   Index Page Components (from DOCUMENTATION_IA_GUIDE.md)
+   ============================================ */
+
+/* A. Compact Title + Version Indicator */
+.page-header {
+  text-align: center;
+  padding: 20px 40px;
+  margin: 20px 0;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.version-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+.version-label {
+  font-weight: 500;
+}
+
+.version-value {
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.version-separator {
+  color: var(--border-grey);
+  margin: 0 4px;
+}
+
+/* B. Quick Start CTA */
+.quick-start-section {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.quick-start-button {
+  display: inline-block;
+  background: var(--primary-blue);
+  color: var(--white);
+  padding: 16px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(69, 91, 241, 0.2);
+}
+
+.quick-start-button:hover {
+  background: var(--accent-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(69, 91, 241, 0.3);
+}
+
+.quick-start-subtext {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+.quick-start-subtext a {
+  color: var(--primary-blue);
+  text-decoration: none;
+}
+
+.quick-start-subtext a:hover {
+  text-decoration: underline;
+}
+
+/* D. Popular Quick Links Grid */
+.quick-links-section {
+  margin: 60px 0;
+}
+
+.quick-links-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 32px;
+}
+
+.quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.quick-link-card {
+  background: var(--white);
+  border: 1px solid var(--border-grey);
+  border-radius: 8px;
+  padding: 24px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.quick-link-card:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(69, 91, 241, 0.1);
+}
+
+.quick-link-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.quick-link-card h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.quick-link-card p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* H. Version & Updates Section */
+.version-updates-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin: 60px 0;
+  padding: 32px;
+  background: var(--white);
+  border: 1px solid var(--border-grey);
+  border-radius: 8px;
+}
+
+.version-info h3,
+.whats-new h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.version-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 4px;
+}
+
+.version-date {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  margin-bottom: 16px;
+}
+
+.changelog-link,
+.whats-new-link {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.changelog-link:hover,
+.whats-new-link:hover {
+  color: var(--accent-blue);
+}
+
+.whats-new-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+}
+
+.whats-new-list li {
+  padding: 4px 0;
+  color: var(--text-dark);
+  position: relative;
+  padding-left: 20px;
+}
+
+.whats-new-list li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary-blue);
+  font-weight: bold;
+}
+
+/* I. Community & Support Section */
+.community-section {
+  margin: 60px 0;
+}
+
+.community-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 32px;
+}
+
+.community-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.community-link-card {
+  background: var(--white);
+  border: 1px solid var(--border-grey);
+  border-radius: 8px;
+  padding: 24px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.community-link-card:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(69, 91, 241, 0.1);
+}
+
+.community-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.community-link-card h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.community-link-card p {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* J. Documentation Sections Overview */
+.sections-overview {
+  margin: 60px 0;
+}
+
+.sections-overview h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 32px;
+}
+
+.section-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.section-card {
+  background: var(--white);
+  border: 1px solid var(--border-grey);
+  border-radius: 8px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.section-card:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 4px 12px rgba(69, 91, 241, 0.1);
+}
+
+.section-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.section-card p {
+  color: var(--text-light);
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.section-link {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.section-link:hover {
+  color: var(--accent-blue);
+}
+
+/* Responsive adjustments for new components */
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .version-badge {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .version-updates-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .overview-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .role-cards {
+    grid-template-columns: 1fr;
+  }
+}
