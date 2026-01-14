@@ -10,7 +10,7 @@ Additional resources, links, and community information for Zorora.
 
 ## Download
 
-**[Download v2-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2-prod)**
+**[Download v2.5-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2.5-prod)**
 
 Latest stable release with all features.
 
@@ -133,7 +133,7 @@ Model hosting and inference endpoints.
 
 **Current Version:** 2.1.0
 
-**Latest Release:** [v2-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2-prod)
+**Latest Release:** [v2.5-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2.5-prod)
 
 **Changelog:** [View Changelog](/changelog)
 

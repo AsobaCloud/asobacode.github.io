@@ -360,6 +360,7 @@ Each source includes:
 
 - [Terminal REPL](/guides/terminal-repl) - Command-line interface
 - [Web UI](/guides/web-ui) - Browser-based interface
-- [Slash Commands](/guides/slash-commands) - Command reference
+- [Slash Commands](/guides/slash-commands) - Command reference (`/deep`, `/search`)
+- [Credibility Scoring](/technical-concepts/credibility-scoring) - How sources are evaluated
 - [API Reference](/api-reference/research-api) - Programmatic access
 - [Technical Concepts](/technical-concepts/research-pipeline) - Pipeline architecture

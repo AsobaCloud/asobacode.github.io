@@ -13,12 +13,10 @@ Interactive command-line interface for engineers.
 
 The Terminal REPL (Read-Eval-Print Loop) is Zorora's command-line interface designed for engineers who prefer working in the terminal. It provides an interactive environment for research queries, code generation, and development workflows.
 
-<div style="width: 100%; max-width: 100%; margin: 24px 0; overflow: hidden; box-sizing: border-box;">
-  <img src="{{ site.baseurl }}/assets/images/screenshot.png" alt="Zorora Terminal REPL" style="width: 100%; max-width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border-grey); display: block; box-sizing: border-box;">
+<div class="screenshot-container">
+  <img src="{{ site.baseurl }}/assets/images/screenshot.png" alt="Zorora Terminal REPL" class="screenshot">
 </div>
-<p style="text-align: center; color: var(--text-light); margin-top: 8px; font-size: 0.875rem; font-style: italic;">
-  Zorora Terminal REPL - Interactive command-line interface
-</p>
+<p class="screenshot-caption">Zorora Terminal REPL - Interactive command-line interface</p>
 
 ## Starting the REPL
 

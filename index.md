@@ -8,17 +8,17 @@ layout: default
   <h1>Zorora Documentation</h1>
   <div class="version-badge">
     <span class="version-label">Version</span>
-    <span class="version-value">2.1.0</span>
+    <span class="version-value">2.5.0</span>
     <span class="version-separator">|</span>
     <span class="version-label">Latest Release</span>
-    <a href="https://github.com/AsobaCloud/zorora/releases/tag/v2-prod" class="version-value">v2-prod</a>
+    <a href="https://github.com/AsobaCloud/zorora/releases/tag/v2.5-prod" class="version-value">v2.5-prod</a>
   </div>
 </div>
 
 <!-- B. Quick Start CTA (Prominent) -->
 <div class="quick-start-section">
-  <a href="https://github.com/AsobaCloud/zorora/releases/tag/v2-prod" class="quick-start-button">
-    Download v2-prod
+  <a href="https://github.com/AsobaCloud/zorora/releases/tag/v2.5-prod" class="quick-start-button">
+    Download v2.5-prod
   </a>
   <p class="quick-start-subtext">
     Or install from GitHub: <code>pip install git+https://github.com/AsobaCloud/zorora.git</code>
@@ -271,19 +271,19 @@ for r in results:
 <div class="version-updates-section">
   <div class="version-info">
     <h3>Current Version</h3>
-    <p class="version-number">v2.1.0</p>
-    <p class="version-date">Settings Modal & Multi-Provider Support</p>
+    <p class="version-number">v2.5.0</p>
+    <p class="version-date">ONA Platform Integration & Enhanced Editing</p>
     <a href="/changelog" class="changelog-link">View Changelog →</a>
   </div>
-  
+
   <div class="whats-new">
-    <h3>What's New</h3>
+    <h3>What's New in v2.5</h3>
     <ul class="whats-new-list">
-      <li>Web UI Settings Modal - Visual configuration interface</li>
-      <li>Multi-provider endpoint support (HuggingFace, OpenAI, Anthropic)</li>
-      <li>API key management for all providers</li>
-      <li>Vision and image generation model configuration</li>
-      <li>Endpoint CRUD operations via Web UI</li>
+      <li>ONA Platform Integration - Remote ML model observation commands</li>
+      <li>Enhanced /code file editing with auto-detection and retry loop</li>
+      <li>Beautiful progress display with hierarchical tool visualization</li>
+      <li>/deep command for terminal deep research</li>
+      <li>Complete modular tool registry migration (19 tools)</li>
     </ul>
     <a href="/changelog" class="whats-new-link">Read Release Notes →</a>
   </div>

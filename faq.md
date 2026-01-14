@@ -12,7 +12,7 @@ Common questions and troubleshooting for Zorora.
 
 ### Q: How do I install Zorora?
 
-**A:** Download from [GitHub Release v2-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2-prod) or install from GitHub:
+**A:** Download from [GitHub Release v2.5-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2.5-prod) or install from GitHub:
 
 ```bash
 pip install git+https://github.com/AsobaCloud/zorora.git

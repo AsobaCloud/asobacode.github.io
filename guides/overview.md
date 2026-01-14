@@ -36,7 +36,7 @@ If you're new to Zorora, start here:
 <div class="overview-cards-grid">
   <div class="overview-card">
     <h3>Terminal REPL</h3>
-    <img src="{{ site.baseurl }}/assets/images/screenshot.png" alt="Terminal REPL" style="width: 100%; margin-bottom: 12px; border-radius: 4px; border: 1px solid var(--border-grey);">
+    <img src="{{ site.baseurl }}/assets/images/screenshot.png" alt="Terminal REPL" class="screenshot-small" style="margin-bottom: 12px;">
     <p>Interactive command-line interface for engineers. Learn slash commands, workflows, and advanced features.</p>
     <a href="/guides/terminal-repl" class="card-link">Learn More →</a>
   </div>
@@ -61,7 +61,7 @@ If you're new to Zorora, start here:
   
   <div class="overview-card">
     <h3>Web UI</h3>
-    <img src="{{ site.baseurl }}/assets/images/ui.png" alt="Web UI" style="width: 100%; margin-bottom: 12px; border-radius: 4px; border: 1px solid var(--border-grey);">
+    <img src="{{ site.baseurl }}/assets/images/ui.png" alt="Web UI" class="screenshot-small" style="margin-bottom: 12px;">
     <p>Browser-based research interface for non-engineers. Learn how to use the settings modal, configure models, and view research results.</p>
     <a href="/guides/web-ui" class="card-link">Learn More →</a>
   </div>

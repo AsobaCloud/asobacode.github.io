@@ -1882,20 +1882,106 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   .code-examples-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .product-categories-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .role-cards {
     grid-template-columns: 1fr;
   }
-  
+
   .role-actions {
     flex-direction: column;
   }
-  
+
   .version-updates-section {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   Screenshot and Image Styling
+   ============================================ */
+
+/* Container for screenshots with proper sizing */
+.screenshot-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 24px auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Single screenshot - full width with max constraint */
+.screenshot {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-grey);
+  display: block;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Grid for side-by-side screenshots */
+.screenshot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 32px auto;
+}
+
+.screenshot-grid .screenshot {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Screenshot caption */
+.screenshot-caption {
+  text-align: center;
+  color: var(--text-light);
+  margin-top: 12px;
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+/* Small screenshot (for inline or card use) */
+.screenshot-small {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid var(--border-grey);
+}
+
+/* Medium screenshot (for guides) */
+.screenshot-medium {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--border-grey);
+  margin: 20px auto;
+  display: block;
+}
+
+/* Responsive screenshot grid */
+@media (max-width: 768px) {
+  .screenshot-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .screenshot-container {
+    margin: 16px auto;
+  }
+
+  .screenshot-medium {
+    max-width: 100%;
   }
 }

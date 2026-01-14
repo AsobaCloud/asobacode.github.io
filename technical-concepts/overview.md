@@ -99,19 +99,25 @@ Instead of asking the 4B model to be smart, we made the **code smart**:
     <p>Overall system architecture, design principles, and component structure. Learn how Zorora's deterministic routing works.</p>
     <a href="/technical-concepts/architecture" class="card-link">Learn More →</a>
   </div>
-  
+
   <div class="overview-card">
     <h3>Research Pipeline</h3>
     <p>How the 6-phase research pipeline works: source aggregation, citation following, cross-referencing, credibility scoring, and synthesis.</p>
     <a href="/technical-concepts/research-pipeline" class="card-link">Learn More →</a>
   </div>
-  
+
+  <div class="overview-card">
+    <h3>Credibility Scoring</h3>
+    <p>Multi-factor credibility scoring system for research sources. Learn how sources are evaluated for authority and reliability.</p>
+    <a href="/technical-concepts/credibility-scoring" class="card-link">Learn More →</a>
+  </div>
+
   <div class="overview-card">
     <h3>Storage</h3>
     <p>Local-first storage architecture using SQLite and JSON files. Learn about data models, persistence, and query performance.</p>
     <a href="/technical-concepts/storage" class="card-link">Learn More →</a>
   </div>
-  
+
   <div class="overview-card">
     <h3>Routing</h3>
     <p>Deterministic pattern matching for workflow routing. Learn how queries are routed without LLM orchestration.</p>
@@ -123,6 +129,7 @@ Instead of asking the 4B model to be smart, we made the **code smart**:
 
 - **[Architecture](/technical-concepts/architecture)** - Detailed architecture documentation
 - **[Research Pipeline](/technical-concepts/research-pipeline)** - Pipeline implementation details
+- **[Credibility Scoring](/technical-concepts/credibility-scoring)** - Source credibility evaluation
 - **[Storage](/technical-concepts/storage)** - Storage architecture and data models
 - **[Routing](/technical-concepts/routing)** - Routing mechanism and pattern matching
 

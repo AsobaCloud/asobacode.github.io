@@ -8,9 +8,69 @@ nav_order: 9
 
 Version history for Zorora.
 
+## Version 2.5.0 - ONA Platform Integration & Enhanced Editing
+
+**Release Date:** January 2025
+
+### Major Features
+
+**ONA Platform Integration:**
+- Remote ML model observation commands (`/ml-*`)
+- Model lifecycle management - list challengers, compare models, promote/rollback
+- Audit logging for all model changes
+- Dual authentication support (Bearer token and AWS IAM)
+
+**Enhanced /code File Editing:**
+- Auto-detection of existing files in prompts
+- Direct edit workflow (read → OLD_CODE/NEW_CODE → apply)
+- Retry loop with error context (up to 3 attempts)
+- No planning phase for simple edits
+
+**Beautiful Progress Display:**
+- Hierarchical tool visualization with tree-style display
+- Real-time progress during multi-step operations
+- Per-tool execution timing
+- Visual status indicators (checkmarks and spinners)
+
+**Boxed Input UI:**
+- prompt_toolkit integration for modern terminal input
+- Visual input box with borders
+- Improved cursor handling and feedback
+
+### New Capabilities
+
+**`/deep` Command:**
+- Terminal deep research with full feature parity to Web UI
+- Academic + web + newsroom multi-source synthesis
+
+**Modular Tool Registry (Complete):**
+- 19 tools migrated to modular `tools/` structure
+- 5 categories: research, file_ops, shell, specialist, image
+- Backward compatibility via legacy shim
+
+**Model-Agnostic Coding:**
+- `use_codestral` renamed to `use_coding_agent`
+- Works with any configured coding model
+- Unified specialist client factory
+
+### Improvements
+
+- Line numbers by default in `read_file` output
+- `replace_all` parameter for `edit_file`
+- Better error messages with similar text suggestions
+- SQLite threading fixes
+- Read-before-edit enforcement
+
+### Breaking Changes
+
+- `use_codestral` renamed to `use_coding_agent` (alias provided)
+- Import from `tools.registry` instead of `tool_registry` (deprecation warning)
+
+---
+
 ## Version 2.1.0 - Settings Modal & Multi-Provider Support
 
-**Release Date:** Latest
+**Release Date:** Previous
 
 **Major Features:**
 - ✅ Web UI Settings Modal - Visual configuration interface
@@ -65,7 +125,7 @@ Version history for Zorora.
 
 ## Download
 
-[Download v2-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2-prod)
+[Download v2.5-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2.5-prod)
 
 ---
 

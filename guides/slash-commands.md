@@ -90,34 +90,60 @@ Slash commands force specific workflows, bypassing automatic routing. Use them w
 
 ### /code
 
-**Force code generation with Codestral**
+**Code generation or file editing with specialist model**
 
 ```bash
 /code <prompt>
 ```
 
 **What it does:**
-- Routes directly to Codestral specialist model
+
+**For new code (no existing file detected):**
+- Routes to coding specialist model
 - Generates code with explanations
 - Returns formatted code blocks
-- No research or web search
+
+**For existing files (auto-detected in prompt):**
+- Reads the existing file with line numbers
+- Generates OLD_CODE/NEW_CODE replacement blocks
+- Applies edits using `edit_file` tool
+- Retry loop (up to 3 attempts) if edit fails
+
+**File Detection Patterns:**
+```bash
+/code update script.py from "goodbye" to "hello"  → detects script.py
+/code fix the typo in utils.py line 15            → detects utils.py
+/code change config.json to use port 8080         → detects config.json
+```
 
 **When to use:**
-- Writing functions, classes, or scripts
+- Writing new functions, classes, or scripts
+- Editing existing files (v2.5+)
 - Code refactoring
-- Algorithm implementation
-- Quick code snippets
+- Quick fixes and updates
 
 **Examples:**
 ```bash
+# New code generation
 /code write a function to parse JSON files with error handling
 /code create a REST API endpoint for user authentication
-/code refactor this function to use async/await
+
+# File editing (v2.5+)
+/code update main.py to add logging
+/code fix the typo in config.py line 42
+/code change api.py to use async/await
 ```
 
-**Model used:** Codestral (local or HuggingFace endpoint)
+**Model used:** Coding specialist (model-agnostic in v2.5+)
 - Local: qwen/qwen3-vl-4b (fast, basic)
 - HF: Qwen2.5-Coder-32B-Instruct (high quality, slower)
+
+**Workflow Comparison (v2.5+):**
+
+| Command | Scope | Phases | Best For |
+|---------|-------|--------|----------|
+| `/code` | Single file/snippet | 1-2 (plan + generate/edit) | Quick edits, snippets |
+| `/develop` | Entire codebase | 5 (preflight → explore → plan → execute → lint) | Features, refactoring |
 
 **Saving output:**
 ```bash
@@ -279,6 +305,118 @@ Saved to: csv_parser.py
 - Tables preserved
 - Structure maintained
 - Text extracted and formatted
+
+---
+
+### /deep
+
+**Terminal deep research (v2.5+)**
+
+```bash
+/deep <query>
+```
+
+**What it does:**
+- Executes full deep research workflow from terminal
+- Same capabilities as Web UI research
+- Academic + web + newsroom multi-source synthesis
+- Returns synthesis with citations and credibility scores
+
+**When to use:**
+- Deep research queries from terminal
+- When you need comprehensive multi-source synthesis
+- Academic research with citation following
+
+**Examples:**
+```bash
+/deep What are the latest developments in transformer architectures?
+/deep How do mRNA vaccines work?
+/deep Latest renewable energy policy changes in South Africa
+```
+
+**Output:**
+- Comprehensive synthesis with inline citations
+- Source list with credibility scores
+- Citation graph (when depth > 1)
+
+**Note:** This command provides full feature parity with Web UI research.
+
+---
+
+## ONA Platform Commands (v2.5+)
+
+Remote commands for interacting with ONA platform ML model observation workflows. These commands require ONA platform integration configured via environment variables.
+
+### /ml-list-challengers
+
+**List challenger models for a customer**
+
+```bash
+/ml-list-challengers <customer_id>
+```
+
+### /ml-show-metrics
+
+**Show evaluation metrics for a model**
+
+```bash
+/ml-show-metrics <model_id>
+```
+
+### /ml-diff
+
+**Compare challenger vs production model**
+
+```bash
+/ml-diff <challenger_id> <production_id>
+```
+
+### /ml-promote
+
+**Promote challenger model to production**
+
+```bash
+/ml-promote <customer_id> <model_id> <reason> [--force]
+```
+
+Requires confirmation unless `--force` flag is used.
+
+### /ml-rollback
+
+**Rollback production model to previous version**
+
+```bash
+/ml-rollback <customer_id> <reason>
+```
+
+Requires confirmation.
+
+### /ml-audit-log
+
+**Get audit log for a customer**
+
+```bash
+/ml-audit-log <customer_id>
+```
+
+### ONA Platform Configuration
+
+Set environment variables before running Zorora:
+
+```bash
+# Option 1: Retrieve from AWS SSM Parameter Store (recommended)
+source <(./scripts/get-global-training-api-credentials.sh)
+
+# Option 2: Manual configuration
+export ONA_API_BASE_URL="https://your-api-endpoint.amazonaws.com/api/v1"
+export ONA_API_TOKEN="your-api-token-here"
+export ONA_USE_IAM="false"
+```
+
+**Environment Variables:**
+- `ONA_API_BASE_URL` - ONA platform API base URL
+- `ONA_API_TOKEN` - Authentication token (required if not using IAM)
+- `ONA_USE_IAM` - Use IAM authentication (default: `false`)
 
 ---
 
