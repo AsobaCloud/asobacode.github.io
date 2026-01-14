@@ -35,14 +35,14 @@ layout: default
       <code class="sdk-install">zorora web</code>
       <p>Browser-based research interface</p>
     </a>
-    
+
     <a href="/guides/terminal-repl" class="sdk-link-card">
       <div class="sdk-icon">💻</div>
       <h3>Terminal REPL</h3>
       <code class="sdk-install">zorora</code>
       <p>Command-line interface</p>
     </a>
-    
+
     <a href="/api-reference/overview" class="sdk-link-card">
       <div class="sdk-icon">🔧</div>
       <h3>Python API</h3>
@@ -50,6 +50,10 @@ layout: default
       <p>Programmatic access</p>
     </a>
   </div>
+  <div class="screenshot-container" style="margin-top: 32px;">
+    <img src="{{ site.baseurl }}/assets/images/repl.gif" alt="Zorora Web UI in action" class="screenshot">
+  </div>
+  <p class="screenshot-caption">Zorora Web UI - Deep research with multi-source synthesis</p>
 </div>
 
 <!-- D. Documentation Sections Overview -->
