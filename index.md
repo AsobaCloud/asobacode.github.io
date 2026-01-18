@@ -194,6 +194,11 @@ for r in results:
       <p>Codestral specialist model</p>
     </a>
     
+    <a href="/guides/nehanda-v1" class="product-category-card">
+      <h4>Nehanda v1</h4>
+      <p>Synthesis model for /search & /research</p>
+    </a>
+    
     <a href="/guides/development-workflow" class="product-category-card">
       <h4>Development Workflow</h4>
       <p>Multi-step code development</p>
