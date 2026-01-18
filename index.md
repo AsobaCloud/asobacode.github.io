@@ -23,6 +23,12 @@ layout: default
   <p class="quick-start-subtext">
     Or install from GitHub: <code>pip install git+https://github.com/AsobaCloud/zorora.git</code>
   </p>
+  <a href="https://huggingface.co/asoba/nehanda-v1-7b" class="quick-start-button" style="margin-top: 12px; display: inline-block; font-size: 0.95em;">
+    Download Nehanda 7B v1
+  </a>
+  <p class="quick-start-subtext" style="margin-top: 4px;">
+    Asoba's homegrown fine-tuning of Mistral 7B for intelligence assessment and /search, /research synthesis in Zorora.
+  </p>
 </div>
 
 <!-- C. Web App & Access Methods (Horizontal Row) -->

@@ -21,6 +21,7 @@ This section provides step-by-step guides for:
 - **Code Generation** - Generate code with Codestral
 - **Development Workflow** - Multi-step code development with `/develop`
 - **Slash Commands** - Complete command reference
+- **Nehanda v1** - Zorora's synthesis model for `/search` and `/research`
 
 ## Quick Start
 
@@ -88,6 +89,7 @@ If you're new to Zorora, start here:
 ### Reference
 
 - **[Slash Commands](/guides/slash-commands)** - Complete command reference
+- **[Nehanda v1](/guides/nehanda-v1)** - Synthesis model for intelligence assessment and Zorora integration
 
 ## Next Steps
 
