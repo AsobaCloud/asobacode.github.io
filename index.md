@@ -27,7 +27,7 @@ layout: default
     Download Nehanda 7B v1
   </a>
   <p class="quick-start-subtext" style="margin-top: 4px;">
-    Asoba's homegrown fine-tuning of Mistral 7B for intelligence assessment and /search, /research synthesis in Zorora.
+    Asoba's homegrown fine-tuning of Mistral 7B for intelligence assessment and /search, /research synthesis in Zorora. Requires <a href="https://forms.gle/KJKTkzyYBtE5psNW7">whitelist access</a> to download.
   </p>
 </div>
 

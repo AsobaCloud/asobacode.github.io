@@ -55,9 +55,9 @@ Zorora retrieves the raw documents, and Nehanda performs the analysis—flagging
 
 ### Download & Usage
 
-The model weights are available for internal deployment via Hugging Face.
+The model weights are available for internal deployment via Hugging Face. **Whitelist access is required.**
 
-**[Download Nehanda v1 (Hugging Face)](https://huggingface.co/asoba/nehanda-v1-7b)**
+**[Request Whitelist Access](https://forms.gle/KJKTkzyYBtE5psNW7)** | **[Download Nehanda v1 (Hugging Face)](https://huggingface.co/asoba/nehanda-v1-7b)**
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
