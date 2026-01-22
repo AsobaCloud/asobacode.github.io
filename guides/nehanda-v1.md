@@ -13,6 +13,10 @@ Built on the Mistral-7B architecture, Nehanda departs from standard "chat" behav
 
 Named after the ancestral spirit of resistance and prophecy, Nehanda is built to *see through* hegemonic narratives and expose the structural realities beneath complex data.
 
+<div class="youtube-embed">
+  <iframe src="https://www.youtube.com/embed/LuPRJYq9PMQ" title="Nehanda v1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 ## Purpose & Capabilities
 
 Unlike general-purpose LLMs optimized for fluency, Nehanda is optimized for **provenance** and **structure**. It is trained to reject fabrication and explicitly state when information is unknown.
