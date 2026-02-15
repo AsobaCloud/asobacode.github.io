@@ -262,23 +262,6 @@ for r in results:
         <a href="/guides/research-workflow" class="role-button secondary">Research Guide</a>
       </div>
     </div>
-    
-    <!-- Developer Path -->
-    <div class="role-card decision">
-      <div class="role-icon">💻</div>
-      <h3>I'm a Developer</h3>
-      <p>Build integrations and automate workflows</p>
-      <ul class="role-features">
-        <li>Python API</li>
-        <li>API Reference</li>
-        <li>Code Examples</li>
-        <li>Use Cases</li>
-      </ul>
-      <div class="role-actions">
-        <a href="/api-reference/overview" class="role-button primary">View API Docs</a>
-        <a href="/use-cases/overview" class="role-button secondary">See Use Cases</a>
-      </div>
-    </div>
   </div>
 </div>
 
