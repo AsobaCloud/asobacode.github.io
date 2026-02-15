@@ -161,6 +161,57 @@ layout: default
     {{ content }}
   </div>
 
+  <nav class="page-toc" id="page-toc">
+    <h4>On this page</h4>
+    <ul id="toc-list"></ul>
+  </nav>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var tocNav = document.getElementById('page-toc');
+      var tocList = document.getElementById('toc-list');
+      var headings = document.querySelectorAll('.content h2, .content h3');
+
+      if (headings.length < 2) {
+        tocNav.style.display = 'none';
+        return;
+      }
+
+      headings.forEach(function (heading) {
+        if (!heading.id) return;
+        var li = document.createElement('li');
+        if (heading.tagName === 'H3') {
+          li.setAttribute('data-level', '3');
+        }
+        var a = document.createElement('a');
+        a.href = '#' + heading.id;
+        a.textContent = heading.textContent.replace(/^#\s*/, '');
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+
+      var tocLinks = tocList.querySelectorAll('a');
+
+      function updateActive() {
+        var current = null;
+        headings.forEach(function (heading) {
+          if (heading.getBoundingClientRect().top <= 100) {
+            current = heading;
+          }
+        });
+        tocLinks.forEach(function (link) {
+          link.classList.remove('active');
+          if (current && link.getAttribute('href') === '#' + current.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActive);
+      updateActive();
+    });
+  </script>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const currentPath = window.location.pathname;
