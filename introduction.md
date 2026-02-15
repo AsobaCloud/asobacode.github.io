@@ -240,7 +240,7 @@ Instead of asking the 4B model to be smart, we made the **code smart**:
 
 ### Installation
 
-[Download v2.5-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2.5-prod)
+[Download v3.0.0-prod](https://github.com/AsobaCloud/zorora/releases/tag/v3.0.0-prod)
 
 Or install from GitHub:
 ```bash

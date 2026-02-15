@@ -36,14 +36,14 @@ Step-by-step guide to install Zorora on your system.
 
 **Step 1: Download Latest Release**
 
-[Download v2.5-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2.5-prod)
+[Download v3.0.0-prod](https://github.com/AsobaCloud/zorora/releases/tag/v3.0.0-prod)
 
 **Step 2: Extract and Install**
 
 ```bash
 # Extract the release package
-tar -xzf zorora-v2.5-prod.tar.gz
-cd zorora-v2.5-prod
+tar -xzf zorora-v3.0.0-prod.tar.gz
+cd zorora-v3.0.0-prod
 
 # Install
 pip install -e .

@@ -34,7 +34,7 @@ Quick start guide to get up and running with Zorora in minutes.
 
 **Recommended: Download from GitHub Release**
 
-[Download v2.5-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2.5-prod)
+[Download v3.0.0-prod](https://github.com/AsobaCloud/zorora/releases/tag/v3.0.0-prod)
 
 ### Step 2: Install Zorora
 

@@ -8,6 +8,52 @@ nav_order: 9
 
 Version history for Zorora.
 
+## Version 3.0.0 - Data Analysis Engine
+
+**Release Date:** February 2026
+
+### Major Features
+
+**Data Analysis Engine:**
+- `/load <path>` command — CSV ingest with automatic profiling (time series detection, ODS-E format recognition, null/gap analysis, descriptive statistics)
+- `/analyze <code>` command — Sandboxed pandas/numpy/matplotlib code execution with blocked dangerous imports and smart result type detection
+- Session store — Persistent DataFrame state across analysis commands
+- Plot capture — Automatic detection of matplotlib saves with file path return
+
+**Nehanda Local:**
+- Offline FAISS-based vector search over local policy document corpus
+- Sentence-transformers embeddings with numpy cosine-similarity fallback
+
+**Load Dataset Workflow:**
+- Three-stage pipeline: ingest/detect → profile → session assembly
+- Automatic timestamp parsing and ODS-E format detection
+- File replacement (loading a new file replaces the previous session)
+
+### Architecture Changes
+
+- New `tools/data_analysis/` module (profiler, execute, session, nehanda_local)
+- New `workflows/load_dataset.py` workflow
+- Router integration for automatic data analysis intent detection
+- Tool registry integration (execute_analysis, nehanda_query)
+
+### Testing
+
+- 179 new tests across 5 test suites
+- End-to-end integration tests: load CSV → analyze with pandas/numpy/matplotlib
+- Demo data validation: tested against real 17,569-row Solarman inverter dataset
+
+### Cleanup
+
+- Removed legacy `tool_registry.py` backward-compat shim
+- Removed `tool_registry_legacy.py` (3,300-line backup)
+- Removed `config.example.py`
+
+### Dependencies Added
+
+- `pandas>=2.0.0`, `numpy>=1.24.0`, `matplotlib>=3.7.0`, `scipy>=1.10.0`
+
+---
+
 ## Version 2.5.0 - ONA Platform Integration & Enhanced Editing
 
 **Release Date:** January 2025
@@ -125,7 +171,7 @@ Version history for Zorora.
 
 ## Download
 
-[Download v2.5-prod](https://github.com/AsobaCloud/zorora/releases/tag/v2.5-prod)
+[Download v3.0.0-prod](https://github.com/AsobaCloud/zorora/releases/tag/v3.0.0-prod)
 
 ---
 

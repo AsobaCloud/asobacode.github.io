@@ -8,17 +8,17 @@ layout: default
   <h1>Zorora Documentation</h1>
   <div class="version-badge">
     <span class="version-label">Version</span>
-    <span class="version-value">2.5.0</span>
+    <span class="version-value">3.0.0</span>
     <span class="version-separator">|</span>
     <span class="version-label">Latest Release</span>
-    <a href="https://github.com/AsobaCloud/zorora/releases/tag/v2.5-prod" class="version-value">v2.5-prod</a>
+    <a href="https://github.com/AsobaCloud/zorora/releases/tag/v3.0.0-prod" class="version-value">v3.0.0-prod</a>
   </div>
 </div>
 
 <!-- B. Quick Start CTA (Prominent) -->
 <div class="quick-start-section">
-  <a href="https://github.com/AsobaCloud/zorora/releases/tag/v2.5-prod" class="quick-start-button">
-    Download v2.5-prod
+  <a href="https://github.com/AsobaCloud/zorora/releases/tag/v3.0.0-prod" class="quick-start-button">
+    Download v3.0.0-prod
   </a>
   <p class="quick-start-subtext">
     Or install from GitHub: <code>pip install git+https://github.com/AsobaCloud/zorora.git</code>
@@ -269,19 +269,19 @@ for r in results:
 <div class="version-updates-section">
   <div class="version-info">
     <h3>Current Version</h3>
-    <p class="version-number">v2.5.0</p>
-    <p class="version-date">ONA Platform Integration & Enhanced Editing</p>
+    <p class="version-number">v3.0.0</p>
+    <p class="version-date">Data Analysis Engine</p>
     <a href="/changelog" class="changelog-link">View Changelog →</a>
   </div>
 
   <div class="whats-new">
-    <h3>What's New in v2.5</h3>
+    <h3>What's New in v3.0</h3>
     <ul class="whats-new-list">
-      <li>ONA Platform Integration - Remote ML model observation commands</li>
-      <li>Enhanced /code file editing with auto-detection and retry loop</li>
-      <li>Beautiful progress display with hierarchical tool visualization</li>
-      <li>/deep command for terminal deep research</li>
-      <li>Complete modular tool registry migration (19 tools)</li>
+      <li>Data Analysis Engine - Load CSVs with <code>/load</code>, run sandboxed pandas/matplotlib with <code>/analyze</code></li>
+      <li>Automatic data profiling - Time series detection, ODS-E format recognition, gap analysis</li>
+      <li>Nehanda Local - Offline FAISS-based policy document search</li>
+      <li>179 new tests including end-to-end load→analyze integration tests</li>
+      <li>Legacy tool registry cleanup (removed deprecated shims)</li>
     </ul>
     <a href="/changelog" class="whats-new-link">Read Release Notes →</a>
   </div>
