@@ -99,6 +99,8 @@
       url: /use-cases/code-development
     - title: Multi-Source Analysis
       url: /use-cases/multi-source-analysis
+    - title: Energy Data Exploration
+      url: /use-cases/energy-data-exploration
 
 - title: Resources
   url: /resources

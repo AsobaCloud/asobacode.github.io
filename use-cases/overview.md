@@ -16,6 +16,7 @@ This section provides practical use cases demonstrating how Zorora can be used i
 - **Academic Research** - Deep research for academic papers and literature reviews
 - **Code Development** - Multi-step code development with `/develop` workflow
 - **Multi-Source Analysis** - Cross-referencing claims across multiple sources
+- **Energy Data Exploration** - EDA with production solar time series data
 
 ## Popular Use Cases
 
@@ -45,6 +46,15 @@ This section provides practical use cases demonstrating how Zorora can be used i
     </div>
     <p>Cross-reference claims across academic papers, web sources, and newsroom articles to verify information and identify consensus or disagreement.</p>
     <a href="/use-cases/multi-source-analysis" class="card-link">Learn More →</a>
+  </div>
+
+  <div class="overview-card">
+    <h3>Energy Data Exploration</h3>
+    <div style="width: 100%; height: 200px; background: var(--background-light); border: 2px dashed var(--border-grey); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; color: var(--text-light);">
+      <span>Energy Data Exploration Example<br/><small>(Placeholder)</small></span>
+    </div>
+    <p>Load production solar inverter data, profile time series quality, and run sandboxed pandas/matplotlib analysis — all from the Zorora REPL.</p>
+    <a href="/use-cases/energy-data-exploration" class="card-link">Learn More →</a>
   </div>
 </div>
 
@@ -76,6 +86,7 @@ This section provides practical use cases demonstrating how Zorora can be used i
 1. **[Academic Research](/use-cases/academic-research)** - Learn how to conduct deep academic research
 2. **[Code Development](/use-cases/code-development)** - Use `/develop` workflow for code changes
 3. **[Multi-Source Analysis](/use-cases/multi-source-analysis)** - Cross-reference claims across sources
+4. **[Energy Data Exploration](/use-cases/energy-data-exploration)** - Load and analyze solar energy data
 
 ## Next Steps
 
