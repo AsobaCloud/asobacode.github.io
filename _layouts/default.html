@@ -247,6 +247,25 @@ layout: default
     });
   </script>
 
+  <!-- Copy-to-clipboard for code blocks -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('pre code').forEach(function (block) {
+        var button = document.createElement('button');
+        button.textContent = 'Copy';
+        button.style.cssText = 'position:absolute;top:10px;right:10px;padding:5px 10px;background:var(--primary-blue);color:white;border:none;border-radius:4px;font-size:0.8rem;cursor:pointer;opacity:0.8;';
+        block.parentElement.style.position = 'relative';
+        block.parentElement.appendChild(button);
+        button.addEventListener('click', function () {
+          navigator.clipboard.writeText(block.textContent).then(function () {
+            button.textContent = 'Copied!';
+            setTimeout(function () { button.textContent = 'Copy'; }, 2000);
+          });
+        });
+      });
+    });
+  </script>
+
   <style>
     /* Enhanced styles for the expanded navigation */
     .sub-category {
