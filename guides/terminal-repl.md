@@ -2,7 +2,7 @@
 title: "Terminal REPL"
 layout: default
 nav_order: 4
-parent: Guides
+parent: "Build"
 ---
 
 # Terminal REPL Guide

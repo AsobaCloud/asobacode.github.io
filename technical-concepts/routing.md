@@ -1,8 +1,8 @@
 ---
 title: "Routing"
 layout: default
-nav_order: 4
-parent: Technical Concepts
+nav_order: 5
+parent: "Learn"
 ---
 
 # Routing Mechanism

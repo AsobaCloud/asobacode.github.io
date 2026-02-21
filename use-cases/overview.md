@@ -1,8 +1,7 @@
 ---
 title: "Use Cases Overview"
 layout: default
-nav_order: 6
-parent: Use Cases
+nav_exclude: true
 ---
 
 # Use Cases Overview

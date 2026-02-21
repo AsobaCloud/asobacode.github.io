@@ -1,8 +1,7 @@
 ---
 title: "Guides Overview"
 layout: default
-nav_order: 3
-parent: Guides
+nav_exclude: true
 ---
 
 # Guides Overview

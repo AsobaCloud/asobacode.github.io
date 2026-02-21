@@ -67,35 +67,29 @@ layout: default
   <h2>Documentation Sections</h2>
   <div class="section-cards">
     <div class="section-card">
-      <h3>Getting Started</h3>
-      <p>Quick tutorials to get you up and running</p>
-      <a href="/getting-started" class="section-link">View Getting Started →</a>
+      <h3>Learn</h3>
+      <p>Architecture, research pipeline, and how Zorora works</p>
+      <a href="/learn" class="section-link">Start Learning →</a>
     </div>
-    
+
     <div class="section-card">
-      <h3>Guides</h3>
-      <p>Step-by-step guides for common tasks</p>
-      <a href="/guides/overview" class="section-link">Browse Guides →</a>
+      <h3>Build</h3>
+      <p>Install, configure, and use Zorora</p>
+      <a href="/build" class="section-link">Start Building →</a>
     </div>
-    
+
     <div class="section-card">
-      <h3>API Reference</h3>
+      <h3>Patterns</h3>
+      <p>Real-world workflows and use cases</p>
+      <a href="/patterns" class="section-link">View Patterns →</a>
+    </div>
+
+    <div class="section-card">
+      <h3>Reference</h3>
       <p>Complete API documentation</p>
-      <a href="/api-reference/overview" class="section-link">View API Docs →</a>
+      <a href="/reference" class="section-link">View Reference →</a>
     </div>
-    
-    <div class="section-card">
-      <h3>Technical Concepts</h3>
-      <p>Deep dives into how things work</p>
-      <a href="/technical-concepts/overview" class="section-link">Learn More →</a>
-    </div>
-    
-    <div class="section-card">
-      <h3>Use Cases</h3>
-      <p>Real-world examples and case studies</p>
-      <a href="/use-cases/overview" class="section-link">See Use Cases →</a>
-    </div>
-    
+
     <div class="section-card">
       <h3>FAQ</h3>
       <p>Frequently asked questions</p>

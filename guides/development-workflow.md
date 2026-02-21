@@ -2,7 +2,7 @@
 title: "Development Workflow"
 layout: default
 nav_order: 8
-parent: Guides
+parent: "Build"
 ---
 
 # Development Workflow Guide

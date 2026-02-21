@@ -1,0 +1,46 @@
+# Zorora Documentation
+
+> Zorora is a local-deployment deep research engine that searches across academic databases, web sources, and newsroom articles, then synthesizes findings with credibility scoring and citation graphs. Built for macOS (Apple Silicon).
+
+Documentation for Zorora is available at https://code.asoba.co
+
+## Learn
+
+- [Introduction](https://code.asoba.co/introduction): Overview of Zorora architecture, features, and local-first design
+- [Architecture](https://code.asoba.co/technical-concepts/architecture): System architecture and component design
+- [Research Pipeline](https://code.asoba.co/technical-concepts/research-pipeline): 6-phase deep research pipeline details
+- [Storage](https://code.asoba.co/technical-concepts/storage): Local storage system (SQLite, JSON, FAISS)
+- [Routing](https://code.asoba.co/technical-concepts/routing): Model routing and endpoint management
+- [Credibility Scoring](https://code.asoba.co/technical-concepts/credibility-scoring): Multi-factor source credibility assessment
+
+## Build
+
+- [Quickstart](https://code.asoba.co/build/quickstart): Install and run your first query in 3 steps
+- [Installation](https://code.asoba.co/guides/installation): Detailed installation methods
+- [Configuration](https://code.asoba.co/guides/configuration): API keys, models, and endpoint configuration
+- [Terminal REPL](https://code.asoba.co/guides/terminal-repl): Command-line interface guide
+- [Web UI](https://code.asoba.co/guides/web-ui): Browser-based research interface
+- [Research Workflow](https://code.asoba.co/guides/research-workflow): Deep research workflow guide
+- [Code Generation](https://code.asoba.co/guides/code-generation): Codestral-powered code generation
+- [Development Workflow](https://code.asoba.co/guides/development-workflow): Multi-step code development
+- [Slash Commands](https://code.asoba.co/guides/slash-commands): Complete command reference
+- [Nehanda v1](https://code.asoba.co/guides/nehanda-v1): Asoba's fine-tuned synthesis model
+
+## Patterns
+
+- [Academic Research](https://code.asoba.co/use-cases/academic-research): Multi-source academic research workflow
+- [Code Development](https://code.asoba.co/use-cases/code-development): Code generation and development patterns
+- [Multi-Source Analysis](https://code.asoba.co/use-cases/multi-source-analysis): Cross-referencing multiple source types
+- [Energy Data Exploration](https://code.asoba.co/use-cases/energy-data-exploration): Energy sector data analysis
+
+## Reference
+
+- [API Overview](https://code.asoba.co/api-reference/overview): API documentation overview
+- [Research API](https://code.asoba.co/api-reference/research-api): Research engine API endpoints
+- [Settings API](https://code.asoba.co/api-reference/settings-api): Configuration and settings API
+- [Python SDK](https://code.asoba.co/api-reference/python-sdk): Python SDK reference
+
+## Resources
+
+- [FAQ](https://code.asoba.co/faq): Frequently asked questions
+- [Changelog](https://code.asoba.co/changelog): Version history

@@ -1,8 +1,7 @@
 ---
 title: "Technical Concepts Overview"
 layout: default
-nav_order: 5
-parent: Technical Concepts
+nav_exclude: true
 ---
 
 # Technical Concepts Overview

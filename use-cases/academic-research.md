@@ -2,7 +2,7 @@
 title: "Academic Research"
 layout: default
 nav_order: 1
-parent: Use Cases
+parent: "Patterns"
 ---
 
 # Academic Research Use Case

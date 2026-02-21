@@ -2,7 +2,7 @@
 title: "Multi-Source Analysis"
 layout: default
 nav_order: 3
-parent: Use Cases
+parent: "Patterns"
 ---
 
 # Multi-Source Analysis Use Case

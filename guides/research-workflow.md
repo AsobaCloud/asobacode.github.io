@@ -2,7 +2,7 @@
 title: "Research Workflow"
 layout: default
 nav_order: 6
-parent: Guides
+parent: "Build"
 ---
 
 # Research Workflow Guide

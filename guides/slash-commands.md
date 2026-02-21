@@ -2,7 +2,7 @@
 title: "Slash Commands"
 layout: default
 nav_order: 9
-parent: Guides
+parent: "Build"
 ---
 
 # Slash Commands Reference

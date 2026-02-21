@@ -1,8 +1,8 @@
 ---
 title: "Architecture"
 layout: default
-nav_order: 1
-parent: Technical Concepts
+nav_order: 2
+parent: "Learn"
 ---
 
 # Architecture

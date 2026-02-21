@@ -1,8 +1,8 @@
 ---
 title: "Configuration"
 layout: default
-nav_order: 2
-parent: Guides
+nav_order: 3
+parent: "Build"
 ---
 
 # Configuration Guide

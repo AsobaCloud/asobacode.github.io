@@ -2,7 +2,7 @@
 title: "Energy Data Exploration"
 layout: default
 nav_order: 4
-parent: Use Cases
+parent: "Patterns"
 ---
 
 # Energy Data Exploration

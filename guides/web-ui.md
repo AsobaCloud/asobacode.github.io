@@ -2,7 +2,7 @@
 title: "Web UI"
 layout: default
 nav_order: 5
-parent: Guides
+parent: "Build"
 ---
 
 # Web UI Guide

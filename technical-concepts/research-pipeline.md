@@ -1,8 +1,8 @@
 ---
 title: "Research Pipeline"
 layout: default
-nav_order: 2
-parent: Technical Concepts
+nav_order: 3
+parent: "Learn"
 ---
 
 # Research Pipeline

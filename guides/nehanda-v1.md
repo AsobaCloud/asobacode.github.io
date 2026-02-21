@@ -2,7 +2,7 @@
 title: "Nehanda v1"
 layout: default
 nav_order: 10
-parent: Guides
+parent: "Build"
 ---
 
 # Nehanda v1

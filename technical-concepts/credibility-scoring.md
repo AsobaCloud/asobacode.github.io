@@ -1,8 +1,8 @@
 ---
 title: "Credibility Scoring"
 layout: default
-nav_order: 5
-parent: Technical Concepts
+nav_order: 6
+parent: "Learn"
 ---
 
 # Credibility Scoring

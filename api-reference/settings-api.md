@@ -2,7 +2,7 @@
 title: "Settings API"
 layout: default
 nav_order: 3
-parent: API Reference
+parent: "Reference"
 ---
 
 # Settings API Reference

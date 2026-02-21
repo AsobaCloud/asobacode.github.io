@@ -2,7 +2,7 @@
 title: "Research API"
 layout: default
 nav_order: 2
-parent: API Reference
+parent: "Reference"
 ---
 
 # Research API Reference

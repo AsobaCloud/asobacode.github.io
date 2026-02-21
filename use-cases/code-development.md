@@ -2,7 +2,7 @@
 title: "Code Development"
 layout: default
 nav_order: 2
-parent: Use Cases
+parent: "Patterns"
 ---
 
 # Code Development Use Case

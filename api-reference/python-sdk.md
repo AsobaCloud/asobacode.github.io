@@ -2,7 +2,7 @@
 title: "Python SDK"
 layout: default
 nav_order: 4
-parent: API Reference
+parent: "Reference"
 ---
 
 # Python SDK Reference

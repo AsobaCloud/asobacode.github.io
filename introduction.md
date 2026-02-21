@@ -1,7 +1,8 @@
 ---
 title: "Introduction"
 layout: default
-nav_order: 0
+nav_order: 1
+parent: "Learn"
 ---
 
 # Zorora: Deep Research Engine

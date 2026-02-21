@@ -2,7 +2,7 @@
 title: "Code Generation"
 layout: default
 nav_order: 7
-parent: Guides
+parent: "Build"
 ---
 
 # Code Generation Guide
