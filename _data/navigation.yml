@@ -1,6 +1,77 @@
 # Navigation configuration for Just the Docs theme
-# Sidebar navigation is now driven by frontmatter (parent, nav_order, has_children).
-# This file is kept minimal — JTD frontmatter takes precedence.
 
 - title: Home
   url: /
+
+- title: Learn
+  url: /learn
+  children:
+    - title: Introduction
+      url: /introduction
+    - title: Architecture
+      url: /technical-concepts/architecture
+    - title: Research Pipeline
+      url: /technical-concepts/research-pipeline
+    - title: Storage
+      url: /technical-concepts/storage
+    - title: Routing
+      url: /technical-concepts/routing
+    - title: Credibility Scoring
+      url: /technical-concepts/credibility-scoring
+
+- title: Build
+  url: /build
+  children:
+    - title: Quickstart
+      url: /build/quickstart
+    - title: Installation
+      url: /guides/installation
+    - title: Configuration
+      url: /guides/configuration
+    - title: Terminal REPL
+      url: /guides/terminal-repl
+    - title: Web UI
+      url: /guides/web-ui
+    - title: Research Workflow
+      url: /guides/research-workflow
+    - title: Code Generation
+      url: /guides/code-generation
+    - title: Development Workflow
+      url: /guides/development-workflow
+    - title: Slash Commands
+      url: /guides/slash-commands
+    - title: Nehanda v1
+      url: /guides/nehanda-v1
+
+- title: Patterns
+  url: /patterns
+  children:
+    - title: Academic Research
+      url: /use-cases/academic-research
+    - title: Code Development
+      url: /use-cases/code-development
+    - title: Multi-Source Analysis
+      url: /use-cases/multi-source-analysis
+    - title: Energy Data Exploration
+      url: /use-cases/energy-data-exploration
+
+- title: Reference
+  url: /reference
+  children:
+    - title: API Overview
+      url: /api-reference/overview
+    - title: Research API
+      url: /api-reference/research-api
+    - title: Settings API
+      url: /api-reference/settings-api
+    - title: Python SDK
+      url: /api-reference/python-sdk
+
+- title: Resources
+  url: /resources
+
+- title: FAQ
+  url: /faq
+
+- title: Changelog
+  url: /changelog
