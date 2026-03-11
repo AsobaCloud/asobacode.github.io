@@ -42,6 +42,15 @@ http://localhost:5000
 
 ## Features
 
+### Mode Switcher
+
+The Web UI has four primary modes in the top navigation:
+
+- **Deep Research** - Full deep-research workflow and synthesis
+- **Digest** - Build a staged set of articles and datasets, then synthesize a digest
+- **Global View** - Country-level newsroom coverage map with topic/source drill-down
+- **Imaging** - Geospatial intelligence overlays for minerals and generation assets
+
 ### Research Query Interface
 
 **Enter Research Question:**
@@ -57,6 +66,34 @@ http://localhost:5000
 - Source list with credibility scores
 - Source URLs for verification
 - Research metadata (timestamp, depth, source count)
+
+### Global View
+
+- Leaflet-based country map with bubble markers sized by article count
+- Coverage indicator showing geo-tagged article ratio
+- Rich popups with top topics and sources by country
+- Click any country/topic/source in popup to filter article tables
+- Integrated market dataset cards from latest series observations
+
+### Digest
+
+- Stage articles from Global View and combine with staged datasets
+- Generate a synthesis grounded in selected context
+- Continue follow-up discussion using digest context
+
+### Imaging
+
+- Overlay layers for:
+  - Mineral deposits (with viability score and tier)
+  - Mining concessions
+  - Renewable generation assets (technology and capacity)
+- Filter by commodity, country, status, technology, and minimum capacity
+- Uses imaging endpoints:
+  - `GET /api/imaging/deposits`
+  - `GET /api/imaging/concessions`
+  - `GET /api/imaging/generation`
+  - `GET /api/imaging/config`
+  - `POST /api/imaging/refresh`
 
 ### Settings Modal
 

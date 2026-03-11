@@ -9,6 +9,8 @@ parent: "Learn"
 
 Zorora is a local-deployment deep research engine that searches across academic databases, web sources, and newsroom articles, then synthesizes findings with credibility scoring and citation graphs. Built for macOS (Apple Silicon) with minimal RAM footprint, meant to be run directly from your computer, with all content, outputs, and chats stored locally and not in the cloud, giving you complete control and privacy.
 
+Current stable release: **v3.5.0-prod** (March 6, 2026).
+
 <div class="screenshot-grid">
   <img src="{{ site.baseurl }}/assets/images/ui.png" alt="Zorora Web UI" class="screenshot">
   <img src="{{ site.baseurl }}/assets/images/screenshot.png" alt="Zorora Terminal REPL" class="screenshot">
@@ -63,6 +65,9 @@ Zorora provides:
 ### Additional Features
 
 - **Research persistence** - Save/load findings with metadata
+- **Global View mode** - Country-level map of newsroom coverage with click-to-filter topic/source popups
+- **Digest mode** - Stage articles and datasets, then synthesize structured market/policy digests
+- **Imaging mode** - Geospatial overlays for deposits, concessions, and generation assets with viability scoring
 - **Code generation** - Dedicated Codestral model for coding tasks
 - **Multi-step development** - `/develop` workflow: explore → plan → approve → execute → lint
 - **Slash commands** - Force workflows: `/search`, `/ask`, `/code`, `/develop`, `/image`, `/vision`
@@ -241,7 +246,7 @@ Instead of asking the 4B model to be smart, we made the **code smart**:
 
 ### Installation
 
-[Download v3.0.0-prod](https://github.com/AsobaCloud/zorora/releases/tag/v3.0.0-prod)
+[Download v3.5.0-prod](https://github.com/AsobaCloud/zorora/releases/tag/v3.5.0-prod)
 
 Or install from GitHub:
 ```bash

@@ -34,7 +34,7 @@ Quick start guide to get up and running with Zorora in minutes.
 
 **Recommended: Download from GitHub Release**
 
-[Download v3.0.0-prod](https://github.com/AsobaCloud/zorora/releases/tag/v3.0.0-prod)
+[Download v3.5.0-prod](https://github.com/AsobaCloud/zorora/releases/tag/v3.5.0-prod)
 
 ### Step 2: Install Zorora
 
@@ -164,13 +164,18 @@ zorora web
 ![Zorora Web UI]({{ site.baseurl }}/assets/images/ui.png)
 *Web UI interface*
 
-2. Enter research question in the search box
-3. Select depth level:
+2. Select mode based on your task:
+   - **Deep Research** - multi-source synthesis workflow
+   - **Digest** - stage articles/datasets for focused synthesis
+   - **Global View** - country map + topic/source drilldown
+   - **Imaging** - geospatial deposits/concessions/generation overlays
+3. Enter research question in the search box (Deep Research mode)
+4. Select depth level:
    - **Quick** - Initial sources only (depth=1, ~25-35s)
    - **Balanced** - + Citation following (depth=2, ~35-50s) - *Coming soon*
    - **Thorough** - + Multi-hop citations (depth=3, ~50-70s) - *Coming soon*
-4. Click "Start Research"
-5. View synthesis, sources, and credibility scores
+5. Click "Start Research"
+6. View synthesis, sources, and credibility scores
 
 ### API (Programmatic Access)
 

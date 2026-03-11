@@ -8,6 +8,42 @@ nav_order: 7
 
 Version history for Zorora.
 
+## Version 3.5.0 - Deep Research Contracts, Global View, and Imaging
+
+**Release Date:** March 6, 2026
+
+### Major Features
+
+**Deep Research Contract Hardening:**
+- Intent-first decomposition with parallel multi-source retrieval
+- Relevance-first and credibility-aware evidence ranking
+- Two-stage synthesis (outline then section expansion) with stricter quality gates
+- Deterministic structured fallback when evidence is weak
+- Raw evidence-dump fallback removed from contract path
+
+**Retrieval Expansion (SEP-031, SEP-032):**
+- Six additional deep-research search surfaces
+- Structured connectors added for CrossRef, arXiv, and World Bank
+- Improved caching/data plumbing for structured retrieval
+
+**Web UI Mapping and Intelligence (SEP-033, SEP-034):**
+- New **Global View** mode with country-level map bubbles and geo-tag coverage indicators
+- Rich map popups with click-to-filter by topic and source
+- New **Digest** mode for staged-article and staged-dataset synthesis
+- New **Imaging** mode with OSINT geospatial layers:
+  - Mineral deposits with viability scoring
+  - Mining concessions
+  - Renewable generation assets
+- Imaging overlays for political boundaries and rail infrastructure
+
+### Licensing
+
+- Project license updated to dual-license model:
+  - AGPLv3+ for open-source usage
+  - Commercial licensing via AsobaCloud for non-AGPL commercialization
+
+---
+
 ## Version 3.0.0 - Data Analysis Engine
 
 **Release Date:** February 2026
@@ -171,7 +207,7 @@ Version history for Zorora.
 
 ## Download
 
-[Download v3.0.0-prod](https://github.com/AsobaCloud/zorora/releases/tag/v3.0.0-prod)
+[Download v3.5.0-prod](https://github.com/AsobaCloud/zorora/releases/tag/v3.5.0-prod)
 
 ---
 

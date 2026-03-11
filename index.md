@@ -8,17 +8,17 @@ layout: default
   <h1>Zorora Documentation</h1>
   <div class="version-badge">
     <span class="version-label">Version</span>
-    <span class="version-value">3.0.0</span>
+    <span class="version-value">3.5.0</span>
     <span class="version-separator">|</span>
     <span class="version-label">Latest Release</span>
-    <a href="https://github.com/AsobaCloud/zorora/releases/tag/v3.0.0-prod" class="version-value">v3.0.0-prod</a>
+    <a href="https://github.com/AsobaCloud/zorora/releases/tag/v3.5.0-prod" class="version-value">v3.5.0-prod</a>
   </div>
 </div>
 
 <!-- B. Quick Start CTA (Prominent) -->
 <div class="quick-start-section">
-  <a href="https://github.com/AsobaCloud/zorora/releases/tag/v3.0.0-prod" class="quick-start-button">
-    Download v3.0.0-prod
+  <a href="https://github.com/AsobaCloud/zorora/releases/tag/v3.5.0-prod" class="quick-start-button">
+    Download v3.5.0-prod
   </a>
   <p class="quick-start-subtext">
     Or install from GitHub: <code>pip install git+https://github.com/AsobaCloud/zorora.git</code>
@@ -263,19 +263,19 @@ for r in results:
 <div class="version-updates-section">
   <div class="version-info">
     <h3>Current Version</h3>
-    <p class="version-number">v3.0.0</p>
-    <p class="version-date">Data Analysis Engine</p>
+    <p class="version-number">v3.5.0</p>
+    <p class="version-date">Deep Research Contracts and Mapping Intelligence</p>
     <a href="/changelog" class="changelog-link">View Changelog →</a>
   </div>
 
   <div class="whats-new">
-    <h3>What's New in v3.0</h3>
+    <h3>What's New in v3.5</h3>
     <ul class="whats-new-list">
-      <li>Data Analysis Engine - Load CSVs with <code>/load</code>, run sandboxed pandas/matplotlib with <code>/analyze</code></li>
-      <li>Automatic data profiling - Time series detection, ODS-E format recognition, gap analysis</li>
-      <li>Nehanda Local - Offline FAISS-based policy document search</li>
-      <li>179 new tests including end-to-end load→analyze integration tests</li>
-      <li>Legacy tool registry cleanup (removed deprecated shims)</li>
+      <li>Contract-driven deep research synthesis with stricter quality gates and no raw evidence-dump fallback</li>
+      <li>Expanded retrieval surfaces and structured connectors (CrossRef, arXiv, World Bank)</li>
+      <li>Global View mode with country-level Leaflet map, coverage metrics, and click-to-filter popups</li>
+      <li>Digest mode for staged article + dataset synthesis workflows</li>
+      <li>Imaging mode with OSINT overlays for deposits, concessions, and generation assets</li>
     </ul>
     <a href="/changelog" class="whats-new-link">Read Release Notes →</a>
   </div>
