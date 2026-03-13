@@ -8,6 +8,22 @@ nav_order: 7
 
 Version history for Zorora.
 
+## Version 3.6.0 - Diligence Search
+
+**Release Date:** March 12, 2026
+
+### Major Features
+
+**Acquisition Diligence Search (SEP-035 through SEP-038):**
+- Domain-specific query decomposition for renewable energy due diligence (tariffs, licensing, environmental, performance, counterparty, asset-specific)
+- Per-domain source grouping with analytical questions for each report section
+- Diligence-specific synthesis prompt targeting investment committee audience
+- Diligence quality gate validates domain section structure (not generic "Direct Answer")
+- Embedded matplotlib charts (revenue waterfall, capacity factor comparison, technology mix)
+- Triggered from Imaging mode asset popups or directly from Deep Research
+
+---
+
 ## Version 3.5.0 - Deep Research Contracts, Global View, and Imaging
 
 **Release Date:** March 6, 2026

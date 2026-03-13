@@ -46,7 +46,7 @@ http://localhost:5000
 
 The Web UI has four primary modes in the top navigation:
 
-- **Deep Research** - Full deep-research workflow and synthesis
+- **Deep Research** - Full deep-research workflow and synthesis (includes [Diligence Search](/use-cases/diligence-search) for brownfield asset due diligence)
 - **Digest** - Build a staged set of articles and datasets, then synthesize a digest
 - **Global View** - Country-level newsroom coverage map with topic/source drill-down
 - **Imaging** - Geospatial intelligence overlays for minerals and generation assets
