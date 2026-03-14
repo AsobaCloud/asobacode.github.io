@@ -5,11 +5,11 @@ nav_order: 1
 parent: "Learn"
 ---
 
-# Zorora: Deep Research Engine
+# Zorora: Energy Intelligence Platform
 
-Zorora is a local-deployment deep research engine that searches across academic databases, web sources, and newsroom articles, then synthesizes findings with credibility scoring and citation graphs. Built for macOS (Apple Silicon) with minimal RAM footprint, meant to be run directly from your computer, with all content, outputs, and chats stored locally and not in the cloud, giving you complete control and privacy.
+Zorora is a local-first intelligence platform built for energy traders and asset investors. It covers the full workflow from acquisition diligence and regulatory tracking to geospatial asset mapping and market monitoring — with deep research, structured data analysis, and automated report generation across six integrated modes. Runs on macOS (Apple Silicon) with minimal RAM footprint, all data stored locally on your machine.
 
-Current stable release: **v3.5.0-prod** (March 6, 2026).
+Current stable release: **v3.6.0** (March 13, 2026).
 
 <div class="screenshot-grid">
   <img src="{{ site.baseurl }}/assets/images/ui.png" alt="Zorora Web UI" class="screenshot">
@@ -21,19 +21,22 @@ Current stable release: **v3.5.0-prod** (March 6, 2026).
 
 ## What is Zorora? {#what-is-zorora}
 
-Zorora transforms from a basic research tool into a **deep research engine** that:
+Zorora is an **energy intelligence platform** with six integrated modes:
 
-1. **Searches EVERYTHING** - Academic databases (7 sources) + web search + Asoba newsroom
-2. **Follows citation trails** - Multi-hop research that explores cited papers
-3. **Cross-references claims** - Groups similar claims and counts agreement across sources
-4. **Scores credibility** - Transparent rules-based scoring of source authority
-5. **Builds citation graphs** - Visualizes relationships between sources
-6. **Synthesizes with confidence** - Generates comprehensive answers with citation levels
+1. **Deep Research** — Multi-source research across academic databases, web, and newsroom with credibility scoring, citation graphs, and contract-based synthesis
+2. **Diligence Search** — Brownfield acquisition due diligence with domain-specific analysis (tariffs, regulations, performance, vendors) and structured data from EIA, utility rate, and World Bank databases
+3. **Digest** — Stage articles and market datasets, then synthesize structured energy market and policy digests
+4. **Alerts** — Monitor topics and sources for new developments with configurable alert rules
+5. **Regulatory** — Track renewable portfolio standards, utility rates, generation assets, and regulatory environments by jurisdiction
+6. **Global View** — Interactive country map with click-to-filter topic/source popups and market dataset cards
+
+Plus **Imaging** for Leaflet-based OSINT geospatial views of mineral deposits, concessions, and generation assets with viability scoring overlays.
 
 ### Core Value Proposition
 
 Zorora provides:
 
+- **Energy-Sector Focus** - Diligence reports, regulatory tracking, and market data for energy traders and asset investors
 - **Complete Privacy** - All processing and storage on your machine
 - **Local-First Architecture** - Zero cloud dependencies (except source fetching)
 - **RAM Efficiency** - Runs on MacBook Air M3 with 4B model (4-6 GB RAM)
@@ -45,38 +48,34 @@ Zorora provides:
 
 ## Core Features {#core-features}
 
-### Deep Research Capabilities
+### Platform Modes
 
-**6-Phase Research Pipeline:**
+| Mode | What it does |
+|------|-------------|
+| **Deep Research** | 6-phase pipeline: parallel source aggregation (academic, web, newsroom) → citation following → cross-referencing → credibility scoring → citation graph → synthesis with inline citations |
+| **Diligence Search** | Brownfield acquisition due diligence — domain-specific query decomposition, structured data from EIA/utility/World Bank/generation asset databases, automated diligence reports with charts |
+| **Digest** | Stage articles and market datasets, synthesize structured energy market and policy digests |
+| **Alerts** | Monitor topics and sources for new developments with configurable alert rules |
+| **Regulatory** | Renewable portfolio standards, utility rates, generation assets, and regulatory environments by jurisdiction |
+| **Global View** | Interactive country map with click-to-filter topic/source popups and market dataset cards |
+| **Imaging** | Leaflet-based OSINT geospatial view for mineral deposits, concessions, and generation assets with viability scoring |
 
-1. **Parallel Source Aggregation** - Searches academic (7 sources), web (Brave + DDG), and newsroom simultaneously
-2. **Citation Following** - Multi-hop exploration of cited papers (configurable depth: 1-3)
-3. **Cross-Referencing** - Groups claims by similarity and counts agreement
-4. **Credibility Scoring** - Rules-based scoring of source authority (academic journals, predatory publishers, retractions)
-5. **Citation Graph Building** - Constructs directed graphs showing source relationships
-6. **Synthesis** - Generates comprehensive answers with confidence levels and citations
-
-**Research Depth Levels:**
+### Research Depth Levels
 
 - **Quick** - Initial sources only (skips citation following, depth=1, ~25-35s)
 - **Balanced** - Adds citation following (1 hop, depth=2, ~35-50s) - *Coming soon*
 - **Thorough** - Multi-hop citation exploration (up to 3 levels deep, depth=3, ~50-70s) - *Coming soon*
 
-### Additional Features
+### Additional Capabilities
 
-- **Research persistence** - Save/load findings with metadata
-- **Global View mode** - Country-level map of newsroom coverage with click-to-filter topic/source popups
-- **Digest mode** - Stage articles and datasets, then synthesize structured market/policy digests
-- **Imaging mode** - Geospatial overlays for deposits, concessions, and generation assets with viability scoring
+- **Data analysis** - Sandboxed Python execution with pandas, numpy, and matplotlib
+- **Comparative queries** - Auto-detects "X vs Y" queries and generates dimension-based comparison tables
 - **Code generation** - Dedicated Codestral model for coding tasks
 - **Multi-step development** - `/develop` workflow: explore → plan → approve → execute → lint
 - **Slash commands** - Force workflows: `/search`, `/ask`, `/code`, `/develop`, `/image`, `/vision`
 - **Deterministic routing** - Pattern-based decision tree (no LLM routing failures)
 - **Hybrid deployment** - Local 4B orchestrator + remote 32B specialists
-- **RAM-efficient** - Runs on MacBook Air M3 with 4B model
-- **Dual interfaces** - Terminal REPL for engineers, Web UI for non-engineers
 - **Multi-provider support** - Configure models from HuggingFace, OpenAI, and Anthropic APIs
-- **Visual settings management** - Web UI settings modal for easy configuration
 - **Vision and image generation** - Dedicated models for image analysis and text-to-image generation
 
 ---
@@ -100,21 +99,22 @@ User Query / Slash Command / Web UI Request
     ↓
 Pattern Matching (simplified_router.py) / Flask Routes (ui/web/app.py)
     ↓
-    ├─→ DEEP RESEARCH WORKFLOW (6-phase pipeline)
-    │   ├─► Phase 1: Parallel Source Aggregation
-    │   │   ├─► Academic (7 sources: Scholar, PubMed, CORE, arXiv, bioRxiv, medRxiv, PMC)
-    │   │   ├─► Web (Brave Search + DuckDuckGo)
-    │   │   └─► Newsroom (Asoba API)
-    │   ├─► Phase 2: Citation Following (configurable depth: 1-3)
-    │   ├─► Phase 3: Cross-Referencing (groups claims by similarity)
-    │   ├─► Phase 4: Credibility Scoring (rules-based)
-    │   ├─► Phase 5: Citation Graph Building
-    │   └─► Phase 6: Synthesis (Reasoning Model)
+    ├─→ DEEP RESEARCH (6-phase pipeline)
+    │   ├─► Parallel Source Aggregation (academic, web, newsroom)
+    │   ├─► Citation Following → Cross-Referencing → Credibility Scoring
+    │   ├─► Citation Graph Building
+    │   └─► Contract-Based Synthesis (Reasoning Model)
+    ├─→ DILIGENCE SEARCH (domain-specific due diligence)
+    │   ├─► Query Decomposition (tariffs, regulations, performance, vendors)
+    │   ├─► Structured Data (EIA, utility rates, RPS, World Bank, generation assets)
+    │   └─► Diligence Report Synthesis with Charts
+    ├─→ DIGEST (staged article + dataset synthesis)
+    ├─→ ALERTS (topic/source monitoring)
+    ├─→ REGULATORY (RPS, utility rates, generation data by jurisdiction)
+    ├─→ GLOBAL VIEW (country map + market datasets)
+    ├─→ IMAGING (geospatial OSINT overlays)
     ├─→ CODE WORKFLOW (Codestral specialist)
-    ├─→ DEVELOPMENT WORKFLOW (/develop - multi-step)
-    ├─→ FILE OPERATIONS (save/load/list)
-    ├─→ IMAGE WORKFLOWS (generate/analyze)
-    └─→ SIMPLE Q&A (/ask - direct model)
+    └─→ DATA ANALYSIS (sandboxed Python + matplotlib)
 ```
 
 ### Key Principles
@@ -157,10 +157,10 @@ Local-first storage:
 
 **5. Web UI (`ui/web/app.py`)**
 
-Flask-based web interface:
-- Research query interface with depth selection
+Flask-based web interface with six modes:
+- Deep Research, Diligence Search, Digest, Alerts, Regulatory, Global View, and Imaging
 - Settings modal for configuration
-- Research results display with synthesis, sources, and credibility scores
+- Two-column layout with persistent research history sidebar
 
 ---
 
@@ -246,7 +246,7 @@ Instead of asking the 4B model to be smart, we made the **code smart**:
 
 ### Installation
 
-[Download v3.5.0-prod](https://github.com/AsobaCloud/zorora/releases/tag/v3.5.0-prod)
+[Download v3.6.0](https://github.com/AsobaCloud/zorora/releases/tag/v3.6.0)
 
 Or install from GitHub:
 ```bash
