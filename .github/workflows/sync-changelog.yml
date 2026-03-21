@@ -23,8 +23,6 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
     
-    - name: Setup GitHub CLI
-      uses: cli/setup-github-cli@v2
     
     - name: Fetch CHANGELOG from platform repository
       id: fetch-changelog
