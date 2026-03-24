@@ -1,282 +1,186 @@
 ---
-title: "Web UI"
+title: "Platform Guide"
 layout: default
-nav_order: 5
-parent: "Build"
+nav_order: 7
+parent: "Learn"
 ---
 
-# Web UI Guide
+# Platform Guide
 
-Browser-based research interface for non-engineers.
+Zorora gives energy traders and asset investors research reports, acquisition diligence, regulatory monitoring, and market intelligence from a single interface. This guide walks through each screen.
 
-## Overview
+---
 
-The Web UI provides a user-friendly browser-based interface for Zorora, designed for users who prefer a graphical interface over the command line. It offers the same deep research capabilities as the Terminal REPL with an intuitive visual interface.
+## Deep Research
+
+Deep Research is the primary mode. Enter a research question, select a depth level, and Zorora synthesizes a structured report from academic, web, and newsroom sources with inline citations and credibility scores.
 
 <div class="screenshot-container">
-  <img src="{{ site.baseurl }}/assets/images/ui.png" alt="Zorora Web UI" class="screenshot">
+  <img src="{{ site.baseurl }}/assets/images/zorora-deep-research-input.png" alt="Deep Research query input" class="screenshot">
 </div>
-<p class="screenshot-caption">Zorora Web UI - Browser-based research interface</p>
+<p class="screenshot-caption">Enter a research question and select depth: Quick (initial sources), Balanced (+ citation following), or Thorough (+ multi-hop citations)</p>
 
-## Starting the Web UI
+After submitting, Zorora may detect missing dimensions in your query — time period, analysis type, or scope — and prompt you to refine the research intent before running.
 
-### Method 1: Using zorora Command
-
-```bash
-zorora web
-```
-
-### Method 2: Using Python Directly
-
-```bash
-python web_main.py
-```
-
-### Access the Interface
-
-Open your browser and navigate to:
+<div class="screenshot-container">
+  <img src="{{ site.baseurl }}/assets/images/zorora-deep-research-refine.png" alt="Refine Research Intent modal" class="screenshot">
+</div>
+<p class="screenshot-caption">The Refine Research Intent modal lets you narrow the time period, analysis type (market overview, trend analysis, policy review, impact assessment, diligence search), and scope before executing</p>
 
-```
-http://localhost:5000
-```
+Results appear as a synthesis with inline source citations on the left and a credibility-scored sources panel on the right. Sources are filterable by type (Newsroom, Web, Academic). You can ask follow-up questions grounded in the same source material using the chat input at the bottom.
 
-## Features
-
-### Mode Switcher
+<div class="screenshot-container">
+  <img src="{{ site.baseurl }}/assets/images/zorora-deep-research.png" alt="Deep Research results" class="screenshot">
+</div>
+<p class="screenshot-caption">Research synthesis with inline citations, credibility-scored sources panel, and follow-up chat. Each source shows its type, credibility percentage, and date.</p>
 
-The Web UI has four primary modes in the top navigation:
+**Key capabilities:**
+- Parallel source aggregation across academic databases (PubMed, OpenAlex, Semantic Scholar), web search, and curated newsroom feeds
+- Multi-factor credibility scoring with predatory publisher detection
+- Diligence search mode for brownfield acquisition due diligence with structured data from EIA, utility rates, and regulatory databases
+- Research memory: thumbs up/down feedback, persistent chat threads, and scouting feasibility findings as internal sources
+- Research history in the left sidebar for resuming past sessions
 
-- **Deep Research** - Full deep-research workflow and synthesis (includes [Diligence Search](/use-cases/diligence-search) for brownfield asset due diligence)
-- **Digest** - Build a staged set of articles and datasets, then synthesize a digest
-- **Global View** - Country-level newsroom coverage map with topic/source drill-down
-- **Imaging** - Geospatial intelligence overlays for minerals and generation assets
+---
 
-### Research Query Interface
+## Digest
 
-**Enter Research Question:**
-1. Type your research question in the search box
-2. Select depth level:
-   - **Quick** - Initial sources only (depth=1, ~25-35s)
-   - **Balanced** - + Citation following (depth=2, ~35-50s) - *Coming soon*
-   - **Thorough** - + Multi-hop citations (depth=3, ~50-70s) - *Coming soon*
-3. Click "Start Research"
+Digest lets you stage articles and market datasets, then synthesize a structured brief. Stage items from Global View by clicking "Staged" on any commodity card or article, then switch to Digest to combine them with a topic filter and date range.
 
-**View Results:**
-- Synthesis with citations
-- Source list with credibility scores
-- Source URLs for verification
-- Research metadata (timestamp, depth, source count)
+<div class="screenshot-container">
+  <img src="{{ site.baseurl }}/assets/images/zorora-digest.png" alt="Digest mode" class="screenshot">
+</div>
+<p class="screenshot-caption">Two SAPP DAM price datasets staged for synthesis, with topic filter and date range controls. Click Synthesize to generate a structured market brief.</p>
 
-### Global View
+**Key capabilities:**
+- Stage any combination of commodity datasets and newsroom articles
+- Filter by topic (e.g., AI infrastructure, gold market, energy policy)
+- Set date range to scope the synthesis window
+- Configure article limit for large corpora
+- Follow-up discussion grounded in the digest context
 
-- Leaflet-based country map with bubble markers sized by article count
-- Coverage indicator showing geo-tagged article ratio
-- Rich popups with top topics and sources by country
-- Click any country/topic/source in popup to filter article tables
-- Integrated market dataset cards from latest series observations
+---
 
-### Digest
+## Alerts
 
-- Stage articles from Global View and combine with staged datasets
-- Generate a synthesis grounded in selected context
-- Continue follow-up discussion using digest context
+Alerts monitors topics and sources on a recurring schedule. Configure a watch — such as "South Africa" with daily frequency — and Zorora will periodically check for new developments and surface them as unread results.
 
-### Imaging
+<div class="screenshot-container">
+  <img src="{{ site.baseurl }}/assets/images/zorora-alerts.png" alt="Alerts mode" class="screenshot">
+</div>
+<p class="screenshot-caption">Recurring alerts dashboard showing a daily South Africa watch. View results, mark as read, or delete alerts.</p>
 
-- Overlay layers for:
-  - Mineral deposits (with viability score and tier)
-  - Mining concessions
-  - Renewable generation assets (technology and capacity)
-- Filter by commodity, country, status, technology, and minimum capacity
-- Uses imaging endpoints:
-  - `GET /api/imaging/deposits`
-  - `GET /api/imaging/concessions`
-  - `GET /api/imaging/generation`
-  - `GET /api/imaging/config`
-  - `POST /api/imaging/refresh`
+**Key capabilities:**
+- Create alerts by topic, source, or keyword
+- Daily or weekly monitoring schedules
+- Unread count tracking per alert
+- View and manage alert results inline
 
-### Settings Modal
+---
 
-**Access Settings:**
-- Click the ⚙️ gear icon in the top-right corner
+## Regulatory
 
-**Configure Models:**
-- Select models for each tool:
-  - orchestrator
-  - codestral
-  - reasoning
-  - search
-  - intent_detector
-  - vision
-  - image_generation
+Regulatory tracks renewable portfolio standards, utility rates, generation assets, and regulatory events by jurisdiction. Filter by jurisdiction (South Africa, Zimbabwe, US), state, fuel type, and year. The dashboard shows cached event counts, latest event dates, active sources, and US quantitative data (RPS compliance records, power cache).
 
-**Configure Endpoints:**
-- Select from:
-  - Local (LM Studio)
-  - HuggingFace Endpoints
-  - OpenAI Endpoints
-  - Anthropic Endpoints
+<div class="screenshot-container">
+  <img src="{{ site.baseurl }}/assets/images/zorora-regulatory.png" alt="Regulatory mode" class="screenshot">
+</div>
+<p class="screenshot-caption">179 cached regulatory events across SA and ZW jurisdictions, with NERSA tariff decisions, public notices, and provenance tracking. US RPS cache holds 3,264 compliance records.</p>
 
-**Manage API Keys:**
-- Configure API keys for all providers
-- Keys are masked for security
-- Use show/hide toggle to view keys
+**Key capabilities:**
+- 4 active regulatory sources: NERSA latest news, NERSA recent decisions, IPP Office old news, ZERA
+- Jurisdiction filter for South Africa, Zimbabwe, and United States
+- US quantitative cache: EIA generation/capacity data, state RPS targets, utility rates by location
+- Cache provenance tracking showing source reliability status
+- Direct links to original regulatory documents
 
-**Add/Edit Endpoints:**
-- Click "Add New Endpoint"
-- Select provider
-- Fill in endpoint details
-- Click "Save"
+---
 
-**Save Configuration:**
-- Click "Save" button
-- Changes take effect after server restart
-- Config file backup created automatically
+## Global View
 
-## Research Results Display
+Global View combines a geographic news map with live commodity and market data. The map shows geo-tagged articles as bubble markers sized by article count. Click any country to see a topic and source breakdown. Below the map, commodity dataset cards show real-time pricing from SAPP, Eskom, FRED, and other providers.
 
-### Synthesis Section
+<div class="screenshot-container">
+  <img src="{{ site.baseurl }}/assets/images/zorora-global-view-map.png" alt="Global View news map" class="screenshot">
+</div>
+<p class="screenshot-caption">Country-level news map with Zimbabwe popup showing 148 articles broken down by topic (economy/politics, geopolitics, energy, insurance) and source</p>
 
-- Comprehensive answer with citations
-- Inline citations ([Newsroom], [Web], [Academic])
-- Confidence levels
-- Key findings highlighted
+<div class="screenshot-container">
+  <img src="{{ site.baseurl }}/assets/images/zorora-global-view-datasets.png" alt="Global View commodity datasets" class="screenshot">
+</div>
+<p class="screenshot-caption">Commodity dataset cards showing SAPP DAM prices (RSA-North at $49.94/MWh, ZAR 805.23) with change indicators. Stage any card into a Digest synthesis.</p>
 
-### Sources Section
+**Key capabilities:**
+- 2,306 geo-tagged articles across 169 countries with topic/source filtering
+- Date range, topic, source, and keyword filters
+- Toggle between Commodity Datasets and Articles views
+- SAPP Day-Ahead Market (6 series), Eskom Demand (4 series), Eskom Station Build-Up (20 series)
+- Stage any dataset or article into Digest for synthesis
+- Refresh All Data to pull latest observations from all providers
 
-- List of all sources used
-- Credibility scores for each source
-- Source type (academic, web, newsroom)
-- Direct links to source URLs
-- Credibility categories (high, medium, low)
+---
 
-### Research Metadata
+## Discovery
 
-- Research ID
-- Query text
-- Depth level used
-- Total sources found
-- Completion timestamp
+Discovery is a Leaflet-based geospatial view showing mineral deposits, generation assets, mining concessions, and transmission infrastructure on satellite imagery. Toggle layers using the control panel. Click any asset to see its details and launch a research query, diligence search, or add it to the scouting pipeline.
 
-## Settings Configuration
+<div class="screenshot-container">
+  <img src="{{ site.baseurl }}/assets/images/zorora-discovery.png" alt="Discovery map" class="screenshot">
+</div>
+<p class="screenshot-caption">Satellite map showing 1,144 mineral deposits and 739 generation assets across southern Africa. Asset popup for Copper solar farm (240 MW, announced) with Research, Diligence, and +Scouting actions.</p>
 
-### Model Selection
+**Key capabilities:**
+- Sentinel-2 satellite imagery with VIIRS night-light overlays
+- Layer toggles: Borders & Labels, Railways, VIIRS Nightlights, Deposits, Concessions, Generation
+- 1,144 mineral deposits with viability scoring (high/medium/low)
+- 739 generation assets with capacity, technology, operator, and construction status
+- Technology markers: Solar, Wind, Hydropower, Bioenergy, Geothermal
+- One-click Research, Diligence, or +Scouting from any asset popup
+- GEM project page links for external cross-reference
 
-**Orchestrator:**
-- Main routing and orchestration model
-- Recommended: Local 4B model (fast, efficient)
+---
 
-**Codestral:**
-- Code generation specialist
-- Recommended: HF 32B model (high quality)
+## Scouting
 
-**Reasoning:**
-- Research synthesis model
-- Recommended: Local or remote based on quality needs
+Scouting is a kanban pipeline for tracking energy asset opportunities through five evaluation stages: Identified, Scored, Feasibility, Diligence, and Decision. Switch between Brownfield (existing assets), Greenfield (new site candidates), and BESS (battery storage) tabs. Each card shows the asset name, country, capacity, and available actions.
 
-**Other Models:**
-- Search, intent_detector, vision, image_generation
-- Configure based on your needs
+<div class="screenshot-container">
+  <img src="{{ site.baseurl }}/assets/images/zorora-scouting.png" alt="Scouting pipeline" class="screenshot">
+</div>
+<p class="screenshot-caption">Brownfield kanban pipeline with 5 stages. Cards show asset details (country, capacity) with Feasibility, Diligence, Score, and Remove actions. Drag cards between columns to advance them.</p>
 
-### Endpoint Management
+**Key capabilities:**
+- Three asset types: Brownfield, Greenfield, BESS
+- Five pipeline stages: Identified, Scored, Feasibility, Diligence, Decision
+- Automated feasibility studies across 5 dimensions: Production, Trading, Grid, Regulatory, Financial
+- Each study includes LLM-synthesized conclusions, risk assessments, and confidence ratings
+- Greenfield scoring using NASA POWER solar/wind resource data and grid proximity
+- BESS scoring using DAM arbitrage spreads, TOU tariff differentials, and RE penetration
+- Add assets from Discovery map via +Scouting action
 
-**Local (LM Studio):**
-- Fast, no API costs
-- Requires LM Studio running
-- Privacy-preserving
+---
 
-**HuggingFace:**
-- Remote inference endpoints
-- Requires HF token
-- Supports custom models
+## Settings
 
-**OpenAI:**
-- OpenAI API endpoints
-- Requires OpenAI API key
-- High quality models
+Click the gear icon in the top-right corner to open the Settings modal. Configure which LLM model to use for each task (orchestrator, code generation, reasoning, search, vision) and select from multiple providers.
 
-**Anthropic:**
-- Anthropic API endpoints
-- Requires Anthropic API key
-- Claude models
+<div class="screenshot-container">
+  <img src="{{ site.baseurl }}/assets/images/zorora-settings.png" alt="Settings modal" class="screenshot">
+</div>
+<p class="screenshot-caption">Settings modal showing model selection with providers: Local (LM Studio), HuggingFace Endpoints (nehanda-v3, qwen-coder-32b), OpenAI (GPT-3.5/4), and Anthropic (Claude Haiku/Opus/Sonnet)</p>
 
-### API Key Management
+**Key capabilities:**
+- Model selection per task: orchestrator, codestral, reasoning, search, intent detector, vision, image generation
+- Four provider categories: Local (LM Studio), HuggingFace, OpenAI, Anthropic
+- Add custom endpoints with provider-specific configuration
+- API key management with masked display and show/hide toggle
 
-**Security Features:**
-- Keys are masked by default
-- Show/hide toggle for viewing
-- Secure storage in config file
-- Automatic backup before writes
-
-## Best Practices
-
-### Research Queries
-
-- Be specific and clear
-- Include context when needed
-- Use depth levels appropriately:
-  - Quick for fast answers
-  - Balanced for thorough research
-  - Thorough for comprehensive analysis
-
-### Configuration
-
-- Start with local models (fast, free)
-- Add remote models for quality when needed
-- Use hybrid approach (local orchestrator + remote specialists)
-- Test configuration before production use
-
-### Settings Management
-
-- Backup config before major changes
-- Test endpoints before saving
-- Verify API keys are correct
-- Check model availability
-
-## Troubleshooting
-
-### Web UI Not Starting
-
-**Problem:** Server fails to start
-
-**Solution:**
-- Check Flask is installed: `pip install flask`
-- Verify port 5000 is available: `lsof -i :5000`
-- Check for errors in terminal output
-
-### Settings Not Saving
-
-**Problem:** Configuration changes not persisting
-
-**Solution:**
-- Check file permissions on config.py
-- Verify config file location
-- Check for syntax errors
-- Restart server after saving
-
-### Research Not Working
-
-**Problem:** Research queries fail
-
-**Solution:**
-- Check model endpoints are configured
-- Verify API keys are correct
-- Check network connectivity
-- Review browser console for errors
-
-### Endpoint Errors
-
-**Problem:** Endpoint connection fails
-
-**Solution:**
-- Verify endpoint URL (for HF endpoints)
-- Check API keys are configured
-- Ensure endpoints are enabled
-- Check API rate limits
+---
 
 ## See Also
 
-- [Terminal REPL](/guides/terminal-repl) - Command-line interface
-- [Configuration](/guides/configuration) - Configuration guide
-- [Research Workflow](/guides/research-workflow) - Deep research capabilities
-- [API Reference](/api-reference/overview) - Programmatic access
+- [Introduction]({{ site.baseurl }}/introduction) — Platform overview and architecture
+- [Getting Started]({{ site.baseurl }}/getting-started) — Installation and first query
+- [Research Workflow]({{ site.baseurl }}/guides/research-workflow) — Deep research pipeline details
+- [Diligence Search]({{ site.baseurl }}/use-cases/diligence-search) — Brownfield due diligence patterns
+- [Configuration]({{ site.baseurl }}/guides/configuration) — Config file reference

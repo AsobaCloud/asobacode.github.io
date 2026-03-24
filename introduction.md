@@ -5,11 +5,11 @@ nav_order: 1
 parent: "Learn"
 ---
 
-# Zorora: Energy Intelligence Platform
+# Zorora: Know the Asset Before You Buy It
 
-Zorora is a local-first intelligence platform built for energy traders and asset investors. It covers the full workflow from acquisition diligence and regulatory tracking to geospatial asset mapping and market monitoring — with deep research, structured data analysis, and automated report generation across six integrated modes. Runs on macOS (Apple Silicon) with minimal RAM footprint, all data stored locally on your machine.
+Zorora gives energy traders and asset investors research reports, acquisition diligence, regulatory monitoring, and market intelligence — from a single interface. Ask a question, get a cited answer.
 
-Current stable release: **v3.6.0** (March 13, 2026).
+Analysts spend weeks assembling diligence packages from disconnected sources. Zorora synthesizes regulatory data, market pricing, academic research, and asset performance into structured reports automatically — across seven integrated modes covering the full workflow from initial research through pipeline tracking and investment decision.
 
 <div class="screenshot-grid">
   <img src="{{ site.baseurl }}/assets/images/ui.png" alt="Zorora Web UI" class="screenshot">
@@ -21,28 +21,37 @@ Current stable release: **v3.6.0** (March 13, 2026).
 
 ## What is Zorora? {#what-is-zorora}
 
-Zorora is an **energy intelligence platform** with six integrated modes:
+Zorora is an **energy intelligence platform** with seven integrated modes:
 
-1. **Deep Research** — Multi-source research across academic databases, web, and newsroom with credibility scoring, citation graphs, and contract-based synthesis
-2. **Diligence Search** — Brownfield acquisition due diligence with domain-specific analysis (tariffs, regulations, performance, vendors) and structured data from EIA, utility rate, and World Bank databases
-3. **Digest** — Stage articles and market datasets, then synthesize structured energy market and policy digests
-4. **Alerts** — Monitor topics and sources for new developments with configurable alert rules
-5. **Regulatory** — Track renewable portfolio standards, utility rates, generation assets, and regulatory environments by jurisdiction
-6. **Global View** — Interactive country map with click-to-filter topic/source popups and market dataset cards
+1. **Deep Research** — Cited research reports from academic databases, web, and newsroom sources with credibility scoring, citation graphs, and evidence-grounded synthesis. Includes diligence search for brownfield acquisition due diligence with structured data from EIA, utility rate, and World Bank databases.
+2. **Digest** — Stage articles and market datasets, then synthesize structured energy market and policy digests
+3. **Alerts** — Monitor topics and sources for new developments with configurable alert rules
+4. **Regulatory** — Track renewable portfolio standards, utility rates, generation assets, and regulatory environments by jurisdiction across South Africa, Zimbabwe, and the United States
+5. **Global View** — Interactive country map with geo-tagged articles, topic/source drill-down, and live commodity dataset cards (SAPP DAM prices, Eskom demand, FRED treasuries)
+6. **Discovery** — Satellite-based geospatial map with 1,144 mineral deposits, 739 generation assets, mining concessions, and transmission infrastructure. One-click research, diligence, or scouting from any asset popup.
+7. **Scouting** — Kanban pipeline for tracking brownfield, greenfield, and BESS opportunities through five evaluation stages (Identified, Scored, Feasibility, Diligence, Decision) with automated feasibility studies across production, trading, grid, regulatory, and financial dimensions.
 
-Plus **Imaging** for Leaflet-based OSINT geospatial views of mineral deposits, concessions, and generation assets with viability scoring overlays.
+### Why Zorora Exists
+
+Energy projects fail for reasons that don't show up in financial models — grid connection delays, municipal tariff disputes, environmental permitting gaps, counterparty exposure to contractors that lost accreditation. The risks that kill energy deals are regulatory, political, and operational. The records are scarce, scattered across government gazettes, regulatory feeds, and local newsrooms in formats no spreadsheet can aggregate.
+
+Zorora surfaces the specific non-financial factors that determine whether a project reaches commercial operation:
+
+- **Regulatory risk** — tariff redetermination mid-PPA, licensing freezes
+- **Grid connection** — GCAR delays, capacity allocation disputes
+- **Municipal** — billing disputes, distribution asset agreement gaps
+- **Counterparty** — O&M accreditation lapses, operator insolvency
+- **Environmental** — permitting gaps, EIA delays
+- **Political** — policy reversal, land expropriation risk
 
 ### Core Value Proposition
 
-Zorora provides:
-
-- **Energy-Sector Focus** - Diligence reports, regulatory tracking, and market data for energy traders and asset investors
-- **Complete Privacy** - All processing and storage on your machine
-- **Local-First Architecture** - Zero cloud dependencies (except source fetching)
-- **RAM Efficiency** - Runs on MacBook Air M3 with 4B model (4-6 GB RAM)
-- **Dual Interfaces** - Terminal REPL for engineers, Web UI for non-engineers
-- **Deterministic Reliability** - Pattern-based routing (no LLM orchestration failures)
-- **Multi-Provider Support** - Configure models from HuggingFace, OpenAI, and Anthropic APIs
+- **Cited Research, Not Chat Answers** — Every claim cites its source. When sources disagree, Zorora tells you exactly where and why.
+- **Non-Financial Risk Surfacing** — Regulatory, environmental, and counterparty risks from fragmented sources that general-purpose tools don't index
+- **Complete Privacy** — All processing and storage on your machine
+- **Local-First Architecture** — Zero cloud dependencies (except source fetching)
+- **Dual Interfaces** — Terminal REPL for engineers, Web UI for non-engineers
+- **Multi-Provider Support** — Configure models from LM Studio (local), HuggingFace, OpenAI, and Anthropic
 
 ---
 
@@ -52,13 +61,13 @@ Zorora provides:
 
 | Mode | What it does |
 |------|-------------|
-| **Deep Research** | 6-phase pipeline: parallel source aggregation (academic, web, newsroom) → citation following → cross-referencing → credibility scoring → citation graph → synthesis with inline citations |
-| **Diligence Search** | Brownfield acquisition due diligence — domain-specific query decomposition, structured data from EIA/utility/World Bank/generation asset databases, automated diligence reports with charts |
+| **Deep Research** | Cited research reports: parallel source aggregation (academic, web, newsroom) → credibility scoring → evidence-grounded synthesis with inline citations. Includes diligence search for brownfield due diligence with structured EIA/utility/World Bank data. |
 | **Digest** | Stage articles and market datasets, synthesize structured energy market and policy digests |
 | **Alerts** | Monitor topics and sources for new developments with configurable alert rules |
-| **Regulatory** | Renewable portfolio standards, utility rates, generation assets, and regulatory environments by jurisdiction |
-| **Global View** | Interactive country map with click-to-filter topic/source popups and market dataset cards |
-| **Imaging** | Leaflet-based OSINT geospatial view for mineral deposits, concessions, and generation assets with viability scoring |
+| **Regulatory** | Regulatory events (NERSA, ZERA, FERC), renewable portfolio standards, utility rates, and generation data by jurisdiction |
+| **Global View** | Interactive country map with geo-tagged articles, topic/source drill-down, and live commodity dataset cards |
+| **Discovery** | Satellite geospatial map with 1,144 mineral deposits, 739 generation assets, concessions, and transmission infrastructure |
+| **Scouting** | Kanban pipeline for brownfield/greenfield/BESS opportunities with 5-stage tracking and automated feasibility studies |
 
 ### Research Depth Levels
 
@@ -112,7 +121,8 @@ Pattern Matching (simplified_router.py) / Flask Routes (ui/web/app.py)
     ├─→ ALERTS (topic/source monitoring)
     ├─→ REGULATORY (RPS, utility rates, generation data by jurisdiction)
     ├─→ GLOBAL VIEW (country map + market datasets)
-    ├─→ IMAGING (geospatial OSINT overlays)
+    ├─→ DISCOVERY (geospatial OSINT — deposits, generation, concessions)
+    ├─→ SCOUTING (kanban pipeline + feasibility studies)
     ├─→ CODE WORKFLOW (Codestral specialist)
     └─→ DATA ANALYSIS (sandboxed Python + matplotlib)
 ```
@@ -157,9 +167,9 @@ Local-first storage:
 
 **5. Web UI (`ui/web/app.py`)**
 
-Flask-based web interface with six modes:
-- Deep Research, Diligence Search, Digest, Alerts, Regulatory, Global View, and Imaging
-- Settings modal for configuration
+Flask-based web interface with seven modes:
+- Deep Research, Digest, Alerts, Regulatory, Global View, Discovery, and Scouting
+- Settings modal for multi-provider model configuration
 - Two-column layout with persistent research history sidebar
 
 ---
@@ -246,9 +256,7 @@ Instead of asking the 4B model to be smart, we made the **code smart**:
 
 ### Installation
 
-[Download v3.6.0](https://github.com/AsobaCloud/zorora/releases/tag/v3.6.0)
-
-Or install from GitHub:
+Install from GitHub:
 ```bash
 pip install git+https://github.com/AsobaCloud/zorora.git
 ```
