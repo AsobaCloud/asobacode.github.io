@@ -114,6 +114,16 @@ Flask-based web interface:
 - Settings modal for configuration
 - Research results display with synthesis, sources, and credibility scores
 
+### 6. Research Memory (`engine/storage.py`, `workflows/deep_research/aggregator.py`)
+
+Cross-session knowledge persistence:
+
+- **Feedback** — thumbs up/down ratings on chat responses stored in `research_feedback` table (upsert semantics, one rating per message)
+- **Chat Thread Persistence** — every conversation turn saved to `research_chat_history` table, restored on session resume via thread key `research:<research_id>`
+- **Scouting RAG Injection** — completed feasibility studies (stages: feasibility, diligence, decision) are keyword-matched against new research queries and injected as `source_type: "internal"` sources during aggregation
+
+See [Research Memory]({{ site.baseurl }}/technical-concepts/memory) for schemas, API endpoints, and the relevance matching algorithm.
+
 ## Execution Flow
 
 ### Research Workflow

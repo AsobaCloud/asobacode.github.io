@@ -8,6 +8,33 @@ nav_order: 7
 
 Version history for Zorora.
 
+## Version 3.7.0 - Research Memory
+
+**Release Date:** March 2026
+
+### Major Features
+
+**Research Memory (SEP-059):**
+- Thumbs up/down feedback on Deep Research chat responses, persisted to SQLite
+- Chat thread persistence across application restarts
+- Scouting feasibility findings automatically injected as internal RAG sources during deep research
+
+**Scouting Feasibility Panel (SEP-045):**
+- 5-tab feasibility analysis (production, trading, grid, regulatory, financial) with LLM synthesis and matplotlib charts
+
+**Deployment (SEP-050 through SEP-054):**
+- Production Docker image with gunicorn and background threads
+- ECR push script with repo creation and dual-tag support
+- Fargate deployment with full ECS infrastructure provisioning
+- CI build-and-deploy workflow with branch filters
+
+**Other Improvements:**
+- Paginated news-intel articles endpoint reducing payload from 1.1 MB to ~75 KB (SEP-056)
+- README updated with current features and deployment info (SEP-060)
+- Platform Guide added to docs site with 11 screenshots across all 7 modes (SEP-061)
+
+---
+
 ## Version 3.6.0 - Diligence Search
 
 **Release Date:** March 12, 2026
