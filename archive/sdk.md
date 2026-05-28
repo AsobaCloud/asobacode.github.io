@@ -24,6 +24,7 @@ The Ona SDK provides seamless integration with the Ona Energy AI Platform, enabl
 
 ✔ Solar Energy Forecasting – Device, site, and customer-level predictions  
 ✔ OODA Workflow – Asset management, fault detection, diagnostics, and maintenance scheduling  
+✔ Partner API – High-performance pre-computed JSON snapshots with ETag caching  
 ✔ Energy Policy Analysis – RAG-powered queries on energy regulations  
 ✔ Edge Device Management – Discovery, registration, and capability detection  
 ✔ Data Collection – Enphase, Huawei, and weather data integration  
@@ -132,6 +133,8 @@ export AWS_REGION=af-south-1
 # Service Endpoints (optional)
 export ONA_FORECASTING_ENDPOINT=https://forecasting.api.asoba.co
 export ONA_TERMINAL_ENDPOINT=https://terminal.api.asoba.co
+export PARTNER_API_ENDPOINT=https://partner.api.asoba.co
+export PARTNER_API_KEY=your_partner_api_key
 ```
 
 See the individual SDK documentation for complete configuration options:
@@ -145,6 +148,9 @@ See the individual SDK documentation for complete configuration options:
 {: #services }
 
 The Ona SDK provides access to the following platform services:
+
+### Partner API
+Fetch pre-computed JSON snapshots for embedding and partner integrations. This API is optimized for speed using ETag-based conditional GETs and in-memory caching.
 
 ### Forecasting API
 Generate energy forecasts at device, site, or customer levels.
@@ -189,6 +195,7 @@ Located in `javascript/examples/`:
 - `forecasting-example.js` – Energy forecasting examples
 - `terminal-api-example.js` – OODA workflow examples
 - `edge-device-example.js` – Edge device management examples
+- `partner-api-example.js` – Partner API snapshot and caching example
 
 ### Python Examples
 Located in `python/examples/`:
@@ -198,6 +205,7 @@ Located in `python/examples/`:
 - `energy_analyst_example.py` – Energy policy queries
 - `edge_device_example.py` – Edge device management
 - `complete_workflow_example.py` – Multi-service workflow
+- `partner_api_example.py` – Partner API usage with ETag caching
 
 ---
 
