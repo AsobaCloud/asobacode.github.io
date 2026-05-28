@@ -110,8 +110,3 @@ Error responses include error message:
 - [Getting Started](/getting-started) - Installation and setup
 - [Guides](/guides/overview) - Usage guides
 - [Technical Concepts](/technical-concepts/overview) - Architecture documentation
-
----
-
-### 📦 Legacy & Other SDKs
-Documentation for the **Ona Energy SDK** (JavaScript and Python) including the new **Partner API** can be found in the [Archive](/archive/sdk).

@@ -56,47 +56,9 @@ The Ona API uses a unified API Gateway endpoint:
 - **Data Ingestion**: `/ingestHistorical`, `/ingestNowcast`
 - **Data Processing**: `/dataInterpolation`
 - **ML Services**: `/train`, `/forecast`
-- **Terminal Operations**: `/terminal/*` 
-- **Partner Snapshots**: `/kpi-rollup`, `/maintenance-signals`, `/forecast-snapshot`, `/snapshot`
+- **Terminal Operations**: `/terminal/*`
 
 ## Core APIs
-
-### 🤝 Partner APIs (Snapshots)
-
-High-performance endpoints serving pre-computed JSON snapshots with ETag support for sub-100ms responses in embedded use cases.
-
-#### Get KPI Rollup
-
-**Endpoint:** `/kpi-rollup`
-**Method:** `GET`
-**Parameters:**
-- `site_id` (string, required) - Site identifier
-
-#### Get Maintenance Signals
-
-**Endpoint:** `/maintenance-signals`
-**Method:** `GET`
-**Parameters:**
-- `site_id` (string, required) - Site identifier
-- `since` (string, optional) - ISO 8601 timestamp for changefeed-style use
-- `severity` (string, optional) - Filter by severity (low, medium, high, critical)
-
-#### Get Forecast Snapshot
-
-**Endpoint:** `/forecast-snapshot`
-**Method:** `GET`
-**Parameters:**
-- `site_id` (string, required) - Site identifier
-- `horizon` (string, optional) - Forecast horizon (e.g., "24h", "7d")
-
-#### Get Generic Snapshot
-
-**Endpoint:** `/snapshot`
-**Method:** `GET`
-**Parameters:**
-- `site_id` (string, required) - Site identifier
-- `kind` (string, required) - The kind of snapshot (e.g., "custom-kpis")
-
 
 ### 🔌 Data Ingestion APIs
 
