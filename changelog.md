@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Alerts System Overhaul** (GitHub Issue #16, SEP-037):
+  - Direct alert creation from the Alerts section via "+ New Alert" button — no longer requires running a Digest first
+  - Alert modal now includes topic, date window (days), and frequency inputs for standalone configuration
+  - Regulatory events are now included in alert results alongside newsroom articles, filtered by the alert's topic and date window
+  - `viewAlertResults` renders a "Regulatory Events" section below the synthesis showing title, jurisdiction, event type, date, and summary
+  - `regulatory_events_json` column added to `digest_alert_results` table with automatic ALTER TABLE migration
 - **Controller/Renderer Architecture Migration** (GitHub Issue #180):
   - Complete separation of concerns between business logic (Controllers) and DOM rendering (Renderers)
   - New Controller modules for all sections:
@@ -42,6 +48,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - No inline onclick handlers - all use data-action attributes with event delegation
 
 ### Fixed
+- **Alerts background runner**: `execute_alert(alert)` was missing the required `store` parameter, causing a silent `TypeError` on every due alert execution in the web app
+- **Newsroom DynamoDB pagination**: `fetch_articles_by_date_range` and `fetch_recent_articles` now paginate using `LastEvaluatedKey`, returning all matching articles instead of only the first page (e.g., 1450 instead of 322 articles)
+- **Newsroom date normalization**: `pub_date` strings are now normalized to ISO format (`YYYY-MM-DDTHH:MM:SS`) in `_dynamodb_item_to_dict`, fixing malformed date ranges in facets
+- **Newsroom scraper feeds**: Replaced dead/403 RSS feeds with Google News RSS equivalents and updated GovTrack URLs; added rotating User-Agent headers to avoid 403 blocks
+- **Newsroom scraper tagging**: Added topic tagging to economy and legislation scrapers; all 4 scraper modules (news, legislation, polymarket, economy) are now enabled in `all` mode
 - **JS Safety Checker**: Fixed undefined function call issue (renamed `unsub` parameter to `unsubscribe`)
 
 ## [1.2.0] - 2025-12-13

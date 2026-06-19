@@ -63,18 +63,28 @@ Digest lets you stage articles and market datasets, then synthesize a structured
 
 ## Alerts
 
-Alerts monitors topics and sources on a recurring schedule. Configure a watch — such as "South Africa" with daily frequency — and Zorora will periodically check for new developments and surface them as unread results.
+Alerts monitors topics on a recurring schedule, synthesizing newsroom articles and surfacing matching regulatory events. Create a watch — such as "south africa renewable energy" with daily frequency — and Zorora will periodically check for new developments and surface them as unread results.
+
+There are two ways to create an alert:
+
+1. **Direct creation**: Click the "+ New Alert" button in the Alerts section header. This opens a modal where you enter a name, topic (keywords to match in articles and regulatory events), date window (1–90 days), and frequency (daily or weekly).
+2. **From Digest**: After running a Digest synthesis, click "Save as Alert" to pre-fill the modal with the Digest's topic and date range.
 
 <div class="screenshot-container">
   <img src="{{ site.baseurl }}/assets/images/zorora-alerts.png" alt="Alerts mode" class="screenshot">
 </div>
 <p class="screenshot-caption">Recurring alerts dashboard showing a daily South Africa watch. View results, mark as read, or delete alerts.</p>
 
+When an alert runs, Zorora fetches newsroom articles and regulatory events matching the topic within the date window, synthesizes the articles into a brief, and stores the result. Each result shows the synthesis text, article count, and a "Regulatory Events" section listing matching events with their title, jurisdiction, event type, publication date, and summary.
+
 **Key capabilities:**
-- Create alerts by topic, source, or keyword
-- Daily or weekly monitoring schedules
+- Create alerts directly from the Alerts section via "+ New Alert" button
+- Topic-based matching across both newsroom articles and regulatory events
+- Configurable date window (1–90 days) and frequency (daily or weekly)
+- Regulatory events displayed alongside article synthesis in results
 - Unread count tracking per alert
 - View and manage alert results inline
+- Graceful degradation: if regulatory data is unavailable, alerts still run with newsroom articles only
 
 ---
 
