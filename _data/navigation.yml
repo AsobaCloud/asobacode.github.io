@@ -1,8 +1,35 @@
-# Navigation configuration for Just the Docs theme
+# Navigation configuration for Asoba Open Source
 
 - title: Home
   url: /
 
+- title: Nehanda Model
+  url: /nehanda-model
+
+- title: Nehanda CLI
+  url: /nehanda-cli
+  children:
+    - title: Quick Start
+      url: /nehanda-cli#quick-start
+    - title: Architecture
+      url: /nehanda-cli#architecture
+    - title: Self-Hosting
+      url: /nehanda-cli#self-hosting
+    - title: Slash Commands
+      url: /nehanda-cli#slash-commands
+
+- title: Core Dependencies
+  url: /dependencies
+  children:
+    - title: aimee
+      url: /dependencies#aimee
+    - title: aichat
+      url: /dependencies#aichat
+
+- title: ODS-E
+  url: https://opendataschema.energy
+
+# Zorora Documentation
 - title: Learn
   url: /learn
   children:
@@ -42,20 +69,6 @@
       url: /guides/slash-commands
     - title: Nehanda v1
       url: /guides/nehanda-v1
-
-- title: Patterns
-  url: /patterns
-  children:
-    - title: Academic Research
-      url: /use-cases/academic-research
-    - title: Code Development
-      url: /use-cases/code-development
-    - title: Multi-Source Analysis
-      url: /use-cases/multi-source-analysis
-    - title: Energy Data Exploration
-      url: /use-cases/energy-data-exploration
-    - title: Diligence Search
-      url: /use-cases/diligence-search
 
 - title: Reference
   url: /reference
