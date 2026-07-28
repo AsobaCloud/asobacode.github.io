@@ -11,7 +11,9 @@ Deep dive into Zorora's 6-phase research pipeline and deep research capabilities
 
 ## Overview
 
-Zorora's deep research workflow searches across academic databases, web sources, and newsroom articles, then synthesizes findings with credibility scoring and citation graphs. The workflow is designed to provide comprehensive, well-sourced answers to research questions.
+Zorora's deep research workflow searches across academic databases, web sources, and newsroom articles, then synthesizes findings with credibility scoring and citation graphs. The synthesis phase is powered by the [Nehanda v3 model](/nehanda-model) — a fine-tuned Qwen3.6-27B that scores 88.7% on FACTS Grounding, specifically trained for evidence-grounded RAG synthesis with inline citations and refusal to fabricate.
+
+The Nehanda endpoint (`nehanda-rag-synthesis-27b`) is hosted at `nehanda.asoba.co:8000` via vLLM with tensor parallelism. Configure it in the Web UI Settings modal as the reasoning/synthesis model, or set it in `config.py` under `HF_ENDPOINTS["nehanda-vllm"]`.
 
 <div style="width: 100%; max-width: 800px; margin: 24px auto;">
   <div style="width: 100%; height: 400px; background: var(--background-light); border: 2px dashed var(--border-grey); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--text-light);">

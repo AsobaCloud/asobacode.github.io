@@ -13,9 +13,8 @@ Analysts spend weeks assembling diligence packages from disconnected sources. Zo
 
 <div class="screenshot-grid">
   <img src="{{ site.baseurl }}/assets/images/ui.png" alt="Zorora Web UI" class="screenshot">
-  <img src="{{ site.baseurl }}/assets/images/screenshot.png" alt="Zorora Terminal REPL" class="screenshot">
 </div>
-<p class="screenshot-caption">Zorora offers both Web UI and Terminal REPL interfaces</p>
+<p class="screenshot-caption">Zorora Web UI — browser-based interface for all users</p>
 
 ---
 
@@ -50,7 +49,7 @@ Zorora surfaces the specific non-financial factors that determine whether a proj
 - **Non-Financial Risk Surfacing** — Regulatory, environmental, and counterparty risks from fragmented sources that general-purpose tools don't index
 - **Complete Privacy** — All processing and storage on your machine
 - **Local-First Architecture** — Zero cloud dependencies (except source fetching)
-- **Dual Interfaces** — Terminal REPL for engineers, Web UI for non-engineers
+- **Web UI** — Browser-based interface for all users
 - **Multi-Provider Support** — Configure models from LM Studio (local), HuggingFace, OpenAI, and Anthropic
 
 ---
@@ -79,9 +78,6 @@ Zorora surfaces the specific non-financial factors that determine whether a proj
 
 - **Data analysis** - Sandboxed Python execution with pandas, numpy, and matplotlib
 - **Comparative queries** - Auto-detects "X vs Y" queries and generates dimension-based comparison tables
-- **Code generation** - Dedicated Codestral model for coding tasks
-- **Multi-step development** - `/develop` workflow: explore → plan → approve → execute → lint
-- **Slash commands** - Force workflows: `/search`, `/ask`, `/code`, `/develop`, `/image`, `/vision`
 - **Deterministic routing** - Pattern-based decision tree (no LLM routing failures)
 - **Hybrid deployment** - Local 4B orchestrator + remote 32B specialists
 - **Multi-provider support** - Configure models from HuggingFace, OpenAI, and Anthropic APIs
@@ -104,7 +100,7 @@ Zorora uses **deterministic routing** with pattern matching instead of LLM-based
 ### Architecture Diagram
 
 ```
-User Query / Slash Command / Web UI Request
+User Query / Web UI Request
     ↓
 Pattern Matching (simplified_router.py) / Flask Routes (ui/web/app.py)
     ↓
@@ -112,7 +108,7 @@ Pattern Matching (simplified_router.py) / Flask Routes (ui/web/app.py)
     │   ├─► Parallel Source Aggregation (academic, web, newsroom)
     │   ├─► Citation Following → Cross-Referencing → Credibility Scoring
     │   ├─► Citation Graph Building
-    │   └─► Contract-Based Synthesis (Reasoning Model)
+    │   └─► Contract-Based Synthesis (Nehanda v3)
     ├─→ DILIGENCE SEARCH (domain-specific due diligence)
     │   ├─► Query Decomposition (tariffs, regulations, performance, vendors)
     │   ├─► Structured Data (EIA, utility rates, RPS, World Bank, generation assets)
@@ -123,7 +119,6 @@ Pattern Matching (simplified_router.py) / Flask Routes (ui/web/app.py)
     ├─→ GLOBAL VIEW (country map + market datasets)
     ├─→ DISCOVERY (geospatial OSINT — deposits, generation, concessions)
     ├─→ SCOUTING (kanban pipeline + feasibility studies)
-    ├─→ CODE WORKFLOW (Codestral specialist)
     └─→ DATA ANALYSIS (sandboxed Python + matplotlib)
 ```
 
@@ -132,10 +127,9 @@ Pattern Matching (simplified_router.py) / Flask Routes (ui/web/app.py)
 - **No LLM-based orchestration** - Patterns determine routing, code controls execution
 - **Hardcoded workflows** - Fixed pipelines for predictable results
 - **Persistent research** - Everything saved to `~/.zorora/research/` with metadata
-- **Specialist models** - Codestral for code, reasoning model for synthesis, vision for images
+- **Specialist models** - Nehanda v3 for synthesis, vision for images
 - **Multi-provider support** - Configure models from LM Studio (local), HuggingFace, OpenAI, and Anthropic APIs
 - **Visual configuration** - Web UI settings modal for easy model/endpoint management
-- **Hybrid inference** - Mix local models (4B orchestrator) with remote HuggingFace endpoints (32B Codestral)
 
 ### Core Components
 
@@ -171,6 +165,10 @@ Flask-based web interface with seven modes:
 - Deep Research, Digest, Alerts, Regulatory, Global View, Discovery, and Scouting
 - Settings modal for multi-provider model configuration
 - Two-column layout with persistent research history sidebar
+
+### Synthesis Model: Nehanda v3
+
+Zorora uses the **Nehanda v3** model (27B, fine-tuned Qwen3.6) for evidence-grounded synthesis in Deep Research. Nehanda v3 scores **88.7% on FACTS Grounding** — above Gemini 2.5 Pro, Claude 3.5 Sonnet, and GPT-4o. The model is hosted at `nehanda.asoba.co:8000` via vLLM with tensor parallelism.
 
 ---
 
@@ -209,7 +207,6 @@ LocalStorage.save_research()
   - **Balanced (depth=2):** ~35-50s - *Coming soon*
   - **Thorough (depth=3):** ~50-70s - *Coming soon*
 - **Storage queries:** <100ms (SQLite indexed)
-- **Code generation:** 10-90 seconds (local: 10-30s, HF 32B: 60-90s)
 - **RAM usage:** 4-6 GB (4B orchestrator model)
 
 ---
@@ -262,12 +259,6 @@ pip install git+https://github.com/AsobaCloud/zorora.git
 ```
 
 ### Run Your First Query
-
-**Terminal:**
-```bash
-zorora
-[1] ⚙ > What are the latest developments in large language model architectures?
-```
 
 **Web UI:**
 ```bash

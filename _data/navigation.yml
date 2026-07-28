@@ -55,18 +55,8 @@
       url: /guides/installation
     - title: Configuration
       url: /guides/configuration
-    - title: Terminal REPL
-      url: /guides/terminal-repl
-    - title: Web UI
-      url: /guides/web-ui
     - title: Research Workflow
       url: /guides/research-workflow
-    - title: Code Generation
-      url: /guides/code-generation
-    - title: Development Workflow
-      url: /guides/development-workflow
-    - title: Slash Commands
-      url: /guides/slash-commands
     - title: Nehanda v1
       url: /guides/nehanda-v1
 

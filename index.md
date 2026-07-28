@@ -83,7 +83,7 @@ layout: default
 <div class="sections-overview">
   <h2>Zorora Documentation</h2>
   <p style="color: #4a4a4a; margin-bottom: 24px;">
-    This site also hosts documentation for <strong>Zorora</strong>, Asoba's deep research platform with multi-source synthesis and citation following.
+    This site also hosts documentation for <strong>Zorora</strong>, Asoba's energy intelligence platform — a web UI powered by the <a href="/nehanda-model">Nehanda v3</a> model for evidence-grounded deep research, market intelligence, and asset discovery.
   </p>
   <div class="section-cards">
     <div class="section-card">
