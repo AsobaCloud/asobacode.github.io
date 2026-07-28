@@ -79,29 +79,57 @@ layout: default
   </div>
 </div>
 
-<!-- E. Zorora Documentation -->
+<!-- E. Zorora App -->
 <div class="sections-overview">
-  <h2>Zorora Documentation</h2>
+  <h2>Zorora App</h2>
   <p style="color: #4a4a4a; margin-bottom: 24px;">
-    This site also hosts documentation for <strong>Zorora</strong>, Asoba's energy intelligence platform — a web UI powered by the <a href="/nehanda-model">Nehanda v3</a> model for evidence-grounded deep research, market intelligence, and asset discovery.
+    <strong>Zorora</strong> is Asoba's energy intelligence platform — a web app powered by the <a href="/nehanda-model">Nehanda v3</a> model for evidence-grounded deep research, market intelligence, and asset discovery across African energy markets.
   </p>
   <div class="section-cards">
     <div class="section-card">
-      <h3>Learn</h3>
-      <p>Architecture, research pipeline, and technical concepts</p>
-      <a href="/learn" class="section-link">Start Learning →</a>
+      <h3>🔍 Deep Research</h3>
+      <p>Cited research reports with inline sources, revenue projections, and credibility scoring</p>
+      <a href="/zorora-app/deep-research" class="section-link">Learn More →</a>
     </div>
     <div class="section-card">
-      <h3>Build</h3>
-      <p>Installation, configuration, and usage guides</p>
-      <a href="/build" class="section-link">Start Building →</a>
+      <h3>🛰️ Discovery</h3>
+      <p>Satellite-based geospatial map with 1,144 mineral deposits and 739 generation assets</p>
+      <a href="/zorora-app/discovery" class="section-link">Learn More →</a>
     </div>
     <div class="section-card">
-      <h3>Reference</h3>
-      <p>API documentation and SDK reference</p>
-      <a href="/reference" class="section-link">View Reference →</a>
+      <h3>⚖️ Regulatory</h3>
+      <p>Track NERSA, ZERA, and FERC rulings across jurisdictions</p>
+      <a href="/zorora-app/regulatory" class="section-link">Learn More →</a>
+    </div>
+    <div class="section-card">
+      <h3>🌍 Global View</h3>
+      <p>Live commodity pricing, treasury rates, and geo-tagged news by country</p>
+      <a href="/zorora-app/global-view" class="section-link">Learn More →</a>
+    </div>
+    <div class="section-card">
+      <h3>📊 Digest</h3>
+      <p>Stage articles and datasets into synthesized market briefs</p>
+      <a href="/zorora-app/digest" class="section-link">Learn More →</a>
+    </div>
+    <div class="section-card">
+      <h3>🔔 Alerts</h3>
+      <p>Monitor topics and sources with configurable alert rules</p>
+      <a href="/zorora-app/alerts" class="section-link">Learn More →</a>
+    </div>
+    <div class="section-card">
+      <h3>📋 Scouting</h3>
+      <p>Kanban pipeline for tracking brownfield, greenfield, and BESS opportunities</p>
+      <a href="/zorora-app/scouting" class="section-link">Learn More →</a>
+    </div>
+    <div class="section-card">
+      <h3>⚙️ Settings</h3>
+      <p>API keys, model configuration, and preferences</p>
+      <a href="/zorora-app/settings" class="section-link">Learn More →</a>
     </div>
   </div>
+  <p style="margin-top: 16px;">
+    <a href="/zorora-app/overview">View all Zorora App documentation →</a>
+  </p>
 </div>
 
 <!-- F. Community & Support -->

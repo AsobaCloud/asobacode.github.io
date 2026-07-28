@@ -29,48 +29,28 @@
 - title: ODS-E
   url: https://opendataschema.energy
 
-# Zorora Documentation
-- title: Learn
-  url: /learn
+# Zorora App
+- title: Zorora App
+  url: /zorora-app/overview
   children:
-    - title: Introduction
-      url: /introduction
-    - title: Architecture
-      url: /technical-concepts/architecture
-    - title: Research Pipeline
-      url: /technical-concepts/research-pipeline
-    - title: Storage
-      url: /technical-concepts/storage
-    - title: Routing
-      url: /technical-concepts/routing
-    - title: Credibility Scoring
-      url: /technical-concepts/credibility-scoring
-
-- title: Build
-  url: /build
-  children:
-    - title: Quickstart
-      url: /build/quickstart
-    - title: Installation
-      url: /guides/installation
-    - title: Configuration
-      url: /guides/configuration
-    - title: Research Workflow
-      url: /guides/research-workflow
-    - title: Nehanda v1
-      url: /guides/nehanda-v1
-
-- title: Reference
-  url: /reference
-  children:
-    - title: API Overview
-      url: /api-reference/overview
-    - title: Research API
-      url: /api-reference/research-api
-    - title: Settings API
-      url: /api-reference/settings-api
-    - title: Python SDK
-      url: /api-reference/python-sdk
+    - title: Overview
+      url: /zorora-app/overview
+    - title: Deep Research
+      url: /zorora-app/deep-research
+    - title: Discovery
+      url: /zorora-app/discovery
+    - title: Regulatory
+      url: /zorora-app/regulatory
+    - title: Global View
+      url: /zorora-app/global-view
+    - title: Digest
+      url: /zorora-app/digest
+    - title: Alerts
+      url: /zorora-app/alerts
+    - title: Scouting
+      url: /zorora-app/scouting
+    - title: Settings
+      url: /zorora-app/settings
 
 - title: Resources
   url: /resources
