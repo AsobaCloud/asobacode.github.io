@@ -1,62 +1,16 @@
-# Navigation configuration for Asoba Open Source
+# Navigation for Asoba Open Source
 
 - title: Home
   url: /
 
-- title: Nehanda Model
-  url: /nehanda-model
-
-- title: Nehanda CLI
+- title: nehanda-cli
   url: /nehanda-cli
   children:
-    - title: Quick Start
-      url: /nehanda-cli#quick-start
-    - title: Architecture
-      url: /nehanda-cli#architecture
-    - title: Self-Hosting
-      url: /nehanda-cli#self-hosting
-    - title: Slash Commands
-      url: /nehanda-cli#slash-commands
+    - title: Getting Started
+      url: /nehanda-getting-started
 
-- title: Core Dependencies
-  url: /dependencies
-  children:
-    - title: aimee
-      url: /dependencies#aimee
-    - title: aichat
-      url: /dependencies#aichat
+- title: Nehanda v3
+  url: /nehanda-model
 
 - title: ODS-E
   url: https://opendataschema.energy
-
-# Zorora App
-- title: Zorora App
-  url: /zorora-app/overview
-  children:
-    - title: Overview
-      url: /zorora-app/overview
-    - title: Deep Research
-      url: /zorora-app/deep-research
-    - title: Discovery
-      url: /zorora-app/discovery
-    - title: Regulatory
-      url: /zorora-app/regulatory
-    - title: Global View
-      url: /zorora-app/global-view
-    - title: Digest
-      url: /zorora-app/digest
-    - title: Alerts
-      url: /zorora-app/alerts
-    - title: Scouting
-      url: /zorora-app/scouting
-    - title: Settings
-      url: /zorora-app/settings
-
-- title: Resources
-  url: /resources
-
-- title: FAQ
-  url: /faq
-
-- title: Changelog
-  url: /changelog

@@ -19,118 +19,175 @@ layout: default
     View on GitHub
   </a>
   <p class="quick-start-subtext">
-    A local AI coding substrate powered by the <a href="/nehanda-model">Nehanda</a> fine-tuned model. Free and open-source.
+    An agentic terminal REPL and single-process engine built for governed AI deep research and software development. Free and open-source.
   </p>
 </div>
 
 ## Overview
 
-Nehanda CLI is a local AI coding agent that brings the [Nehanda model](/nehanda-model) into your terminal. It is a fork of [aimee](/dependencies#aimee) — wiring Nehanda in as the primary reasoning model: a fine-tuned Qwen3.6 27B multimodal stack for technical writing, deep research, coding, document review, and vision.
+Nehanda CLI is an agentic terminal REPL and single-process engine built for governed AI deep research and software development. It connects directly to our flagship [Nehanda v3](https://huggingface.co/asoba/nehanda-v3-27b), as well as local or cloud-based Ollama models, LM Studio instances, or any OpenAI-compatible API.
 
-**No Docker. Three native binaries + postgres + local embedder.**
+Every conversation turn, tool call, phase transition, and permission check is stored in a local, queryable SQLite database you own, ensuring complete transcripts exist for auditing and debugging.
 
 ## Architecture
 
+Nehanda CLI combines an Ink TUI with a deterministic orchestration engine:
+
 ```
   Your Terminal
-    └─ aichat (TUI) ──────────────────────────→ nehanda-server :8740 → nehanda-server (UDS)
-  • 4-tier memory compaction (~86% token reduction pre-egress)
-  • Code index + KB — postgres + pgvector, never leaves machine
-  • Supervisor/Delegate task fan-out → local/LAN Ollama (free)
-          │  compacted payload only
-          ▼
-  Nehanda 27B on EC2 (nehanda.asoba.co:8000)
-  • vLLM, tensor-parallel
-  • nehanda-rag-synthesis-27b
+    └─ Ink TUI (nehanda-ui.mjs)
+         │
+         ▼
+  In-Process Engine (runUserTurn)
+    • SQLite database for session state
+    • Dynamic Tool Rescue ([TOOL_CALL] format)
+    • SDLC workflow enforcement
+         │
+         ├─→ Nehanda Cloud (https://nehanda-ml.asoba.co/v1)
+         ├─→ Local LM Studio (port 1234/8000)
+         ├─→ Remote Ollama over LAN
+         └─→ Any OpenAI-compatible API
 ```
 
-The stack runs entirely on your machine except for the Nehanda model inference, which hits a remote EC2 endpoint. Only the compacted payload leaves your machine — your code and knowledge base stay local.
+The engine executes turns directly inside the process, eliminating separate server daemons or background HTTP relays. All session state is persisted locally in SQLite at `~/.config/nehanda/ona-session.db`.
 
 ## Quick Start
 
 ### Requirements
 
-- macOS or Linux
-- cmake 3.16+, make, git, C11 compiler
-- Homebrew (macOS) or apt/dnf (Linux)
-- Ollama (optional — for local and LAN delegate workers)
+- **Node.js**: v22.0.0 or higher
+- **SQLite**: Local SQLite runtime support
 
-### Install
+### Installation
 
 ```bash
 git clone https://github.com/AsobaCloud/nehanda-cli.git
 cd nehanda-cli
-./install.sh
-nehanda
+npm install
 ```
 
-`install.sh` builds the nehanda stack and installs [aichat](/dependencies#aichat) as the interactive TUI. It handles postgres, pgvector, and all build dependencies — one command, no follow-up steps.
+### Launching the REPL
+
+Launch the interactive Ink TUI:
 
 ```bash
-./install.sh    # ~40s on re-run with cached build
-nehanda         # interactive TUI
-nehanda chat "…"  # one-shot message (server stream, no TUI)
+npm start
+# or directly run:
+node bin/nehanda-ui.mjs
 ```
 
-Add to your shell profile:
+### Provider Setup
 
-```bash
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"   # macOS only
+#### Option A: Nehanda Cloud (Default)
+
+The CLI defaults to the primary Nehanda endpoint (`https://nehanda-ml.asoba.co/v1`). If an API key is required:
+
+```
+❯ /key
+New Nehanda API key: <your-key>
 ```
 
-### Automatic Workspace Registration
+#### Option B: Local LM Studio
 
-When you run `nehanda` from any git repository, it automatically adds that directory as a workspace. This enables the agent to access files from your actual working directory instead of being sandboxed in worktrees.
+Start LM Studio locally on port `1234` or `8000`, then start the CLI. Select or switch models via:
+
+```
+❯ /model
+```
+
+#### Option C: Remote Ollama over LAN
+
+To connect to an Ollama instance running on your network:
+
+```
+❯ /config base_url http://AsobaCorp-1.local:11434/v1
+❯ /model ollama/deepseek-coder-v2:latest
+```
 
 ## Key Features
 
-### 4-Tier Memory Compaction
+### In-Process Engine
 
-Every session starts already knowing what the last one learned. A curator pipeline distills raw sessions into a typed knowledge base, dedupes facts, flags contradictions, and lets stale detail decay. Approximately **86% token reduction** before any payload reaches the model.
+Executes turns directly inside the process via `runUserTurn`, eliminating separate server daemons or background HTTP relays.
 
-### Codebase as a Map
+### Dynamic Tool Rescue ([TOOL_CALL])
 
-Nehanda CLI indexes your code into a symbol and call graph. The agent finds callers, traces an edit's blast radius before it writes a line, and works from the graph instead of reading your files over again each session. The graph spans repositories — one dependency map covers every repo you work across.
+Native support for endpoints that strip OpenAI tool schemas (such as `nehandaMlProxy`). The engine dynamically injects active tool schemas directly into system prompts as `[TOOL_CALL]` blocks, parsing and executing tools locally without server-side function-calling support. Uses `[TOOL_CALL]` delimiters instead of `<tool_call>` XML to prevent vLLM's `--tool-call-parser qwen3_xml` stop-token interception.
 
-### Supervisor/Delegate Task Fan-Out
+### Deterministic SDLC Workflow
 
-Send summarization, review, and boilerplate to the cheapest model that can handle it. Local models on your GPU via Ollama cost nothing. The primary agent gets a compact result back instead of raw content, saving on both the delegate and the primary's context.
+Enforces a 6-phase state machine (`idle` → `plan` → `implement` → `test` → `verify` → `done`) to prevent unapproved code changes, hallucinated test passes, or unverified implementations.
 
-### Guardrails and Isolation
+### Interactive TUI & Pipe Support
 
-Sensitive files like `.env`, private keys, and production configs are blocked before the agent can touch them. Each session runs in its own git worktree, so two sessions never step on each other.
+Rich Ink-based TUI (`bin/nehanda-ui.mjs`) for interactive development sessions, with headless pipe-mode support (`bin/agent.mjs`) for acceptance testing and automation.
 
-## Slash Commands
+### Multi-Provider Switching
+
+Seamlessly switch between Nehanda 27B, local LM Studio, Ollama instances over LAN, Anthropic Claude, or any OpenAI-compatible API using `/model`.
+
+## REPL Commands
 
 | Command | Description |
 |---------|-------------|
-| `/model` | Change agent model or orchestrator model |
-| `/bearer` | Update bearer token in config atomically |
-| `/token` | Last 24h token usage breakdown |
-| `/stats` | KB, memory, token usage, and service health |
-| `/auth` | Auth status / login stub |
-| `/config` | Show current config |
-| `/clear` | Start a new conversation |
-| `/help` | List all commands |
-| `/exit` | Quit |
+| `/help` | Display available commands |
+| `/model [name]` | Discover and switch active provider or model endpoint |
+| `/key` | Save Nehanda API key |
+| `/config` | View or set settings (e.g., `/config base_url <url>`) |
+| `/clear` | Clear conversation history and reset transcript state |
+| `/retry` | Resend the last failed request |
+| `/exit` | Exit the REPL |
 
-## Self-Hosting
+## SDLC Workflow
 
-Nehanda CLI supports running with a local model instead of the EC2 endpoint. Any OpenAI-compatible model can be configured as the primary agent or orchestrator, including models from ZAI, OpenAI, or self-hosted models. See the [self-hosting guide](https://github.com/AsobaCloud/nehanda-cli/blob/main/docs/SELF_HOST.md) in the repo.
+The engine enforces state transitions across six distinct phases:
 
-## Model Configuration
+1. **`idle`**: Discovery and triage. Mutating file tools are physically masked out.
+2. **`plan`**: Model formulates success criteria and implementation steps.
+3. **`implement`**: Code changes applied using file editing and shell execution.
+4. **`test`**: Automated test generation and execution.
+5. **`verify`**: Inspection of test outputs and coverage verification.
+6. **`done`**: Final sign-off and git commit creation.
 
-Nehanda-cli supports any OpenAI-compatible model as your primary agent or orchestrator. You can configure models through the agent configuration system, allowing you to use models from various providers without being locked to a specific provider.
+## Database Schema
+
+Session state is persisted locally at `~/.config/nehanda/ona-session.db`. Key tables include:
+
+- `conversations`: Active workflow phases and project roots.
+- `transcript_entries`: Sequence of user messages, assistant turns, tool calls, and results.
+- `plans`: Content, hashes, and approval status for technical plans.
+- `events`: SDLC milestones and test execution output.
+
+## Tool Calling Architecture
+
+The Nehanda vLLM deployment runs with `--tool-call-parser qwen3_xml` and `--enable-auto-tool-choice` flags. The `nehandaMlProxy` Lambda function strips `tools` and `tool_choice` from requests before forwarding to vLLM to avoid a Qwen3 chat template bug where the presence of a `tools` array causes system message ordering errors.
+
+To enable tool calling despite this constraint, the engine uses a rescue path:
+
+1. **System Prompt Injection:** Tool schemas are injected into the system prompt using `[TOOL_CALL]...[/TOOL_CALL]` delimiters.
+2. **Late Directive Injection:** A `[SYSTEM DIRECTIVE]` is appended to the final user message to defeat token recency bias on reasoning models.
+3. **Model Generation:** The model emits tool calls in the `[TOOL_CALL]` format within its response text.
+4. **Local Parsing & Execution:** Tool calls are extracted and executed locally, continuing the execution loop even when backends return `finish_reason: "stop"`.
+
+This approach bypasses vLLM's stop-token interception entirely, allowing the model to complete generation and return valid, parseable tool calls.
+
+## Testing & Verification
+
+Run the acceptance suite:
+
+```bash
+npm run acceptance
+```
+
+Verify SDLC hook ordering:
+
+```bash
+npm run verify
+```
 
 ## Further Documentation
 
-- [Quick Start Guide](https://github.com/AsobaCloud/nehanda-cli/blob/main/docs/QUICK_START.md)
-- [Architecture](https://github.com/AsobaCloud/nehanda-cli/blob/main/docs/ARCHITECTURE.md)
-- [Self-Hosting](https://github.com/AsobaCloud/nehanda-cli/blob/main/docs/SELF_HOST.md)
-- [Troubleshooting](https://github.com/AsobaCloud/nehanda-cli/blob/main/docs/TROUBLESHOOTING.md)
-- [Vision Pipeline](https://github.com/AsobaCloud/nehanda-cli/blob/main/docs/VISION_PIPELINE.md)
-- [Refactor Plan](https://github.com/AsobaCloud/nehanda-cli/blob/main/docs/REFACTOR_PLAN.md)
+For more detailed information, see the [nehanda-cli GitHub repository](https://github.com/AsobaCloud/nehanda-cli).
 
 ## License
 
