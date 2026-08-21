@@ -7,7 +7,33 @@
   url: /nehanda-cli
   children:
     - title: Getting Started
-      url: /nehanda-getting-started
+      url: /nehanda-cli-getting-started
+    - title: Architecture
+      url: /nehanda-cli-architecture
+    - title: Engine & Turn Loop
+      url: /nehanda-cli-engine
+    - title: SDLC Workflow
+      url: /nehanda-cli-sdlc
+    - title: Built-in Tools
+      url: /nehanda-cli-tools
+    - title: REPL Reference
+      url: /nehanda-cli-repl
+    - title: Permissions
+      url: /nehanda-cli-permissions
+    - title: Configuration
+      url: /nehanda-cli-configuration
+    - title: Providers
+      url: /nehanda-cli-providers
+    - title: Tool Calling
+      url: /nehanda-cli-tool-calling
+    - title: MCP Integration
+      url: /nehanda-cli-mcp
+    - title: Database
+      url: /nehanda-cli-database
+    - title: Hooks
+      url: /nehanda-cli-hooks
+    - title: Pipe Mode
+      url: /nehanda-cli-pipe-mode
 
 - title: Nehanda v3
   url: /nehanda-model
