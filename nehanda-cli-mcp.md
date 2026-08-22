@@ -141,3 +141,12 @@ The tool cache is invalidated:
 - On `/mcp reload` (all servers or a specific one)
 - Automatically after 60 seconds (per server)
 - On process restart
+
+## Official Asoba MCP Servers
+
+Asoba publishes official MCP servers that integrate directly with Nehanda CLI:
+
+- [**Asoba Platform SDK MCP Server**](/mcp-servers#asoba-platform-sdk) (`asoba-mcp-server`) — Telemetry, OODA alerts, KPI rollups, predictive maintenance, and solar forecasting.
+- [**Zorora Economic Data MCP Server**](/mcp-servers#zorora-economic-data) (`zorora-mcp-server`) — 80 macroeconomic and energy market series (FRED, Yahoo Finance, World Bank, Ember, SAPP, Eskom).
+
+See the [**MCP Servers Hub**](/mcp-servers) for complete server documentation, tool lists, and setup instructions.

@@ -17,6 +17,16 @@ Model: https://huggingface.co/asoba/nehanda-v3-27b
 GGUF: https://huggingface.co/asoba/nehanda-rag-synthesis-27b-gguf
 Documentation: https://code.asoba.co/nehanda-model
 
+## MCP Servers
+
+Official Model Context Protocol (MCP) servers exposing clean energy telemetry and macroeconomic market time series over stdio JSON-RPC.
+
+- **Asoba Platform SDK MCP Server (`asoba[mcp]`):** Inverter telemetry, OODA/JEPA state alerts, KPI rollups, predictive maintenance signals, 90-day task schedules, solar forecasts, and JSON schema resources. Repository: https://github.com/AsobaCloud/sdk
+- **Zorora Economic Data MCP Server (`zorora`):** 80 economic & energy market time series spanning FRED, Yahoo Finance, World Bank, Ember Energy, SAPP, and Eskom. Repository: https://github.com/AsobaCloud/zorora
+- **Nehanda CLI MCP Integration:** Built-in MCP client engine with automatic namespacing, ODSE energy normalization, and REPL management. Repository: https://github.com/AsobaCloud/nehanda-cli
+
+Documentation: https://code.asoba.co/mcp-servers
+
 ## ODS-E
 
 Open Data Schema for Energy — an open specification for interoperable energy asset data.

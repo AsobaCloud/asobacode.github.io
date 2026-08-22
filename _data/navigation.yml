@@ -35,6 +35,18 @@
     - title: Pipe Mode
       url: /nehanda-cli-pipe-mode
 
+- title: MCP Servers
+  url: /mcp-servers
+  children:
+    - title: Asoba Platform SDK
+      url: /mcp-servers#asoba-platform-sdk
+    - title: Zorora Economic Data
+      url: /mcp-servers#zorora-economic-data
+    - title: Nehanda CLI Integration
+      url: /mcp-servers#nehanda-cli-integration
+    - title: Client Configuration
+      url: /mcp-servers#client-configuration
+
 - title: Nehanda v3
   url: /nehanda-model
 

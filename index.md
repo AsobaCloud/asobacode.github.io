@@ -33,6 +33,12 @@ layout: default
     </div>
 
     <div class="section-card">
+      <h3>🔌 MCP Servers</h3>
+      <p>Model Context Protocol servers for clean energy & macroeconomic intelligence. Real-time solar telemetry, OODA/JEPA state alerts, 80 market time series (FRED, Eskom, Ember, SAPP), and JSON schemas.</p>
+      <a href="/mcp-servers" class="section-link">Explore MCP Servers →</a>
+    </div>
+
+    <div class="section-card">
       <h3>⚡ ODS-E</h3>
       <p>Open Data Schema for Energy — an open specification for interoperable energy asset data across generation, consumption, and net metering.</p>
       <a href="https://opendataschema.energy" class="section-link" target="_blank">opendataschema.energy →</a>

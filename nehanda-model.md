@@ -4,10 +4,10 @@ layout: default
 ---
 
 <div class="page-header">
-  <h1>Nehanda Model</h1>
+  <h1>Nehanda Research Assistant</h1>
   <div class="version-badge">
     <span class="version-label">Version</span>
-    <span class="version-value">v3 (27B)</span>
+    <span class="version-value">v3.1 (27B)</span>
     <span class="version-separator">|</span>
     <span class="version-label">License</span>
     <span class="version-value">Open Weight</span>
@@ -28,7 +28,7 @@ layout: default
 
 ## Overview
 
-Nehanda v3 is a fine-tuned **Qwen3.6-27B VL** model trained for **RAG synthesis** — the capability to read source documents and produce grounded responses without fabricating claims. It scores **88.7% on FACTS Grounding**, surpassing frontier models including Gemini 2.5 Pro (87.8%), Claude 3.5 Sonnet (83.8%), and GPT-4o (79.8%).
+Nehanda v3.1 is a fine-tuned **Qwen3.6-27B VL** model trained for **RAG synthesis** — the capability to read source documents and produce grounded responses without fabricating claims. It scores **88.7% on FACTS Grounding**, surpassing frontier models including Gemini 2.5 Pro (87.8%), Claude 3.5 Sonnet (83.8%), and GPT-4o (79.8%).
 
 The result demonstrates that **epistemic behavior** — source fidelity, evidence boundary enforcement, refusal to fabricate — is a trainable capability that targeted fine-tuning installs more efficiently than scale alone. The model was trained with **1.15% of parameters** for approximately **$135 of GPU time** on a single NVIDIA L40S.
 
@@ -46,7 +46,7 @@ The result demonstrates that **epistemic behavior** — source fidelity, evidenc
 </thead>
 <tbody>
 <tr class="nehanda-row">
-<td><strong>Nehanda v3</strong></td>
+<td><strong>Nehanda v3.1</strong></td>
 <td class="score-highlight">88.7%</td>
 <td>27B</td>
 <td>Open Weight</td>
@@ -80,7 +80,7 @@ The result demonstrates that **epistemic behavior** — source fidelity, evidenc
 </div>
 
 <blockquote>
-  <p>Nehanda v3 outperforms Gemma 3 27B — the same-size open-weight model from Google — by 13.8 percentage points. The gap is attributable to the training pipeline, not the base model: both are 27B, both are open-weight, but only one has been fine-tuned for source fidelity.</p>
+  <p>Nehanda v3.1 outperforms Gemma 3 27B — the same-size open-weight model from Google — by 13.8 percentage points. The gap is attributable to the training pipeline, not the base model: both are 27B, both are open-weight, but only one has been fine-tuned for source fidelity.</p>
 </blockquote>
 
 ## Training Pipeline
@@ -127,7 +127,7 @@ Nehanda v3 uses a persona-based prompt schema (SEP-020):
 
 ## Trade-offs
 
-Nehanda v3 sacrifices general capability for epistemic reliability. The model is **not** trained for creative writing, code generation, or open-ended chat. It is trained to read documents and say what they support.
+Nehanda v3.1 sacrifices general capability for epistemic reliability. The model is **not** trained for creative writing, code generation, or open-ended chat. It is trained to read documents and say what they support.
 
 For applications where source fidelity is the core capability — regulatory analysis, intelligence assessment, due diligence, academic research — the trade-off is favorable. For applications where general capability matters more, a frontier model is the better choice.
 
