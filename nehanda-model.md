@@ -18,7 +18,7 @@ layout: default
   <a href="https://huggingface.co/asoba/nehanda-v3-27b" class="quick-start-button" target="_blank">
     View on HuggingFace
   </a>
-  <a href="https://huggingface.co/asoba/nehanda-rag-synthesis-27b-gguf" class="quick-start-button" style="margin-top: 12px; display: inline-block; font-size: 0.95em;" target="_blank">
+  <a href="https://huggingface.co/asoba/nehanda-v3-27b-gguf" class="quick-start-button" style="margin-top: 12px; display: inline-block; font-size: 0.95em;" target="_blank">
     Download Quantized GGUF
   </a>
   <p class="quick-start-subtext">
@@ -28,9 +28,9 @@ layout: default
 
 ## Overview
 
-Nehanda v3.1 is a fine-tuned **Qwen3.6-27B VL** model trained for **RAG synthesis** — the capability to read source documents and produce grounded responses without fabricating claims. It scores **88.7% on FACTS Grounding**, surpassing frontier models including Gemini 2.5 Pro (87.8%), Claude 3.5 Sonnet (83.8%), and GPT-4o (79.8%).
+Nehanda v3.1 is a fine-tuned **Qwen3.6-27B VL** model trained for **RAG synthesis** — the capability to read source documents and produce grounded responses without fabricating claims[cite: 1, 2]. Evaluated on the public FACTS Grounding benchmark under a 3-judge majority vote protocol across three distinct model families (`Gemini 3.7 Flash`, `GPT-OSS 120B`, and `glm-5-turbo`), it achieves **82.21% factuality**, outperforming GPT-4o (80.00%) and Gemma 3 27B (74.90%)[cite: 1].
 
-The result demonstrates that **epistemic behavior** — source fidelity, evidence boundary enforcement, refusal to fabricate — is a trainable capability that targeted fine-tuning installs more efficiently than scale alone. The model was trained with **1.15% of parameters** for approximately **$135 of GPU time** on a single NVIDIA L40S.
+The result demonstrates that **epistemic behavior** — source fidelity, evidence boundary enforcement, refusal to fabricate — is a trainable capability that targeted fine-tuning installs more efficiently than scale alone[cite: 1, 2]. The model was trained with **1.15% of parameters** for approximately **$135 of GPU time** on a single NVIDIA L40S[cite: 1, 2].
 
 ## Key Results
 
@@ -41,73 +41,77 @@ The result demonstrates that **epistemic behavior** — source fidelity, evidenc
 <th>Model</th>
 <th>FACTS Grounding Score</th>
 <th>Parameters</th>
-<th>Access</th>
+<th>Evaluation Protocol</th>
 </tr>
 </thead>
 <tbody>
-<tr class="nehanda-row">
-<td><strong>Nehanda v3.1</strong></td>
-<td class="score-highlight">88.7%</td>
-<td>27B</td>
-<td>Open Weight</td>
+<tr>
+<td>Gemini 2.5 Pro Preview</td>
+<td>87.80%</td>
+<td>Proprietary</td>
+<td>Kaggle leaderboard</td>
 </tr>
 <tr>
-<td>Gemini 2.5 Pro</td>
-<td>87.8%</td>
+<td>Gemini 2.5 Flash</td>
+<td>85.30%</td>
 <td>Proprietary</td>
-<td>Closed</td>
+<td>Kaggle leaderboard</td>
 </tr>
 <tr>
 <td>Claude 3.5 Sonnet</td>
-<td>83.8%</td>
+<td>83.80%</td>
 <td>Proprietary</td>
-<td>Closed</td>
+<td>Paper (Jacovi et al.)</td>
+</tr>
+<tr class="nehanda-row">
+<td><strong>Nehanda v3.1</strong></td>
+<td class="score-highlight">82.21%</td>
+<td>27B</td>
+<td>3-judge majority vote (Gemini 3.7, GPT-OSS 120B, GLM-5)</td>
 </tr>
 <tr>
 <td>GPT-4o</td>
-<td>79.8%</td>
+<td>80.00%</td>
 <td>Proprietary</td>
-<td>Closed</td>
+<td>Paper (Jacovi et al.)</td>
 </tr>
 <tr>
 <td>Gemma 3 27B</td>
-<td>74.9%</td>
+<td>74.90%</td>
 <td>27B</td>
-<td>Open Weight</td>
+<td>Kaggle leaderboard</td>
 </tr>
 </tbody>
 </table>
 </div>
 
-<blockquote>
-  <p>Nehanda v3.1 outperforms Gemma 3 27B — the same-size open-weight model from Google — by 13.8 percentage points. The gap is attributable to the training pipeline, not the base model: both are 27B, both are open-weight, but only one has been fine-tuned for source fidelity.</p>
-</blockquote>
+> Nehanda v3.1 outperforms Gemma 3 27B — the same-size open-weight model from Google — by 7.31 percentage points[cite: 1]. The gap is attributable to the training pipeline, not the base model: both are 27B, both are open-weight, but only Nehanda has been fine-tuned for source fidelity[cite: 1].
 
 ## Training Pipeline
 
-Nehanda v3 uses a **five-stage stacked QLoRA pipeline**. LoRA adapters (r=64, α=128, 7 target modules covering all attention and MLP projections) are initialized once and trained continuously across all stages. An eval gate follows each SFT stage — the pipeline halts if the model's epistemic behavior regresses.
+Nehanda v3.1 uses a **five-stage stacked QLoRA pipeline**[cite: 1, 2]. LoRA adapters are trained across all stages to build epistemic discipline while preserving core base capability[cite: 1, 2].
 
-| Stage | Purpose | Learning Rate |
-|-------|---------|---------------|
-| 1. Epistemic Foundation | Premise correction, evidence boundary enforcement | 2e-4 |
-| 2. Evidence Hardening | Source citation, claim verification | 8e-5 |
-| 3. RAG Synthesis | Multi-document synthesis with inline citation | 2e-5 |
-| 4. Constitutional Alignment | Refusal to fabricate, calibration | 2e-5 |
-| 5. Preference Optimization (DPO) | Preference tuning for grounded responses | 2.7e-7 |
+| Stage | Purpose | Learning Rate | Sequence Length |
+|-------|---------|---------------|-----------------|
+| 1. Epistemic Foundation | Core calibration: refusal when unanswerable, uncertainty expression | 2e-4 | 2048 |
+| 2. Evidence Hardening | Strict source-boundary enforcement, claim verification | 5e-5 | 2048 |
+| 3. RAG Synthesis | Multi-document synthesis with inline citation & conflict preservation | 2e-5 | 4096 |
+| 4. Constitutional Alignment | Preference optimization pairing grounded vs fabricated responses | 5e-6 | 2048 |
+| 5. Epistemic DPO | Advanced preference tuning contrasting evidence-based vs sycophantic reasoning | 5e-6 | 2048 |
 
-The learning rate decays across stages because each stage builds on an increasingly fragile foundation — large updates late in the pipeline would disrupt the epistemic behavior installed earlier.
+The learning rate decays across stages because each stage builds on an increasingly structured foundation — large updates late in the pipeline would disrupt the epistemic behavior installed earlier[cite: 2].
 
 ## Base Model
 
-- **Architecture:** Qwen3.6-27B VL (native vision-language)
-- **Context window:** 262,144 tokens
-- **Vision:** Integrated vision encoder (training is text-only SFT/DPO, vision weights untouched)
-- **Training data:** Energy regulatory documents, intelligence analysis reports, general-purpose synthesis tasks
-- **Training cost:** ~$135 GPU time on a single NVIDIA L40S
+- **Architecture:** Qwen3.6-27B VL (native vision-language)[cite: 1, 2]
+- **Context window:** 262,144 tokens[cite: 1, 2]
+- **Vision:** Integrated vision encoder (training is text-only SFT/DPO, vision weights untouched)[cite: 1, 2]
+- **Training data:** Energy regulatory documents, intelligence analysis reports, general-purpose synthesis tasks[cite: 1, 2]
+- **Training cost:** ~$135 GPU time on a single NVIDIA L40S[cite: 1, 2]
 
 ## Prompt Schema
 
-Nehanda v3 uses a persona-based prompt schema (SEP-020):
+Nehanda v3.1 uses a persona-based prompt schema (SEP-020)[cite: 1, 2]:
 
 ```
 {persona}
@@ -123,34 +127,49 @@ Nehanda v3 uses a persona-based prompt schema (SEP-020):
 | Variant | Format | Use Case |
 |---------|--------|----------|
 | `asoba/nehanda-v3-27b` | Full weights (HuggingFace) | Full-precision inference, further fine-tuning |
-| `asoba/nehanda-rag-synthesis-27b-gguf` | Quantized q4_k_m GGUF | Local inference via llama.cpp or LM Studio |
+| `asoba/nehanda-v3-27b-gguf` | Quantized GGUF | Local inference via llama.cpp or LM Studio |
 
 ## Trade-offs
 
-Nehanda v3.1 sacrifices general capability for epistemic reliability. The model is **not** trained for creative writing, code generation, or open-ended chat. It is trained to read documents and say what they support.
+Nehanda v3.1 sacrifices general capability for epistemic reliability[cite: 1, 2]. The model is **not** trained for creative writing, code generation, or open-ended chat[cite: 1, 2]. It is trained to read documents and say what they support[cite: 1, 2].
 
-For applications where source fidelity is the core capability — regulatory analysis, intelligence assessment, due diligence, academic research — the trade-off is favorable. For applications where general capability matters more, a frontier model is the better choice.
+For applications where source fidelity is the core capability — regulatory analysis, intelligence assessment, due diligence, academic research — the trade-off is favorable[cite: 1, 2]. For applications where general capability matters more, a frontier model is the better choice[cite: 1, 2].
 
 ## Citation
 
 ```
 Samudzi, S. (2026). Epistemic Fine-Tuning of Open-Weight LLMs for Deep Research:
-Nehanda v3 and the FACTS Grounding Benchmark. Asoba Corporation Technical Report.
-Model: asoba/nehanda-v3-27b.
+Nehanda v3.1 and the FACTS Grounding Benchmark. Asoba Corporation Technical Report.
+Model: asoba/nehanda-v3.1-27b.
 ```
 
 <style>
+:root {
+  --primary-black: #000000;
+  --sovereign-black: #0A0A0A;
+  --primary-indigo: #4551BF;
+  --accent-blue: #455BF1;
+  --deep-indigo: #2A3390;
+  --surface-navy: #2E378C;
+  --lilac-border: #C7CCF2;
+  --border-blue: #5C67DE;
+  --accent-purple: #7B86EE;
+  --accent-muted: #8892E0;
+  --pale-surface: #F4F5FC;
+}
+
 .results-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   margin: 1.5em 0;
-  border: 1px solid #E0E0E0;
+  border: 1px solid var(--border-grey, #E0E0E0);
   border-radius: 8px;
   overflow: hidden;
+  font-family: 'DM Sans', system-ui, sans-serif;
 }
 .results-table th {
-  background: #F4F4F4;
+  background: var(--neutral-grey, #F4F4F4);
   font-family: 'DM Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.1em;
@@ -158,21 +177,23 @@ Model: asoba/nehanda-v3-27b.
   color: #4a4a4a;
   padding: 12px 16px;
   text-align: left;
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid var(--border-grey, #E0E0E0);
 }
 .results-table td {
   padding: 12px 16px;
   font-size: 0.95rem;
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid var(--border-grey, #E0E0E0);
+  color: var(--ink, #1a1a1a);
 }
 .results-table tr:last-child td { border-bottom: none; }
-.results-table .score-highlight { font-weight: 700; color: #455BF1; }
+.results-table .score-highlight { font-weight: 700; color: var(--accent-blue, #455BF1); }
 .results-table .nehanda-row { background: rgba(69, 91, 241, .08); }
 blockquote {
-  border-left: 3px solid #455BF1;
+  border-left: 3px solid var(--accent-blue, #455BF1);
   margin: 1.5em 0;
-  padding: 0.5em 1.5em;
+  padding: 0.8em 1.5em;
   background: rgba(69, 91, 241, .04);
   border-radius: 0 8px 8px 0;
+  font-family: 'DM Sans', system-ui, sans-serif;
 }
 </style>
