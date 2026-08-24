@@ -18,19 +18,19 @@ layout: default
   <a href="https://huggingface.co/asoba/nehanda-v3-27b" class="quick-start-button" target="_blank">
     View on HuggingFace
   </a>
-  <a href="https://huggingface.co/asoba/nehanda-v3-27b-gguf" class="quick-start-button" style="margin-top: 12px; display: inline-block; font-size: 0.95em;" target="_blank">
+  <a href="https://huggingface.co/asoba/nehanda-rag-synthesis-27b-gguf" class="quick-start-button" style="margin-top: 12px; display: inline-block; font-size: 0.95em;" target="_blank">
     Download Quantized GGUF
   </a>
   <p class="quick-start-subtext">
-    Read the full research report: <a href="https://asoba.co/pub-nehanda-v3.html" target="_blank">Epistemic Fine-Tuning of Open-Weight LLMs for Deep Research</a>
+    Read the full research report: <a href="pub-nehanda-v3.html" target="_blank">Epistemic Fine-Tuning of Open-Weight LLMs for Deep Research</a>
   </p>
 </div>
 
 ## Overview
 
-Nehanda v3.1 is a fine-tuned **Qwen3.6-27B VL** model trained for **RAG synthesis** — the capability to read source documents and produce grounded responses without fabricating claims[cite: 1, 2]. Evaluated on the public FACTS Grounding benchmark under a 3-judge majority vote protocol across three distinct model families (`Gemini 3.7 Flash`, `GPT-OSS 120B`, and `glm-5-turbo`), it achieves **82.21% factuality**, outperforming GPT-4o (80.00%) and Gemma 3 27B (74.90%)[cite: 1].
+Nehanda v3.1 is a fine-tuned **Qwen3.6-27B VL** model trained for **RAG synthesis** — the capability to read source documents and produce grounded responses without fabricating claims. Evaluated on the public FACTS Grounding benchmark under a 3-judge majority vote protocol across three distinct model families (`Gemini 3.7 Flash`, `GPT-OSS 120B`, and `glm-5-turbo`), it achieves **82.21% factuality**, outperforming GPT-4o (80.00%) and Gemma 3 27B (74.90%).
 
-The result demonstrates that **epistemic behavior** — source fidelity, evidence boundary enforcement, refusal to fabricate — is a trainable capability that targeted fine-tuning installs more efficiently than scale alone[cite: 1, 2]. The model was trained with **1.15% of parameters** for approximately **$135 of GPU time** on a single NVIDIA L40S[cite: 1, 2].
+The result demonstrates that **epistemic behavior** — source fidelity, evidence boundary enforcement, refusal to fabricate — is a trainable capability that targeted fine-tuning installs more efficiently than scale alone. The model was trained with **1.15% of parameters** for approximately **$135 of GPU time** on a single NVIDIA L40S.
 
 ## Key Results
 
@@ -85,11 +85,11 @@ The result demonstrates that **epistemic behavior** — source fidelity, evidenc
 </table>
 </div>
 
-> Nehanda v3.1 outperforms Gemma 3 27B — the same-size open-weight model from Google — by 7.31 percentage points[cite: 1]. The gap is attributable to the training pipeline, not the base model: both are 27B, both are open-weight, but only Nehanda has been fine-tuned for source fidelity[cite: 1].
+> Nehanda v3.1 outperforms Gemma 3 27B — the same-size open-weight model from Google — by 7.31 percentage points. The gap is attributable to the training pipeline, not the base model: both are 27B, both are open-weight, but only Nehanda has been fine-tuned for source fidelity.
 
 ## Training Pipeline
 
-Nehanda v3.1 uses a **five-stage stacked QLoRA pipeline**[cite: 1, 2]. LoRA adapters are trained across all stages to build epistemic discipline while preserving core base capability[cite: 1, 2].
+Nehanda v3.1 uses a **five-stage stacked QLoRA pipeline**. LoRA adapters are trained across all stages to build epistemic discipline while preserving core base capability.
 
 | Stage | Purpose | Learning Rate | Sequence Length |
 |-------|---------|---------------|-----------------|
@@ -99,19 +99,19 @@ Nehanda v3.1 uses a **five-stage stacked QLoRA pipeline**[cite: 1, 2]. LoRA adap
 | 4. Constitutional Alignment | Preference optimization pairing grounded vs fabricated responses | 5e-6 | 2048 |
 | 5. Epistemic DPO | Advanced preference tuning contrasting evidence-based vs sycophantic reasoning | 5e-6 | 2048 |
 
-The learning rate decays across stages because each stage builds on an increasingly structured foundation — large updates late in the pipeline would disrupt the epistemic behavior installed earlier[cite: 2].
+The learning rate decays across stages because each stage builds on an increasingly structured foundation — large updates late in the pipeline would disrupt the epistemic behavior installed earlier.
 
 ## Base Model
 
-- **Architecture:** Qwen3.6-27B VL (native vision-language)[cite: 1, 2]
-- **Context window:** 262,144 tokens[cite: 1, 2]
-- **Vision:** Integrated vision encoder (training is text-only SFT/DPO, vision weights untouched)[cite: 1, 2]
-- **Training data:** Energy regulatory documents, intelligence analysis reports, general-purpose synthesis tasks[cite: 1, 2]
-- **Training cost:** ~$135 GPU time on a single NVIDIA L40S[cite: 1, 2]
+- **Architecture:** Qwen3.6-27B VL (native vision-language)
+- **Context window:** 262,144 tokens
+- **Vision:** Integrated vision encoder (training is text-only SFT/DPO, vision weights untouched)
+- **Training data:** Energy regulatory documents, intelligence analysis reports, general-purpose synthesis tasks
+- **Training cost:** ~$135 GPU time on a single NVIDIA L40S
 
 ## Prompt Schema
 
-Nehanda v3.1 uses a persona-based prompt schema (SEP-020)[cite: 1, 2]:
+Nehanda v3.1 uses a persona-based prompt schema (SEP-020):
 
 ```
 {persona}
@@ -127,20 +127,20 @@ Nehanda v3.1 uses a persona-based prompt schema (SEP-020)[cite: 1, 2]:
 | Variant | Format | Use Case |
 |---------|--------|----------|
 | `asoba/nehanda-v3-27b` | Full weights (HuggingFace) | Full-precision inference, further fine-tuning |
-| `asoba/nehanda-v3-27b-gguf` | Quantized GGUF | Local inference via llama.cpp or LM Studio |
+| `asoba/nehanda-rag-synthesis-27b-gguf` | Quantized GGUF | Local inference via llama.cpp or LM Studio |
 
 ## Trade-offs
 
-Nehanda v3.1 sacrifices general capability for epistemic reliability[cite: 1, 2]. The model is **not** trained for creative writing, code generation, or open-ended chat[cite: 1, 2]. It is trained to read documents and say what they support[cite: 1, 2].
+Nehanda v3.1 sacrifices general capability for epistemic reliability. The model is **not** trained for creative writing, code generation, or open-ended chat. It is trained to read documents and say what they support.
 
-For applications where source fidelity is the core capability — regulatory analysis, intelligence assessment, due diligence, academic research — the trade-off is favorable[cite: 1, 2]. For applications where general capability matters more, a frontier model is the better choice[cite: 1, 2].
+For applications where source fidelity is the core capability — regulatory analysis, intelligence assessment, due diligence, academic research — the trade-off is favorable. For applications where general capability matters more, a frontier model is the better choice.
 
 ## Citation
 
 ```
 Samudzi, S. (2026). Epistemic Fine-Tuning of Open-Weight LLMs for Deep Research:
 Nehanda v3.1 and the FACTS Grounding Benchmark. Asoba Corporation Technical Report.
-Model: asoba/nehanda-v3.1-27b.
+Model: asoba/nehanda-v3-27b.
 ```
 
 <style>
