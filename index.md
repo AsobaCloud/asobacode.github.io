@@ -27,8 +27,8 @@ layout: default
   <div class="section-cards">
 
     <div class="section-card">
-      <h3>🧠 Nehanda v3</h3>
-      <p>Fine-tuned Qwen3.6-27B for RAG synthesis. Scores <strong>88.7% on FACTS Grounding</strong> — above Gemini 2.5 Pro, Claude 3.5 Sonnet, and GPT-4o. Trained for ~$135 of GPU time. Open weights.</p>
+      <h3>🧠 Nehanda v3.1</h3>
+      <p>Fine-tuned Qwen3.6-27B for RAG synthesis. Scores <strong>82.21% on FACTS Grounding</strong> — on par with Gemini 2.5 Pro, Claude 3.5 Sonnet, and GPT-4o. Open weights.</p>
       <a href="/nehanda-model" class="section-link">Learn more →</a>
     </div>
 
