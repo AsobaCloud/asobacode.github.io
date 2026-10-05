@@ -92,9 +92,69 @@ When the model calls `mcp__filesystem__read_file`, the engine:
 3. Calls `mcpCallTool(server, 'read_file', input)` on the MCP client
 4. Returns the result to the model
 
-## Energy Middleware (ODSE)
+## Energy Middleware (ODSE) {#energy-middleware-odse}
 
-MCP tool results from servers with recognized OEM names pass through the **energy normalization middleware** (`energy-middleware.mjs`). This transforms energy-specific payloads into a standardized format. On any failure, the original content is returned unchanged.
+MCP tool results from servers with recognized OEM names pass automatically through `lib/energy-middleware.mjs`, which normalizes energy-specific payloads to the [ODS-E](https://ona-protocol.org) schema before the model sees them. On any failure or unrecognized OEM, the original content is returned unchanged.
+
+### OEM Detection
+
+Brand resolution happens in two passes:
+
+**1. Name-based:** The MCP server name is parsed for a known OEM key. Any prefix before the OEM segment is stripped:
+
+| Server name | Resolved OEM |
+|---|---|
+| `energy-huawei` | `huawei` |
+| `mcp-solaredge` | `solaredge` |
+| `power-sungrow-v2` | `sungrow` |
+| `fronius` | `fronius` |
+
+**2. Payload fingerprinting:** If the server name doesn't resolve, field signatures are matched against known schemas:
+
+| Field signature | Resolved OEM |
+|---|---|
+| `{ inverter_state, run_state }` | Huawei FusionSolar |
+| `{ end_at, wh_del, devices_reporting }` | Enphase Envoy |
+| `{ data: { telemetries } }` | SolarEdge |
+| `{ Head: { Timestamp }, Body: { Data: { Site } } }` | Fronius |
+
+If neither pass identifies the OEM, the payload passes through unchanged.
+
+### Supported OEMs
+
+Huawei FusionSolar, Enphase Envoy, SolarEdge, Fronius, Solarman, SMA, Solis, Sungrow / iSolarCloud, Sungrow BESS / PowerTitan, BYD BESS, Fimer / AuroraVision, SolaxCloud, Eskom (portal, AMR, NRS049), Vestas, Siemens Gamesa, Nordex, Terraco, and generic CSV.
+
+### Naming Convention
+
+Name energy MCP servers with the OEM as a segment in the server name. No additional configuration is required — normalization is automatic:
+
+```json
+{
+  "mcpServers": {
+    "energy-huawei": { "command": "...", "args": ["..."] },
+    "energy-solaredge": { "command": "...", "args": ["..."] },
+    "energy-sungrow": { "command": "...", "args": ["..."] }
+  }
+}
+```
+
+### Output Formats
+
+The underlying transform script (`lib/scripts/odse-transform.py`) accepts a `--format` flag for direct use:
+
+```bash
+echo '<payload>' | python3 lib/scripts/odse-transform.py --source huawei --format table
+echo '<payload>' | python3 lib/scripts/odse-transform.py --source solaredge --format ndjson
+echo '<payload>' | python3 lib/scripts/odse-transform.py --source sungrow --format summary
+```
+
+| Format | Output | Default when |
+|---|---|---|
+| `table` | Box-drawing ASCII table with column headers and row count | stdout is a TTY |
+| `ndjson` | One JSON object per line | stdout is piped |
+| `summary` | Metadata header (`rows`, `shape`, `source`) + JSON array | explicit flag only |
+
+In the TUI, multi-channel SCADA arrays and inverter state records are automatically rendered as `table` output via `formatToolResult` in `lib/ui.mjs`.
 
 ## REPL Commands
 

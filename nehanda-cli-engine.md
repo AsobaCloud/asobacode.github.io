@@ -87,9 +87,11 @@ User types a message
 
 2. **SDLC routing** — If the conversation is in `idle` phase and the I/O layer supports asking, the user is prompted: *"Use SDLC workflow (plan → implement → test)?"* If yes, the phase transitions to `explore` and the user's message is wrapped in an exploration prompt template. If no, the message is passed through as-is for a free-form turn.
 
-3. **Provider resolution** — The active provider is read from settings, and the wire model name is resolved. This determines whether the Anthropic SDK path or the OpenAI-compatible path is taken.
+3. **Jev-Mem hot path** — The latest transcript tail is ingested as an observation (write path: type scoring → relation edges). The System-1 state is refreshed via `extractCanonicalState` (Laya). Evidence is retrieved via `retrieveEvidence` (read path: FTS + recency → sufficiency loop). Pinned context blocks are fetched from `pinned_context`. These are assembled into the compact System-2 message list: pinned blocks → canonical header → retrieved evidence → last 2 turns + last failed tool result.
 
-4. **Provider dispatch** — Control flows to either `runSdlcAnthropic()` or `runSdlcOpenAICompat()`. Both implement the same phase-driven loop but use different SDKs.
+4. **Provider resolution** — The active provider is read from settings, and the wire model name is resolved. This determines whether the Anthropic SDK path or the OpenAI-compatible path is taken.
+
+5. **Provider dispatch** — Control flows to either `runSdlcAnthropic()` or `runSdlcOpenAICompat()`. Both implement the same phase-driven loop but use different SDKs.
 
 ## The Phase Loop
 
@@ -210,9 +212,10 @@ The I/O layer abstracts away whether the engine is running in an interactive TUI
 | `io.write(text)` | Renders in the terminal component | Writes to stdout |
 | `io.println(text)` | Renders with newline | Writes to stdout |
 | `io.ask(question)` | Shows inline prompt, waits for input | Returns `'y'` (auto-approve) |
+| `io.confirmBlock(payload)` | Raises `BlockConfirmMenu` (`[A]/[S]/[C]`) in Ink event loop; resolves with `'approve'`, `'sandbox'`, or `'cancel'` | Absent — `toolBash` auto-denies |
 | `io.spinner.start(msg)` | Shows spinning indicator | No-op |
 | `io.spinner.stop()` | Hides spinner | No-op |
 | `io.onToolStart(name)` | Updates tool indicator UI | No-op |
 | `io.onToolResult(name, content, isError)` | Updates tool result display | No-op |
 
-This is why pipe mode can run fully unattended — all interactive prompts auto-approve.
+`io.confirmBlock` is the mechanism that ties the bashguard and safety-checker structured rejection payloads directly into the Ink event loop. When `toolBash` receives a blocked result and `io.confirmBlock` is present, it awaits the user's decision before either proceeding, sandboxing, or cancelling — without blocking the Node.js event loop. When `io.confirmBlock` is absent (pipe/headless mode), the command is auto-denied immediately.

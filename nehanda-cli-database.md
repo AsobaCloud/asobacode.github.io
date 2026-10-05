@@ -22,7 +22,9 @@ Nehanda CLI persists all session state in a local SQLite database. You own this 
 - **Foreign keys** enabled
 - **Busy timeout** 30 seconds (handles concurrent access)
 - **FTS5** full-text search index on the memories table
-- **Schema versioning** via `schema_meta` table
+- **Schema versioning** via `schema_meta` table (current: v3)
+- **Jev-Mem graph** — `memories` + `memory_edges` form a multi-relational graph (semantic / temporal / causal / entity edges) managed by the Laya System-1 control plane
+- **Pinned context** — `pinned_context` table stores session-scoped invariants that survive compaction unchanged
 
 ## Schema Reference
 
@@ -116,10 +118,12 @@ Key-value store for per-conversation state (todos, worktree info, etc.).
 
 Long-term memory storage with full-text search. The FTS5 virtual table indexes `title`, `content`, `keywords`, and `anticipated_queries` using Porter stemming with Unicode 6.1 support.
 
+This table is the canonical node store for the Jev-Mem memory architecture. Each row represents one observation (user turn, tool result, or assistant response) with overlapping type scores across four memory types.
+
 | Column | Type | Description |
 |--------|------|-------------|
 | `id` | TEXT PK | Memory UUID |
-| `type` | TEXT | Memory type classifier |
+| `type` | TEXT | Memory type classifier (`jev_observation`, etc.) |
 | `title` | TEXT | Short title |
 | `content` | TEXT | Full memory content |
 | `keywords` | TEXT | Search keywords |
@@ -132,6 +136,60 @@ Long-term memory storage with full-text search. The FTS5 virtual table indexes `
 | `last_accessed` | INTEGER | Unix timestamp |
 | `access_count` | INTEGER | Number of accesses (default: 0) |
 | `attention_score` | REAL | Relevance score (default: 0.5) |
+| `session_id` | TEXT | Session that created this observation |
+| `conversation_id` | TEXT | Parent conversation |
+| `provenance` | TEXT | Source of observation (`hot_path`, `manual`, etc.) |
+| `entities_json` | TEXT | JSON-encoded entity tags |
+| `t_episodic` | REAL | Episodic type score (0–1) |
+| `t_semantic` | REAL | Semantic type score (0–1) |
+| `t_procedural` | REAL | Procedural type score (0–1) |
+| `t_preference` | REAL | Preference type score (0–1) |
+| `source_entry_id` | INTEGER | FK to `transcript_entries` |
+| `observation_ts` | INTEGER | Unix timestamp of original observation |
+
+### `memory_edges`
+
+Multi-relational graph edges for the Jev-Mem memory graph. The same node pair may have independent edges of different relation types.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | INTEGER PK | Auto-increment |
+| `src_id` | TEXT | Source memory node ID |
+| `dst_id` | TEXT | Destination memory node ID |
+| `relation` | TEXT | Edge type: `semantic`, `temporal`, `causal`, or `entity` |
+| `weight` | REAL | Edge weight (probability from Laya relation judgment) |
+| `meta_json` | TEXT | Additional edge metadata (JSON) |
+| `created_at` | INTEGER | Unix timestamp |
+
+### `laya_jev_state`
+
+System-1 canonical session control block. One row per session, updated on every turn by the Laya control plane.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `session_id` | TEXT PK | Session identifier |
+| `task_status` | TEXT | Current task state: `investigating`, `modifying_code`, `awaiting_user`, `verifying`, `blocked`, or `idle` |
+| `file_target` | TEXT | Primary file being modified (null if none) |
+| `escalation_risk` | INTEGER | 0 or 1 — whether Laya flagged escalation risk |
+| `confidence_score` | REAL | Laya confidence in current state assessment (0–1) |
+| `state_json` | TEXT | Full state snapshot as JSON |
+| `updated_at` | TEXT | ISO timestamp |
+
+### `pinned_context`
+
+Session-scoped domain invariants that survive context compaction unchanged. Used to persist ODSE schema mappings, asset capacity limits, simulation bounds, and other constants that must not be distilled or discarded during long sessions.
+
+Unlike `memories`, pinned blocks are never passed to the distillation summariser. They are reattached verbatim at the start of every System-2 prompt, before the canonical Jev-Mem header and retrieved evidence.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | INTEGER PK | Auto-increment |
+| `session_id` | TEXT | Parent session |
+| `key` | TEXT | Unique string key (e.g. `odse_schema`, `asset_spec`) |
+| `content` | TEXT | Invariant content (verbatim) |
+| `created_at` | INTEGER | Unix timestamp |
+
+`(session_id, key)` is unique — upserts replace existing content for the same key.
 
 ### `hook_invocations`
 

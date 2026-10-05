@@ -105,9 +105,30 @@ Run a shell command in a subprocess. The command is executed via `/bin/bash -c` 
 | `command` | string | Yes | Shell command to execute |
 | `timeout` | integer | No | Timeout in ms (default: 120,000; max: 600,000) |
 
-**Bash Guard:** Every command is validated by the bash guard before execution. It blocks:
-- Commands targeting paths outside the working directory (e.g. `rm -rf /`)
-- Known destructive patterns
+**Bash Guard:** Every command is validated by the bash guard before execution. When a command is blocked, the guard returns a structured payload:
+
+```json
+{
+  "status": "blocked",
+  "reason": "sudo not permitted",
+  "risk_score": "high",
+  "proposed_remediation": ["review_command", "sandbox"]
+}
+```
+
+In the interactive TUI, blocked commands raise a `BlockConfirmMenu`:
+
+```
+[A] Approve for Session  [S] Run in Laya Sandbox  [C] Cancel
+```
+
+Selecting `[A]` caches the approval for the rest of the session — the same command is not re-prompted. Selecting `[S]` routes the command to the Laya worker sandbox. Selecting `[C]` returns an error to the model. In headless pipe mode, all blocked commands are auto-denied without prompting.
+
+The guard blocks:
+- `sudo`, `su`
+- Destructive git operations (`reset --hard`, `push --force`, `clean -f`, `branch -D`)
+- System-level destructive commands (`mkfs`, `dd if=`, `killall`, `kill -9`)
+- Write redirects, `tee`, `cp`/`mv`/`ln`, `mkdir`/`touch`, `sed -i`, `chmod`/`chown -R` targeting paths outside the working directory
 
 **CWD tracking:** The engine appends a marker to detect directory changes. If the command changes directory (e.g. `cd src`), the engine updates `process.cwd()` and fires a `CwdChanged` hook. The new CWD persists for subsequent tool calls within the same turn.
 
@@ -294,6 +315,19 @@ Read a specific resource from an MCP server.
 ## Safety Checkers
 
 Safety checkers are declarative tools registered from JSON configs in `lib/tools/`. They are **mandatory in the test phase** — the system prompt explicitly instructs the model: "After tests pass, you MUST run these mandatory safety checks. Do NOT skip them. If any fail, fix the issues and re-run."
+
+When a checker detects a violation, it emits a structured JSON payload to stderr before exiting with code 1:
+
+```json
+{
+  "status": "blocked",
+  "reason": "PythonSafetyChecker: Bandit, Ruff",
+  "risk_score": "high",
+  "proposed_remediation": ["review", "sandbox"]
+}
+```
+
+The TUI parses this payload and surfaces the same `BlockConfirmMenu` (`[A] Approve for Session | [S] Run in Laya Sandbox | [C] Cancel`) used for bash guard blocks. Human-readable output continues to go to stdout as before — the structured payload is an additional stderr line, not a replacement.
 
 | Checker | Script | What It Checks |
 |---------|--------|----------------|
