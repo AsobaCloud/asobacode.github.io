@@ -17,16 +17,35 @@ Install and configure Nehanda CLI, then connect it to a provider and run your fi
 
 ## 1. Installation
 
+**Global install (recommended):**
+
+```bash
+npm install -g @asobacloud/nehanda
+```
+
+During install, `npm` automatically provisions a dedicated Python venv and downloads the [Laya](https://huggingface.co/convaiinnovations/laya) System-1 checkpoint (~808 MB). This happens once — subsequent starts are instant.
+
+**From source:**
+
 ```bash
 git clone https://github.com/AsobaCloud/nehanda-cli.git
 cd nehanda-cli
 npm install
 ```
 
+The same one-time provisioning runs automatically as part of `npm install`.
+
 ## 2. First Launch
 
 ```bash
-npm start
+nehanda
+```
+
+Or via the aliases installed with the package:
+
+```bash
+ona
+ona-code
 ```
 
 This launches the interactive Ink TUI. On first run, the engine initializes the SQLite database at `~/.config/nehanda/ona-session.db` and creates all tables.
@@ -190,7 +209,7 @@ See [Configuration](/nehanda-cli-configuration) for the full schema.
 
 ## Next Steps
 
-- [Architecture](/nehanda-cli-architecture) — Understand the 5-layer system design
+- [Architecture](/nehanda-cli-architecture) — Understand the 6-layer system design
 - [Engine & Turn Loop](/nehanda-cli-engine) — How a request flows through the system
 - [SDLC Workflow](/nehanda-cli-sdlc) — The 6-phase state machine in detail
 - [Built-in Tools](/nehanda-cli-tools) — All 21 tools documented

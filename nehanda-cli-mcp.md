@@ -11,23 +11,50 @@ Nehanda CLI can consume tools from any external [Model Context Protocol (MCP)](h
 
 ## Architecture
 
-```
-lib/mcp-config.mjs          Config loader (mcp.json)
-        │
-        ▼
-lib/mcp.mjs                 MCP client (stdio transport)
-        │
-        ├── spawns child process for each server
-        ├── calls tools/list on each
-        ├── caches results for 60 seconds
-        └── routes tool calls via toolMcpInvoke()
-        │
-        ▼
-lib/tools.mjs                Tool orchestrator
-        │
-        └── MCP tools appear as mcp__<server>__<tool>
-           in the model's tool list
-```
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" width="100%" height="auto">
+  <rect width="960" height="340" rx="16" fill="#4551BF"/>
+  <text x="32" y="36" font-family="'DM Sans',system-ui,sans-serif" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="1">MCP CLIENT ARCHITECTURE</text>
+  <line x1="32" y1="48" x2="928" y2="48" stroke="#C7CCF2" stroke-opacity="0.3" stroke-width="1"/>
+
+  <!-- Layer 1: Config -->
+  <g transform="translate(100,60)">
+    <rect width="760" height="52" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="52" rx="3" fill="#5C67DE"/>
+    <text x="30" y="23" font-family="'DM Sans',system-ui,sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">lib/mcp-config.mjs</text>
+    <text x="30" y="40" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Config loader — reads ./mcp.json + ~/.config/nehanda/mcp.json · project-local takes priority</text>
+    <rect x="596" y="14" width="152" height="20" rx="10" fill="#2A3390" stroke="#5C67DE" stroke-width="1"/>
+    <text x="672" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">applyMcpConfig()</text>
+  </g>
+  <line x1="480" y1="114" x2="480" y2="132" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="480,132 475,124 485,124" fill="#8892E0"/>
+
+  <!-- Layer 2: MCP Client -->
+  <g transform="translate(100,134)">
+    <rect width="760" height="66" rx="10" fill="#2E378C" stroke="#7B86EE" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="66" rx="3" fill="#7B86EE"/>
+    <text x="30" y="23" font-family="'DM Sans',system-ui,sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">lib/mcp.mjs — MCP Client (stdio transport)</text>
+    <text x="30" y="40" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Spawns child process per server · calls tools/list · caches results 60s · routes calls via toolMcpInvoke()</text>
+    <text x="30" y="56" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">ODSE middleware intercepts energy OEM results automatically before returning to orchestrator</text>
+    <rect x="596" y="14" width="152" height="20" rx="10" fill="#2A3390" stroke="#7B86EE" stroke-width="1"/>
+    <text x="672" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">getMcpServer()</text>
+    <rect x="596" y="40" width="152" height="20" rx="10" fill="#2A3390" stroke="#7B86EE" stroke-width="1"/>
+    <text x="672" y="54" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#8892E0">MCP_CACHE_TTL_MS=60s</text>
+  </g>
+  <line x1="480" y1="202" x2="480" y2="220" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="480,220 475,212 485,212" fill="#8892E0"/>
+
+  <!-- Layer 3: Tool Orchestrator -->
+  <g transform="translate(100,222)">
+    <rect width="760" height="52" rx="10" fill="#0A0A0A" stroke="#5C67DE" stroke-width="1.5"/>
+    <rect x="0" y="0" width="6" height="52" rx="3" fill="#FFFFFF"/>
+    <text x="30" y="23" font-family="'DM Sans',system-ui,sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">lib/tools.mjs — Tool Orchestrator</text>
+    <text x="30" y="40" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">MCP tools injected as mcp__&lt;server&gt;__&lt;tool&gt; · available to model alongside 21 built-in tools</text>
+    <rect x="596" y="14" width="152" height="20" rx="10" fill="#1F1F1F" stroke="#444" stroke-width="1"/>
+    <text x="672" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">toolMcpInvoke()</text>
+  </g>
+
+  <text x="480" y="330" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2" opacity="0.7">Tools cached per-server · /mcp reload busts cache · energy OEM payloads auto-normalized via ODSE middleware</text>
+</svg>
 
 ## Configuration
 

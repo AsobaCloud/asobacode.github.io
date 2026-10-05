@@ -13,67 +13,131 @@ Nehanda CLI is a layered system with five distinct layers, each with a single re
 
 ## Layer Overview
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                         Your Terminal                              │
-├─────────────────────────────────────────────────────────────────────┤
-│  REPL / Ink TUI                                                     │
-│  ┌──────────────┐  ┌───────────────┐  ┌────────────────────────┐  │
-│  │  Command     │  │  Permission   │  │  Display Renderer      │  │
-│  │  Parser      │→ │  Gate +       │→ │  (Ink / React)         │  │
-│  │  /help /model│  │  BlockConfirm │  │  spinner, tool output  │  │
-│  │  /config /mcp│  │  Menu         │  │  SCADA table rendering │  │
-│  └──────────────┘  └───────────────┘  └────────────────────────┘  │
-├─────────────────────────────────────────────────────────────────────┤
-│  Engine Core                                                        │
-│  ┌──────────────┐  ┌───────────────┐  ┌────────────────────────┐  │
-│  │  Turn Loop   │  │  SDLC State   │  │  Tool Orchestrator     │  │
-│  │  runUserTurn │  │  Machine       │  │  phase filtering       │  │
-│  │  + Jev-Mem   │  │  idle→plan→    │  │  dispatch & execute    │  │
-│  │  hot path    │  │  implement→    │  │                        │  │
-│  │              │  │  test→verify   │  ├────────────────────────┤  │
-│  │              │  │  →done         │  │  [TOOL_CALL] Rescue    │  │
-│  └──────────────┘  └───────────────┘  │  Path                   │  │
-│                                          └────────────────────────┘  │
-├─────────────────────────────────────────────────────────────────────┤
-│  Tool Layer                                                         │
-│  ┌──────────────┐  ┌───────────────┐  ┌────────────────────────┐  │
-│  │  Built-in    │  │  Safety       │  │  MCP Client            │  │
-│  │  Tools (21)  │  │  Checkers (4) │  │  mcp.json → Servers    │  │
-│  │  Read/Write/ │  │  AuditCode    │  │  → External Tools      │  │
-│  │  Edit/Bash/  │  │  ShellSafety  │  │  (mcp__<srv>__<tool>) │  │
-│  │  Glob/Grep…  │  │  JsSafety     │  │                        │  │
-│  └──────────────┘  │  PySafety     │  └────────────────────────┘  │
-│                     └───────────────┘                              │
-├─────────────────────────────────────────────────────────────────────┤
-│  ODSE Middleware                                                    │
-│  ┌──────────────────────────────────────────────────────────────┐  │
-│  │  energy-middleware.mjs + odse-transform.py                   │  │
-│  │  OEM brand detection (name → fingerprint)                    │  │
-│  │  Huawei · Enphase · SolarEdge · Fronius · Sungrow · Eskom… │  │
-│  │  Normalized ODS-E JSON → table|ndjson|summary output        │  │
-│  └──────────────────────────────────────────────────────────────┘  │
-├─────────────────────────────────────────────────────────────────────┤
-│  Provider Layer                                                     │
-│  ┌──────────────────────────────────────────────────────────────┐  │
-│  │  OpenAI-Compatible Client  +  Anthropic SDK                  │  │
-│  │  Provider Config: base_url, model, API key                   │  │
-│  │  ┌─────────┐ ┌─────────┐ ┌────────┐ ┌──────────┐ ┌──────┐ │  │
-│  │  │ Nehanda │ │  LM     │ │ Ollama │ │ Anthropic │ │ Any  │ │  │
-│  │  │ Cloud   │ │ Studio  │ │        │ │ Claude    │ │ OAI  │ │  │
-│  │  └─────────┘ └─────────┘ └────────┘ └──────────┘ └──────┘ │  │
-│  └──────────────────────────────────────────────────────────────┘  │
-├─────────────────────────────────────────────────────────────────────┤
-│  Persistence Layer                                                  │
-│  ┌──────────────────────────────────────────────────────────────┐  │
-│  │  SQLite (~/.config/nehanda/ona-session.db)                   │  │
-│  │  WAL mode · schema v3 · FTS5 full-text search                │  │
-│  │  conversations · sessions · transcript_entries · plans        │  │
-│  │  memories + memory_edges (Jev-Mem graph)                     │  │
-│  │  laya_jev_state · pinned_context · hook_invocations          │  │
-│  └──────────────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────────┘
-```
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" width="100%" height="auto">
+  <!-- Canvas -->
+  <rect width="960" height="720" rx="16" fill="#4551BF"/>
+  <!-- Header -->
+  <text x="32" y="36" font-family="'DM Sans',system-ui,sans-serif" font-size="14" font-weight="800" fill="#FFFFFF" letter-spacing="1">NEHANDA CLI — SYSTEM ARCHITECTURE</text>
+  <text x="32" y="52" font-family="'DM Sans',system-ui,sans-serif" font-size="11" font-weight="500" fill="#C7CCF2">6-Layer in-process engine · Energy systems research &amp; governed software development</text>
+  <line x1="32" y1="62" x2="928" y2="62" stroke="#C7CCF2" stroke-opacity="0.3" stroke-width="1"/>
+
+  <!-- LAYER 1: REPL / Ink TUI -->
+  <g transform="translate(32,74)">
+    <rect width="896" height="72" rx="12" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="72" rx="3" fill="#455BF1"/>
+    <rect x="16" y="14" width="90" height="20" rx="4" fill="#455BF1"/>
+    <text x="61" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="800" fill="#FFFFFF" letter-spacing="0.8">REPL / INK TUI</text>
+    <text x="120" y="29" font-family="'DM Sans',system-ui,sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">Command Parser · Permission Gate + BlockConfirmMenu · Display Renderer</text>
+    <text x="120" y="48" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">/help /model /config /mcp · allow/deny/ask · SCADA table rendering · Ink React components · pipe-mode auto-deny</text>
+    <rect x="756" y="14" width="128" height="20" rx="10" fill="#2A3390" stroke="#5C67DE" stroke-width="1"/>
+    <text x="820" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">bin/nehanda-ui.mjs</text>
+    <rect x="756" y="40" width="128" height="20" rx="10" fill="#2A3390" stroke="#5C67DE" stroke-width="1"/>
+    <text x="820" y="54" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#8892E0">bin/agent.mjs</text>
+  </g>
+
+  <!-- Connector 1→2 -->
+  <line x1="480" y1="148" x2="480" y2="168" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="480,168 475,160 485,160" fill="#8892E0"/>
+  <rect x="390" y="153" width="180" height="18" rx="9" fill="#2E378C" stroke="#5C67DE" stroke-width="1"/>
+  <text x="480" y="165" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#C7CCF2" letter-spacing="0.5">USER TURN · TOOL RESULTS</text>
+
+  <!-- LAYER 2: Engine Core -->
+  <g transform="translate(32,170)">
+    <rect width="896" height="72" rx="12" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="72" rx="3" fill="#7B86EE"/>
+    <rect x="16" y="14" width="90" height="20" rx="4" fill="#7B86EE"/>
+    <text x="61" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="800" fill="#FFFFFF" letter-spacing="0.8">ENGINE CORE</text>
+    <text x="120" y="29" font-family="'DM Sans',system-ui,sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">Turn Loop (runUserTurn) · SDLC State Machine · Jev-Mem Hot Path · Tool Orchestrator</text>
+    <text x="120" y="48" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">idle→explore→plan→implement→test→verify→done · Laya System-1 · pinned context · [TOOL_CALL] rescue path</text>
+    <rect x="756" y="14" width="128" height="20" rx="10" fill="#2A3390" stroke="#5C67DE" stroke-width="1"/>
+    <text x="820" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">lib/orchestrate.mjs</text>
+    <rect x="756" y="40" width="128" height="20" rx="10" fill="#2A3390" stroke="#5C67DE" stroke-width="1"/>
+    <text x="820" y="54" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#8892E0">lib/compact.mjs</text>
+  </g>
+
+  <!-- Connector 2→3 -->
+  <line x1="480" y1="244" x2="480" y2="264" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="480,264 475,256 485,256" fill="#8892E0"/>
+  <rect x="384" y="249" width="192" height="18" rx="9" fill="#2E378C" stroke="#5C67DE" stroke-width="1"/>
+  <text x="480" y="261" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#C7CCF2" letter-spacing="0.5">TOOL CALLS · PHASE TRANSITIONS</text>
+
+  <!-- LAYER 3: Tool Layer -->
+  <g transform="translate(32,266)">
+    <rect width="896" height="72" rx="12" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="72" rx="3" fill="#5C67DE"/>
+    <rect x="16" y="14" width="90" height="20" rx="4" fill="#5C67DE"/>
+    <text x="61" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="800" fill="#FFFFFF" letter-spacing="0.8">TOOL LAYER</text>
+    <text x="120" y="29" font-family="'DM Sans',system-ui,sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">Built-in Tools (21) · Safety Checkers (4) · MCP Client</text>
+    <text x="120" y="48" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Read/Write/Edit/Bash/Glob/Grep · AuditCode/ShellSafety/JsSafety/PySafety · mcp__&lt;server&gt;__&lt;tool&gt; namespace</text>
+    <rect x="756" y="14" width="128" height="20" rx="10" fill="#2A3390" stroke="#5C67DE" stroke-width="1"/>
+    <text x="820" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">lib/tools.mjs</text>
+    <rect x="756" y="40" width="128" height="20" rx="10" fill="#2A3390" stroke="#5C67DE" stroke-width="1"/>
+    <text x="820" y="54" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#8892E0">lib/mcp.mjs</text>
+  </g>
+
+  <!-- Connector 3→4 -->
+  <line x1="480" y1="340" x2="480" y2="360" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="480,360 475,352 485,352" fill="#8892E0"/>
+  <rect x="362" y="345" width="236" height="18" rx="9" fill="#2E378C" stroke="#5C67DE" stroke-width="1"/>
+  <text x="480" y="357" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#C7CCF2" letter-spacing="0.5">RAW OEM PAYLOAD · NORMALIZED ODS-E</text>
+
+  <!-- LAYER 4: ODSE Middleware -->
+  <g transform="translate(32,362)">
+    <rect width="896" height="72" rx="12" fill="#2E378C" stroke="#7B86EE" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="72" rx="3" fill="#C7CCF2"/>
+    <rect x="16" y="14" width="110" height="20" rx="4" fill="#2A3390" stroke="#7B86EE" stroke-width="1"/>
+    <text x="71" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="800" fill="#FFFFFF" letter-spacing="0.8">ODSE MIDDLEWARE</text>
+    <text x="140" y="29" font-family="'DM Sans',system-ui,sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">OEM Brand Detection · ODSE Transform · SCADA Table Rendering</text>
+    <text x="140" y="48" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Huawei · Enphase · SolarEdge · Sungrow · Eskom · 20+ OEMs · name → fingerprint · --format table|ndjson|summary</text>
+    <rect x="756" y="14" width="128" height="20" rx="10" fill="#2A3390" stroke="#7B86EE" stroke-width="1"/>
+    <text x="820" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">energy-middleware.mjs</text>
+    <rect x="756" y="40" width="128" height="20" rx="10" fill="#2A3390" stroke="#7B86EE" stroke-width="1"/>
+    <text x="820" y="54" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#8892E0">odse-transform.py</text>
+  </g>
+
+  <!-- Connector 4→5 -->
+  <line x1="480" y1="436" x2="480" y2="456" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="480,456 475,448 485,448" fill="#8892E0"/>
+  <rect x="370" y="441" width="220" height="18" rx="9" fill="#2E378C" stroke="#5C67DE" stroke-width="1"/>
+  <text x="480" y="453" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#C7CCF2" letter-spacing="0.5">CHAT COMPLETION · STREAMING RESPONSE</text>
+
+  <!-- LAYER 5: Provider Layer -->
+  <g transform="translate(32,458)">
+    <rect width="896" height="72" rx="12" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="72" rx="3" fill="#3B4CCA"/>
+    <rect x="16" y="14" width="90" height="20" rx="4" fill="#3B4CCA"/>
+    <text x="61" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="800" fill="#FFFFFF" letter-spacing="0.8">PROVIDER LAYER</text>
+    <text x="120" y="29" font-family="'DM Sans',system-ui,sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">OpenAI-Compatible Client · Anthropic SDK · Multi-Provider Switching</text>
+    <text x="120" y="48" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Nehanda Cloud · LM Studio · Ollama (LAN) · Anthropic Claude · Any OAI-compatible · /model switching</text>
+    <rect x="756" y="14" width="128" height="20" rx="10" fill="#2A3390" stroke="#5C67DE" stroke-width="1"/>
+    <text x="820" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">lib/openaiCompat.mjs</text>
+    <rect x="756" y="40" width="128" height="20" rx="10" fill="#2A3390" stroke="#5C67DE" stroke-width="1"/>
+    <text x="820" y="54" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#8892E0">@anthropic-ai/sdk</text>
+  </g>
+
+  <!-- Connector 5→6 -->
+  <line x1="480" y1="532" x2="480" y2="552" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="480,552 475,544 485,544" fill="#8892E0"/>
+  <rect x="356" y="537" width="248" height="18" rx="9" fill="#2E378C" stroke="#5C67DE" stroke-width="1"/>
+  <text x="480" y="549" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#C7CCF2" letter-spacing="0.5">ALL READS/WRITES · WAL · FTS5 SEARCH</text>
+
+  <!-- LAYER 6: Persistence -->
+  <g transform="translate(32,554)">
+    <rect width="896" height="72" rx="12" fill="#0A0A0A" stroke="#5C67DE" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="72" rx="3" fill="#FFFFFF"/>
+    <rect x="16" y="14" width="90" height="20" rx="4" fill="#FFFFFF"/>
+    <text x="61" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="800" fill="#0A0A0A" letter-spacing="0.8">PERSISTENCE</text>
+    <text x="120" y="29" font-family="'DM Sans',system-ui,sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">SQLite — ~/.config/nehanda/ona-session.db</text>
+    <text x="120" y="48" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Schema v3 · WAL · FTS5 · memories + memory_edges (Jev-Mem) · laya_jev_state · pinned_context · 14+ tables</text>
+    <rect x="756" y="14" width="128" height="20" rx="10" fill="#1F1F1F" stroke="#444" stroke-width="1"/>
+    <text x="820" y="28" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">lib/store.mjs</text>
+    <rect x="756" y="40" width="128" height="20" rx="10" fill="#1F1F1F" stroke="#444" stroke-width="1"/>
+    <text x="820" y="54" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#C7CCF2">better-sqlite3</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="480" y="710" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2" opacity="0.7">All layers run in-process · single Node.js process · no daemons · no HTTP relays</text>
+</svg>
 
 ## Layer 1: REPL / Ink TUI
 
