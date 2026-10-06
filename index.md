@@ -14,7 +14,7 @@ layout: default
 <div class="section-cards" style="margin-bottom: 48px;">
   <div class="section-card" style="border-left: 4px solid #455BF1;">
     <h3>💻 nehanda-cli</h3>
-    <p>Agentic AI terminal REPL for governed software development. Deterministic SDLC workflows, MCP client, dynamic tool calling, 4-tier memory compaction, and multi-provider support. <strong>AGPL-3.0.</strong></p>
+    <p>An agentic terminal REPL and single-process engine built for energy systems research and software development. Deterministic SDLC workflows, MCP client, dynamic tool calling, 4-tier memory compaction, and multi-provider support. <strong>AGPL-3.0.</strong></p>
     <a href="/nehanda-cli" class="section-link">Documentation →</a>
     <span style="margin: 0 8px; color: #ccc;">|</span>
     <a href="https://github.com/AsobaCloud/nehanda-cli" class="section-link" target="_blank">GitHub →</a>
@@ -28,7 +28,7 @@ layout: default
 
     <div class="section-card">
       <h3>🧠 Nehanda v3.1</h3>
-      <p>Fine-tuned Qwen3.6-27B for RAG synthesis. Scores <strong>82.21% on FACTS Grounding</strong> — on par with Gemini 2.5 Pro, Claude 3.5 Sonnet, and GPT-4o. Open weights.</p>
+      <p>Fine-tuned Qwen3.6-27B epistemic researcher LLM with DPO training for anti-sycophancy and anti-fabrication. Scores <strong>82.21% on FACTS Grounding</strong> — on par with Gemini 2.5 Pro, Claude 3.5 Sonnet, and GPT-4o. Open weights.</p>
       <a href="/nehanda-model" class="section-link">Learn more →</a>
     </div>
 
