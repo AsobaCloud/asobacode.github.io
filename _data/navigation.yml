@@ -8,6 +8,8 @@
   children:
     - title: Getting Started
       url: /nehanda-cli-getting-started
+    - title: Core Concepts
+      url: /nehanda-cli-core-concepts
     - title: Architecture
       url: /nehanda-cli-architecture
     - title: Engine & Turn Loop

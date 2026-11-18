@@ -41,8 +41,9 @@ Nehanda CLI is a layered system with six distinct layers. Every component shown 
 | **Provider Layer** | OpenAI-compatible client abstraction, multi-provider switching, credential isolation, Ollama tool probes | [Providers](/nehanda-cli-providers) |
 | **Persistence Layer** | Local SQLite database (schema v4: runtime evidence, test executions, Jev-Mem graph, pinned context, WAL mode, FTS5) | [Database](/nehanda-cli-database) |
 
-Cross-cutting concerns are documented separately:
+Cross-cutting concerns and core architectural principles are documented separately:
 
+- [**Core Concepts**](/nehanda-cli-core-concepts) — Cognitive architecture (System 1/2), Jev-Mem context economics, and deterministic SDLC control theory
 - [**Configuration**](/nehanda-cli-configuration) — Settings files, merge strategy, `/config` commands, sandbox environment
 - [**Hooks**](/nehanda-cli-hooks) — Event-driven hook system for file changes, tool use, and phase transitions
 - [**Pipe Mode**](/nehanda-cli-pipe-mode) — Headless execution, `--eval`, `--transition`, and automation
