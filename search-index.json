@@ -1,0 +1,11 @@
+---
+layout: null
+---
+[{% assign first = true %}{% for page in site.pages %}{% if page.title and page.layout == "default" %}{% unless first %},{% endunless %}{% assign first = false %}
+{
+  "title":   {{ page.title | jsonify }},
+  "url":     {{ page.url | prepend: site.baseurl | jsonify }},
+  "section": {{ page.url | remove_first: "/" | split: "/" | first | jsonify }},
+  "content": {{ page.content | strip_html | normalize_whitespace | truncate: 5000 | jsonify }}
+}{% endif %}{% endfor %}
+]
