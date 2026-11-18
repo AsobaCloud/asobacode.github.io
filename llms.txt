@@ -4,7 +4,7 @@
 
 ## nehanda-cli
 
-Agentic AI terminal REPL for governed software development. Deterministic SDLC workflow enforcement, MCP client for tool integration, dynamic tool calling, 4-tier memory compaction, and multi-provider support (Nehanda, Ollama, LM Studio, Anthropic, any OpenAI-compatible API). AGPL-3.0.
+Agentic terminal REPL and single-process engine for energy systems research and governed software development. Enforces an 11-phase SDLC state machine, OS-primitives sandbox confinement (Seatbelt/Bubblewrap), ODSE multi-OEM telemetry normalization, Jev-Mem memory architecture, MCP client, and local SQLite audit trails (Schema v4). Multi-provider support (OpenRouter, Anthropic, Ollama, LM Studio, Nehanda, OpenAI-compatible). AGPL-3.0.
 
 Repository: https://github.com/AsobaCloud/nehanda-cli
 Documentation: https://code.asoba.co/nehanda-cli

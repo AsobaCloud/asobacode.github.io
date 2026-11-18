@@ -21,15 +21,16 @@ if (process.stdin.isTTY) {
 
 The engine selects the mode automatically based on whether stdin is a TTY. You don't need to pass a flag.
 
-## Key Difference: Auto-Approve
+## Key Difference: Auto-Approve vs Security Deny
 
-In pipe mode, the `io.ask()` method always returns `'y'`. This means:
+In pipe mode, the `io.ask()` method returns `'y'`. This means:
 
-- **Permission prompts** are auto-approved (all tools execute without confirmation)
-- **SDLC gates** (plan approval, implementation acceptance, test results) are auto-approved
+- **Permission prompts** for ordinary tools are auto-approved
+- **SDLC gates** (plan approval, implementation acceptance, test results) are auto-approved when valid execution evidence is present
 - **Subagent turns** run without human interaction
 
-This makes pipe mode suitable for CI/CD and automated workflows where no human is present.
+**Crucial Security Difference:**
+For blocked commands and safety violations (commands flagged by `validateBashCommand` or safety checkers), `io.confirmBlock` is absent. Pipe mode **auto-denies** all security violations immediately without executing — preventing unauthorized destructive actions or socket openings in headless environments.
 
 ## Usage
 

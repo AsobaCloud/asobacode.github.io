@@ -5,314 +5,214 @@ parent: "Nehanda CLI"
 nav_order: 13
 ---
 
-# Database
+# Database (Schema v4)
 
-Nehanda CLI persists all session state in a local SQLite database. You own this data — no cloud dependency for persistence. The database uses WAL (Write-Ahead Logging) mode for concurrent read performance.
+Nehanda CLI persists all session state, execution provenance, memory graphs, and governance audit records in a local SQLite database. You own this data — no cloud relay or server daemon is required. The database uses Write-Ahead Logging (WAL) for concurrent read performance.
 
-## Location
+## Location & Settings
 
 | Setting | Value |
-|---------|-------|
-| Default path | `~/.config/nehanda/ona-session.db` |
-| Override | `AGENT_SDLC_DB` environment variable |
+|:---|:---|
+| **Default path** | `~/.config/nehanda/ona-session.db` |
+| **Override** | `AGENT_SDLC_DB` environment variable |
+| **Journal mode** | `WAL` (Write-Ahead Logging) |
+| **Foreign keys** | Enabled (`PRAGMA foreign_keys = ON`) |
+| **Busy timeout** | 30,000 ms (handles concurrent background checks) |
+| **Schema version** | **v4** (tracked in `schema_meta`) |
 
-## Database Characteristics
+---
 
-- **WAL journal mode** — readers don't block writers, writers don't block readers
-- **Foreign keys** enabled
-- **Busy timeout** 30 seconds (handles concurrent access)
-- **FTS5** full-text search index on the memories table
-- **Schema versioning** via `schema_meta` table (current: v3)
-- **Jev-Mem graph** — `memories` + `memory_edges` form a multi-relational graph (semantic / temporal / causal / entity edges) managed by the Laya System-1 control plane
-- **Pinned context** — `pinned_context` table stores session-scoped invariants that survive compaction unchanged
+## Schema Architecture (v4)
 
-## Schema Reference
+The database consists of 18 tables and FTS5 indexes:
 
-### `schema_meta`
+```
+├── Core Audit & State
+│   ├── schema_meta          # Versioning & metadata
+│   ├── conversations        # Project paths, timestamps, active SDLC phase
+│   ├── sessions             # Turn-level session groupings
+│   ├── transcript_entries   # Full audit sequence of user, assistant, and tool payloads
+│   ├── state                # Key-value store per conversation
+│   ├── plans                # Governed Plan Triad artifacts
+│   ├── summaries            # Conversation context compaction summaries
+│   ├── events               # Lifecycle and subagent milestones
+│   └── settings_snapshot    # Merged active configuration
+├── SDLC Execution Provenance (Schema v4)
+│   ├── test_executions      # Structured Given-When-Then runner executions
+│   ├── red_evidence         # Genuine test runner RED failure records
+│   └── safety_evidence      # Mandatory safety checker outputs & branch coverage
+├── Safety & Governance Logging
+│   ├── tool_permission_log  # Every allow/deny/ask decision with reasoning
+│   └── hook_invocations     # Complete execution log for event hooks
+└── Memory & Domain Invariants
+    ├── pinned_context       # Domain invariants preserved across compaction
+    ├── memories             # Jev-Mem observation nodes
+    ├── memories_fts         # FTS5 full-text search virtual table
+    ├── memory_edges         # Semantic, temporal, causal, entity graph edges
+    └── laya_jev_state       # Laya System-1 session control block
+```
 
-Key-value store for schema metadata.
+---
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `key` | TEXT PK | Metadata key (e.g. `schema_version`) |
-| `value` | TEXT | Metadata value |
+## SDLC Execution Provenance Tables (Schema v4)
 
-### `conversations`
-
-One row per conversation. Tracks the active SDLC phase and project root.
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | TEXT PK | Conversation UUID |
-| `project_dir` | TEXT | Working directory path |
-| `created_at` | TEXT | ISO timestamp |
-| `last_active` | TEXT | ISO timestamp (updated on each turn) |
-| `phase` | TEXT | Current SDLC phase (default: `idle`) |
-
-### `sessions`
-
-One row per session (a session is a single `runUserTurn` invocation). Multiple sessions can belong to one conversation.
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `session_id` | TEXT PK | Session UUID |
-| `conversation_id` | TEXT FK | Parent conversation |
-| `started_at` | TEXT | ISO timestamp |
-
-### `transcript_entries`
-
-The complete audit trail. Every user message, assistant response, tool call, and tool result is stored here as a sequence.
+### `test_executions`
+Durable provenance of executed behavioral tests. Runtime `Bash` executions targeting supported test runners are automatically analyzed and classified to prevent fabricated test passes.
 
 | Column | Type | Description |
-|--------|------|-------------|
+|:---|:---|:---|
+| `id` | TEXT PK | Unique execution UUID |
+| `conversation_id` | TEXT | Parent conversation ID |
+| `phase` | TEXT | SDLC phase during execution (`create_tests`, `verify`) |
+| `command` | TEXT | Exact test runner command executed |
+| `exit_code` | INTEGER | Process exit code from runner |
+| `started_at` | INTEGER | Start timestamp (epoch ms) |
+| `finished_at` | INTEGER | Completion timestamp (epoch ms) |
+| `classification` | TEXT | Outcome classification (`RED`, `GREEN`, `CRASH`, `SYNTAX_ERROR`) |
+| `evidence_json` | TEXT | Structured runner payload (input hashes, failing assertions, stack trace) |
+
+*Index:* `idx_test_executions_conversation ON test_executions(conversation_id, finished_at)`
+
+### `red_evidence`
+Stores the definitive RED regression failure that justifies advancing from `create_tests` to `planning`.
+
+| Column | Type | Description |
+|:---|:---|:---|
 | `id` | INTEGER PK | Auto-increment |
-| `session_id` | TEXT FK | Parent session |
-| `sequence` | INTEGER | Order within session (unique with session_id) |
-| `parent_entry_id` | INTEGER FK | Self-referential (for threading) |
-| `entry_type` | TEXT | `user`, `assistant`, or `tool_result` |
-| `payload_json` | TEXT | Full message content as JSON |
-| `tool_use_id` | TEXT | Links tool_result to its tool_use |
-| `created_at` | TEXT | ISO timestamp |
+| `conversation_id` | TEXT | Parent conversation ID |
+| `command` | TEXT | Failing test runner invocation |
+| `exit_code` | INTEGER | Runner exit code (must be non-zero assertion failure) |
+| `output_digest` | TEXT | SHA-256 digest of failure output |
+| `source` | TEXT | Execution provenance (`manual`, `test_runner`) |
+| `execution_json` | TEXT | JSON snapshot of test runner failure |
+| `created_at` | DATETIME | Timestamp of recorded failure |
 
-### `plans`
-
-SDLC plans created during the planning phase. Only approved plans are used.
+### `safety_evidence`
+Stores the outputs and measured branch coverage for mandatory safety checks executed during the `safety` phase.
 
 | Column | Type | Description |
-|--------|------|-------------|
+|:---|:---|:---|
 | `id` | INTEGER PK | Auto-increment |
-| `conversation_id` | TEXT | Parent conversation |
-| `file_path` | TEXT | Optional file path reference |
-| `content` | TEXT | Full plan text |
-| `hash` | TEXT | Content hash for deduplication |
-| `status` | TEXT | `draft` or `approved` |
-| `created_at` | TEXT | ISO timestamp |
-| `approved_at` | TEXT | ISO timestamp (set on approval) |
-| `completed_at` | TEXT | ISO timestamp |
+| `conversation_id` | TEXT | Parent conversation ID |
+| `checker_name` | TEXT | `js_safety`, `shell_safety`, `python_safety` |
+| `command` | TEXT | Shell invocation for the checker script |
+| `exit_code` | INTEGER | Must be 0 for all three checkers |
+| `output` | TEXT | Checker output logs |
+| `path_coverage` | REAL | Measured branch coverage across changed production files ($\ge 0.70$) |
+| `created_at` | DATETIME | Timestamp of verification |
 
-### `events`
+---
 
-SDLC milestones, subagent events, and task outputs.
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | INTEGER PK | Auto-increment |
-| `conversation_id` | TEXT | Parent conversation |
-| `session_id` | TEXT | Session that triggered the event |
-| `timestamp` | TEXT | ISO timestamp |
-| `event_type` | TEXT | Event name (e.g. `subagent_start`, `task_output`, `CwdChanged`) |
-| `detail` | TEXT | Event-specific detail (often JSON) |
-
-### `state`
-
-Key-value store for per-conversation state (todos, worktree info, etc.).
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `conversation_id` | TEXT | Part of composite PK |
-| `key` | TEXT | Part of composite PK (e.g. `todo:item-1`) |
-| `value` | TEXT | JSON-encoded value |
-| `updated_at` | TEXT | ISO timestamp |
-
-### `memories` + `memories_fts`
-
-Long-term memory storage with full-text search. The FTS5 virtual table indexes `title`, `content`, `keywords`, and `anticipated_queries` using Porter stemming with Unicode 6.1 support.
-
-This table is the canonical node store for the Jev-Mem memory architecture. Each row represents one observation (user turn, tool result, or assistant response) with overlapping type scores across four memory types.
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | TEXT PK | Memory UUID |
-| `type` | TEXT | Memory type classifier (`jev_observation`, etc.) |
-| `title` | TEXT | Short title |
-| `content` | TEXT | Full memory content |
-| `keywords` | TEXT | Search keywords |
-| `anticipated_queries` | TEXT | Queries this memory should match |
-| `concept_tags` | TEXT | Concept classification tags |
-| `project_scope` | TEXT | Project scope boundary |
-| `correction_count` | INTEGER | Times this memory was corrected (default: 1) |
-| `created_at` | INTEGER | Unix timestamp |
-| `updated_at` | INTEGER | Unix timestamp |
-| `last_accessed` | INTEGER | Unix timestamp |
-| `access_count` | INTEGER | Number of accesses (default: 0) |
-| `attention_score` | REAL | Relevance score (default: 0.5) |
-| `session_id` | TEXT | Session that created this observation |
-| `conversation_id` | TEXT | Parent conversation |
-| `provenance` | TEXT | Source of observation (`hot_path`, `manual`, etc.) |
-| `entities_json` | TEXT | JSON-encoded entity tags |
-| `t_episodic` | REAL | Episodic type score (0–1) |
-| `t_semantic` | REAL | Semantic type score (0–1) |
-| `t_procedural` | REAL | Procedural type score (0–1) |
-| `t_preference` | REAL | Preference type score (0–1) |
-| `source_entry_id` | INTEGER | FK to `transcript_entries` |
-| `observation_ts` | INTEGER | Unix timestamp of original observation |
-
-### `memory_edges`
-
-Multi-relational graph edges for the Jev-Mem memory graph. The same node pair may have independent edges of different relation types.
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | INTEGER PK | Auto-increment |
-| `src_id` | TEXT | Source memory node ID |
-| `dst_id` | TEXT | Destination memory node ID |
-| `relation` | TEXT | Edge type: `semantic`, `temporal`, `causal`, or `entity` |
-| `weight` | REAL | Edge weight (probability from Laya relation judgment) |
-| `meta_json` | TEXT | Additional edge metadata (JSON) |
-| `created_at` | INTEGER | Unix timestamp |
-
-### `laya_jev_state`
-
-System-1 canonical session control block. One row per session, updated on every turn by the Laya control plane.
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `session_id` | TEXT PK | Session identifier |
-| `task_status` | TEXT | Current task state: `investigating`, `modifying_code`, `awaiting_user`, `verifying`, `blocked`, or `idle` |
-| `file_target` | TEXT | Primary file being modified (null if none) |
-| `escalation_risk` | INTEGER | 0 or 1 — whether Laya flagged escalation risk |
-| `confidence_score` | REAL | Laya confidence in current state assessment (0–1) |
-| `state_json` | TEXT | Full state snapshot as JSON |
-| `updated_at` | TEXT | ISO timestamp |
+## Memory & Domain Invariant Tables
 
 ### `pinned_context`
-
 Session-scoped domain invariants that survive context compaction unchanged. Used to persist ODSE schema mappings, asset capacity limits, simulation bounds, and other constants that must not be distilled or discarded during long sessions.
 
 Unlike `memories`, pinned blocks are never passed to the distillation summariser. They are reattached verbatim at the start of every System-2 prompt, before the canonical Jev-Mem header and retrieved evidence.
 
 | Column | Type | Description |
-|--------|------|-------------|
+|:---|:---|:---|
 | `id` | INTEGER PK | Auto-increment |
-| `session_id` | TEXT | Parent session |
-| `key` | TEXT | Unique string key (e.g. `odse_schema`, `asset_spec`) |
-| `content` | TEXT | Invariant content (verbatim) |
-| `created_at` | INTEGER | Unix timestamp |
+| `session_id` | TEXT | Parent session ID |
+| `key` | TEXT | Invariant identifier (e.g. `odse_huawei_map`, `grid_limits`) |
+| `content` | TEXT | Verbatim invariant content |
+| `created_at` | INTEGER | Epoch ms timestamp |
 
-`(session_id, key)` is unique — upserts replace existing content for the same key.
+*Index:* `idx_pinned_context_session ON pinned_context(session_id)` (Unique composite key: `(session_id, key)`).
 
-### `hook_invocations`
+### `memories` & `memories_fts`
+Long-term memory storage with full-text search. The FTS5 virtual table indexes `title`, `content`, `keywords`, and `anticipated_queries` using Porter stemming with Unicode 6.1 support.
 
-Complete log of every hook execution. Every hook that fires (whether it matched, skipped, or ran) is recorded.
+Each row represents an observation classified by Laya with overlapping type scores across episodic, semantic, procedural, and preference dimensions.
 
 | Column | Type | Description |
-|--------|------|-------------|
-| `id` | INTEGER PK | Auto-increment |
-| `session_id` | TEXT | Parent session |
-| `conversation_id` | TEXT | Parent conversation |
-| `hook_event` | TEXT | Event name (e.g. `PreToolUse`) |
-| `hook_ordinal` | INTEGER | Order within the event's hook chain |
-| `matcher` | TEXT | The matcher string used |
-| `command` | TEXT | The shell command that was run |
-| `tool_use_id` | TEXT | Related tool call ID (for tool events) |
-| `tool_name` | TEXT | Related tool name (for tool events) |
-| `input_json` | TEXT | Full JSON input sent to the hook via stdin |
-| `exit_code` | INTEGER | Hook's exit code (null if skipped) |
-| `stdout_text` | TEXT | Hook's stdout (capped at 4 MB) |
-| `stderr_text` | TEXT | Hook's stderr (capped at 4 MB) |
-| `started_at` | TEXT | ISO timestamp |
-| `completed_at` | TEXT | ISO timestamp |
-| `skipped_reason` | TEXT | Why the hook was skipped (null if ran) |
+|:---|:---|:---|
+| `id` | TEXT PK | Memory UUID |
+| `type` | TEXT | Classifier (`jev_observation`, `doc_summary`, etc.) |
+| `title` | TEXT | Summary title |
+| `content` | TEXT | Observation payload |
+| `keywords` | TEXT | Search keywords |
+| `entities_json` | TEXT | Extracted named entities |
+| `t_episodic` | REAL | Episodic weight (0–1) |
+| `t_semantic` | REAL | Semantic weight (0–1) |
+| `t_procedural` | REAL | Procedural weight (0–1) |
+| `t_preference` | REAL | Preference weight (0–1) |
+| `attention_score`| REAL | Relevance score (default: 0.5) |
 
-### `tool_permission_log`
-
-Every permission decision, regardless of outcome.
+### `memory_edges`
+Multi-relational graph edges for the Jev-Mem memory plane.
 
 | Column | Type | Description |
-|--------|------|-------------|
+|:---|:---|:---|
 | `id` | INTEGER PK | Auto-increment |
-| `session_id` | TEXT | Parent session |
-| `tool_use_id` | TEXT | Tool call ID |
-| `tool_name` | TEXT | Tool name |
-| `decision` | TEXT | `allow`, `deny`, or `ask` |
-| `reason_json` | TEXT | Additional context |
+| `src_id` | TEXT FK | Source memory node |
+| `dst_id` | TEXT FK | Target memory node |
+| `relation` | TEXT | `semantic`, `temporal`, `causal`, or `entity` |
+| `weight` | REAL | Edge probability from Laya relation scoring |
+| `meta_json` | TEXT | Edge metadata |
+
+---
+
+## Core Transcript & Audit Tables
+
+### `conversations`
+Tracks the active SDLC phase and project root.
+
+| Column | Type | Description |
+|:---|:---|:---|
+| `id` | TEXT PK | Conversation UUID |
+| `project_dir` | TEXT | Root working directory |
+| `phase` | TEXT | Active SDLC phase (default: `idle`) |
 | `created_at` | TEXT | ISO timestamp |
+| `last_active` | TEXT | ISO timestamp |
 
-### `settings_snapshot`
-
-Effective settings after merge. Updated by `/config` commands and on bootstrap.
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `scope` | TEXT PK | Always `'effective'` |
-| `json` | TEXT | Full settings JSON |
-| `updated_at` | TEXT | ISO timestamp |
-
-### `summaries`
-
-Conversation summaries for context compaction.
+### `transcript_entries`
+The complete, immutable turn sequence.
 
 | Column | Type | Description |
-|--------|------|-------------|
-| `conversation_id` | TEXT PK | Parent conversation |
-| `content` | TEXT | Summary text |
-| `word_count` | INTEGER | Summary length |
-| `created_at` | TEXT | ISO timestamp |
+|:---|:---|:---|
+| `id` | INTEGER PK | Auto-increment sequence ID |
+| `session_id` | TEXT FK | Parent session |
+| `sequence` | INTEGER | Ordinal turn number |
+| `entry_type` | TEXT | `user`, `assistant`, or `tool_result` |
+| `payload_json` | TEXT | Full message structure |
+| `tool_use_id` | TEXT | Correlating tool invocation ID |
 
-### `task_ratings`
+---
 
-User ratings of task outcomes.
+## Schema Migrations
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | INTEGER PK | Auto-increment |
-| `conversation_id` | TEXT | Parent conversation |
-| `rating` | INTEGER | User rating |
-| `objective` | TEXT | Task objective |
-| `timestamp` | TEXT | ISO timestamp |
+Nehanda CLI features an automatic zero-downtime migration engine (`migrateStore` in `lib/store.mjs`):
 
-## Useful Queries
+* **v1 $\rightarrow$ v2:** Added Jev-Mem node columns (`entities_json`, `t_episodic`, etc.), created `memory_edges`, `laya_jev_state`, and created index `idx_memories_conversation`.
+* **v2 $\rightarrow$ v3:** Added `pinned_context` table and session index for persistent domain invariants.
+* **v3 $\rightarrow$ v4:** Added `test_executions`, `red_evidence`, and `safety_evidence`. Migrates legacy `test` phase records to either `create_tests` or `verify` based on whether implementation code was generated.
 
-### Recent conversation turns
+---
 
+## Diagnostic SQL Queries
+
+### Inspect Verified RED/GREEN Test Provenance
 ```sql
-SELECT entry_type, 
-       json_extract(payload_json, '$.content') AS preview,
-       created_at
-FROM transcript_entries
-WHERE session_id = '<session-id>'
-ORDER BY sequence DESC
-LIMIT 20;
+SELECT phase, command, exit_code, classification, datetime(started_at/1000, 'unixepoch') AS run_time
+FROM test_executions
+ORDER BY started_at DESC
+LIMIT 10;
 ```
 
-### Tool calls in a session
-
+### Review Safety Checkers and Branch Coverage
 ```sql
-SELECT json_extract(payload_json, '$.content[0].name') AS tool,
-       json_extract(payload_json, '$.content[0].input') AS input,
-       created_at
-FROM transcript_entries
-WHERE session_id = '<session-id>'
-  AND entry_type = 'assistant'
-  AND payload_json LIKE '%tool_use%'
-ORDER BY sequence;
-```
-
-### Permission audit
-
-```sql
-SELECT tool_name, decision, created_at
-FROM tool_permission_log
-ORDER BY created_at DESC
-LIMIT 50;
-```
-
-### Hook execution log
-
-```sql
-SELECT hook_event, matcher, command, exit_code, 
-       substr(stdout_text, 1, 200) AS stdout_preview,
-       skipped_reason
-FROM hook_invocations
+SELECT checker_name, exit_code, path_coverage, created_at
+FROM safety_evidence
 ORDER BY id DESC
-LIMIT 50;
+LIMIT 10;
 ```
 
-### Full-text search memories
-
+### Audit Blocked Tools and Permission Decisions
 ```sql
-SELECT title, content, rank
-FROM memories_fts
-WHERE memories_fts MATCH 'error handling'
-ORDER BY rank;
+SELECT tool_name, decision, reason_json, created_at
+FROM tool_permission_log
+WHERE decision != 'allow'
+ORDER BY id DESC
+LIMIT 20;
 ```

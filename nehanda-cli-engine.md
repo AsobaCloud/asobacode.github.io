@@ -7,266 +7,172 @@ nav_order: 3
 
 # Engine & Turn Loop
 
-The engine is the brain of Nehanda CLI. It runs entirely in-process as a single Node.js application — no separate server daemon, no background HTTP relay. Every user interaction flows through `runUserTurn`, the central function in `lib/orchestrate.mjs`.
+The engine is the computational core of Nehanda CLI. It executes completely in-process within a single Node.js runtime (v22+) — eliminating daemon architectures, container dependencies, or external proxies. Every interaction flows through `runUserTurn`, the central orchestrator in `lib/orchestrate.mjs`.
 
-## The Turn Lifecycle
+---
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" width="100%" height="auto">
-  <rect width="960" height="580" rx="16" fill="#4551BF"/>
-  <text x="32" y="36" font-family="'DM Sans',system-ui,sans-serif" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="1">TURN LIFECYCLE — runUserTurn(db, rt, userText, io)</text>
-  <line x1="32" y1="48" x2="928" y2="48" stroke="#C7CCF2" stroke-opacity="0.3" stroke-width="1"/>
+## Turn Lifecycle
 
-  <!-- Step 1 -->
-  <g transform="translate(330,60)">
-    <rect width="300" height="52" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
-    <text x="150" y="24" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">Hook: UserPromptSubmit</text>
-    <text x="150" y="42" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Can block the prompt entirely</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" width="100%" height="auto">
+  <!-- Canvas -->
+  <rect width="960" height="620" rx="16" fill="#4551BF"/>
+
+  <!-- Header -->
+  <text x="32" y="36" font-family="'DM Sans', system-ui, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF" letter-spacing="1.2">NEHANDA TURN LIFECYCLE — runUserTurn(db, rt, userText, io)</text>
+  <text x="32" y="52" font-family="'DM Sans', system-ui, sans-serif" font-size="11" font-weight="500" fill="#C7CCF2" letter-spacing="0.5">In-Process Deterministic Turn Execution · Jev-Mem Control Plane · 11-Phase Governance</text>
+  <line x1="32" y1="62" x2="928" y2="62" stroke="#C7CCF2" stroke-opacity="0.3" stroke-width="1"/>
+
+  <!-- Step 1: Hook -->
+  <g transform="translate(310, 76)">
+    <rect width="340" height="48" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
+    <text x="170" y="22" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">1. Hook: UserPromptSubmit</text>
+    <text x="170" y="38" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Pre-submission interception · Can block or reshape prompt</text>
   </g>
-  <line x1="480" y1="114" x2="480" y2="134" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
-  <polygon points="480,134 475,126 485,126" fill="#8892E0"/>
+  <line x1="480" y1="124" x2="480" y2="146" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="480,146 475,138 485,138" fill="#8892E0"/>
 
-  <!-- Step 2 -->
-  <g transform="translate(330,136)">
-    <rect width="300" height="52" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
-    <text x="150" y="24" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">Append to transcript_entries</text>
-    <text x="150" y="42" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">User message written to SQLite</text>
+  <!-- Step 2: Transcript -->
+  <g transform="translate(310, 148)">
+    <rect width="340" height="48" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
+    <text x="170" y="22" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">2. Append to transcript_entries</text>
+    <text x="170" y="38" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Immutable SQLite audit record · User payload serialized</text>
   </g>
-  <line x1="480" y1="190" x2="480" y2="210" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
-  <polygon points="480,210 475,202 485,202" fill="#8892E0"/>
+  <line x1="480" y1="196" x2="480" y2="218" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="480,218 475,210 485,210" fill="#8892E0"/>
 
-  <!-- Step 3 -->
-  <g transform="translate(280,212)">
-    <rect width="400" height="52" rx="10" fill="#2E378C" stroke="#7B86EE" stroke-width="1.2"/>
-    <text x="200" y="24" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">Jev-Mem Hot Path</text>
-    <text x="200" y="42" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">ingest → Laya System-1 → retrieve evidence → pinned context → System-2 messages</text>
+  <!-- Step 3: Jev-Mem Hot Path -->
+  <g transform="translate(250, 220)">
+    <rect width="460" height="52" rx="10" fill="#2E378C" stroke="#7B86EE" stroke-width="1.5"/>
+    <text x="230" y="23" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">3. Jev-Mem Hot Path (Laya System-1)</text>
+    <text x="230" y="40" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Ingest observation → Laya state extraction → Evidence retrieval → Pinned context</text>
   </g>
-  <line x1="480" y1="266" x2="480" y2="286" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
-  <polygon points="480,286 475,278 485,278" fill="#8892E0"/>
+  <line x1="480" y1="272" x2="480" y2="294" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="480,294 475,286 485,286" fill="#8892E0"/>
 
-  <!-- Step 4 -->
-  <g transform="translate(330,288)">
-    <rect width="300" height="52" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
-    <text x="150" y="24" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">Build System Prompt + Tools</text>
-    <text x="150" y="42" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Phase-specific prompt · filtered tool list</text>
+  <!-- Step 4: Prompt Construction -->
+  <g transform="translate(280, 296)">
+    <rect width="400" height="50" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
+    <text x="200" y="22" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">4. Build Phase Prompt + Tool Mask</text>
+    <text x="200" y="38" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Inject [GROUNDED FACTS] · Filter tools by active SDLC phase</text>
   </g>
-  <line x1="480" y1="342" x2="480" y2="362" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
-  <polygon points="480,362 475,354 485,354" fill="#8892E0"/>
+  <line x1="480" y1="346" x2="480" y2="368" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="480,368 475,360 485,360" fill="#8892E0"/>
 
-  <!-- Step 5 -->
-  <g transform="translate(280,364)">
-    <rect width="400" height="52" rx="10" fill="#0A0A0A" stroke="#7B86EE" stroke-width="1.5"/>
-    <text x="200" y="24" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">Stream API Call to Provider</text>
-    <text x="200" y="42" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Anthropic SDK or OpenAI-compat · native or [TOOL_CALL] rescue</text>
+  <!-- Step 5: Streaming API Call -->
+  <g transform="translate(260, 370)">
+    <rect width="440" height="52" rx="10" fill="#0A0A0A" stroke="#7B86EE" stroke-width="1.5"/>
+    <text x="220" y="23" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">5. Stream Inference Completion</text>
+    <text x="220" y="40" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Stream tokens · Live reasoning spinner · Native tools or [TOOL_CALL] rescue</text>
   </g>
-  <line x1="480" y1="418" x2="480" y2="438" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
-  <polygon points="480,438 475,430 485,430" fill="#8892E0"/>
+  <line x1="480" y1="422" x2="480" y2="446" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="480,446 475,438 485,438" fill="#8892E0"/>
 
-  <!-- Branch: tool calls vs plain text -->
-  <line x1="480" y1="440" x2="300" y2="470" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="480" y1="440" x2="660" y2="470" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- Step 6: Branching (Tool vs Plain Text) -->
+  <line x1="480" y1="448" x2="280" y2="478" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="480" y1="448" x2="680" y2="478" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3"/>
 
-  <g transform="translate(170,472)">
-    <rect width="250" height="48" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
-    <text x="125" y="21" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">Tool Calls</text>
-    <text x="125" y="39" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Execute → append → loop back</text>
-  </g>
-
-  <g transform="translate(540,472)">
-    <rect width="250" height="48" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
-    <text x="125" y="21" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">Plain Text Response</text>
-    <text x="125" y="39" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Render to user · end turn</text>
+  <g transform="translate(150, 480)">
+    <rect width="260" height="50" rx="10" fill="#2E378C" stroke="#7B86EE" stroke-width="1.2"/>
+    <text x="130" y="22" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">Tool Invocations Emitted</text>
+    <text x="130" y="38" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Execute tool → Record provenance → Loop</text>
   </g>
 
-  <!-- Loop back arrow -->
-  <path d="M 295 496 Q 200 540 200 364 Q 200 280 280 364" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3" fill="none"/>
-  <polygon points="280,364 272,372 288,372" fill="#8892E0"/>
-  <rect x="78" y="488" width="108" height="18" rx="9" fill="#2E378C" stroke="#5C67DE" stroke-width="1"/>
-  <text x="132" y="500" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="700" fill="#C7CCF2">LOOP UNTIL DONE</text>
+  <g transform="translate(550, 480)">
+    <rect width="260" height="50" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
+    <text x="130" y="22" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">Plain Text Completed</text>
+    <text x="130" y="38" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Evaluate SDLC human gate or return turn</text>
+  </g>
 
-  <text x="480" y="570" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2" opacity="0.7">lib/orchestrate.mjs · runUserTurn()</text>
+  <!-- Loopback -->
+  <path d="M 280 530 Q 180 580 180 396 Q 180 370 260 385" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3" fill="none"/>
+  <polygon points="260,385 250,392 258,402" fill="#8892E0"/>
+  <rect x="70" y="525" width="100" height="18" rx="9" fill="#2E378C" stroke="#5C67DE" stroke-width="1"/>
+  <text x="120" y="537" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="9" font-weight="700" fill="#C7CCF2">TOOL LOOP</text>
+
+  <text x="480" y="596" text-anchor="middle" font-family="'DM Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="#C7CCF2" opacity="0.8">lib/orchestrate.mjs · runUserTurn() · executeToolUses()</text>
 </svg>
 
-## `runUserTurn` — The Main Entry Point
+---
 
-`runUserTurn(db, rt, userText, io)` is the single function that drives every interaction. It receives:
+## Detailed Step Walkthrough
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `db` | `better-sqlite3` | The SQLite database connection |
-| `rt` | object | Runtime context: `sessionId`, `conversationId`, `cwd`, `settings`, `_model` |
-| `userText` | string | The user's input message |
-| `io` | object | I/O adapter: `write()`, `println()`, `ask()`, `spinner`, `onToolStart()`, `onToolResult()` |
+### 1. Pre-Submission Hook (`UserPromptSubmit`)
+Fires before any token processing occurs. An external security plugin or local policy hook can inspect `userText` and cancel execution early by returning `{ ok: false, message: "..." }`.
 
-### Steps
+### 2. Transcript Serialization
+The prompt is durably written to `transcript_entries` in the local SQLite database. Even if the process terminates or network connectivity drops mid-inference, the exact prompt sequence is preserved.
 
-1. **Hook: `UserPromptSubmit`** — Fires before anything else. A hook can block the prompt entirely (e.g., content policy).
+### 3. Jev-Mem Hot Path & Laya System-1 Control Plane
+Nehanda uses a two-tier neural architecture:
+* **System-1 (Laya):** Primed into memory on startup (`method: 'load'`), Laya is a 322M non-autoregressive classifier. It ingests the latest transcript observations, updates memory graph relation edges (semantic, temporal, causal, entity), and sets the canonical state in `laya_jev_state`.
+* **Adaptive Evidence Retrieval:** Queries full-text search (`memories_fts`) and recency graphs to extract only pertinent memory anchors.
+* **Pinned Invariants:** Domain invariants (such as ODSE register maps, physical asset specs, and simulation bounds) are fetched from `pinned_context` and prepended verbatim to every System-2 prompt.
+* **Prefill Reduction:** Cuts System-2 context size by 70–85% compared to raw transcript histories.
 
-2. **SDLC routing** — If the conversation is in `idle` phase and the I/O layer supports asking, the user is prompted: *"Use SDLC workflow (plan → implement → test)?"* If yes, the phase transitions to `explore` and the user's message is wrapped in an exploration prompt template. If no, the message is passed through as-is for a free-form turn.
+### 4. Phase Tool Masking & Grounded Facts
+The engine constructs the API system prompt dynamically:
+* Injects a `[GROUNDED FACTS]` block containing the verified date, operating system, current working directory, and shell.
+* Strictly filters tool schemas based on the active SDLC phase. A model in the `explore` phase only receives `Read`, `Glob`, and `Grep` schemas.
 
-3. **Jev-Mem hot path** — The latest transcript tail is ingested as an observation (write path: type scoring → relation edges). The System-1 state is refreshed via `extractCanonicalState` (Laya). Evidence is retrieved via `retrieveEvidence` (read path: FTS + recency → sufficiency loop). Pinned context blocks are fetched from `pinned_context`. These are assembled into the compact System-2 message list: pinned blocks → canonical header → retrieved evidence → last 2 turns + last failed tool result.
+### 5. Streaming Inference & Reasoning Counters
+Streams server-sent events (SSE) from the inference backend. If the model emits reasoning content (e.g. `delta.reasoning_content`), the TUI spinner updates live with incremental token counts (`⠋ Thinking (N tokens)...`).
 
-4. **Provider resolution** — The active provider is read from settings, and the wire model name is resolved. This determines whether the Anthropic SDK path or the OpenAI-compatible path is taken.
+### 6. Tool Execution Pipeline
+When tool use blocks are detected:
+1. `PreToolUse` hook fires.
+2. The permission gate evaluates policies (`allow`, `deny`, or `ask`).
+3. If blocked by security rules, the interactive `BlockConfirmMenu` prompts the operator (`[A]` Session Approve, `[S]` Run in OS Sandbox, `[C]` Cancel).
+4. The tool executes, and elapsed runtime is measured.
+5. In SDLC testing phases, test runner outputs are parsed and classified for execution provenance (`test_executions` table).
+6. Tool outputs are appended to `transcript_entries` and streamed back into the conversation turn loop.
 
-5. **Provider dispatch** — Control flows to either `runSdlcAnthropic()` or `runSdlcOpenAICompat()`. Both implement the same phase-driven loop but use different SDKs.
+---
 
-## The Phase Loop
+## Governed 11-Phase SDLC Loop
 
-Inside the provider-specific functions, a `while` loop drives the SDLC phases:
+When SDLC governance is active, the engine executes a phase advancement loop across the 11 states:
 
 ```javascript
-while (['explore', 'planning', 'implement', 'test'].includes(phase)) {
+while (['explore', 'diagnose', 'create_issue', 'create_tests', 'planning', 'implement', 'verify', 'safety', 'confirm_fix'].includes(phase)) {
   const text = await runPhase(db, rt, io, hookRt, ...tools, phase)
-  if (text === null) return  // model error
+  if (text === null) return  // model error / aborted
 
   let advanced = false
-  if (phase === 'explore')     advanced = await exploreGate(...)
-  if (phase === 'planning')    advanced = await planGate(...)
-  if (phase === 'implement')   advanced = await implementGate(...)
-  if (phase === 'test')        advanced = await testGate(...)
+  if (phase === 'explore')        advanced = await exploreGate(db, rt, io)
+  else if (phase === 'diagnose')  advanced = await diagnoseGate(db, rt, io)
+  else if (phase === 'create_issue') advanced = await issueGate(db, rt, io)
+  else if (phase === 'create_tests') advanced = await redTestGate(db, rt, io)
+  else if (phase === 'planning')  advanced = await planGate(db, rt, io)
+  else if (phase === 'implement') advanced = await implementGate(db, rt, io)
+  else if (phase === 'verify')    advanced = await greenVerifyGate(db, rt, io)
+  else if (phase === 'safety')    advanced = await safetyGate(db, rt, io)
+  else if (phase === 'confirm_fix') advanced = await confirmFixGate(db, rt, io)
 
   if (!advanced) break
-  phase = getPhase(db, conversationId)
+  phase = getPhase(db, rt.conversationId)
 }
 ```
 
-Each phase in the loop:
+### Bounded Exploration Safeguards
+To prevent recursive agent loops and token waste during `explore`:
+* **20-Request Budget Ceiling:** A hard limit of 20 productive tool requests is enforced during exploration. The 21st request is blocked, forcing a mandatory transition to `diagnose`.
+* **Stagnation Detection:** Repeated file reads without new evidence extraction or zero-hit queries trigger an early exit.
+* **`.ona/map` Fallback:** If `docs/MAP.md` is absent, the engine computes a lightweight `.ona/map` cache to guide exploration.
 
-1. Builds a **phase-specific system prompt** (see [SDLC Workflow](/nehanda-cli-sdlc) for prompt templates)
-2. **Filters tools** by phase (explore → read-only; planning → none; implement/test → all)
-3. Sends the transcript to the API with **streaming** enabled
-4. Collects the response (text + any tool calls)
-5. If tool calls exist, **executes each one** through the tool orchestrator
-6. Repeats until the model stops calling tools
-7. Passes the final text to the appropriate **human gate**
+---
 
-## Tool Execution Pipeline
+## Tool Availability Matrix by Phase
 
-For each tool call the model produces:
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" width="100%" height="auto">
-  <rect width="960" height="460" rx="16" fill="#4551BF"/>
-  <text x="32" y="36" font-family="'DM Sans',system-ui,sans-serif" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="1">TOOL EXECUTION PIPELINE</text>
-  <line x1="32" y1="48" x2="928" y2="48" stroke="#C7CCF2" stroke-opacity="0.3" stroke-width="1"/>
-
-  <!-- Step 1: PreToolUse Hook -->
-  <g transform="translate(330,60)">
-    <rect width="300" height="50" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
-    <text x="150" y="23" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">PreToolUse Hook</text>
-    <text x="150" y="40" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Can block the tool call</text>
-  </g>
-  <line x1="480" y1="112" x2="480" y2="130" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
-  <polygon points="480,130 475,122 485,122" fill="#8892E0"/>
-
-  <!-- Step 2: Permission Gate -->
-  <g transform="translate(330,132)">
-    <rect width="300" height="50" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
-    <text x="150" y="23" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">Permission Gate</text>
-    <text x="150" y="40" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">evaluatePermission(): allow / deny / ask</text>
-  </g>
-
-  <!-- Three branches -->
-  <line x1="480" y1="184" x2="480" y2="200" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
-  <line x1="480" y1="200" x2="220" y2="224" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="480" y1="200" x2="480" y2="224" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="480" y1="200" x2="740" y2="224" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3"/>
-
-  <!-- Deny -->
-  <g transform="translate(120,226)">
-    <rect width="190" height="44" rx="10" fill="#2E378C" stroke="#C85A5A" stroke-width="1.2"/>
-    <text x="95" y="20" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="11" font-weight="800" fill="#C85A5A">Deny</text>
-    <text x="95" y="36" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Error result to model</text>
-  </g>
-
-  <!-- Ask -->
-  <g transform="translate(385,226)">
-    <rect width="190" height="44" rx="10" fill="#2E378C" stroke="#8892E0" stroke-width="1.2"/>
-    <text x="95" y="20" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">Ask</text>
-    <text x="95" y="36" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Prompt user in TUI</text>
-  </g>
-
-  <!-- Allow -->
-  <g transform="translate(645,226)">
-    <rect width="190" height="44" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
-    <text x="95" y="20" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">Allow</text>
-    <text x="95" y="36" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Execute immediately</text>
-  </g>
-
-  <!-- Allow + Ask converge to Execute -->
-  <line x1="740" y1="272" x2="740" y2="296" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="480" y1="272" x2="480" y2="284" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="480" y1="284" x2="600" y2="296" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="740" y1="296" x2="600" y2="296" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="600" y1="296" x2="600" y2="308" stroke="#8892E0" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <polygon points="600,308 595,300 605,300" fill="#8892E0"/>
-
-  <!-- Execute tool -->
-  <g transform="translate(430,310)">
-    <rect width="340" height="50" rx="10" fill="#0A0A0A" stroke="#7B86EE" stroke-width="1.5"/>
-    <text x="170" y="23" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">Execute Tool</text>
-    <text x="170" y="40" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">Built-in · dynamic/declarative · MCP</text>
-  </g>
-  <line x1="600" y1="362" x2="600" y2="380" stroke="#8892E0" stroke-width="2" stroke-dasharray="4,3"/>
-  <polygon points="600,380 595,372 605,372" fill="#8892E0"/>
-
-  <!-- PostToolUse Hook -->
-  <g transform="translate(430,382)">
-    <rect width="340" height="50" rx="10" fill="#2E378C" stroke="#5C67DE" stroke-width="1.2"/>
-    <text x="170" y="23" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">PostToolUse Hook</text>
-    <text x="170" y="40" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2">or PostToolUseFailure · append to transcript</text>
-  </g>
-
-  <text x="480" y="450" text-anchor="middle" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="500" fill="#C7CCF2" opacity="0.7">lib/orchestrate.mjs · tool results appended to transcript_entries</text>
-</svg>
-
-### Phase-based Tool Filtering
-
-Before sending tools to the model, the orchestrator filters them:
-
-| Phase | Available Tools | Rationale |
-|-------|----------------|-----------|
-| `explore` | `Read`, `Glob`, `Grep` + `explore_only` dynamic tools | Only discovery — no mutations |
-| `planning` | *None* | Model writes plan as text, no tool calls |
-| `implement` | All tools | Plan approved, execute freely |
-| `test` | All tools | Run tests + mandatory safety checkers |
-| `idle` | All tools (with permission gate) | Free-form interaction |
-
-### Local-only Tool Subset
-
-When connected to local models (LM Studio, or Ollama without native tool support), the tool set is reduced to six core tools to conserve context window: `Read`, `Write`, `Edit`, `Bash`, `Glob`, `Grep`. Web tools, notebook tools, worktree tools, and agent tools are excluded.
-
-## Subagent Spawning
-
-The `Agent` tool creates a child turn within the same process. The subagent:
-
-1. Gets its own `session_id` (UUID) but shares the `conversation_id`
-2. Runs `runUserTurn` recursively with the subagent's prompt
-3. Collects all output into a string
-4. Fires `SubagentStart` and `SubagentStop` hooks
-5. Returns the collected output as the tool result
-
-This enables the model to delegate subtasks without any external process management.
-
-## Error Handling
-
-- **Provider errors** are classified by HTTP status (401 → `authentication_failed`, 429 → `rate_limit`, 404 → `model_not_found`, 500/503 → `server_error`) and reported via the `StopFailure` hook.
-- **Tool execution errors** return `is_error: true` in the tool result, which the model sees and can respond to.
-- **Permission denials** return an error tool result explaining the decision.
-- **Phase violations** (calling a blocked tool in the wrong phase) return an error immediately without executing.
-- **Ollama fallback** — if an Ollama model returns a "does not support tools" error, the engine automatically falls back to the `[TOOL_CALL]` rescue path for all subsequent turns.
-
-## The `io` Adapter
-
-The I/O layer abstracts away whether the engine is running in an interactive TUI or headless pipe mode:
-
-| Method | Interactive (Ink TUI) | Pipe Mode |
-|--------|----------------------|-----------|
-| `io.write(text)` | Renders in the terminal component | Writes to stdout |
-| `io.println(text)` | Renders with newline | Writes to stdout |
-| `io.ask(question)` | Shows inline prompt, waits for input | Returns `'y'` (auto-approve) |
-| `io.confirmBlock(payload)` | Raises `BlockConfirmMenu` (`[A]/[S]/[C]`) in Ink event loop; resolves with `'approve'`, `'sandbox'`, or `'cancel'` | Absent — `toolBash` auto-denies |
-| `io.spinner.start(msg)` | Shows spinning indicator | No-op |
-| `io.spinner.stop()` | Hides spinner | No-op |
-| `io.onToolStart(name)` | Updates tool indicator UI | No-op |
-| `io.onToolResult(name, content, isError)` | Updates tool result display | No-op |
-
-`io.confirmBlock` is the mechanism that ties the bashguard and safety-checker structured rejection payloads directly into the Ink event loop. When `toolBash` receives a blocked result and `io.confirmBlock` is present, it awaits the user's decision before either proceeding, sandboxing, or cancelling — without blocking the Node.js event loop. When `io.confirmBlock` is absent (pipe/headless mode), the command is auto-denied immediately.
+| Phase | Read, Glob, Grep | Write, Edit | Bash | Web Tools | Rationale |
+|:---|:---:|:---:|:---:|:---:|:---|
+| `idle` | Allowed | Ask / Gated | Refused if mutating | Allowed | Open inquiry |
+| `explore` | **Allowed** | **Blocked** | **Blocked** | Allowed | Strict discovery |
+| `diagnose` | Allowed | **Blocked** | **Blocked** | Allowed | Evidence synthesis |
+| `create_issue` | Allowed | `.issues/` only | **Blocked** | Allowed | Register task artifact |
+| `create_tests` | Allowed | `tests/**` only | **Allowed** (Test runner) | Allowed | TDD RED regression |
+| `planning` | **Blocked** | **Blocked** | **Blocked** | **Blocked** | Plan Triad text only |
+| `implement` | Allowed | **Allowed** | Allowed | Allowed | Approved code changes |
+| `verify` | Allowed | **Blocked** | **Allowed** (Test runner) | Allowed | TDD GREEN verification |
+| `safety` | Allowed | **Blocked** | **Allowed** (Checkers) | Allowed | Static checkers + coverage |
+| `confirm_fix` | Allowed | **Blocked** | **Blocked** | Allowed | Human review |
+| `done` | Allowed | **Blocked** | **Allowed** (Git commit) | Allowed | Final commit & reset |

@@ -14,7 +14,7 @@ layout: default
 <div class="section-cards" style="margin-bottom: 48px;">
   <div class="section-card" style="border-left: 4px solid #455BF1;">
     <h3>💻 nehanda-cli</h3>
-    <p>An agentic terminal REPL and single-process engine built for energy systems research and software development. Deterministic SDLC workflows, MCP client, dynamic tool calling, 4-tier memory compaction, and multi-provider support. <strong>AGPL-3.0.</strong></p>
+    <p>An agentic terminal REPL and single-process engine built for energy systems research and software development. Deterministic 11-phase SDLC state machine, OS-primitives sandbox confinement, ODSE energy normalization, MCP client, dynamic tool rescue, and local SQLite audit trails. <strong>AGPL-3.0.</strong></p>
     <a href="/nehanda-cli" class="section-link">Documentation →</a>
     <span style="margin: 0 8px; color: #ccc;">|</span>
     <a href="https://github.com/AsobaCloud/nehanda-cli" class="section-link" target="_blank">GitHub →</a>

@@ -5,136 +5,114 @@ parent: "Nehanda CLI"
 nav_order: 8
 ---
 
-# Configuration
+# Configuration & Environment Variables
 
-Nehanda CLI uses a layered configuration system. Settings can come from files, the database, environment variables, or REPL commands. This page documents the full settings schema and merge behavior.
+Nehanda CLI uses a layered configuration system combining project-level configuration files, user-level global configuration, environment variables, and SQLite database snapshots.
 
-## Settings Locations
+---
 
-Settings are loaded from three sources, in priority order:
+## Configuration Locations & Priority
 
-| Priority | Source | Path |
-|----------|--------|------|
-| 1 (highest) | Runtime changes (`/config`) | Stored in `settings_snapshot` table |
-| 2 | Project-local file | `.ona/settings.json` |
-| 2 | Project-local file (Claude compat) | `.claude/settings.local.json` |
-| 3 | Project root file | `settings.json` |
+Settings are loaded and merged in the following priority order:
 
-All file sources are **merged together** — if multiple files exist, their contents are deep-merged. The database settings are then layered on top.
+| Priority | Source | Path | Purpose |
+|:---|:---|:---|:---|
+| **1 (Highest)** | Interactive Commands | Database `settings_snapshot` | Runtime adjustments from `/model` and `/key` |
+| **2** | Project Settings | `.ona/settings.json` | Project-specific permissions, model overrides, and hooks |
+| **3** | Claude Compat File | `.claude/settings.local.json` | Drop-in compatibility for existing project setups |
+| **4** | Global Agent Config | `~/.config/nehanda/agents.json` | User-wide agent preferences and global keys |
+| **5** | Global MCP Servers | `~/.config/nehanda/mcp.json` | Global Model Context Protocol server definitions |
 
-## Bootstrap Merge Strategy
+All project file sources are deep-merged on startup, and database configurations take precedence until files are edited with a newer modification timestamp.
 
-On startup, the engine applies a timestamp-based merge:
+---
 
-1. **First run (no database settings):** Merge defaults + file settings → write to database
-2. **File edited after last DB update:** Merge defaults + DB settings + file settings → update database
-3. **DB is current:** Keep database settings (preserves runtime `/config` changes)
+## Environment Variables
 
-This means you can edit your settings file at any time and the changes will be picked up on the next restart. Runtime `/config` changes are preserved across restarts unless a file is edited more recently.
+### Core & Persistence
+| Variable | Default | Description |
+|:---|:---|:---|
+| `AGENT_SDLC_DB` | `~/.config/nehanda/ona-session.db` | Path to the local SQLite audit and state database |
+| `SDLC_DISABLE_ALL_HOOKS` | `0` | Set to `1` to bypass all event hooks across all phases |
 
-## Full Settings Schema
+### OS-Primitives Sandbox (Seatbelt / Bubblewrap)
+| Variable | Default | Description |
+|:---|:---|:---|
+| `NEHANDA_SANDBOX_ALLOWLIST` | *Unset (deny-all)* | Comma-separated domain names allowed for egress (e.g. `registry.npmjs.org,github.com`) |
+| `NEHANDA_SANDBOX_BACKEND` | *Auto-detected* | Force sandbox backend: `darwin` (Seatbelt) or `linux` (Bubblewrap) |
+| `NEHANDA_SANDBOX_PROXY_SOCKET` | *Auto-generated* | Unix domain socket path used by the in-process allowlist forward proxy |
+
+### Provider Credentials & Hosts
+| Variable | Provider | Description |
+|:---|:---|:---|
+| `OPENROUTER_API_KEY` | OpenRouter | API key for OpenRouter inference |
+| `ANTHROPIC_API_KEY` | Anthropic | API key for Claude models |
+| `ANTHROPIC_AUTH_TOKEN` | Anthropic | OAuth bearer token |
+| `OLLAMA_BASE_URL` | Ollama | Host URL for Ollama instances (default: `http://localhost:11434/v1`) |
+| `OPENAI_API_KEY` | OpenAI-compatible | Generic API key |
+| `OPENAI_BASE_URL` | OpenAI-compatible | Generic base URL |
+| `NEHANDA_API_KEY` | Nehanda Cloud | API key for Nehanda vLLM proxy |
+| `NEHANDA_BASE_URL` | Nehanda Cloud | Base URL (default: `https://nehanda-ml.asoba.co/v1`) |
+
+---
+
+## Settings Schema Reference
+
+Example `.ona/settings.json`:
 
 ```json
 {
   "model_config": {
-    "provider": "zhipu",
-    "model_id": "glm_4_7_flash",
-    "base_url": null,
+    "provider": "openrouter",
+    "model_id": "openai/gpt-4o",
+    "base_url": "https://openrouter.ai/api/v1",
     "api_key": null,
-    "num_ctx": null,
+    "num_ctx": 128000,
+    "thinking": false,
     "force_manual_tools": false
   },
   "permissions": {
     "defaultMode": "default",
-    "allow": [],
-    "deny": [],
-    "ask": []
+    "allow": ["Read", "Glob", "Grep"],
+    "deny": ["Bash"],
+    "ask": ["Write", "Edit"]
   },
-  "hooks": [],
-  "apiKeyHelper": null,
-  "mcp_servers": {}
-}
-```
-
-### `model_config`
-
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| `provider` | string | `"zhipu"` | Active provider identifier |
-| `model_id` | string | `"glm_4_7_flash"` | Model name sent to the provider |
-| `base_url` | string or null | Provider-dependent | API base URL (overrides env vars) |
-| `api_key` | string or null | null | API key (overrides env vars) |
-| `num_ctx` | integer or null | null | Context window size for OpenAI-compatible providers |
-| `force_manual_tools` | boolean | `false` | Force `[TOOL_CALL]` rescue path even if provider supports native tools |
-
-### `permissions`
-
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| `defaultMode` | string | `"default"` | One of: `default`, `bypassPermissions`, `dontAsk`, `acceptEdits`, `plan` |
-| `allow` | string[] | `[]` | Tools to auto-allow (supports `*` wildcard suffix) |
-| `deny` | string[] | `[]` | Tools to auto-deny (supports `*` wildcard suffix) |
-| `ask` | string[] | `[]` | Tools to require confirmation (supports `*` wildcard suffix) |
-
-See [Permissions](/nehanda-cli-permissions) for the full permission model.
-
-### `hooks`
-
-An array of hook definitions. See [Hooks](/nehanda-cli-hooks) for the full schema.
-
-### `apiKeyHelper`
-
-A shell command that outputs an API key to stdout. Used when the provider requires authentication but no key is configured:
-
-```json
-{
-  "apiKeyHelper": "echo $MY_SECRET_KEY"
-}
-```
-
-### `mcp_servers`
-
-A map of MCP server configurations. See [MCP Integration](/nehanda-cli-mcp) for the full schema.
-
-## Using `/config`
-
-From the REPL, use `/config` to view or modify settings at runtime:
-
-```
-❯ /config
-# Display all current settings
-
-❯ /config set model_config.base_url https://api.anthropic.com
-# Set a nested value using dot-path notation
-
-❯ /config set permissions.defaultMode acceptEdits
-# Change permission mode
-
-❯ /config set model_config.num_ctx 8192
-# Set context window size (auto-converted to number)
-```
-
-Changes persist in the database and survive restarts (until a settings file is edited with a newer timestamp).
-
-## Example Settings File
-
-`.ona/settings.json`:
-
-```json
-{
-  "model_config": {
-    "provider": "claude_code_subscription",
-    "model_id": "claude-sonnet-4-20250514"
-  },
-  "permissions": {
-    "defaultMode": "acceptEdits",
-    "deny": ["mcp__*"]
-  },
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "command": "node scripts/check-policy.mjs",
+      "matcher": "Bash"
+    }
+  ],
   "mcp_servers": {
     "filesystem": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/home/user/project"]
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."]
     }
   }
 }
 ```
+
+### `model_config` Keys
+* `provider` (string): Active provider (`openrouter`, `anthropic`, `ollama`, `lm_studio_local`, `zhipu`, `nehanda`, `openai_compatible`).
+* `model_id` (string): Model identifier passed to the API.
+* `base_url` (string): Host endpoint URL.
+* `thinking` (boolean): When set to `false`, forwards `think: false` to Ollama to disable chain-of-thought overhead.
+* `force_manual_tools` (boolean): Enforces delimiter-based `[TOOL_CALL]` rescue calling even on providers with native tool support.
+
+---
+
+## Runtime Inspection (`/config`)
+
+To inspect active configuration, run `/config` in the REPL:
+
+```
+❯ /config
+  Provider:  openrouter
+  Model:     openai/gpt-4o
+  Endpoint:  https://openrouter.ai/api/v1 (32ms)
+  Sidecar:   Laya System-1 (PID 48212, warm)
+  Directory: /Users/shingi/Workbench/energy-project
+```
+
+To modify provider settings interactively, launch the `/model` wizard or use the `/key` shortcut.

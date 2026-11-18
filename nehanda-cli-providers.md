@@ -5,136 +5,118 @@ parent: "Nehanda CLI"
 nav_order: 10
 ---
 
-# Providers
+# Providers & Inference Backends
 
-The provider layer abstracts away the differences between LLM providers behind a unified interface. Nehanda CLI supports five provider categories, each routing through one of two code paths.
+The provider layer provides a unified interface across cloud frontier models and local self-hosted engines. Nehanda CLI features an interactive Goose-style configuration wizard, automatic live model discovery, provider credential isolation, and capability probing for tool use and reasoning tokens.
 
-## Provider Code Paths
+---
 
-| Code Path | Providers | SDK |
-|-----------|-----------|-----|
-| **Anthropic SDK** | `claude_code_subscription`, `anthropic` | `@anthropic-ai/sdk` |
-| **OpenAI-Compatible** | `nehanda`, `ollama`, `lm_studio_local`, `zhipu`, `openai_compatible` | Custom streaming client (`openaiCompat.mjs`) |
+## Unified `/model` Configuration Wizard
 
-Both paths implement the same behavior: stream a chat completion, collect tool calls, execute them, and loop. The only differences are the SDK used and how tool schemas are sent.
-
-## Supported Providers
-
-### Nehanda Cloud
-
-The default provider. Connects to the Nehanda vLLM deployment behind a Lambda proxy.
-
-| Setting | Default |
-|---------|--------|
-| `provider` | `nehanda` |
-| `base_url` | `https://nehanda-ml.asoba.co/v1` |
-| `api_key` | From env `NEHANDA_API_KEY` or `/key` command |
-
-**Tool calling:** Uses the `[TOOL_CALL]` rescue path. The `nehandaMlProxy` Lambda strips `tools` and `tool_choice` from requests, so tool schemas are injected into the system prompt and parsed from model text.
-
-### Anthropic Claude
-
-Uses the official Anthropic SDK with native tool support.
-
-| Setting | Value |
-|---------|-------|
-| `provider` | `claude_code_subscription` or `anthropic` |
-| `base_url` | `https://api.anthropic.com` |
-
-**Authentication:** Supports two modes:
-- **API key:** `ANTHROPIC_API_KEY` environment variable
-- **OAuth bearer:** `ANTHROPIC_AUTH_TOKEN` environment variable (uses `oauth-2025-04-20` beta header)
-
-**Tool calling:** Native. Tools are sent in the `tools` parameter and results come back as structured `tool_use` content blocks.
-
-### LM Studio
-
-Connects to a locally running LM Studio instance.
-
-| Setting | Default |
-|---------|--------|
-| `provider` | `lm_studio_local` |
-| `base_url` | Auto-detected (port 1234 or 8000) |
-| `api_key` | From `OPENAI_API_KEY` env (often not needed) |
-
-**Tool calling:** Native when available. Tool set is reduced to six core tools (`Read`, `Write`, `Edit`, `Bash`, `Glob`, `Grep`) to conserve context window.
-
-### Ollama
-
-Connects to a local or remote Ollama instance.
-
-| Setting | Default |
-|---------|--------|
-| `provider` | `ollama` |
-| `base_url` | From `OLLAMA_BASE_URL` or `http://localhost:11434/v1` |
-| `api_key` | `ollama` (placeholder) |
-
-**Tool support detection:** On first use, the engine calls Ollama's `/api/show` endpoint to check if the model's chat template includes `.Tools` or its capabilities list includes `tools`. Results are cached per model. If not supported, falls back to the `[TOOL_CALL]` rescue path automatically.
-
-**Tool calling:** Native if detected, rescue path if not.
-
-### Zhipu
-
-Connects to Zhipu AI's GLM models.
-
-| Setting | Default |
-|---------|--------|
-| `provider` | `zhipu` |
-| `model_id` | `glm_4_7_flash` |
-
-**Tool calling:** OpenAI-compatible native.
-
-### Any OpenAI-Compatible API
-
-Connects to any server that implements the OpenAI chat completions API.
-
-| Setting | Default |
-|---------|--------|
-| `provider` | `openai_compatible` |
-| `base_url` | From `OPENAI_BASE_URL` env |
-| `api_key` | From `OPENAI_API_KEY` env |
-
-## Switching Providers
-
-From the REPL:
+Provider selection and credential setup are handled in a single interactive terminal flow via `/model`:
 
 ```
 ❯ /model
-# Lists available models from the active provider
 
-❯ /model claude-sonnet-4-20250514
-# Switches model (stays on current provider)
-
-❯ /config set model_config.provider ollama
-❯ /config set model_config.base_url http://localhost:11434/v1
-❯ /model llama3
-# Switches to Ollama with llama3
+◆  Which provider?
+│  ● OpenRouter
+│  ○ Anthropic Claude
+│  ○ Ollama (Local or LAN)
+│  ○ LM Studio
+│  ○ Nehanda Cloud
+│  ○ Zhipu AI
+│  ○ Any OpenAI-compatible API
+└
+◆  API key
+│  sk-or-v1-…
+└
+◆  API host
+│  https://openrouter.ai/api/v1
+└
+  Fetching models from provider…
+◆  Model
+│  ● openai/gpt-4o
+│  ○ anthropic/claude-3.5-sonnet
+│  ○ meta-llama/llama-3.3-70b-instruct
+│  ○ deepseek/deepseek-chat
+└
+  ✓ Provider / host / model saved — session active
 ```
 
-From a settings file:
+### Wizard Features
 
-```json
-{
-  "model_config": {
-    "provider": "ollama",
-    "model_id": "deepseek-coder-v2:latest",
-    "base_url": "http://my-server:11434/v1"
-  }
-}
-```
+* **Dynamic Catalog Discovery:** Sends an authenticated `GET /models` request (or `/api/tags` for Ollama) to discover models in real time. Large catalogs include type-to-filter fuzzy searching.
+* **Credential Isolation:** Credentials are keyed to specific providers. Switching providers never bleeds API keys or custom hosts across configurations.
+* **Secret Masking & Redaction:** API keys are masked during typing (`sk-…`) and permanently redacted in conversation transcripts and database logs.
+* **Shortcut `/key`:** Saves a provider key and immediately chains into the host and model selection steps:
+  ```
+  ❯ /key openrouter sk-or-v1-...
+  ```
+* **Read-Only Status `/config`:** Displays active provider, model ID, API host, and endpoint latency without modifying settings.
 
-## Model Resolution
+---
 
-`resolveWireModel(model_config)` maps the configured `model_id` to the actual wire format the provider expects. For most providers this is a pass-through, but some providers require transformations (e.g., stripping provider prefixes).
+## Provider Code Paths
+
+All providers route through one of two execution paths, both supporting streaming completions and the deterministic turn loop:
+
+| Code Path | Providers | SDK / Client | Native Tool Support |
+|:---|:---|:---|:---|
+| **Anthropic SDK** | Anthropic Claude, Bedrock | `@anthropic-ai/sdk` | Yes (`tool_use` blocks) |
+| **OpenAI-Compatible** | OpenRouter, Ollama, LM Studio, Zhipu, Nehanda, Custom | Custom SSE streaming client (`openaiCompat.mjs`) | Yes (or `[TOOL_CALL]` rescue path) |
+
+---
+
+## Supported Providers
+
+### 1. OpenRouter
+Access dozens of frontier and open-weights models through a single API key:
+* **Host:** `https://openrouter.ai/api/v1`
+* **Discovery:** Live model catalog fetched from OpenRouter's model endpoint.
+* **Reasoning Tokens:** Parses `delta.reasoning` and `delta.reasoning_content` to stream live token counters (`⠋ Thinking (N tokens)...`) in the TUI spinner.
+
+### 2. Anthropic Claude
+Connects using the official Anthropic SDK with native tool calling:
+* **Host:** `https://api.anthropic.com`
+* **Authentication:** `ANTHROPIC_API_KEY` or OAuth bearer token `ANTHROPIC_AUTH_TOKEN` (supports `oauth-2025-04-20` beta header).
+* **Prompt Caching:** Automatically structures system prompts and Jev-Mem pinned context with prompt caching breakpoints.
+
+### 3. Ollama (Local or LAN)
+Connects to local or remote Ollama instances:
+* **Host:** `http://localhost:11434/v1` (or remote LAN host via `OLLAMA_BASE_URL`).
+* **Tool Capability Probe:** On startup or model selection, `detectOllamaToolSupport` queries Ollama's `/api/show` endpoint to check whether the modelfile or template contains `.Tools`. If supported, native tool calling is used; otherwise, the engine falls back to `[TOOL_CALL]` rescue automatically.
+* **Instant Cancellation:** The probe uses composed `AbortSignal.any([signal, AbortSignal.timeout(3000)])` so pressing `Esc` cancels the probe immediately.
+* **Reasoning Control:** For models supporting chain-of-thought toggling, Nehanda forwards `think: false` in request bodies when thinking is disabled in configuration.
+
+### 4. LM Studio
+Connects to local inference servers:
+* **Host:** Auto-detected (default port 1234 or 8000).
+* **Context Optimization:** Curates a compact toolset for local models with smaller context windows.
+
+### 5. Nehanda Cloud (vLLM)
+Connects to Nehanda's domain-tuned Qwen 27B model:
+* **Host:** `https://nehanda-ml.asoba.co/v1`
+* **Tool Calling:** Employs the `[TOOL_CALL]` rescue path to bypass proxy stop-token stripping.
+
+---
+
+## Wire Model Resolution
+
+`resolveWireModel(model_config)` translates configured model IDs into the exact string required by the provider endpoint:
+* Strips redundant vendor prefixes when routing directly to OEM endpoints.
+* Preserves vendor prefixes when routing through multi-model gateways (e.g., OpenRouter).
+* Injects `[GROUNDED FACTS]` blocks (current date, working directory, platform, shell) into system prompts so models don't consume context debating environment facts.
+
+---
 
 ## Environment Variables
 
-| Variable | Provider | Description |
-|----------|----------|-------------|
-| `NEHANDA_API_KEY` | Nehanda | API key for Nehanda Cloud |
-| `NEHANDA_BASE_URL` | Nehanda | Override base URL |
-| `OPENAI_API_KEY` | LM Studio, Ollama, generic | API key |
-| `OPENAI_BASE_URL` | LM Studio, Ollama, generic | Override base URL |
-| `OLLAMA_BASE_URL` | Ollama | Override Ollama base URL |
+| Variable | Provider | Purpose |
+|:---|:---|:---|
+| `OPENROUTER_API_KEY` | OpenRouter | API key |
 | `ANTHROPIC_API_KEY` | Claude | API key |
 | `ANTHROPIC_AUTH_TOKEN` | Claude | OAuth bearer token |
+| `OLLAMA_BASE_URL` | Ollama | Custom Ollama host URL |
+| `OPENAI_API_KEY` | OpenAI-compatible | Generic API key |
+| `OPENAI_BASE_URL` | OpenAI-compatible | Custom base URL endpoint |
+| `NEHANDA_API_KEY` | Nehanda Cloud | API key |
